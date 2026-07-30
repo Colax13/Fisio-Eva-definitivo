@@ -1,0 +1,6 @@
+{
+  "name": "PhysioCare Clinic",
+  "description": "A modern, professional physiotherapy clinic website featuring services, about us, and booking sections based on the provided reference design.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
