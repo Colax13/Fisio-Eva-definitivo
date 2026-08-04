@@ -6,6 +6,11 @@ import {defineConfig} from 'vite';
 export default defineConfig(() => {
   return {
     plugins: [react(), tailwindcss()],
+    // Pre-bundle up front so a mid-session re-optimize can't leave two React
+    // copies loaded in the same page.
+    optimizeDeps: {
+      include: ['react', 'react-dom/client', 'react-router-dom', 'motion/react', 'lucide-react'],
+    },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
