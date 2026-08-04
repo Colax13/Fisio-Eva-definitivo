@@ -1,33 +1,38 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
-import ChiSiamo from './pages/ChiSiamo';
 import Servizi from './pages/Servizi';
-import Progetti from './pages/Progetti';
+import ServiziCategoria from './pages/ServiziCategoria';
+import ServizioDettaglio from './pages/ServizioDettaglio';
 import Team from './pages/Team';
-import Gallery from './pages/Gallery';
-import Faq from './pages/Faq';
+import ChiSiamo from './pages/ChiSiamo';
 import Contatti from './pages/Contatti';
-import NotFound from './pages/NotFound';
+import Faq from './pages/Faq';
+import { CookiePolicy, Privacy } from './pages/Legale';
+import NonTrovata from './pages/NonTrovata';
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/chi-siamo" element={<ChiSiamo />} />
+
           <Route path="/servizi" element={<Servizi />} />
-          <Route path="/progetti" element={<Progetti />} />
+          <Route path="/servizi/:categoria" element={<ServiziCategoria />} />
+          <Route path="/servizi/:categoria/:slug" element={<ServizioDettaglio />} />
+
           <Route path="/team" element={<Team />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/faq" element={<Faq />} />
+          <Route path="/chi-siamo" element={<ChiSiamo />} />
           <Route path="/contatti" element={<Contatti />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/faq" element={<Faq />} />
+
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
+
+          <Route path="*" element={<NonTrovata />} />
         </Route>
       </Routes>
     </BrowserRouter>
   );
 }
-
-export default App;

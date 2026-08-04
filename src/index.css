@@ -1,12 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-brand-primary: #c197c5; /* Pink / Lilla */
-  --color-brand-secondary: #7bc6b8; /* Green / Teal */
-  --color-brand-dark: #3d3d3c;
-  --color-brand-light: #fafafa;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Palette FisioEva — verde acqua primario, lillà accento */
+  --color-brand-primary: #7bc6b8; /* verde acqua: superfici, bordi, accenti grafici */
+  --color-brand-accent: #c197c5; /* lillà: accento secondario */
+  --color-brand-dark: #3d3d3c; /* carbone: tutto il testo di lettura */
+  --color-brand-light: #f2f2f2; /* off-white: sfondo */
+
+  /*
+   * Varianti scure per il TESTO. Verde acqua e lillà sui fondi chiari stanno
+   * sotto 2:1 di contrasto: vanno usati per superfici e bordi, mai per le
+   * parole. Queste due passano AA anche a corpo piccolo.
+   */
+  --color-brand-ink: #2c6b60; /* verde acqua leggibile */
+  --color-brand-accent-ink: #7d5285; /* lillà leggibile */
+
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
@@ -17,23 +27,24 @@ body {
   font-family: var(--font-sans);
   background-color: var(--color-brand-light);
   color: var(--color-brand-dark);
+  font-weight: 400;
+}
+
+/* Mai grassetti pesanti: 700 è il massimo consentito dal brand. */
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 section[id] {
   scroll-margin-top: 6rem;
 }
 
-@keyframes blob {
-  0%, 100% {
-    border-radius: 50% 50% 50% 50% / 55% 45% 45% 55%;
-    transform: rotate(0deg);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-  50% {
-    border-radius: 45% 55% 55% 45% / 50% 55% 45% 50%;
-    transform: rotate(3deg);
-  }
-}
-
-.animate-blob {
-  animation: blob 8s ease-in-out infinite;
 }

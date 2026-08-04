@@ -2,10 +2,9 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import GalleryStrip from './GalleryStrip';
 
-/** Scrolls to the top on navigation, or to the anchor when the URL carries a hash. */
-function ScrollManager() {
+/** Riporta in cima al cambio pagina, o all'ancora se l'URL ne ha una. */
+function GestoreScroll() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
@@ -16,7 +15,7 @@ function ScrollManager() {
         return;
       }
     }
-    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+    window.scrollTo({ top: 0 });
   }, [pathname, hash]);
 
   return null;
@@ -24,13 +23,12 @@ function ScrollManager() {
 
 export default function Layout() {
   return (
-    <div className="font-sans bg-brand-light min-h-screen flex flex-col">
-      <ScrollManager />
+    <div className="flex min-h-screen flex-col bg-brand-light font-sans">
+      <GestoreScroll />
       <Navbar />
       <main className="flex-1">
         <Outlet />
       </main>
-      <GalleryStrip />
       <Footer />
     </div>
   );
