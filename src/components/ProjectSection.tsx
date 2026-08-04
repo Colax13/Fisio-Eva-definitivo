@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { Check, ArrowRight } from 'lucide-react';
 
 const projects = [
@@ -80,7 +80,7 @@ export default function ProjectSection() {
   }, []);
 
   return (
-    <section className="relative bg-brand-light flex items-center justify-center overflow-hidden py-12 md:py-16">
+    <section id="progetti" className="relative bg-brand-light flex items-center justify-center overflow-hidden py-12 md:py-16">
       {/* Decorative Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-brand-primary/10 blur-[120px]"></div>

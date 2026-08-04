@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <motion.img 
@@ -63,11 +63,11 @@ export default function Hero() {
               </span>
             </a>
             
-            <a href="tel:+39123456789" className="group flex items-center border-2 border-brand-secondary bg-white hover:bg-brand-secondary text-brand-dark hover:text-white rounded-full px-8 py-3.5 transition-colors duration-300 overflow-hidden font-medium text-sm">
+            <a href="tel:+393803640807" className="group flex items-center border-2 border-brand-secondary bg-white hover:bg-brand-secondary text-brand-dark hover:text-white rounded-full px-8 py-3.5 transition-colors duration-300 overflow-hidden font-medium text-sm">
               <span className="w-0 opacity-0 group-hover:w-5 group-hover:opacity-100 transition-all duration-300 overflow-hidden flex items-center justify-start group-hover:mr-2 -translate-x-full group-hover:translate-x-0">
                 <Phone className="w-4 h-4 shrink-0" />
               </span>
-              <span>+39 123 456 789</span>
+              <span>+39 380 364 0807</span>
               <span className="w-5 opacity-100 group-hover:w-0 group-hover:opacity-0 transition-all duration-300 overflow-hidden flex items-center justify-end ml-2 group-hover:ml-0 translate-x-0 group-hover:translate-x-full">
                 <Phone className="w-4 h-4 shrink-0" />
               </span>

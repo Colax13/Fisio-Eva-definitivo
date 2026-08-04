@@ -8,6 +8,8 @@ import HowItWorks from './components/HowItWorks';
 import BenefitsSection from './components/BenefitsSection';
 import EmotionalSection from './components/EmotionalSection';
 import Testimonials from './components/Testimonials';
+import ContactSection from './components/ContactSection';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
       <EmotionalSection />
       <BenefitsSection />
       <Testimonials />
+      <ContactSection />
+      <Footer />
     </div>
   );
 }

@@ -24,7 +24,7 @@ const team = [
 
 export default function TeamSection() {
   return (
-    <section className="relative bg-brand-light flex items-center justify-center overflow-hidden py-24">
+    <section id="team" className="relative bg-brand-light flex items-center justify-center overflow-hidden py-24">
       {/* Decorative Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-brand-primary/10 blur-[120px]"></div>

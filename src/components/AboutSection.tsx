@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 
 export default function AboutSection() {
   return (
-    <section className="relative bg-brand-light rounded-t-[3rem] -mt-8 z-20 px-6 py-32 shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
+    <section id="chi-siamo" className="relative bg-brand-light rounded-t-[3rem] -mt-8 z-20 px-6 py-32 shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Images Grid */}
@@ -92,7 +92,7 @@ export default function AboutSection() {
             </div>
             
             <div className="mt-12">
-              <button className="group flex w-max items-center border-2 border-brand-primary bg-white hover:bg-brand-primary text-brand-dark hover:text-white rounded-full px-8 py-3.5 transition-colors duration-300 overflow-hidden font-medium text-sm">
+              <a href="#servizi" className="group flex w-max items-center border-2 border-brand-primary bg-white hover:bg-brand-primary text-brand-dark hover:text-white rounded-full px-8 py-3.5 transition-colors duration-300 overflow-hidden font-medium text-sm">
                 <span className="w-0 opacity-0 group-hover:w-5 group-hover:opacity-100 transition-all duration-300 overflow-hidden flex items-center justify-start group-hover:mr-2 -translate-x-full group-hover:translate-x-0">
                   <ArrowUpRight className="w-4 h-4 shrink-0" />
                 </span>
@@ -100,7 +100,7 @@ export default function AboutSection() {
                 <span className="w-5 opacity-100 group-hover:w-0 group-hover:opacity-0 transition-all duration-300 overflow-hidden flex items-center justify-end ml-2 group-hover:ml-0 translate-x-0 group-hover:translate-x-full">
                   <ArrowUpRight className="w-4 h-4 shrink-0" />
                 </span>
-              </button>
+              </a>
             </div>
           </motion.div>
         </div>

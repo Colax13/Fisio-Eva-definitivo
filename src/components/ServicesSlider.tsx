@@ -26,7 +26,7 @@ export default function ServicesSlider() {
   ];
 
   return (
-    <section className="relative py-24 px-6 overflow-hidden">
+    <section id="servizi" className="relative py-24 px-6 overflow-hidden">
       <WaveBackground />
       
       <div className="max-w-7xl mx-auto relative z-10 w-full">

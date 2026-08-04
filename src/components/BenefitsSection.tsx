@@ -110,7 +110,7 @@ export default function BenefitsSection() {
               </div>
             </div>
             
-            <button className="group flex w-max items-center border-2 border-brand-secondary bg-white hover:bg-brand-secondary text-brand-dark hover:text-white rounded-full px-8 py-3.5 transition-colors duration-300 overflow-hidden font-medium text-sm">
+            <a href="#contatti" className="group flex w-max items-center border-2 border-brand-secondary bg-white hover:bg-brand-secondary text-brand-dark hover:text-white rounded-full px-8 py-3.5 transition-colors duration-300 overflow-hidden font-medium text-sm">
               <span className="w-0 opacity-0 group-hover:w-5 group-hover:opacity-100 transition-all duration-300 overflow-hidden flex items-center justify-start group-hover:mr-2 -translate-x-full group-hover:translate-x-0">
                 <ArrowUpRight className="w-4 h-4 shrink-0" />
               </span>
@@ -118,7 +118,7 @@ export default function BenefitsSection() {
               <span className="w-5 opacity-100 group-hover:w-0 group-hover:opacity-0 transition-all duration-300 overflow-hidden flex items-center justify-end ml-2 group-hover:ml-0 translate-x-0 group-hover:translate-x-full">
                 <ArrowUpRight className="w-4 h-4 shrink-0" />
               </span>
-            </button>
+            </a>
           </motion.div>
           
         </div>
