@@ -1,4 +1,3 @@
+# Sito non ancora pubblico: apertura 26 settembre 2026.
 User-agent: *
-Allow: /
-
-Sitemap: https://www.fisioeva.it/sitemap.xml
+Disallow: /

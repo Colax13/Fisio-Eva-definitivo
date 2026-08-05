@@ -74,3 +74,30 @@ Esiste inoltre una lista di frasi già scartate che non vanno reintrodotte: la t
 ## Deploy
 
 `npm run build` produce `dist/`. Il file `vercel.json` contiene il rewrite che fa funzionare gli indirizzi diretti (`/servizi/...`) su un sito a pagina singola: su un host diverso da Vercel va replicata la stessa regola.
+
+### Prima volta
+
+Il modo più comodo è collegare il repository a Vercel dal pannello: **Add New → Project → Import** da GitHub, scegliendo `Colax13/Fisio-Eva-definitivo`. Le impostazioni le legge da `vercel.json`, quindi non c'è nulla da configurare. Da lì in poi ogni push su `main` ridistribuisce da solo.
+
+In alternativa, da terminale:
+
+```bash
+npx vercel login
+```
+
+```bash
+npx vercel
+```
+
+Senza `--prod` viene creata un'anteprima; `npx vercel --prod` pubblica sul dominio di produzione.
+
+### ⚠️ Il sito è chiuso ai motori di ricerca
+
+Finché non si apre, il sito **non deve farsi indicizzare**: privacy e cookie policy sono in bozza, mancano i dati legali obbligatori e lo studio apre il 26 settembre 2026.
+
+Il blocco è in due punti:
+
+1. `PUBBLICO = false` in `scripts/genera-sitemap.mjs` — genera un `robots.txt` con `Disallow: /`
+2. L'header `X-Robots-Tag: noindex, nofollow` in `vercel.json`
+
+**Al go-live vanno tolti entrambi**, dopo aver completato privacy, cookie policy e banner di consenso.

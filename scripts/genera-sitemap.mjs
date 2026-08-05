@@ -9,6 +9,16 @@ import { dirname, join } from 'node:path';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITO = 'https://www.fisioeva.it';
 
+/**
+ * Finché il sito non è pubblico, i motori di ricerca restano fuori.
+ * Il sito ha ancora privacy e cookie policy in bozza, dati legali mancanti e
+ * lo studio apre il 26 settembre 2026: farsi indicizzare adesso vorrebbe dire
+ * mandare in giro una versione che non regge.
+ *
+ * Al go-live: metti true qui e togli l'header X-Robots-Tag da vercel.json.
+ */
+const PUBBLICO = false;
+
 const sorgente = readFileSync(join(root, 'src/content/servizi.ts'), 'utf8');
 
 // Estrae slug e categoria dai literal del file contenuti: nessun bundler,
@@ -43,10 +53,15 @@ ${rotte
 </urlset>
 `;
 
-const robots = `User-agent: *
+const robots = PUBBLICO
+  ? `User-agent: *
 Allow: /
 
 Sitemap: ${SITO}/sitemap.xml
+`
+  : `# Sito non ancora pubblico: apertura 26 settembre 2026.
+User-agent: *
+Disallow: /
 `;
 
 writeFileSync(join(root, 'public/sitemap.xml'), sitemap);
