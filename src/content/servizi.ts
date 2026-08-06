@@ -8,6 +8,8 @@
  * - i fisioterapisti non sono medici
  */
 
+import { SPAZIO_CORSI_NOME } from '../config/site';
+
 export type CategoriaSlug =
   | 'tornare-a-muoverti'
   | 'salute-della-donna'
@@ -49,6 +51,72 @@ export type Categoria = {
   sobria?: boolean;
   inMenu: boolean;
 };
+
+export type AreaSlug = 'tornare-a-muoverti' | 'fisioeva' | 'longeva';
+
+export type Area = {
+  slug: AreaSlug;
+  nome: string;
+  sottotitolo: string;
+  descrizione: string;
+  /** Le categorie che vivono dentro l'area. */
+  categorie: CategoriaSlug[];
+  tono: 'acqua' | 'lilla' | 'neutro';
+  /** LongEva non è sanitaria: brand, normativa e promessa sono diversi. */
+  sanitaria: boolean;
+  attiva: boolean;
+};
+
+/**
+ * Le tre aree di primo livello.
+ *
+ * Sopra le sei categorie sta una divisione più larga, che è poi il modo in cui
+ * lo studio è fatto davvero: il lavoro clinico generalista, la specializzazione
+ * che dà il nome allo studio, e il piano di sopra che sanitario non è.
+ *
+ * L'ordine non è negoziabile: la generalista per prima. È il volume che regge
+ * l'affitto, e sopra la piega il messaggio resta neutro.
+ */
+export const aree: Area[] = [
+  {
+    slug: 'tornare-a-muoverti',
+    nome: 'Tornare a muoversi',
+    sottotitolo: 'Il lavoro clinico, per chiunque abbia un corpo che non va.',
+    descrizione:
+      'Mal di schiena, cervicale, infortuni sportivi, recupero dopo un intervento. Terapia manuale, osteopatia e riabilitazione, con le terapie strumentali a supporto quando servono.',
+    categorie: ['tornare-a-muoverti', 'terapie-strumentali'],
+    tono: 'acqua',
+    sanitaria: true,
+    attiva: true,
+  },
+  {
+    slug: 'fisioeva',
+    nome: 'FisioEva',
+    sottotitolo: 'La cura di cui spesso nessuno parla.',
+    descrizione:
+      'Pavimento pelvico, gravidanza, recupero post-parto, cicatrice da cesareo. E l\'osteopatia neonatale, perché il parto è il primo grande sforzo della vita anche per lui.',
+    categorie: ['salute-della-donna', 'bambino'],
+    tono: 'lilla',
+    sanitaria: true,
+    attiva: true,
+  },
+  {
+    slug: 'longeva',
+    nome: SPAZIO_CORSI_NOME,
+    sottotitolo: 'Il piano di sopra: muoversi, non curarsi.',
+    descrizione:
+      'Posturale di gruppo, yoga e pilates. Non è fisioterapia e non lo diventa: è il posto dove si continua a muoversi bene, quando il percorso clinico è finito o non è mai servito.',
+    categorie: ['longeva'],
+    tono: 'neutro',
+    sanitaria: false,
+    // ⛔ Il nome non è chiuso e il piano non è ancora partito: l'area esiste
+    // nel codice ma non si pubblica finché non arriva la conferma.
+    attiva: false,
+  },
+];
+
+export const areaDiCategoria = (categoria: CategoriaSlug): Area | undefined =>
+  aree.find((a) => a.categorie.includes(categoria));
 
 export const categorie: Categoria[] = [
   {

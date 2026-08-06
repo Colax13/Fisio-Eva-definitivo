@@ -1,4 +1,4 @@
-import { ArrowRight, MapPin } from 'lucide-react';
+import { ArrowRight, CalendarCheck, MapPin } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import Bottone from '../components/ui/Bottone';
@@ -6,12 +6,15 @@ import Occhiello from '../components/ui/Occhiello';
 import Figura from '../components/ui/Figura';
 import DatoMancante from '../components/ui/DatoMancante';
 import MappaStudio from '../components/ui/MappaStudio';
+import ArrowButton from '../components/ui/ArrowButton';
+import SectionHeading from '../components/ui/SectionHeading';
 import { FiguraLinea, OndeLeggere } from '../components/ui/Motivi';
 import {
   PRENOTAZIONE_LABEL,
   PRENOTAZIONE_URL,
   SPAZIO_CORSI_NOME,
   SPAZIO_CORSI_NOME_CONFERMATO,
+  immagini,
   studio,
 } from '../config/site';
 import { percorsoCategoria, percorsoServizio, serviziDiCategoria } from '../content/servizi';
@@ -61,28 +64,52 @@ export default function Home() {
 
   return (
     <>
-      {/* 1 · Hero — neutro, universale */}
-      <section className="relative overflow-hidden bg-white px-6 pb-20 pt-32 md:pb-28 md:pt-44">
-        <OndeLeggere className="pointer-events-none absolute -right-32 top-0 h-[34rem] w-[64rem] text-brand-primary/35" />
+      {/* 1 · Hero — neutro, universale. Immagine piena, doppio gradiente. */}
+      <section className="relative flex min-h-screen items-center overflow-hidden pb-16 pt-32">
+        <div className="absolute inset-0 z-0">
+          <motion.img
+            initial={{ scale: 1.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.5, ease: 'easeOut' }}
+            src={immagini.trattamento}
+            alt=""
+            aria-hidden="true"
+            className="h-full w-full object-cover"
+          />
+          {/* Due gradienti sovrapposti: il primo scurisce dall'alto, il secondo
+              apre il fianco sinistro dove sta il testo. */}
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/85 via-brand-dark/55 to-brand-primary/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/80 via-brand-dark/30 to-transparent" />
+        </div>
 
-        <div className="relative mx-auto grid max-w-7xl gap-14 lg:grid-cols-[1.15fr_1fr] lg:items-center">
-          <div>
-            <Occhiello className="mb-7">Studio di fisioterapia e osteopatia</Occhiello>
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
+          <div className="max-w-2xl">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mb-6 flex items-center gap-4"
+            >
+              <div className="h-[1px] w-12 bg-brand-primary" />
+              <span className="text-xs font-medium uppercase tracking-widest text-brand-primary">
+                {studio.claim}
+              </span>
+            </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-5xl font-semibold leading-[1.08] text-brand-dark md:text-6xl lg:text-7xl"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mb-6 text-5xl font-bold leading-[1.1] text-white md:text-7xl"
             >
-              {PAYOFF_HERO}
+              Muoviti meglio. <span className="text-brand-primary">Vivi senza dolore.</span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="mt-7 max-w-xl text-lg font-light leading-relaxed text-brand-dark/75"
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mb-10 max-w-lg text-base font-light leading-relaxed text-gray-200 md:text-lg"
             >
               Fisioterapia, osteopatia e riabilitazione a Casalotti, Roma. Un percorso costruito su
               di te, in ogni fase della vita.
@@ -91,24 +118,17 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-10 flex flex-wrap gap-4"
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex flex-wrap gap-4"
             >
-              <Bottone href={PRENOTAZIONE_URL}>{PRENOTAZIONE_LABEL}</Bottone>
-              <Bottone to="/servizi" variante="secondaria" icona={ArrowRight}>
+              <ArrowButton href={PRENOTAZIONE_URL} icon={CalendarCheck}>
+                {PRENOTAZIONE_LABEL}
+              </ArrowButton>
+              <ArrowButton to="/servizi" variant="ghost">
                 Scopri i servizi
-              </Bottone>
+              </ArrowButton>
             </motion.div>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="relative mx-auto w-full max-w-md"
-          >
-            <Figura alt="" ratio="verticale" tono="acqua" rounded="rounded-[3rem]" />
-          </motion.div>
         </div>
       </section>
 
