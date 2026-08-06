@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import BannerCookie from '../ui/BannerCookie';
+import GalleryStrip from './GalleryStrip';
 
-/** Riporta in cima al cambio pagina, o all'ancora se l'URL ne ha una. */
-function GestoreScroll() {
+/** Scrolls to the top on navigation, or to the anchor when the URL carries a hash. */
+function ScrollManager() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function GestoreScroll() {
         return;
       }
     }
-    window.scrollTo({ top: 0 });
+    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
   }, [pathname, hash]);
 
   return null;
@@ -24,14 +24,14 @@ function GestoreScroll() {
 
 export default function Layout() {
   return (
-    <div className="flex min-h-screen flex-col bg-brand-light font-sans">
-      <GestoreScroll />
+    <div className="font-sans bg-brand-light min-h-screen flex flex-col">
+      <ScrollManager />
       <Navbar />
       <main className="flex-1">
         <Outlet />
       </main>
+      <GalleryStrip />
       <Footer />
-      <BannerCookie />
     </div>
   );
 }

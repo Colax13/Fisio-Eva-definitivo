@@ -1,79 +1,58 @@
-import { Instagram, Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone, Instagram, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { categorie, percorsoCategoria } from '../../content/servizi';
-import { studio } from '../../config/site';
-import DatoMancante from '../ui/DatoMancante';
-import { Onda } from '../ui/Motivi';
+import { studio, team } from '../../data/site';
 
 const naviga = [
+  { label: 'Home', to: '/' },
+  { label: 'Chi Siamo', to: '/chi-siamo' },
   { label: 'Servizi', to: '/servizi' },
+  { label: 'Progetti', to: '/progetti' },
   { label: 'Team', to: '/team' },
-  { label: 'Chi siamo', to: '/chi-siamo' },
+  { label: 'Gallery', to: '/gallery' },
+  { label: 'FAQ', to: '/faq' },
   { label: 'Contatti', to: '/contatti' },
-  { label: 'Domande frequenti', to: '/faq' },
-];
-
-const legale = [
-  { label: 'Privacy policy', to: '/privacy' },
-  { label: 'Cookie policy', to: '/cookie-policy' },
 ];
 
 export default function Footer() {
   return (
-    <footer className="relative bg-brand-dark text-white">
-      <Onda className="absolute inset-x-0 -top-px h-12 w-full rotate-180 text-brand-light" />
+    <footer className="bg-brand-dark text-white relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -bottom-[40%] -left-[10%] w-[50%] h-[80%] rounded-full bg-brand-primary/10 blur-[120px]"></div>
+      </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 pb-10 pt-24">
-        <div className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+      <div className="max-w-7xl mx-auto px-6 pt-20 pb-10 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div>
-            <div className="mb-6 w-max rounded-2xl bg-white p-4">
-              <img src="/logo.svg" alt="FisioEva" className="h-11 w-auto object-contain" />
+            <div className="bg-white rounded-2xl p-4 w-max mb-6">
+              <img src="/logo.svg" alt="FisioEVA" className="h-12 w-auto object-contain" />
             </div>
-            <p className="max-w-xs text-sm font-light leading-relaxed text-white/70">
-              {studio.claim} a {studio.zona}, {studio.citta}. Un percorso costruito su di te, in
-              ogni fase della vita.
+            <p className="text-gray-400 font-light text-sm leading-relaxed max-w-xs">
+              {studio.claim}. Cure empatiche e percorsi personalizzati per il tuo benessere, a due
+              passi da casa tua.
             </p>
             <a
               href={studio.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group mt-6 inline-flex items-center gap-3 text-sm text-white/70 transition-colors hover:text-white"
+              className="mt-6 inline-flex items-center gap-3 text-sm text-gray-300 hover:text-brand-primary transition-colors group"
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition-colors group-hover:border-brand-primary">
-                <Instagram className="h-5 w-5" />
+              <span className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:border-brand-primary transition-colors">
+                <Instagram className="w-5 h-5" />
               </span>
               @{studio.instagram}
             </a>
           </div>
 
           <div>
-            <h2 className="mb-6 text-base font-semibold">Servizi</h2>
+            <h3 className="font-sans font-medium text-lg mb-6">Naviga</h3>
             <ul className="space-y-3">
-              {categorie
-                .filter((c) => c.inMenu)
-                .map((cat) => (
-                  <li key={cat.slug}>
-                    <Link
-                      to={percorsoCategoria(cat.slug)}
-                      className="text-sm font-light text-white/70 transition-colors hover:text-brand-primary"
-                    >
-                      {cat.nome}
-                    </Link>
-                  </li>
-                ))}
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="mb-6 text-base font-semibold">Naviga</h2>
-            <ul className="space-y-3">
-              {naviga.map((voce) => (
-                <li key={voce.to}>
+              {naviga.map((link) => (
+                <li key={link.to}>
                   <Link
-                    to={voce.to}
-                    className="text-sm font-light text-white/70 transition-colors hover:text-brand-primary"
+                    to={link.to}
+                    className="text-gray-400 font-light text-sm hover:text-brand-secondary transition-colors"
                   >
-                    {voce.label}
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -81,63 +60,66 @@ export default function Footer() {
           </div>
 
           <div>
-            <h2 className="mb-6 text-base font-semibold">Dove siamo</h2>
+            <h3 className="font-sans font-medium text-lg mb-6">Contatti</h3>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary" />
-                <span className="font-light text-white/70">
-                  {studio.indirizzo}
+                <MapPin className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
+                <span className="text-gray-400 font-light">
+                  {studio.address}
                   <br />
-                  {studio.cap} {studio.citta} ({studio.zona})
+                  {studio.city} ({studio.zone})
                 </span>
               </li>
+              {team
+                .filter((m) => m.phone)
+                .map((m) => (
+                  <li key={m.slug} className="flex items-start gap-3">
+                    <Phone className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
+                    <a
+                      href={m.phoneHref}
+                      className="text-gray-400 font-light hover:text-brand-secondary transition-colors"
+                    >
+                      {m.phone} <span className="text-gray-500">({m.short})</span>
+                    </a>
+                  </li>
+                ))}
               <li className="flex items-start gap-3">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary" />
-                {studio.telefono ? (
-                  <a
-                    href={`tel:${studio.telefono.replace(/\s/g, '')}`}
-                    className="font-light text-white/70 transition-colors hover:text-brand-primary"
-                  >
-                    {studio.telefono}
-                  </a>
-                ) : (
-                  <DatoMancante id="telefono" />
-                )}
-              </li>
-              <li className="flex items-start gap-3">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary" />
+                <Mail className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
                 <a
                   href={`mailto:${studio.email}`}
-                  className="break-all font-light text-white/70 transition-colors hover:text-brand-primary"
+                  className="text-gray-400 font-light hover:text-brand-secondary transition-colors break-all"
                 >
                   {studio.email}
                 </a>
               </li>
             </ul>
           </div>
+
+          <div>
+            <h3 className="font-sans font-medium text-lg mb-6">Orari</h3>
+            <ul className="space-y-4 text-sm">
+              {studio.orari.map((o) => (
+                <li key={o.giorno} className="flex items-start gap-3">
+                  <Clock className="w-4 h-4 text-brand-secondary shrink-0 mt-0.5" />
+                  <span className="text-gray-400 font-light">
+                    {o.giorno}
+                    <br />
+                    <span className="text-white">{o.ore}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        <div className="flex flex-col gap-4 border-t border-white/10 pt-8 text-xs text-white/50 md:flex-row md:items-center md:justify-between">
-          <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
-            <span>
-              © {new Date().getFullYear()} {studio.nome} — {studio.claim}.
-            </span>
-            {studio.partitaIva ? (
-              <span>P.IVA {studio.partitaIva}</span>
-            ) : (
-              <DatoMancante id="piva" />
-            )}
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+          <p>
+            © {new Date().getFullYear()} {studio.name} — {studio.claim}. Tutti i diritti riservati.
           </p>
-
-          <ul className="flex flex-wrap items-center gap-4">
-            {legale.map((voce) => (
-              <li key={voce.to}>
-                <Link to={voce.to} className="transition-colors hover:text-white">
-                  {voce.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <p className="flex items-center gap-2 tracking-[0.2em] uppercase">
+            Muoviti <span className="w-1 h-1 rounded-full bg-brand-secondary"></span> Respira{' '}
+            <span className="w-1 h-1 rounded-full bg-brand-secondary"></span> Vivi
+          </p>
         </div>
       </div>
     </footer>

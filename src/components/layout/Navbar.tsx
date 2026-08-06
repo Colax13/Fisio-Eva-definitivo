@@ -2,106 +2,99 @@ import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { categorie, percorsoCategoria } from '../../content/servizi';
-import { PRENOTAZIONE_URL, SPAZIO_CORSI_NOME, SPAZIO_CORSI_NOME_CONFERMATO } from '../../config/site';
+import { servizi } from '../../data/site';
 
-const categorieInMenu = categorie.filter((c) => c.inMenu);
-
-const voci = [
-  { label: 'Servizi', to: '/servizi', conSottomenu: true },
+const links = [
+  { label: 'Home', to: '/' },
+  { label: 'Chi Siamo', to: '/chi-siamo' },
+  { label: 'Servizi', to: '/servizi', children: servizi.map((s) => ({ label: s.titolo, to: `/servizi#${s.slug}` })) },
+  { label: 'Progetti', to: '/progetti' },
   { label: 'Team', to: '/team' },
-  { label: 'Chi siamo', to: '/chi-siamo' },
-  // Il piano superiore entra in menu solo quando il nome è confermato.
-  ...(SPAZIO_CORSI_NOME_CONFERMATO ? [{ label: SPAZIO_CORSI_NOME, to: '/longeva' }] : []),
-  { label: 'Contatti', to: '/contatti' },
+  { label: 'Gallery', to: '/gallery' },
+  { label: 'FAQ', to: '/faq' },
 ];
 
 export default function Navbar() {
-  const [menuAperto, setMenuAperto] = useState(false);
-  const [sottomenuAperto, setSottomenuAperto] = useState(false);
-  const sottomenuRef = useRef<HTMLDivElement>(null);
-  const { pathname } = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   useEffect(() => {
-    setMenuAperto(false);
-    setSottomenuAperto(false);
-  }, [pathname]);
+    setMenuOpen(false);
+    setDropdownOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
-    const fuori = (e: MouseEvent) => {
-      if (sottomenuRef.current && !sottomenuRef.current.contains(e.target as Node)) {
-        setSottomenuAperto(false);
+    const onClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
       }
     };
-    document.addEventListener('mousedown', fuori);
-    return () => document.removeEventListener('mousedown', fuori);
+    document.addEventListener('mousedown', onClickOutside);
+    return () => document.removeEventListener('mousedown', onClickOutside);
   }, []);
 
-  const classeVoce = ({ isActive }: { isActive: boolean }) =>
-    `text-sm font-semibold transition-colors ${
-      isActive ? 'text-brand-ink' : 'text-brand-dark hover:text-brand-ink'
+  const linkClass = ({ isActive }: { isActive: boolean }) =>
+    `text-sm font-medium transition-colors ${
+      isActive ? 'text-brand-secondary' : 'text-brand-dark hover:text-brand-secondary'
     }`;
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-4 py-4 md:px-6">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-full border border-brand-primary/20 bg-white/95 px-5 py-3 shadow-sm backdrop-blur-sm md:px-8">
-        <Link to="/" className="shrink-0" aria-label="FisioEva, torna alla home">
-          <img src="/logo.svg" alt="FisioEva" className="h-9 w-auto object-contain md:h-11" />
+    <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-4">
+      <div className="max-w-7xl mx-auto bg-white/95 backdrop-blur-sm rounded-full px-5 md:px-8 py-3 flex items-center justify-between shadow-sm border border-brand-primary/10">
+        <Link to="/" className="flex items-center shrink-0">
+          <img src="/logo.svg" alt="FisioEVA" className="h-9 md:h-12 w-auto object-contain" />
         </Link>
 
-        <div className="hidden items-center gap-8 lg:flex">
-          {voci.map((voce) =>
-            voce.conSottomenu ? (
-              <div key={voce.to} className="relative" ref={sottomenuRef}>
+        <div className="hidden xl:flex items-center gap-7">
+          {links.map((link) =>
+            link.children ? (
+              <div key={link.to} className="relative" ref={dropdownRef}>
                 <button
-                  onClick={() => setSottomenuAperto(!sottomenuAperto)}
-                  aria-expanded={sottomenuAperto}
-                  className="group flex items-center gap-1"
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  className="flex items-center gap-1 group"
+                  aria-expanded={dropdownOpen}
                 >
                   <span
-                    className={`text-sm font-semibold transition-colors ${
-                      pathname.startsWith('/servizi')
-                        ? 'text-brand-ink'
-                        : 'text-brand-dark group-hover:text-brand-ink'
+                    className={`text-sm font-medium transition-colors ${
+                      location.pathname.startsWith(link.to)
+                        ? 'text-brand-secondary'
+                        : 'text-brand-dark group-hover:text-brand-secondary'
                     }`}
                   >
-                    {voce.label}
+                    {link.label}
                   </span>
                   <ChevronDown
-                    className={`h-4 w-4 text-brand-dark transition-transform ${
-                      sottomenuAperto ? 'rotate-180' : ''
+                    className={`w-4 h-4 text-brand-dark group-hover:text-brand-secondary transition-all ${
+                      dropdownOpen ? 'rotate-180' : ''
                     }`}
                   />
                 </button>
 
                 <AnimatePresence>
-                  {sottomenuAperto && (
+                  {dropdownOpen && (
                     <motion.div
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
-                      transition={{ duration: 0.16 }}
-                      className="absolute left-1/2 top-full mt-4 w-80 -translate-x-1/2 rounded-3xl border border-brand-primary/20 bg-white p-3 shadow-xl"
+                      transition={{ duration: 0.18 }}
+                      className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 bg-white rounded-3xl shadow-xl border border-brand-primary/10 p-3"
                     >
                       <Link
                         to="/servizi"
-                        className="block rounded-2xl px-4 py-2.5 text-sm font-semibold text-brand-dark transition-colors hover:bg-brand-primary/15"
+                        className="block px-4 py-2.5 rounded-2xl text-sm font-medium text-brand-dark hover:bg-brand-primary/10 hover:text-brand-secondary transition-colors"
                       >
-                        Da dove vuoi partire?
+                        Tutti i trattamenti
                       </Link>
-                      <div className="my-2 h-px bg-brand-light" />
-                      {categorieInMenu.map((cat) => (
+                      <div className="h-px bg-gray-100 my-2"></div>
+                      {link.children.map((child) => (
                         <Link
-                          key={cat.slug}
-                          to={percorsoCategoria(cat.slug)}
-                          className="block rounded-2xl px-4 py-2.5 transition-colors hover:bg-brand-primary/15"
+                          key={child.to}
+                          to={child.to}
+                          className="block px-4 py-2.5 rounded-2xl text-sm font-light text-gray-600 hover:bg-brand-secondary/10 hover:text-brand-dark transition-colors"
                         >
-                          <span className="block text-sm font-semibold text-brand-dark">
-                            {cat.nome}
-                          </span>
-                          <span className="mt-0.5 block text-xs font-light text-brand-dark/60">
-                            {cat.sottotitolo}
-                          </span>
+                          {child.label}
                         </Link>
                       ))}
                     </motion.div>
@@ -109,75 +102,64 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
             ) : (
-              <NavLink key={voce.to} to={voce.to} className={classeVoce}>
-                {voce.label}
+              <NavLink key={link.to} to={link.to} className={linkClass} end={link.to === '/'}>
+                {link.label}
               </NavLink>
             )
           )}
         </div>
 
         <div className="flex items-center gap-3">
-          <a
-            href={PRENOTAZIONE_URL}
-            className="hidden rounded-full bg-brand-dark px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-ink md:inline-flex"
+          <Link
+            to="/contatti"
+            className="hidden md:inline-flex items-center border-2 border-brand-primary bg-white text-brand-dark hover:bg-brand-primary hover:text-white rounded-full px-6 lg:px-8 py-2.5 transition-colors duration-300 font-medium text-sm shadow-sm whitespace-nowrap"
           >
-            Prenota
-          </a>
+            Prenota ora
+          </Link>
 
           <button
-            onClick={() => setMenuAperto(!menuAperto)}
-            aria-expanded={menuAperto}
-            aria-label={menuAperto ? 'Chiudi il menu' : 'Apri il menu'}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-primary/30 text-brand-dark transition-colors hover:bg-brand-primary/15 lg:hidden"
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="xl:hidden w-10 h-10 rounded-full border border-brand-primary/20 flex items-center justify-center text-brand-dark hover:bg-brand-primary/10 transition-colors"
+            aria-label={menuOpen ? 'Chiudi menu' : 'Apri menu'}
+            aria-expanded={menuOpen}
           >
-            {menuAperto ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
-      </nav>
+      </div>
 
       <AnimatePresence>
-        {menuAperto && (
+        {menuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="mx-auto mt-3 flex max-h-[70vh] max-w-7xl flex-col gap-1 overflow-y-auto rounded-3xl border border-brand-primary/20 bg-white px-6 py-5 shadow-lg lg:hidden"
+            className="xl:hidden max-w-7xl mx-auto mt-3 bg-white/97 backdrop-blur-sm rounded-3xl px-8 py-6 shadow-lg border border-brand-primary/10 flex flex-col gap-4 max-h-[70vh] overflow-y-auto"
           >
-            {voci.map((voce) => (
+            {links.map((link) => (
               <NavLink
-                key={voce.to}
-                to={voce.to}
+                key={link.to}
+                to={link.to}
+                end={link.to === '/'}
                 className={({ isActive }) =>
-                  `rounded-2xl px-3 py-2.5 text-base font-semibold transition-colors ${
-                    isActive ? 'bg-brand-primary/15 text-brand-ink' : 'text-brand-dark'
+                  `text-base font-medium transition-colors ${
+                    isActive ? 'text-brand-secondary' : 'text-brand-dark hover:text-brand-secondary'
                   }`
                 }
               >
-                {voce.label}
+                {link.label}
               </NavLink>
             ))}
-
-            <div className="my-2 h-px bg-brand-light" />
-            {categorieInMenu.map((cat) => (
-              <Link
-                key={cat.slug}
-                to={percorsoCategoria(cat.slug)}
-                className="rounded-2xl px-3 py-2 text-sm font-light text-brand-dark/70"
-              >
-                {cat.nome}
-              </Link>
-            ))}
-
-            <a
-              href={PRENOTAZIONE_URL}
-              className="mt-3 rounded-full bg-brand-dark px-6 py-3 text-center text-sm font-semibold text-white"
+            <Link
+              to="/contatti"
+              className="mt-2 flex items-center justify-center border-2 border-brand-primary bg-white text-brand-dark hover:bg-brand-primary hover:text-white rounded-full px-8 py-3 transition-colors duration-300 font-medium text-sm"
             >
-              Prenota
-            </a>
+              Prenota ora
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </nav>
   );
 }
