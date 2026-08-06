@@ -157,9 +157,14 @@ export function CookiePolicy() {
 
           <Sezione titolo="Servizi di terze parti">
             <p>
-              Le pagine Home e Contatti incorporano una mappa di Google Maps per mostrare dove si
-              trova lo studio. Caricando la mappa, Google può impostare cookie e raccogliere dati di
-              navigazione secondo la propria informativa.
+              Le pagine Home e Contatti possono mostrare una mappa di Google Maps per indicare dove
+              si trova lo studio. Caricando la mappa, Google può impostare cookie e raccogliere dati
+              di navigazione secondo la propria informativa.
+            </p>
+            <p>
+              La mappa non viene caricata finché non dai il consenso: al suo posto trovi
+              l'indirizzo e un link per aprirla in una scheda esterna. Finché non accetti, il sito
+              non contatta i server di Google.
             </p>
             <p>
               I collegamenti al profilo Instagram dello studio portano su un sito esterno, che
@@ -167,19 +172,20 @@ export function CookiePolicy() {
             </p>
           </Sezione>
 
-          <Sezione titolo="Come gestire i cookie">
+          <Sezione titolo="Banner di consenso">
             <p>
-              Puoi bloccare o cancellare i cookie dalle impostazioni del tuo browser. Il blocco dei
-              cookie di terze parti può impedire alla mappa di caricarsi correttamente.
+              Alla prima visita compare un banner con due scelte di pari peso: caricare la mappa
+              oppure proseguire senza. La scelta resta salvata nel tuo browser e non viene condivisa
+              con nessuno.
             </p>
           </Sezione>
 
-          <Sezione titolo="Banner di consenso">
-            <p className="text-sm">
-              <DatoMancante
-                id="piva"
-                fallback="Il banner per la raccolta del consenso va attivato prima della pubblicazione."
-              />
+          <Sezione titolo="Come cambiare idea">
+            <p>
+              Puoi revocare o modificare il consenso in qualsiasi momento cancellando i dati del
+              sito dalle impostazioni del browser: alla visita successiva il banner ricompare. Puoi
+              anche bloccare o cancellare i cookie dalle stesse impostazioni; il blocco dei cookie
+              di terze parti può impedire alla mappa di caricarsi correttamente.
             </p>
           </Sezione>
         </div>

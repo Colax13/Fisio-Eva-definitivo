@@ -28,10 +28,31 @@ const normalizza = (testo: string) =>
     .normalize('NFD')
     .replace(DIACRITICI, '');
 
-/** Ogni parola cercata deve comparire da qualche parte nel servizio. */
+/**
+ * Parole di servizio: chi cerca "torcicollo del neonato" intende "torcicollo"
+ * e "neonato". Pretendere anche "del" farebbe fallire la ricerca su un testo
+ * che parla esattamente di quello.
+ */
+const VUOTE = new Set([
+  'a', 'ad', 'agli', 'ai', 'al', 'alla', 'alle', 'allo', 'che', 'chi', 'con', 'da', 'dal', 'dalla',
+  'degli', 'dei', 'del', 'della', 'delle', 'dello', 'di', 'e', 'ed', 'gli', 'i', 'il', 'in', 'la',
+  'le', 'lo', 'me', 'mi', 'ne', 'nel', 'nella', 'non', 'o', 'per', 'piu', 'si', 'su', 'sul', 'sulla',
+  'un', 'una', 'uno',
+]);
+
+/**
+ * Ogni parola cercata deve comparire da qualche parte nel servizio.
+ * Le parole di servizio si scartano, ma se la query ne è fatta solo (uno "che"
+ * battuto per sbaglio) si cerca comunque su quelle: meglio un risultato largo
+ * che il messaggio "nessun risultato" su una ricerca che nessuno ha davvero
+ * fatto.
+ */
 function cerca(query: string): Servizio[] {
-  const termini = normalizza(query).split(/\s+/).filter(Boolean);
-  if (!termini.length) return [];
+  const tutti = normalizza(query).split(/\s+/).filter(Boolean);
+  if (!tutti.length) return [];
+
+  const utili = tutti.filter((t) => !VUOTE.has(t));
+  const termini = utili.length ? utili : tutti;
 
   return servizi.filter((servizio) => {
     const testo = normalizza(

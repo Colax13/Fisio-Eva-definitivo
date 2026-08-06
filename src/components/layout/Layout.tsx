@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import BannerCookie from '../ui/BannerCookie';
 
 /** Riporta in cima al cambio pagina, o all'ancora se l'URL ne ha una. */
 function GestoreScroll() {
@@ -30,6 +31,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <BannerCookie />
     </div>
   );
 }

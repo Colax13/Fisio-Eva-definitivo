@@ -743,7 +743,10 @@ export const servizi: Servizio[] = [
     comeLavoriamo:
       'I cicli sono in genere lunghi e a sedute ravvicinate. Il piano si definisce dopo la valutazione.',
     prescrizione: 'Non necessaria.',
-    correlati: ['rieducazione-post-chirurgica'],
+    // S4 — minimo due correlati per servizio: il blocco "Spesso si abbina a" è
+    // il motore dei collegamenti interni. Dopo una frattura il percorso passa
+    // quasi sempre dal recupero del movimento.
+    correlati: ['rieducazione-post-chirurgica', 'fisiokinesiterapia'],
     nota: '⛔ Da confermare se è previsto il noleggio domiciliare.',
     metaTitle: 'Magnetoterapia a Casalotti, Roma | FisioEva',
     metaDescription:

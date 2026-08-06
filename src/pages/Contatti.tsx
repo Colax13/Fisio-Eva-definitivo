@@ -3,6 +3,7 @@ import Intestazione from '../components/layout/Intestazione';
 import Bottone from '../components/ui/Bottone';
 import Occhiello from '../components/ui/Occhiello';
 import DatoMancante from '../components/ui/DatoMancante';
+import MappaStudio from '../components/ui/MappaStudio';
 import { PRENOTAZIONE_LABEL, PRENOTAZIONE_URL, RECENSIONI_ENABLED, studio } from '../config/site';
 import { schemaBreadcrumb, schemaStudio, usePageSeo } from '../lib/seo';
 
@@ -168,17 +169,7 @@ export default function Contatti() {
           </div>
 
           <div className="space-y-6 lg:sticky lg:top-28">
-            <div className="overflow-hidden rounded-[2.5rem] border border-brand-primary/25">
-              <iframe
-                title={`Mappa: FisioEva, ${indirizzoCompleto}`}
-                src={`https://www.google.com/maps?q=${encodeURIComponent(
-                  indirizzoCompleto
-                )}&output=embed`}
-                className="h-[420px] w-full border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
+            <MappaStudio altezza="h-[420px]" />
 
             <div className="rounded-[2.5rem] bg-brand-dark px-8 py-12 text-center text-white">
               <Occhiello allineamento="centro" tono="chiaro" className="mb-6">

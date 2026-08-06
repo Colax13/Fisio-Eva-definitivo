@@ -5,6 +5,7 @@ import Bottone from '../components/ui/Bottone';
 import Occhiello from '../components/ui/Occhiello';
 import Figura from '../components/ui/Figura';
 import DatoMancante from '../components/ui/DatoMancante';
+import MappaStudio from '../components/ui/MappaStudio';
 import { FiguraLinea, OndeLeggere } from '../components/ui/Motivi';
 import {
   PRENOTAZIONE_LABEL,
@@ -426,17 +427,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-[2.5rem] border border-brand-primary/25">
-            <iframe
-              title="Mappa: FisioEva, Via di Boccea 755, Roma"
-              src={`https://www.google.com/maps?q=${encodeURIComponent(
-                `${studio.indirizzo}, ${studio.cap} ${studio.citta}`
-              )}&output=embed`}
-              className="h-[380px] w-full border-0"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
+          <MappaStudio altezza="h-[380px]" />
         </div>
       </section>
     </>
