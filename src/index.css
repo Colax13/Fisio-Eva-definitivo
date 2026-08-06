@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -31,7 +31,10 @@
   --color-brand-accent-ink: #7d5285; /* = primary-ink */
   --color-brand-ink: #2c6b60; /* = secondary-ink */
 
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Nunito è il font del brand (§2 delle istruzioni). Il carattere non era
+     il problema del rifacimento: lo era l'impaginato, che è tornato quello
+     originale. Max 700 di peso, mai oltre. */
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
 }
 
 html {

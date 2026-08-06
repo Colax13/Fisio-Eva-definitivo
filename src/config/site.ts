@@ -60,7 +60,10 @@ export const immagineCategoria: Record<string, string> = {
   'tornare-a-muoverti': immagini.riabilitazione,
   'salute-della-donna': immagini.donna,
   bambino: immagini.bambini,
-  'terapie-strumentali': immagini.strumentale,
+  // Non lo scatto "professionista con paziente": rende un medico in camice, e
+  // i fisioterapisti non sono medici (L3). Qui serve comunque un'immagine
+  // sobria — niente macchinari in primo piano — e un dettaglio di mani lo è.
+  'terapie-strumentali': immagini.manuale,
   nutrizione: immagini.calma,
   longeva: immagini.postura,
 };

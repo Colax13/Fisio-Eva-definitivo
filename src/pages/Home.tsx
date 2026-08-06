@@ -77,9 +77,11 @@ export default function Home() {
             className="h-full w-full object-cover"
           />
           {/* Due gradienti sovrapposti: il primo scurisce dall'alto, il secondo
-              apre il fianco sinistro dove sta il testo. */}
+              tiene scura la colonna sinistra, dove sta il testo. Il lillà del
+              titolo su una foto chiara non reggerebbe il contrasto: la parte
+              scura arriva fino a metà, la foto resta leggibile a destra. */}
           <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/85 via-brand-dark/55 to-brand-primary/25" />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/80 via-brand-dark/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/90 via-brand-dark/65 via-45% to-transparent" />
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6">
