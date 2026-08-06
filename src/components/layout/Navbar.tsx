@@ -8,7 +8,6 @@ const links = [
   { label: 'Home', to: '/' },
   { label: 'Chi Siamo', to: '/chi-siamo' },
   { label: 'Servizi', to: '/servizi', children: servizi.map((s) => ({ label: s.titolo, to: `/servizi#${s.slug}` })) },
-  { label: 'Progetti', to: '/progetti' },
   { label: 'Team', to: '/team' },
   { label: 'Gallery', to: '/gallery' },
   { label: 'FAQ', to: '/faq' },

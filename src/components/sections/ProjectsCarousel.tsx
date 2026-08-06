@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { ArrowRight, Check } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Link } from 'react-router-dom';
-import { progetti } from '../../data/site';
+import { porte } from '../../data/site';
+import SectionHeading from '../ui/SectionHeading';
 
 export default function ProjectsCarousel() {
   const [index, setIndex] = useState(0);
@@ -10,11 +11,11 @@ export default function ProjectsCarousel() {
 
   useEffect(() => {
     if (paused) return;
-    const timer = setInterval(() => setIndex((i) => (i + 1) % progetti.length), 6000);
+    const timer = setInterval(() => setIndex((i) => (i + 1) % porte.length), 6000);
     return () => clearInterval(timer);
   }, [paused]);
 
-  const progetto = progetti[index];
+  const progetto = porte[index];
   const accentText = progetto.accent === 'primary' ? 'text-brand-primary' : 'text-brand-secondary';
 
   return (
@@ -29,15 +30,9 @@ export default function ProjectsCarousel() {
       </div>
 
       <div className="w-full max-w-7xl mx-auto relative z-10">
-        <div className="mb-10">
-          <p className="text-gray-700 tracking-[0.2em] text-xs font-semibold mb-2 uppercase">
-            Percorsi mirati per il tuo
-          </p>
-          <h2 className="text-3xl md:text-4xl font-sans font-bold text-brand-dark">
-            Benessere <span className="text-brand-secondary">globale</span>
-          </h2>
-          <div className="w-12 h-px bg-brand-primary/50 mt-4"></div>
-        </div>
+        <SectionHeading eyebrow="I nostri percorsi" className="mb-16">
+          Da dove <span className="text-brand-primary">vuoi partire?</span>
+        </SectionHeading>
 
         <div className="relative w-full min-h-[600px] md:min-h-[420px]">
           <AnimatePresence mode="wait">
@@ -55,7 +50,7 @@ export default function ProjectsCarousel() {
                 </p>
 
                 <h3 className="text-3xl md:text-4xl lg:text-5xl font-sans font-light text-brand-dark leading-[1.2] mb-4">
-                  Progetto <span className={accentText}>{progetto.titolo}</span>
+                  <span className={accentText}>{progetto.titolo}</span>
                 </h3>
 
                 <p className="text-gray-600 mb-6 font-light text-sm md:text-base leading-relaxed max-w-lg">
@@ -76,10 +71,10 @@ export default function ProjectsCarousel() {
                 </div>
 
                 <Link
-                  to="/progetti"
+                  to={progetto.to}
                   className="group inline-flex items-center border border-brand-primary/30 bg-transparent text-brand-dark rounded-full px-6 py-2.5 transition-all duration-300 hover:bg-white hover:border-brand-primary/60 font-medium text-sm"
                 >
-                  <span>Scopri i progetti</span>
+                  <span>Scopri i servizi</span>
                   <ArrowRight className="w-3.5 h-3.5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </div>
@@ -108,17 +103,36 @@ export default function ProjectsCarousel() {
         </div>
 
         <div className="flex items-center justify-center gap-3 mt-8 relative z-20">
-          {progetti.map((p, idx) => (
+          {porte.map((p, idx) => (
             <button
               key={p.slug}
               onClick={() => setIndex(idx)}
-              aria-label={`Vai al progetto ${p.titolo}`}
+              aria-label={`Vai a ${p.titolo}`}
               aria-current={idx === index}
               className={`transition-all duration-300 rounded-full h-2 ${
                 idx === index ? 'w-10 bg-brand-primary' : 'w-2 bg-brand-primary/30 hover:bg-brand-primary/60'
               }`}
             />
           ))}
+        </div>
+
+        {/* Le strumentali stanno su una riga sola: dargli lo spazio di una card
+            vorrebbe dire dare al macchinario lo stesso peso delle mani. */}
+        <div className="mt-12 relative z-20">
+          <Link
+            to="/servizi"
+            className="group flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 rounded-3xl border border-brand-secondary/25 bg-white/70 backdrop-blur-md px-7 py-5 transition-colors hover:border-brand-secondary/60"
+          >
+            <span className="text-brand-secondary text-xs tracking-widest uppercase font-medium shrink-0">
+              Terapie strumentali
+            </span>
+            <span className="hidden sm:block w-px h-4 bg-brand-dark/15 shrink-0"></span>
+            <span className="text-gray-600 font-light text-sm flex-1">
+              A supporto del lavoro manuale: tecarterapia, laser ad alta potenza, ultrasuonoterapia,
+              magnetoterapia, TENS, ionoforesi, elettrostimolazione.
+            </span>
+            <ArrowRight className="w-4 h-4 text-brand-secondary shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
         </div>
       </div>
     </section>

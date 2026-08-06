@@ -35,7 +35,7 @@ export default function ServicesPreview() {
 
       <div className="max-w-7xl mx-auto relative z-10 w-full">
         <SectionHeading eyebrow="I Nostri Trattamenti" className="mb-16">
-          Eccellenza e cura per la tua <span className="text-brand-primary">salute</span>
+          Le mani, prima di <span className="text-brand-primary">ogni macchinario</span>
         </SectionHeading>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">

@@ -4,7 +4,6 @@ import PageHero from '../components/layout/PageHero';
 import AboutSection from '../components/sections/AboutSection';
 import BenefitsSection from '../components/sections/BenefitsSection';
 import PercorsoCura from '../components/sections/PercorsoCura';
-import Testimonials from '../components/sections/Testimonials';
 import CtaBand from '../components/sections/CtaBand';
 import SectionHeading from '../components/ui/SectionHeading';
 import usePageMeta from '../hooks/usePageMeta';
@@ -95,7 +94,6 @@ export default function ChiSiamo() {
 
       <BenefitsSection />
       <PercorsoCura />
-      <Testimonials />
       <CtaBand />
     </>
   );

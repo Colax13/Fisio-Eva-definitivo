@@ -27,7 +27,7 @@ export default function Footer() {
               <img src="/logo.svg" alt="FisioEVA" className="h-12 w-auto object-contain" />
             </div>
             <p className="text-gray-400 font-light text-sm leading-relaxed max-w-xs">
-              {studio.claim}. Cure empatiche e percorsi personalizzati per il tuo benessere, a due
+              {studio.claim} a Casalotti, Roma. Un percorso costruito su di te, a due
               passi da casa tua.
             </p>
             <a

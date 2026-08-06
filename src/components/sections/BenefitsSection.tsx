@@ -2,19 +2,32 @@ import { motion } from 'motion/react';
 import ArrowButton from '../ui/ArrowButton';
 import { immagini } from '../../data/site';
 
-const barre = [
-  { label: 'Empatia e ascolto', valore: 100, colore: 'bg-brand-primary', testo: 'text-brand-primary' },
+/**
+ * Le quattro credenze da spezzare.
+ *
+ * Sono affermazioni informative, non promesse: nessuna aggiunge "e noi lo
+ * risolviamo". La comunicazione sanitaria non ammette promesse di guarigione.
+ */
+const credenze = [
   {
-    label: 'Piani personalizzati',
-    valore: 100,
-    colore: 'bg-brand-secondary',
-    testo: 'text-brand-secondary',
+    credenza: 'La fisioterapia serve solo quando hai già male.',
+    ribaltamento: 'La prevenzione costa meno e funziona di più.',
+    accento: 'text-brand-primary',
   },
   {
-    label: 'Esperienza professionale',
-    valore: 100,
-    colore: 'bg-brand-primary',
-    testo: 'text-brand-primary',
+    credenza: 'Dopo il parto i problemi del pavimento pelvico passano da soli.',
+    ribaltamento: 'Sono comuni, ma non sono normali. C\'è un percorso.',
+    accento: 'text-brand-secondary',
+  },
+  {
+    credenza: 'L\'osteopatia neonatale non serve.',
+    ribaltamento: 'Il parto è lo stress meccanico più grande della vita.',
+    accento: 'text-brand-primary',
+  },
+  {
+    credenza: 'Tutti i fisioterapisti fanno le stesse cose.',
+    ribaltamento: 'La formazione fa la differenza. E si può verificare.',
+    accento: 'text-brand-secondary',
   },
 ];
 
@@ -77,32 +90,32 @@ export default function BenefitsSection() {
             </div>
 
             <h2 className="text-4xl md:text-5xl font-sans font-light text-white leading-tight mb-6">
-              I benefici di <span className="text-brand-primary font-medium">affidarti al nostro</span>{' '}
-              studio
+              Quattro cose che <span className="text-brand-primary font-medium">vale la pena</span>{' '}
+              sapere
             </h2>
 
             <p className="text-gray-400 text-base font-light leading-relaxed mb-12">
-              Non offriamo un semplice trattamento. Offriamo cure personalizzate, attenzione ai
-              dettagli e un ambiente sereno in cui sentirsi ascoltati dal primo minuto.
+              Sulla fisioterapia circolano convinzioni che fanno rimandare le cose. Queste sono le
+              quattro che sentiamo più spesso.
             </p>
 
-            <div className="space-y-8 mb-12">
-              {barre.map((barra, idx) => (
-                <div key={barra.label}>
-                  <div className="flex justify-between text-white text-sm mb-3">
-                    <span className="font-medium">{barra.label}</span>
-                    <span className={barra.testo}>{barra.valore}%</span>
-                  </div>
-                  <div className="h-1 bg-white/10 rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${barra.valore}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1, delay: 0.4 + idx * 0.2, ease: 'easeOut' }}
-                      className={`h-full ${barra.colore}`}
-                    />
-                  </div>
-                </div>
+            <div className="space-y-7 mb-12">
+              {credenze.map((voce, idx) => (
+                <motion.div
+                  key={voce.credenza}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 + idx * 0.12 }}
+                  className="border-l border-white/15 pl-6"
+                >
+                  <p className="text-gray-500 text-sm font-light line-through decoration-white/25 mb-1.5">
+                    {voce.credenza}
+                  </p>
+                  <p className={`${voce.accento} text-lg font-light leading-snug`}>
+                    {voce.ribaltamento}
+                  </p>
+                </motion.div>
               ))}
             </div>
 

@@ -52,8 +52,8 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-gray-300 text-base md:text-lg font-light leading-relaxed mb-10 max-w-lg"
           >
-            Fisioterapia e osteopatia a Roma, in zona Casalotti. Cure empatiche e percorsi costruiti
-            su di te, per un corpo che torna a muoversi senza dolore.
+            Fisioterapia, osteopatia e riabilitazione a Casalotti, Roma. Un percorso costruito su
+            di te, in ogni fase della vita.
           </motion.p>
 
           <motion.div

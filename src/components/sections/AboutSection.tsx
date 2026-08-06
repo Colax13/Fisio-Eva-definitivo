@@ -75,20 +75,42 @@ export default function AboutSection({ overlap = false, cta = { label: 'Scopri d
             </div>
 
             <h2 className="text-4xl md:text-5xl font-sans font-bold text-brand-dark leading-tight mb-6">
-              Dedicate a <span className="text-brand-primary">fornirti cure eccellenti</span> e
+              Dedicate ad <span className="text-brand-primary">ascoltare il tuo corpo</span> e alla
               riabilitazione
             </h2>
 
-            <p className="text-brand-dark font-light leading-relaxed mb-6">
-              I fisioterapisti sono guaritori silenziosi, che lavorano dietro le quinte per
-              ripristinare la forza, alleviare il dolore e ricostruire il movimento. Non si limitano
-              a curare gli infortuni: trasformano le vite.
+            <p className="text-brand-dark font-light leading-relaxed text-lg mb-6">
+              A FisioEva la fisioterapia lavora insieme all'osteopatia. Vuol dire che la valutazione
+              non si ferma al punto in cui senti male: si guarda come si muove tutto il resto, e il
+              trattamento si costruisce da lì.
             </p>
 
-            <p className="text-gray-600 font-light leading-relaxed mb-12">
+            <p className="text-gray-600 font-light leading-relaxed mb-10">
               Dopo anni passati all'interno di FisioLab Casalotti, ci siamo spostate nel nostro nuovo
               studio: le stesse mani, la stessa cura di sempre, in uno spazio pensato per voi.
             </p>
+
+            {/* I due dati di credibilità. Solo due: se diventano quattro non li
+                legge più nessuno. */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+              <div className="border-l-2 border-brand-primary/40 pl-5">
+                <p className="font-sans font-medium text-brand-dark mb-1.5">
+                  Formazione universitaria e specialistica
+                </p>
+                <p className="text-sm text-gray-600 font-light leading-relaxed">
+                  Università Cattolica – Policlinico Gemelli · Master in RPG Souchard · Osteopatia
+                  EDUCAM
+                </p>
+              </div>
+              <div className="border-l-2 border-brand-secondary/40 pl-5">
+                <p className="font-sans font-medium text-brand-dark mb-1.5">
+                  Oltre 15 anni di pratica clinica
+                </p>
+                <p className="text-sm text-gray-600 font-light leading-relaxed">
+                  Nel quartiere, prima di aprire questo studio.
+                </p>
+              </div>
+            </div>
 
             <div className="flex items-center justify-between border-t border-gray-200 pt-8">
               <div className="flex items-center gap-4">

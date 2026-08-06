@@ -26,7 +26,8 @@ export const studio = {
   address: 'Via di Boccea, 755',
   city: '00166 Roma',
   zone: 'Casalotti',
-  email: 'fisioeva.boccia@gmail.com',
+  // Attenzione: bocc**e**a, non boccia. È un refuso ricorrente nei materiali.
+  email: 'fisioeva.boccea@gmail.com',
   instagram: 'fisioeva_boccea',
   instagramUrl: 'https://www.instagram.com/fisioeva_boccea',
   mapsQuery: 'Via+di+Boccea+755,+00166+Roma',
@@ -46,7 +47,7 @@ export const team = [
     phone: '+39 380 364 0807',
     phoneHref: 'tel:+393803640807',
     description:
-      'Specializzata in valutazione osteopatica, terapia manuale e riabilitazione globale della persona. Accompagna il paziente in un percorso che guarda al corpo nel suo insieme.',
+      'Si è laureata in Fisioterapia all\'Università Cattolica – Policlinico Gemelli con 110/110 e lode, poi ha proseguito con il Master in Rieducazione Posturale Globale secondo il metodo Souchard e con la formazione in Osteopatia EDUCAM. Si occupa in modo particolare della salute della donna: gravidanza, recupero post-parto, pavimento pelvico, trattamento della cicatrice da cesareo.',
     photo: '/team/azzurra.png',
     accent: 'secondary' as const,
   },
@@ -54,11 +55,11 @@ export const team = [
     slug: 'elisa-de-rubeis',
     name: 'Dott.ssa Elisa De Rubeis',
     short: 'Elisa',
-    role: 'Fisioterapista',
+    role: 'Fisioterapista · Osteopata',
     phone: '+39 333 874 5324',
     phoneHref: 'tel:+393338745324',
     description:
-      'Esperta in riabilitazione funzionale, rieducazione motoria e percorsi terapeutici personalizzati, costruiti sugli obiettivi concreti di ogni paziente.',
+      'Oltre quindici anni di pratica clinica, quasi tutti in questo quartiere. Lavora con la terapia manuale e l\'approccio cranio-sacrale, e ha portato il metodo Pilates dentro il percorso riabilitativo — non come attività a sé, ma come strumento per far tornare il controllo del movimento dove si è perso.',
     photo: '/team/elisa.png',
     accent: 'primary' as const,
   },
@@ -69,8 +70,11 @@ export const team = [
     role: 'Fisioterapista',
     phone: '',
     phoneHref: '',
-    description:
-      'Dedicata al benessere muscolo-scheletrico, alla rieducazione posturale e al recupero motorio, con un approccio attento all\'ascolto e alla gradualità.',
+    // ⛔ BIO DA ACQUISIRE. Quella che stava qui era inventata dal template:
+    // su un professionista sanitario reale non si scrive niente a intuito.
+    // Attenzione: risulta solo Fisioterapista, non osteopata — nessuna formula
+    // al plurale del tipo "le titolari sono fisioterapiste e osteopate".
+    description: 'Bio in arrivo.',
     photo: '',
     accent: 'primary' as const,
   },
@@ -98,6 +102,244 @@ export const trattamentiStrumentali = [
   'Ionoforesi',
   'Elettrostimolazione',
 ];
+
+/**
+ * I trattamenti, organizzati per come arriva la gente in studio e non per
+ * tecnica: chi entra non sa se gli serve la ionoforesi, sa che ha male alla
+ * schiena da tre mesi.
+ *
+ * I sottotitoli sono in lingua del paziente. Nessuna promessa di guarigione:
+ * si usa "può aiutare", "si lavora su", mai "risolviamo".
+ */
+export type CategoriaSlug =
+  | 'tornare-a-muoverti'
+  | 'salute-della-donna'
+  | 'bambino'
+  | 'terapie-strumentali';
+
+export type Categoria = {
+  slug: CategoriaSlug;
+  nome: string;
+  sottotitolo: string;
+  image: string;
+  accent: 'primary' | 'secondary';
+};
+
+/** L'ordine non si tocca: la generalista per prima. */
+export const categorie: Categoria[] = [
+  {
+    slug: 'tornare-a-muoverti',
+    nome: 'Per tornare a muoverti',
+    sottotitolo: 'Mal di schiena, cervicale, infortuni sportivi, recupero dopo un intervento.',
+    image: immagini.riabilitazione,
+    accent: 'secondary',
+  },
+  {
+    slug: 'salute-della-donna',
+    nome: 'Per la donna',
+    sottotitolo: 'Una cura pensata per te, per ciò di cui spesso nessuno parla.',
+    image: immagini.donna,
+    accent: 'primary',
+  },
+  {
+    slug: 'bambino',
+    nome: 'Per il tuo bambino',
+    sottotitolo: 'Il parto è il primo grande sforzo della vita. Anche per lui.',
+    image: immagini.bambini,
+    accent: 'secondary',
+  },
+  {
+    slug: 'terapie-strumentali',
+    nome: 'Terapie strumentali',
+    sottotitolo: 'A supporto del lavoro manuale, mai al posto suo.',
+    image: immagini.manuale,
+    accent: 'primary',
+  },
+];
+
+export type Trattamento = {
+  slug: string;
+  nome: string;
+  sottotitolo: string;
+  categoria: CategoriaSlug;
+  /** Sintomi in lingua del paziente: alimentano la ricerca. */
+  sintomi: string[];
+};
+
+export const trattamenti: Trattamento[] = [
+  // — Per tornare a muoverti
+  {
+    slug: 'osteopatia',
+    nome: 'Osteopatia',
+    sottotitolo: 'Un approccio che guarda tutto il corpo, non solo il punto in cui senti male.',
+    categoria: 'tornare-a-muoverti',
+    sintomi: ['mal di schiena', 'lombalgia', 'cervicale', 'cefalea', 'sciatica', 'vertigini'],
+  },
+  {
+    slug: 'terapia-manuale',
+    nome: 'Terapia manuale',
+    sottotitolo: 'Le mani come strumento: contratture, tensioni e blocchi articolari.',
+    categoria: 'tornare-a-muoverti',
+    sintomi: ['contrattura', 'collo rigido', 'spalla bloccata', 'dolore muscolare', 'tensione'],
+  },
+  {
+    slug: 'rieducazione-posturale-rpg',
+    nome: 'Rieducazione posturale (metodo RPG Souchard)',
+    sottotitolo: 'Un metodo specialistico per rimettere in asse la colonna.',
+    categoria: 'tornare-a-muoverti',
+    sintomi: ['postura', 'scoliosi', 'spalle curve', 'iperlordosi', 'mal di schiena cronico'],
+  },
+  {
+    slug: 'ginnastica-posturale',
+    nome: 'Ginnastica posturale',
+    sottotitolo: 'Esercizi mirati per riprendere il controllo della postura.',
+    categoria: 'tornare-a-muoverti',
+    sintomi: ['postura', 'schiena curva', 'dolore cervicale da ufficio', 'rigidità'],
+  },
+  {
+    slug: 'fisiokinesiterapia',
+    nome: 'Fisiokinesiterapia',
+    sottotitolo: 'Il lavoro sul movimento: recuperare forza, mobilità e controllo.',
+    categoria: 'tornare-a-muoverti',
+    sintomi: ['perdita di forza', 'articolazione rigida', 'dopo il gesso', 'mobilità ridotta'],
+  },
+  {
+    slug: 'rieducazione-motoria',
+    nome: 'Rieducazione motoria e neuromotoria',
+    sottotitolo: 'Quando il movimento va reimparato, non solo recuperato.',
+    categoria: 'tornare-a-muoverti',
+    sintomi: ['equilibrio', 'coordinazione', 'camminata', 'neurologico', 'cadute'],
+  },
+  {
+    slug: 'rieducazione-post-chirurgica',
+    nome: 'Riabilitazione post-chirurgica',
+    sottotitolo: 'Il recupero dopo un intervento, guidato passo dopo passo.',
+    categoria: 'tornare-a-muoverti',
+    sintomi: ['dopo operazione', 'protesi anca', 'protesi ginocchio', 'crociato', 'frattura'],
+  },
+  {
+    slug: 'rieducazione-sportiva',
+    nome: 'Rieducazione sportiva',
+    sottotitolo: 'Tornare a giocare, non solo a camminare senza dolore.',
+    categoria: 'tornare-a-muoverti',
+    sintomi: ['infortunio sportivo', 'distorsione', 'stiramento', 'tendinite', 'sovraccarico'],
+  },
+  {
+    slug: 'taping-neuromuscolare',
+    nome: 'Taping neuromuscolare',
+    sottotitolo: 'Il supporto elastico che accompagna il movimento senza limitarlo.',
+    categoria: 'tornare-a-muoverti',
+    sintomi: ['taping', 'kinesio', 'gonfiore', 'supporto articolare', 'contrattura'],
+  },
+
+  // — Per la donna
+  {
+    slug: 'pavimento-pelvico',
+    nome: 'Riabilitazione del pavimento pelvico',
+    sottotitolo: 'Perdite, pesantezza, dolore: sono comuni, ma non sono normali.',
+    categoria: 'salute-della-donna',
+    sintomi: ['perdite urinarie', 'incontinenza', 'pesantezza', 'prolasso', 'dopo il parto'],
+  },
+  {
+    slug: 'post-parto',
+    nome: 'Recupero post-parto',
+    sottotitolo: 'Rimettere insieme addome, schiena e pavimento pelvico, dopo.',
+    categoria: 'salute-della-donna',
+    sintomi: ['dopo il parto', 'diastasi', 'mal di schiena post-parto', 'allattamento', 'cesareo'],
+  },
+  {
+    slug: 'gravidanza',
+    nome: 'Fisioterapia in gravidanza',
+    sottotitolo: 'Attraversare i nove mesi senza subirli.',
+    categoria: 'salute-della-donna',
+    sintomi: ['mal di schiena in gravidanza', 'sciatica', 'gambe gonfie', 'bacino', 'pubalgia'],
+  },
+  {
+    slug: 'cicatrice-cesareo',
+    nome: 'Trattamento della cicatrice da cesareo',
+    sottotitolo: 'Una cicatrice non è solo un segno: è un tessuto che tira.',
+    categoria: 'salute-della-donna',
+    sintomi: ['cicatrice cesareo', 'aderenze', 'pancia che tira', 'cicatrice dura'],
+  },
+  {
+    slug: 'linfodrenaggio',
+    nome: 'Linfodrenaggio',
+    sottotitolo: 'Manovre lente e leggere per ridurre gonfiori e ristagni.',
+    categoria: 'salute-della-donna',
+    sintomi: ['gambe gonfie', 'linfedema', 'ritenzione', 'pesantezza alle gambe'],
+  },
+
+  // — Per il tuo bambino
+  {
+    slug: 'osteopatia-neonatale',
+    nome: 'Osteopatia neonatale e pediatrica',
+    sottotitolo: 'Un inizio più sereno, con mani che sanno essere leggere.',
+    categoria: 'bambino',
+    sintomi: [
+      'coliche',
+      'neonato che non dorme',
+      'difficoltà di suzione',
+      'plagiocefalia',
+      'testa piatta',
+      'torcicollo del neonato',
+      'rigurgito',
+    ],
+  },
+
+  // — Terapie strumentali
+  {
+    slug: 'tecarterapia',
+    nome: 'Tecarterapia',
+    sottotitolo: 'Calore profondo per accelerare il recupero dei tessuti.',
+    categoria: 'terapie-strumentali',
+    sintomi: ['tecar', 'contrattura profonda', 'tendinite', 'distorsione', 'edema'],
+  },
+  {
+    slug: 'laser-alta-potenza',
+    nome: 'Laser ad alta potenza',
+    sottotitolo: 'Energia luminosa concentrata su infiammazione e dolore.',
+    categoria: 'terapie-strumentali',
+    sintomi: ['laser', 'tendinite', 'infiammazione', 'borsite', 'epicondilite'],
+  },
+  {
+    slug: 'ultrasuonoterapia',
+    nome: 'Ultrasuonoterapia',
+    sottotitolo: 'Onde sonore che lavorano in profondità sui tessuti molli.',
+    categoria: 'terapie-strumentali',
+    sintomi: ['ultrasuoni', 'tendine', 'calcificazione', 'aderenze', 'infiammazione'],
+  },
+  {
+    slug: 'magnetoterapia',
+    nome: 'Magnetoterapia',
+    sottotitolo: 'Campi magnetici a supporto dei processi di riparazione ossea.',
+    categoria: 'terapie-strumentali',
+    sintomi: ['magnetoterapia', 'frattura', 'consolidamento', 'osteoporosi', 'dolore osseo'],
+  },
+  {
+    slug: 'tens',
+    nome: 'TENS (elettroanalgesia)',
+    sottotitolo: 'Stimolazione elettrica a bassa intensità per il controllo del dolore.',
+    categoria: 'terapie-strumentali',
+    sintomi: ['tens', 'dolore cronico', 'nevralgia'],
+  },
+  {
+    slug: 'ionoforesi',
+    nome: 'Ionoforesi',
+    sottotitolo: 'Il farmaco portato attraverso la pelle, dove serve.',
+    categoria: 'terapie-strumentali',
+    sintomi: ['ionoforesi', 'infiammazione localizzata', 'tendinite', 'artrosi'],
+  },
+  {
+    slug: 'elettrostimolazione',
+    nome: 'Elettrostimolazione',
+    sottotitolo: 'Riattivare un muscolo che ha smesso di rispondere.',
+    categoria: 'terapie-strumentali',
+    sintomi: ['elettrostimolazione', 'ipotrofia', 'dopo il gesso', 'atrofia'],
+  },
+];
+
+export const trattamentiDi = (categoria: CategoriaSlug) =>
+  trattamenti.filter((t) => t.categoria === categoria);
 
 export type Servizio = {
   slug: string;
@@ -161,6 +403,75 @@ export const servizi: Servizio[] = [
     ],
     image: immagini.strumentale,
     accent: 'secondary',
+  },
+];
+
+/**
+ * Le tre porte d'ingresso ai servizi.
+ *
+ * L'ordine non si tocca: la generalista per prima. Sopra la piega il messaggio
+ * resta neutro — la specializzazione femminile è affiancata, non sostitutiva.
+ * Le card 2 e 3 hanno poche voci di proposito: il vuoto è il messaggio.
+ */
+export type Porta = {
+  slug: string;
+  titolo: string;
+  evidenza: string;
+  descrizione: string;
+  benefici: string[];
+  image: string;
+  accent: 'primary' | 'secondary';
+  to: string;
+};
+
+export const porte: Porta[] = [
+  {
+    slug: 'tornare-a-muoverti',
+    titolo: 'Tornare a muoverti',
+    evidenza: 'Per chiunque abbia un corpo che non va',
+    descrizione:
+      'Mal di schiena, cervicale, infortuni sportivi, recupero dopo un intervento. Terapia manuale, osteopatia e riabilitazione: la valutazione viene prima, il percorso si costruisce su quello che troviamo.',
+    benefici: [
+      'Mal di schiena e cervicale',
+      'Infortuni sportivi',
+      'Recupero dopo un intervento',
+      'Postura e rieducazione',
+    ],
+    image: immagini.riabilitazione,
+    accent: 'secondary',
+    to: '/servizi',
+  },
+  {
+    slug: 'salute-della-donna',
+    titolo: 'La salute della donna',
+    evidenza: 'Per te',
+    descrizione:
+      'Una cura pensata per te, per ciò di cui spesso nessuno parla. Pavimento pelvico, gravidanza, recupero post-parto, trattamento della cicatrice da cesareo.',
+    benefici: [
+      'Riabilitazione del pavimento pelvico',
+      'Recupero post-parto',
+      'Fisioterapia in gravidanza',
+      'Cicatrice da cesareo',
+    ],
+    image: immagini.donna,
+    accent: 'primary',
+    to: '/servizi',
+  },
+  {
+    slug: 'bambino',
+    titolo: 'Il tuo bambino',
+    evidenza: 'Per lui',
+    descrizione:
+      'Il parto è il primo grande sforzo della vita. Anche per lui. L\'osteopatia neonatale usa tecniche a pressione minima, spesso mentre il bambino dorme.',
+    benefici: [
+      'Coliche e pianto inconsolabile',
+      'Sonno disturbato',
+      'Difficoltà di suzione',
+      'Plagiocefalia e torcicollo',
+    ],
+    image: immagini.bambini,
+    accent: 'secondary',
+    to: '/servizi',
   },
 ];
 
