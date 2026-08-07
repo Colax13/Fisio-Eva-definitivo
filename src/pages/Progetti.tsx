@@ -9,16 +9,16 @@ import { immagini, progetti } from '../data/site';
 
 const accenti = {
   primary: {
-    text: 'text-brand-primary',
+    text: 'text-brand-primary-ink',
     soft: 'bg-brand-primary/10',
     border: 'border-brand-primary',
-    tick: 'text-brand-primary',
+    tick: 'text-brand-primary-ink',
   },
   secondary: {
-    text: 'text-brand-secondary',
+    text: 'text-brand-secondary-ink',
     soft: 'bg-brand-secondary/10',
     border: 'border-brand-secondary',
-    tick: 'text-brand-secondary',
+    tick: 'text-brand-secondary-ink',
   },
 };
 
@@ -42,18 +42,18 @@ export default function Progetti() {
         image={immagini.postura}
       />
 
-      <section className="relative bg-brand-light py-24 px-6 overflow-hidden">
+      <section className="relative overflow-hidden bg-brand-light px-5 py-16 sm:px-6 md:py-24">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-brand-primary/10 blur-[120px]"></div>
           <div className="absolute -bottom-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-brand-secondary/10 blur-[120px]"></div>
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <SectionHeading eyebrow="I nostri progetti" className="mb-20">
-            Percorsi mirati, <span className="text-brand-secondary">non pacchetti</span>
+          <SectionHeading eyebrow="I nostri progetti" className="mb-12 md:mb-20">
+            Percorsi mirati, <span className="text-brand-secondary-ink">non pacchetti</span>
           </SectionHeading>
 
-          <div className="space-y-20 md:space-y-28">
+          <div className="space-y-14 md:space-y-28">
             {progetti.map((progetto, idx) => {
               const a = accenti[progetto.accent];
               const reversed = idx % 2 === 1;
@@ -66,17 +66,17 @@ export default function Progetti() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-80px' }}
                   transition={{ duration: 0.7 }}
-                  className={`scroll-mt-32 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center ${
+                  className={`grid scroll-mt-32 grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16 ${
                     reversed ? 'lg:[&>*:first-child]:order-2' : ''
                   }`}
                 >
-                  <div className="relative h-[320px] md:h-[420px] flex items-center justify-center">
+                  <div className="relative mx-auto flex aspect-square w-full max-w-[280px] items-center justify-center sm:max-w-[420px] lg:aspect-auto lg:h-[420px] lg:max-w-[460px]">
                     <div
-                      className="absolute inset-0 max-w-[460px] mx-auto bg-gradient-to-tr from-brand-primary/40 to-brand-secondary/40 animate-blob"
+                      className="animate-blob absolute inset-0 mx-auto bg-gradient-to-tr from-brand-primary/40 to-brand-secondary/40"
                       style={{ borderRadius: '50% 50% 50% 50% / 55% 45% 45% 55%' }}
                     ></div>
                     <div
-                      className="absolute inset-[4%] max-w-[430px] mx-auto overflow-hidden border-[5px] border-white shadow-xl bg-white"
+                      className="absolute inset-[4%] mx-auto overflow-hidden border-[5px] border-white bg-white shadow-xl"
                       style={{ borderRadius: '55% 45% 45% 55% / 50% 50% 50% 50%' }}
                     >
                       <img
@@ -88,22 +88,22 @@ export default function Progetti() {
                     </div>
                   </div>
 
-                  <div>
+                  <div className="text-center lg:text-left">
                     <span
-                      className={`inline-block ${a.soft} ${a.text} text-xs tracking-widest uppercase font-medium px-4 py-1.5 rounded-full mb-5`}
+                      className={`inline-block ${a.soft} ${a.text} text-eyebrow mb-4 rounded-full px-4 py-1.5 font-semibold uppercase`}
                     >
                       {progetto.evidenza}
                     </span>
 
-                    <h3 className="text-3xl md:text-4xl font-sans font-light text-brand-dark leading-tight mb-5">
+                    <h3 className="text-h2 mb-4 font-sans font-light text-brand-dark">
                       Progetto <span className={`${a.text} font-medium`}>{progetto.titolo}</span>
                     </h3>
 
-                    <p className="text-gray-600 font-light leading-relaxed mb-8">
+                    <p className="text-body mb-7 leading-relaxed font-light text-gray-600">
                       {progetto.descrizione}
                     </p>
 
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <ul className="mx-auto grid max-w-md grid-cols-1 gap-3 text-left sm:grid-cols-2 lg:mx-0 lg:max-w-none">
                       {progetto.benefici.map((beneficio) => (
                         <li key={beneficio} className="flex items-center gap-3">
                           <span

@@ -20,15 +20,15 @@ const attivita = ['Posturale di gruppo', 'Yoga', 'Pilates'];
 
 export default function SpazioCorsi() {
   return (
-    <section className="relative bg-[#2c2c2b] overflow-hidden">
+    <section className="relative overflow-hidden bg-[#2c2c2b]">
       <div className="grid grid-cols-1 lg:grid-cols-2">
         {/* Immagine a filo, senza cornici morbide: il registro è un altro */}
-        <div className="relative h-[300px] lg:h-auto lg:min-h-[520px]">
+        <div className="relative h-[220px] sm:h-[300px] lg:h-auto lg:min-h-[520px]">
           <img
             src={immagini.postura}
             alt="Lo spazio corsi al piano superiore"
             loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-[#2c2c2b]/40"></div>
         </div>
@@ -38,26 +38,24 @@ export default function SpazioCorsi() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="px-8 py-16 md:px-14 md:py-24 flex flex-col justify-center"
+          className="flex flex-col justify-center px-5 py-14 text-center sm:px-8 md:px-14 md:py-24 lg:text-left"
         >
-          <span className="text-white/50 text-xs tracking-[0.3em] uppercase mb-6">
+          <span className="mb-5 text-xs font-semibold tracking-[0.3em] text-white/60 uppercase">
             Il piano superiore
           </span>
 
-          <h2 className="text-4xl md:text-5xl font-sans font-light text-white leading-tight mb-6">
-            {SPAZIO_CORSI_NOME}
-          </h2>
+          <h2 className="text-h2 mb-5 font-sans font-light text-white">{SPAZIO_CORSI_NOME}</h2>
 
-          <p className="text-gray-400 text-base font-light leading-relaxed mb-10 max-w-md">
+          <p className="text-lead mx-auto mb-8 max-w-md font-light text-gray-300 lg:mx-0">
             Non è fisioterapia, e non lo diventa. È il posto dove si continua a muoversi bene:
             quando il percorso clinico è finito, o quando non è mai servito.
           </p>
 
-          <ul className="flex flex-wrap gap-3 mb-10">
+          <ul className="mb-8 flex flex-wrap justify-center gap-2.5 lg:justify-start">
             {attivita.map((voce) => (
               <li
                 key={voce}
-                className="border border-white/20 text-white/80 text-sm font-light px-5 py-2"
+                className="border border-white/25 px-4 py-2 text-sm font-light text-white/85"
               >
                 {voce}
               </li>
@@ -66,10 +64,10 @@ export default function SpazioCorsi() {
 
           <Link
             to="/contatti"
-            className="group inline-flex w-max items-center gap-3 text-white text-sm font-medium border-b border-white/30 pb-2 transition-colors hover:border-white"
+            className="group mx-auto inline-flex min-h-12 w-max items-center gap-3 border-b border-white/40 text-sm font-medium text-white transition-colors hover:border-white lg:mx-0"
           >
             Chiedi informazioni
-            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </motion.div>
       </div>

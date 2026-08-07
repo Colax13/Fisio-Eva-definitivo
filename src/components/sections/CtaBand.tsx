@@ -2,13 +2,14 @@ import { CalendarCheck, Phone } from 'lucide-react';
 import { motion } from 'motion/react';
 import { team } from '../../data/site';
 import ArrowButton from '../ui/ArrowButton';
+import Eyebrow from '../ui/Eyebrow';
 
 type Props = {
   titolo?: string;
   testo?: string;
 };
 
-/** Closing call-to-action band used at the bottom of the inner pages. */
+/** Fascia di chiamata all'azione in chiusura delle pagine interne. */
 export default function CtaBand({
   titolo = 'Pronto a rimetterti in movimento?',
   testo = 'Raccontaci cosa ti succede: la prima cosa che facciamo è ascoltarti. Da lì costruiamo insieme il percorso più adatto a te.',
@@ -16,9 +17,9 @@ export default function CtaBand({
   const azzurra = team[0];
 
   return (
-    <section className="relative bg-brand-light py-24 px-6 overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-[30%] left-1/2 -translate-x-1/2 w-[70%] h-[140%] rounded-full bg-brand-secondary/10 blur-[120px]"></div>
+    <section className="relative overflow-hidden bg-brand-light px-5 py-16 sm:px-6 md:py-24">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-[30%] left-1/2 h-[140%] w-[70%] -translate-x-1/2 rounded-full bg-brand-secondary/10 blur-[120px]"></div>
       </div>
 
       <motion.div
@@ -26,28 +27,22 @@ export default function CtaBand({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="max-w-5xl mx-auto relative z-10 bg-brand-dark rounded-[2.5rem] px-8 py-14 md:px-16 md:py-20 text-center shadow-2xl overflow-hidden"
+        className="relative z-10 mx-auto max-w-5xl overflow-hidden rounded-[2rem] bg-brand-dark px-6 py-12 text-center shadow-2xl sm:px-8 md:rounded-[2.5rem] md:px-16 md:py-20"
       >
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-[50%] -right-[10%] w-[60%] h-[180%] rounded-full bg-brand-primary/20 blur-[100px]"></div>
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-[50%] -right-[10%] h-[180%] w-[60%] rounded-full bg-brand-primary/20 blur-[100px]"></div>
         </div>
 
         <div className="relative z-10">
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="w-12 h-[1px] bg-brand-primary"></div>
-            <span className="text-brand-primary text-xs tracking-widest uppercase font-medium">
-              Prenota ora
-            </span>
-            <div className="w-12 h-[1px] bg-brand-primary"></div>
-          </div>
+          <Eyebrow tone="light" className="mb-5">
+            Prenota ora
+          </Eyebrow>
 
-          <h2 className="text-3xl md:text-5xl font-sans font-light text-white leading-tight mb-6">
-            {titolo}
-          </h2>
+          <h2 className="text-h2 mb-5 font-sans font-light text-white">{titolo}</h2>
 
-          <p className="text-gray-400 font-light leading-relaxed max-w-2xl mx-auto mb-10">{testo}</p>
+          <p className="text-lead mx-auto mb-9 max-w-2xl font-light text-gray-300">{testo}</p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
             <ArrowButton to="/contatti" icon={CalendarCheck}>
               Scrivici un messaggio
             </ArrowButton>

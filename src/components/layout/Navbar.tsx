@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { CalendarCheck, ChevronDown, Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { servizi } from '../../data/site';
@@ -8,6 +8,7 @@ const links = [
   { label: 'Home', to: '/' },
   { label: 'Chi Siamo', to: '/chi-siamo' },
   { label: 'Servizi', to: '/servizi', children: servizi.map((s) => ({ label: s.titolo, to: `/servizi#${s.slug}` })) },
+  { label: 'Progetti', to: '/progetti' },
   { label: 'Team', to: '/team' },
   { label: 'Gallery', to: '/gallery' },
   { label: 'FAQ', to: '/faq' },
@@ -34,38 +35,61 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', onClickOutside);
   }, []);
 
+  /* Con il menu aperto la pagina dietro non deve scorrere, e Esc deve chiuderlo:
+     su un telefono restare intrappolati in un menu che non si chiude è la cosa
+     più fastidiosa che possa capitare. */
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    };
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', onKey);
+
+    return () => {
+      document.body.style.overflow = overflow;
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [menuOpen]);
+
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `text-sm font-medium transition-colors ${
-      isActive ? 'text-brand-secondary' : 'text-brand-dark hover:text-brand-secondary'
+      isActive ? 'text-brand-secondary-ink' : 'text-brand-dark hover:text-brand-secondary-ink'
     }`;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-4">
-      <div className="max-w-7xl mx-auto bg-white/95 backdrop-blur-sm rounded-full px-5 md:px-8 py-3 flex items-center justify-between shadow-sm border border-brand-primary/10">
-        <Link to="/" className="flex items-center shrink-0">
-          <img src="/logo.svg" alt="FisioEVA" className="h-9 md:h-12 w-auto object-contain" />
+    <nav className="fixed top-0 right-0 left-0 z-50 px-3 py-3 sm:px-4 md:px-6 md:py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 rounded-full border border-brand-primary/10 bg-white/95 px-4 py-2.5 shadow-sm backdrop-blur-sm md:px-8 md:py-3">
+        <Link
+          to="/"
+          className="flex min-h-11 shrink-0 items-center"
+          aria-label="FisioEVA, torna alla home"
+        >
+          <img src="/logo.svg" alt="FisioEVA" className="h-9 w-auto object-contain md:h-12" />
         </Link>
 
-        <div className="hidden xl:flex items-center gap-7">
+        <div className="hidden items-center gap-7 xl:flex">
           {links.map((link) =>
             link.children ? (
               <div key={link.to} className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="flex items-center gap-1 group"
+                  className="group flex items-center gap-1"
                   aria-expanded={dropdownOpen}
                 >
                   <span
                     className={`text-sm font-medium transition-colors ${
                       location.pathname.startsWith(link.to)
-                        ? 'text-brand-secondary'
-                        : 'text-brand-dark group-hover:text-brand-secondary'
+                        ? 'text-brand-secondary-ink'
+                        : 'text-brand-dark group-hover:text-brand-secondary-ink'
                     }`}
                   >
                     {link.label}
                   </span>
                   <ChevronDown
-                    className={`w-4 h-4 text-brand-dark group-hover:text-brand-secondary transition-all ${
+                    className={`h-4 w-4 text-brand-dark transition-all group-hover:text-brand-secondary-ink ${
                       dropdownOpen ? 'rotate-180' : ''
                     }`}
                   />
@@ -78,20 +102,20 @@ export default function Navbar() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
                       transition={{ duration: 0.18 }}
-                      className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-72 bg-white rounded-3xl shadow-xl border border-brand-primary/10 p-3"
+                      className="absolute top-full left-1/2 mt-4 w-72 -translate-x-1/2 rounded-3xl border border-brand-primary/10 bg-white p-3 shadow-xl"
                     >
                       <Link
                         to="/servizi"
-                        className="block px-4 py-2.5 rounded-2xl text-sm font-medium text-brand-dark hover:bg-brand-primary/10 hover:text-brand-secondary transition-colors"
+                        className="block rounded-2xl px-4 py-2.5 text-sm font-medium text-brand-dark transition-colors hover:bg-brand-primary/10 hover:text-brand-secondary-ink"
                       >
                         Tutti i trattamenti
                       </Link>
-                      <div className="h-px bg-gray-100 my-2"></div>
+                      <div className="my-2 h-px bg-gray-100"></div>
                       {link.children.map((child) => (
                         <Link
                           key={child.to}
                           to={child.to}
-                          className="block px-4 py-2.5 rounded-2xl text-sm font-light text-gray-600 hover:bg-brand-secondary/10 hover:text-brand-dark transition-colors"
+                          className="block rounded-2xl px-4 py-2.5 text-sm font-light text-gray-600 transition-colors hover:bg-brand-secondary/10 hover:text-brand-dark"
                         >
                           {child.label}
                         </Link>
@@ -108,21 +132,25 @@ export default function Navbar() {
           )}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
+          {/* Sul telefono la prenotazione resta raggiungibile senza aprire il
+              menu: si riduce alla sola icona, ma non sparisce. */}
           <Link
             to="/contatti"
-            className="hidden md:inline-flex items-center border-2 border-brand-primary bg-white text-brand-dark hover:bg-brand-primary hover:text-white rounded-full px-6 lg:px-8 py-2.5 transition-colors duration-300 font-medium text-sm shadow-sm whitespace-nowrap"
+            aria-label="Prenota ora"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border-2 border-brand-primary bg-white px-3 text-sm font-medium whitespace-nowrap text-brand-dark shadow-sm transition-colors duration-300 hover:bg-brand-primary hover:text-white sm:px-6 lg:px-8"
           >
-            Prenota ora
+            <CalendarCheck className="h-4 w-4 sm:hidden" aria-hidden="true" />
+            <span className="hidden sm:inline">Prenota ora</span>
           </Link>
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="xl:hidden w-10 h-10 rounded-full border border-brand-primary/20 flex items-center justify-center text-brand-dark hover:bg-brand-primary/10 transition-colors"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-primary/20 text-brand-dark transition-colors hover:bg-brand-primary/10 xl:hidden"
             aria-label={menuOpen ? 'Chiudi menu' : 'Apri menu'}
             aria-expanded={menuOpen}
           >
-            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
@@ -134,7 +162,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="xl:hidden max-w-7xl mx-auto mt-3 bg-white/97 backdrop-blur-sm rounded-3xl px-8 py-6 shadow-lg border border-brand-primary/10 flex flex-col gap-4 max-h-[70vh] overflow-y-auto"
+            className="mx-auto mt-2 flex max-h-[70svh] max-w-7xl flex-col overflow-y-auto rounded-3xl border border-brand-primary/10 bg-white/98 px-4 py-3 shadow-lg backdrop-blur-sm xl:hidden"
           >
             {links.map((link) => (
               <NavLink
@@ -142,8 +170,10 @@ export default function Navbar() {
                 to={link.to}
                 end={link.to === '/'}
                 className={({ isActive }) =>
-                  `text-base font-medium transition-colors ${
-                    isActive ? 'text-brand-secondary' : 'text-brand-dark hover:text-brand-secondary'
+                  `flex min-h-12 items-center rounded-2xl px-4 text-base font-medium transition-colors ${
+                    isActive
+                      ? 'bg-brand-primary/10 text-brand-secondary-ink'
+                      : 'text-brand-dark hover:bg-brand-primary/5'
                   }`
                 }
               >
@@ -152,7 +182,7 @@ export default function Navbar() {
             ))}
             <Link
               to="/contatti"
-              className="mt-2 flex items-center justify-center border-2 border-brand-primary bg-white text-brand-dark hover:bg-brand-primary hover:text-white rounded-full px-8 py-3 transition-colors duration-300 font-medium text-sm"
+              className="mt-3 flex min-h-12 items-center justify-center rounded-full border-2 border-brand-primary bg-white px-8 text-sm font-medium text-brand-dark transition-colors duration-300 hover:bg-brand-primary hover:text-white"
             >
               Prenota ora
             </Link>

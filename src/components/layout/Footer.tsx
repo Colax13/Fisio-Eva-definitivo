@@ -15,42 +15,44 @@ const naviga = [
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-dark text-white relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -bottom-[40%] -left-[10%] w-[50%] h-[80%] rounded-full bg-brand-primary/10 blur-[120px]"></div>
+    <footer className="relative overflow-hidden bg-brand-dark text-white">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -bottom-[40%] -left-[10%] h-[80%] w-[50%] rounded-full bg-brand-primary/10 blur-[120px]"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 pt-20 pb-10 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          <div>
-            <div className="bg-white rounded-2xl p-4 w-max mb-6">
+      <div className="relative z-10 mx-auto max-w-7xl px-5 pt-14 pb-8 sm:px-6 md:pt-20 md:pb-10">
+        {/* Sul telefono le quattro colonne diventano una: tutto centrato, così
+            il piede della pagina non si legge a zig-zag. */}
+        <div className="mb-12 grid grid-cols-1 gap-10 text-center sm:grid-cols-2 sm:text-left md:mb-16 lg:grid-cols-4 lg:gap-12">
+          <div className="flex flex-col items-center sm:items-start">
+            <div className="mb-5 w-max rounded-2xl bg-white p-4">
               <img src="/logo.svg" alt="FisioEVA" className="h-12 w-auto object-contain" />
             </div>
-            <p className="text-gray-400 font-light text-sm leading-relaxed max-w-xs">
-              {studio.claim} a Casalotti, Roma. Un percorso costruito su di te, a due
-              passi da casa tua.
+            <p className="max-w-xs text-sm leading-relaxed font-light text-gray-300">
+              {studio.claim} a Casalotti, Roma. Un percorso costruito su di te, a due passi da casa
+              tua.
             </p>
             <a
               href={studio.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-3 text-sm text-gray-300 hover:text-brand-primary transition-colors group"
+              className="group mt-5 inline-flex min-h-11 items-center gap-3 text-sm text-gray-300 transition-colors hover:text-brand-primary"
             >
-              <span className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:border-brand-primary transition-colors">
-                <Instagram className="w-5 h-5" />
+              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/25 transition-colors group-hover:border-brand-primary">
+                <Instagram className="h-5 w-5" />
               </span>
               @{studio.instagram}
             </a>
           </div>
 
           <div>
-            <h3 className="font-sans font-medium text-lg mb-6">Naviga</h3>
-            <ul className="space-y-3">
+            <h3 className="mb-4 font-sans text-lg font-semibold md:mb-6">Naviga</h3>
+            <ul className="flex flex-wrap justify-center gap-x-5 gap-y-1 sm:flex-col sm:gap-y-1">
               {naviga.map((link) => (
                 <li key={link.to}>
                   <Link
                     to={link.to}
-                    className="text-gray-400 font-light text-sm hover:text-brand-secondary transition-colors"
+                    className="inline-flex min-h-11 items-center text-sm font-light text-gray-300 transition-colors hover:text-brand-secondary"
                   >
                     {link.label}
                   </Link>
@@ -60,11 +62,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-sans font-medium text-lg mb-6">Contatti</h3>
-            <ul className="space-y-4 text-sm">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                <span className="text-gray-400 font-light">
+            <h3 className="mb-4 font-sans text-lg font-semibold md:mb-6">Contatti</h3>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-start justify-center gap-3 sm:justify-start">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary" />
+                <span className="font-light text-gray-300">
                   {studio.address}
                   <br />
                   {studio.city} ({studio.zone})
@@ -73,21 +75,21 @@ export default function Footer() {
               {team
                 .filter((m) => m.phone)
                 .map((m) => (
-                  <li key={m.slug} className="flex items-start gap-3">
-                    <Phone className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
+                  <li key={m.slug} className="flex items-start justify-center gap-3 sm:justify-start">
+                    <Phone className="mt-3 h-4 w-4 shrink-0 text-brand-primary" />
                     <a
                       href={m.phoneHref}
-                      className="text-gray-400 font-light hover:text-brand-secondary transition-colors"
+                      className="inline-flex min-h-11 items-center font-light text-gray-300 transition-colors hover:text-brand-secondary"
                     >
-                      {m.phone} <span className="text-gray-500">({m.short})</span>
+                      {m.phone} <span className="ml-1 text-gray-400">({m.short})</span>
                     </a>
                   </li>
                 ))}
-              <li className="flex items-start gap-3">
-                <Mail className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
+              <li className="flex items-start justify-center gap-3 sm:justify-start">
+                <Mail className="mt-3 h-4 w-4 shrink-0 text-brand-primary" />
                 <a
                   href={`mailto:${studio.email}`}
-                  className="text-gray-400 font-light hover:text-brand-secondary transition-colors break-all"
+                  className="inline-flex min-h-11 items-center font-light break-all text-gray-300 transition-colors hover:text-brand-secondary"
                 >
                   {studio.email}
                 </a>
@@ -96,12 +98,12 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-sans font-medium text-lg mb-6">Orari</h3>
-            <ul className="space-y-4 text-sm">
+            <h3 className="mb-4 font-sans text-lg font-semibold md:mb-6">Orari</h3>
+            <ul className="space-y-3 text-sm">
               {studio.orari.map((o) => (
-                <li key={o.giorno} className="flex items-start gap-3">
-                  <Clock className="w-4 h-4 text-brand-secondary shrink-0 mt-0.5" />
-                  <span className="text-gray-400 font-light">
+                <li key={o.giorno} className="flex items-start justify-center gap-3 sm:justify-start">
+                  <Clock className="mt-0.5 h-4 w-4 shrink-0 text-brand-secondary" />
+                  <span className="font-light text-gray-300">
                     {o.giorno}
                     <br />
                     <span className="text-white">{o.ore}</span>
@@ -112,13 +114,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-          <p>
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-gray-400 md:flex-row">
+          <p className="text-center md:text-left">
             © {new Date().getFullYear()} {studio.name} — {studio.claim}. Tutti i diritti riservati.
           </p>
           <p className="flex items-center gap-2 tracking-[0.2em] uppercase">
-            Muoviti <span className="w-1 h-1 rounded-full bg-brand-secondary"></span> Respira{' '}
-            <span className="w-1 h-1 rounded-full bg-brand-secondary"></span> Vivi
+            Muoviti <span className="h-1 w-1 rounded-full bg-brand-secondary"></span> Respira{' '}
+            <span className="h-1 w-1 rounded-full bg-brand-secondary"></span> Vivi
           </p>
         </div>
       </div>

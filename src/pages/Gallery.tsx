@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import PageHero from '../components/layout/PageHero';
 import CtaBand from '../components/sections/CtaBand';
 import usePageMeta from '../hooks/usePageMeta';
+import FilterPills from '../components/ui/FilterPills';
 import { gallery, galleryCategorie, immagini } from '../data/site';
 
 const spanClass = {
@@ -35,32 +36,23 @@ export default function Gallery() {
         image={immagini.calma}
       />
 
-      <section className="relative bg-brand-light py-24 px-6 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-brand-secondary/10 blur-[120px]"></div>
+      <section className="relative overflow-hidden bg-brand-light px-5 py-16 sm:px-6 md:py-24">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-[20%] -left-[10%] h-[60%] w-[60%] rounded-full bg-brand-secondary/10 blur-[120px]"></div>
         </div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
-          {/* Filters */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-14 bg-white/70 backdrop-blur-md rounded-full p-2 w-max mx-auto border border-white shadow-sm">
-            {galleryCategorie.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setCategoria(cat)}
-                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-colors duration-300 ${
-                  categoria === cat
-                    ? 'bg-brand-dark text-white'
-                    : 'text-brand-dark hover:bg-brand-primary/10'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+        <div className="relative z-10 mx-auto max-w-7xl">
+          <FilterPills
+            voci={galleryCategorie}
+            attiva={categoria}
+            onSelect={setCategoria}
+            etichetta="Filtra le foto per argomento"
+            className="mb-10 md:mb-14"
+          />
 
           <motion.div
             layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 auto-rows-[240px]"
+            className="grid auto-rows-[200px] grid-cols-1 gap-4 sm:auto-rows-[240px] sm:grid-cols-2 md:gap-6 lg:grid-cols-3"
           >
             <AnimatePresence mode="popLayout">
               {visibili.map((shot) => (
@@ -83,7 +75,7 @@ export default function Gallery() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-brand-dark/10 to-transparent opacity-70 group-hover:opacity-95 transition-opacity duration-300"></div>
                   <figcaption className="absolute bottom-0 left-0 right-0 p-6">
-                    <span className="text-brand-primary text-[10px] tracking-widest uppercase font-medium">
+                    <span className="text-eyebrow font-semibold text-brand-primary uppercase">
                       {shot.categoria}
                     </span>
                     <p className="text-white font-light text-sm mt-1 leading-snug">{shot.alt}</p>

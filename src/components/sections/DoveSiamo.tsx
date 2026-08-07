@@ -17,17 +17,17 @@ const MAPS = `https://www.google.com/maps/search/?api=1&query=${encodeURICompone
 
 export default function DoveSiamo() {
   return (
-    <section className="relative bg-white overflow-hidden py-24 md:py-32 px-6">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -bottom-[25%] -right-[10%] w-[55%] h-[70%] rounded-full bg-brand-secondary/10 blur-[120px]"></div>
+    <section className="relative overflow-hidden bg-white px-5 py-16 sm:px-6 md:py-24 lg:py-32">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -right-[10%] -bottom-[25%] h-[70%] w-[55%] rounded-full bg-brand-secondary/10 blur-[120px]"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <SectionHeading eyebrow="Dove siamo" className="mb-16">
-          A Casalotti, in <span className="text-brand-secondary">Via di Boccea 755</span>
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <SectionHeading eyebrow="Dove siamo" accent="secondary" className="mb-10 md:mb-16">
+          A Casalotti, in <span className="text-brand-secondary-ink">Via di Boccea 755</span>
         </SectionHeading>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
+        <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2 lg:gap-16">
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -35,32 +35,34 @@ export default function DoveSiamo() {
             transition={{ duration: 0.6 }}
             className="space-y-4"
           >
-            <div className="bg-white/80 backdrop-blur-md rounded-[2rem] p-7 shadow-xl border border-white flex items-start gap-5">
-              <span className="w-12 h-12 rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center shrink-0">
-                <MapPin className="w-6 h-6" />
+            {/* Le schede informative restano allineate a sinistra: sono
+                indirizzi e orari, non messaggi — si leggono, non si declamano. */}
+            <div className="flex items-start gap-4 rounded-[2rem] border border-white bg-white/80 p-6 shadow-xl backdrop-blur-md sm:gap-5 sm:p-7">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-primary/10 text-brand-primary-ink">
+                <MapPin className="h-6 w-6" />
               </span>
               <div>
-                <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Indirizzo</p>
-                <p className="font-sans font-bold text-brand-dark text-lg">{studio.address}</p>
-                <p className="text-gray-600 font-light">
+                <p className="mb-1 text-xs tracking-wider text-gray-600 uppercase">Indirizzo</p>
+                <p className="text-lead font-sans font-bold text-brand-dark">{studio.address}</p>
+                <p className="font-light text-gray-600">
                   {studio.city} ({studio.zone})
                 </p>
-                <p className="text-gray-500 font-light text-sm mt-2">
+                <p className="mt-2 text-sm font-light text-gray-600">
                   Si arriva dal Raccordo, uscita Boccea. Servita dalle linee di superficie che
                   collegano Cornelia.
                 </p>
               </div>
             </div>
 
-            <div className="bg-white/80 backdrop-blur-md rounded-[2rem] p-7 shadow-xl border border-white flex items-start gap-5">
-              <span className="w-12 h-12 rounded-2xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shrink-0">
-                <Clock className="w-6 h-6" />
+            <div className="flex items-start gap-4 rounded-[2rem] border border-white bg-white/80 p-6 shadow-xl backdrop-blur-md sm:gap-5 sm:p-7">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-secondary/10 text-brand-secondary-ink">
+                <Clock className="h-6 w-6" />
               </span>
               <div className="flex-1">
-                <p className="text-xs text-gray-500 uppercase tracking-wider mb-2">Orari</p>
+                <p className="mb-2 text-xs tracking-wider text-gray-600 uppercase">Orari</p>
                 {/* ⛔ Gli orari non sono ancora stati forniti: nessun valore inventato. */}
-                <p className="text-gray-600 font-light">In definizione.</p>
-                <p className="text-gray-500 font-light text-sm mt-1">
+                <p className="font-light text-gray-600">In definizione.</p>
+                <p className="mt-1 text-sm font-light text-gray-600">
                   Lo studio apre il 26 settembre 2026.
                 </p>
               </div>
@@ -68,14 +70,14 @@ export default function DoveSiamo() {
 
             <a
               href={`mailto:${studio.email}`}
-              className="group bg-white/80 backdrop-blur-md rounded-[2rem] p-7 shadow-xl border border-white flex items-start gap-5 hover:shadow-2xl transition-shadow duration-300"
+              className="group flex items-start gap-4 rounded-[2rem] border border-white bg-white/80 p-6 shadow-xl backdrop-blur-md transition-shadow duration-300 hover:shadow-2xl sm:gap-5 sm:p-7"
             >
-              <span className="w-12 h-12 rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
-                <Mail className="w-6 h-6" />
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-primary/10 text-brand-primary-ink transition-transform duration-300 group-hover:scale-110">
+                <Mail className="h-6 w-6" />
               </span>
               <div className="min-w-0">
-                <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Scrivici</p>
-                <p className="font-sans font-medium text-brand-dark break-all group-hover:text-brand-secondary transition-colors">
+                <p className="mb-1 text-xs tracking-wider text-gray-600 uppercase">Scrivici</p>
+                <p className="font-sans font-medium break-all text-brand-dark transition-colors group-hover:text-brand-secondary-ink">
                   {studio.email}
                 </p>
               </div>
@@ -87,32 +89,29 @@ export default function DoveSiamo() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="rounded-[2rem] bg-gradient-to-br from-[#2c2c2b] to-[#3d3d3c] p-10 md:p-14 flex flex-col justify-center text-center"
+            className="flex flex-col justify-center rounded-[2rem] bg-gradient-to-br from-[#2c2c2b] to-[#3d3d3c] px-6 py-10 text-center sm:px-10 md:px-14 md:py-14"
           >
-            <span className="text-brand-primary text-xs tracking-widest uppercase font-medium mb-6">
+            <span className="text-eyebrow mb-5 font-semibold text-brand-primary uppercase">
               Prima valutazione
             </span>
 
-            <h3 className="text-2xl md:text-3xl font-sans font-light text-white leading-snug mb-5">
-              Non chiederti se è il momento di curarti.
-              <br />
-              <span className="text-brand-primary">
-                Chiediti da quanto lo stai rimandando.
-              </span>
+            <h3 className="text-h3 mb-4 font-sans font-light text-white">
+              Non chiederti se è il momento di curarti.{' '}
+              <span className="text-brand-primary">Chiediti da quanto lo stai rimandando.</span>
             </h3>
 
-            <p className="text-gray-400 font-light leading-relaxed mb-10 max-w-sm mx-auto">
+            <p className="mx-auto mb-8 max-w-sm leading-relaxed font-light text-gray-300">
               Raccontaci cosa senti e da quanto tempo. Da lì capiamo insieme come impostare il
               percorso.
             </p>
 
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center">
               <ArrowButton to="/contatti">Prenota la prima valutazione</ArrowButton>
               <a
                 href={MAPS}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-max items-center rounded-full border-2 border-white/30 px-8 py-3.5 text-sm font-medium text-white transition-colors duration-300 hover:bg-white hover:text-brand-dark"
+                className="inline-flex min-h-12 w-full items-center justify-center rounded-full border-2 border-white/40 px-8 text-sm font-medium text-white transition-colors duration-300 hover:bg-white hover:text-brand-dark sm:w-max"
               >
                 Apri la mappa
               </a>

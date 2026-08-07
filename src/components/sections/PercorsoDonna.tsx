@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { immagini } from '../../data/site';
 import ArrowButton from '../ui/ArrowButton';
+import Eyebrow from '../ui/Eyebrow';
 
 /**
  * La specializzazione dello studio.
@@ -34,34 +35,34 @@ const voci = [
 
 export default function PercorsoDonna() {
   return (
-    <section className="relative bg-brand-light overflow-hidden py-24 md:py-32 px-6">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-[15%] -left-[10%] w-[55%] h-[70%] rounded-full bg-brand-primary/15 blur-[120px]"></div>
-        <div className="absolute -bottom-[20%] -right-[10%] w-[50%] h-[60%] rounded-full bg-brand-secondary/10 blur-[120px]"></div>
+    <section className="relative overflow-hidden bg-brand-light px-5 py-16 sm:px-6 md:py-24 lg:py-32">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-[15%] -left-[10%] h-[70%] w-[55%] rounded-full bg-brand-primary/15 blur-[120px]"></div>
+        <div className="absolute -right-[10%] -bottom-[20%] h-[60%] w-[50%] rounded-full bg-brand-secondary/10 blur-[120px]"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+      <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-20">
         {/* Immagine con la forma morbida usata nel resto del sito */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="relative w-full max-w-[420px] mx-auto lg:mx-0 h-[380px] md:h-[460px] order-2 lg:order-1"
+          className="relative order-2 mx-auto aspect-square w-full max-w-[280px] sm:max-w-[380px] lg:order-1 lg:mx-0 lg:aspect-auto lg:h-[460px] lg:max-w-[420px]"
         >
           <div
-            className="absolute inset-0 bg-gradient-to-tr from-brand-primary/40 to-brand-secondary/40 z-10 animate-blob"
+            className="animate-blob absolute inset-0 z-10 bg-gradient-to-tr from-brand-primary/40 to-brand-secondary/40"
             style={{ borderRadius: '50% 50% 50% 50% / 55% 45% 45% 55%' }}
           ></div>
           <div
-            className="absolute inset-[4%] overflow-hidden z-20 border-[4px] border-white shadow-lg bg-white"
+            className="absolute inset-[4%] z-20 overflow-hidden border-[4px] border-white bg-white shadow-lg"
             style={{ borderRadius: '55% 45% 45% 55% / 50% 50% 50% 50%' }}
           >
             <img
               src={immagini.donna}
               alt="Percorso dedicato alla salute della donna"
               loading="lazy"
-              className="w-full h-full object-cover scale-105"
+              className="h-full w-full scale-105 object-cover"
             />
           </div>
         </motion.div>
@@ -71,26 +72,23 @@ export default function PercorsoDonna() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="order-1 lg:order-2"
+          className="order-1 text-center lg:order-2 lg:text-left"
         >
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-12 h-[1px] bg-brand-primary"></div>
-            <span className="text-brand-primary text-xs tracking-widest uppercase font-medium">
-              Percorso donna
-            </span>
-          </div>
+          <Eyebrow align="left" className="mb-5">
+            Percorso donna
+          </Eyebrow>
 
-          <h2 className="text-4xl md:text-5xl font-sans font-light text-brand-dark leading-tight mb-6">
+          <h2 className="text-h2 mb-5 font-sans font-light text-brand-dark">
             La cura di cui spesso{' '}
-            <span className="text-brand-primary font-medium">nessuno parla</span>
+            <span className="font-medium text-brand-primary-ink">nessuno parla</span>
           </h2>
 
-          <p className="text-gray-600 text-base font-light leading-relaxed mb-10 max-w-xl">
+          <p className="text-lead mx-auto mb-8 max-w-xl font-light text-gray-600 lg:mx-0">
             È la parte del lavoro su cui lo studio si è specializzato. Si parte sempre da una
             valutazione, in uno spazio riservato e con i tuoi tempi.
           </p>
 
-          <ul className="space-y-5 mb-10">
+          <ul className="mb-8 space-y-4 text-left">
             {voci.map((voce, idx) => (
               <motion.li
                 key={voce.titolo}
@@ -98,15 +96,17 @@ export default function PercorsoDonna() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: 0.2 + idx * 0.1 }}
-                className="bg-white/70 backdrop-blur-md rounded-3xl border border-white shadow-sm px-6 py-5"
+                className="rounded-3xl border border-white bg-white/70 px-5 py-4 shadow-sm backdrop-blur-md sm:px-6 sm:py-5"
               >
-                <h3 className="font-sans font-medium text-brand-dark mb-1">{voce.titolo}</h3>
-                <p className="text-sm text-gray-600 font-light leading-relaxed">{voce.testo}</p>
+                <h3 className="mb-1 font-sans font-semibold text-brand-dark">{voce.titolo}</h3>
+                <p className="text-sm leading-relaxed font-light text-gray-600">{voce.testo}</p>
               </motion.li>
             ))}
           </ul>
 
-          <ArrowButton to="/servizi">Scopri il percorso</ArrowButton>
+          <div className="flex justify-center lg:justify-start">
+            <ArrowButton to="/servizi">Scopri il percorso</ArrowButton>
+          </div>
         </motion.div>
       </div>
     </section>

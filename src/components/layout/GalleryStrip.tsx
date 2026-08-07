@@ -10,13 +10,15 @@ export default function GalleryStrip() {
   const shots = gallery.slice(0, 6);
 
   return (
-    <section className="bg-brand-dark pt-16 px-6 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-[60%] left-1/4 w-[50%] h-[160%] rounded-full bg-brand-secondary/10 blur-[120px]"></div>
+    <section className="relative overflow-hidden bg-brand-dark px-5 pt-12 sm:px-6 md:pt-16">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-[60%] left-1/4 h-[160%] w-[50%] rounded-full bg-brand-secondary/10 blur-[120px]"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4">
+      <div className="relative z-10 mx-auto max-w-7xl">
+        {/* Su 390px sei miniature in fila diventavano francobolli da 55px:
+            due file da tre si guardano ancora. */}
+        <div className="grid grid-cols-3 gap-2.5 sm:gap-3 md:grid-cols-6 md:gap-4">
           {shots.map((shot, idx) => (
             <motion.div
               key={idx}
