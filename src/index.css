@@ -121,3 +121,24 @@ section[id] {
     scroll-padding-inline: 1.5rem;
   }
 }
+
+/*
+ * Le altre misure della scala. Come h1/h2/lead, erano usate nei componenti
+ * senza essere definite: `text-h3` sui titoli delle card, `text-eyebrow` sugli
+ * occhielli e `text-body` sui paragrafi cadevano tutte sul default del browser.
+ */
+@utility text-h3 {
+  font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.75rem);
+  line-height: 1.25;
+}
+
+@utility text-eyebrow {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+}
+
+@utility text-body {
+  font-size: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
+  line-height: 1.7;
+}

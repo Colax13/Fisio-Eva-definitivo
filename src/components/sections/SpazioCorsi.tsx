@@ -1,17 +1,17 @@
 import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 import { immagini } from '../../data/site';
+import ArrowButton from '../ui/ArrowButton';
+import Eyebrow from '../ui/Eyebrow';
 
 /**
  * Il piano superiore.
  *
- * È un brand a sé: attività non sanitarie, normativa diversa, pubblico
- * diverso. Per questo il blocco ha un trattamento visivo distinto dal resto —
- * niente card in vetro, niente aloni: fondo pieno e forme squadrate. La
- * promessa non è "curarti" ma "stare bene, muoverti, continuare".
+ * Attività non sanitarie, quindi normativa e promessa diverse: non è "curarti"
+ * ma "stare bene, muoverti, continuare". La differenza la porta il contenuto —
+ * le forme restano quelle del resto del sito, morbide e arrotondate, perché una
+ * sezione squadrata in mezzo a tutto il resto sembra solo un errore.
  *
- * ⛔ Il nome non è ancora confermato: sta in una costante sola, così quando la
+ * ⛔ Il nome non è confermato: sta in una costante sola, così quando la
  * decisione arriva si cambia in un punto.
  */
 const SPAZIO_CORSI_NOME = 'LongEva';
@@ -20,57 +20,58 @@ const attivita = ['Posturale di gruppo', 'Yoga', 'Pilates'];
 
 export default function SpazioCorsi() {
   return (
-    <section className="relative bg-brand-light border-y border-brand-primary/15 overflow-hidden">
-      <div className="grid grid-cols-1 lg:grid-cols-2">
-        {/* Immagine a filo, senza cornici morbide: il registro è un altro */}
-        <div className="relative h-[300px] lg:h-auto lg:min-h-[520px]">
-          <img
-            src={immagini.postura}
-            alt="Lo spazio corsi al piano superiore"
-            loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-brand-dark/25"></div>
-        </div>
+    <section className="relative overflow-hidden bg-brand-light px-6 py-24">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-[20%] -left-[10%] h-[60%] w-[60%] rounded-full bg-brand-secondary/10 blur-[120px]"></div>
+      </div>
 
+      <div className="relative z-10 mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="px-8 py-16 md:px-14 md:py-24 flex flex-col justify-center"
+          className="grid grid-cols-1 overflow-hidden rounded-[2.5rem] border border-white bg-white shadow-xl lg:grid-cols-2"
         >
-          <span className="text-brand-primary text-xs tracking-[0.3em] uppercase mb-6">
-            Il piano superiore
-          </span>
+          <div className="relative min-h-[280px] lg:min-h-[460px]">
+            <img
+              src={immagini.postura}
+              alt="Lo spazio corsi al piano superiore"
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/40 to-transparent"></div>
+          </div>
 
-          <h2 className="text-4xl md:text-5xl font-sans font-light text-brand-dark leading-tight mb-6">
-            {SPAZIO_CORSI_NOME}
-          </h2>
+          <div className="flex flex-col justify-center p-9 md:p-14">
+            <Eyebrow align="left" accent="secondary" className="mb-5">
+              Il piano superiore
+            </Eyebrow>
 
-          <p className="text-gray-600 text-base font-light leading-relaxed mb-10 max-w-md">
-            Non è fisioterapia, e non lo diventa. È il posto dove si continua a muoversi bene:
-            quando il percorso clinico è finito, o quando non è mai servito.
-          </p>
+            <h2 className="text-h2 font-sans font-bold text-brand-dark mb-5 text-center lg:text-left">
+              {SPAZIO_CORSI_NOME}
+            </h2>
 
-          <ul className="flex flex-wrap gap-3 mb-10">
-            {attivita.map((voce) => (
-              <li
-                key={voce}
-                className="border border-brand-dark/20 text-brand-dark text-sm font-light px-5 py-2"
-              >
-                {voce}
-              </li>
-            ))}
-          </ul>
+            <p className="text-body mb-8 max-w-md text-center font-light text-gray-600 lg:text-left">
+              Non è fisioterapia, e non lo diventa. È il posto dove si continua a muoversi bene:
+              quando il percorso clinico è finito, o quando non è mai servito.
+            </p>
 
-          <Link
-            to="/contatti"
-            className="group inline-flex w-max items-center gap-3 text-brand-dark text-sm font-medium border-b border-brand-dark/30 pb-2 transition-colors hover:border-brand-dark"
-          >
-            Chiedi informazioni
-            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
+            <ul className="mb-9 flex flex-wrap justify-center gap-3 lg:justify-start">
+              {attivita.map((voce) => (
+                <li
+                  key={voce}
+                  className="rounded-full border border-brand-secondary/40 px-5 py-2 text-sm font-light text-brand-dark"
+                >
+                  {voce}
+                </li>
+              ))}
+            </ul>
+
+            <div className="flex justify-center lg:justify-start">
+              <ArrowButton to="/contatti">Scopri le nostre terapie di gruppo</ArrowButton>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

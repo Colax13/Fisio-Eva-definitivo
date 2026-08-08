@@ -72,7 +72,6 @@ export default function Contatti() {
             transition={{ duration: 0.7 }}
           >
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-[1px] bg-brand-primary"></div>
               <span className="text-brand-primary text-xs tracking-widest uppercase font-medium">
                 Dove trovarci
               </span>
@@ -180,7 +179,6 @@ export default function Contatti() {
 
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-5">
-                  <div className="w-12 h-[1px] bg-brand-primary"></div>
                   <span className="text-brand-primary text-xs tracking-widest uppercase font-medium">
                     Scrivici
                   </span>

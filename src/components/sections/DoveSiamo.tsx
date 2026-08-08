@@ -58,7 +58,6 @@ export default function DoveSiamo() {
 
           <div className="bg-brand-light p-10 md:p-14 flex flex-col justify-center">
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-[1px] bg-brand-primary"></div>
               <span className="text-brand-primary text-xs tracking-widest uppercase font-medium">
                 Dove siamo
               </span>

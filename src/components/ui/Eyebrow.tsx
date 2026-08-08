@@ -1,6 +1,6 @@
 type Props = {
   children: string;
-  /** Allineamento da tablet in su. Sul telefono è sempre centrato. */
+  /** Allineamento da desktop in su. Sul telefono è sempre centrato. */
   align?: 'left' | 'center';
   tone?: 'dark' | 'light';
   accent?: 'primary' | 'secondary';
@@ -8,11 +8,10 @@ type Props = {
 };
 
 /**
- * Occhiello con la lineetta: l'etichetta che apre ogni sezione.
+ * L'etichetta che apre ogni sezione.
  *
- * Era ricopiato a mano in una decina di file, ogni volta con un allineamento
- * diverso. Da qui in poi sul telefono è sempre centrato — è la regola che tiene
- * insieme la pagina quando le due colonne del desktop diventano una sola.
+ * Senza le lineette ai lati: erano un ornamento ripetuto una decina di volte
+ * per pagina e finivano per pesare più dell'etichetta stessa.
  */
 export default function Eyebrow({
   children,
@@ -21,10 +20,8 @@ export default function Eyebrow({
   accent = 'primary',
   className = '',
 }: Props) {
-  // Su fondo chiaro il lilla e il verde del marchio non reggono il contrasto a
-  // 12px: per il testo si usa la variante scura, la lineetta resta del marchio.
-  const rule =
-    tone === 'light' ? 'bg-white/70' : accent === 'primary' ? 'bg-brand-primary' : 'bg-brand-secondary';
+  // Su fondo chiaro il lillà e il verde acqua non reggono il contrasto a 12px:
+  // per il testo si usa la variante scura.
   const label =
     tone === 'light'
       ? 'text-white'
@@ -32,16 +29,11 @@ export default function Eyebrow({
         ? 'text-brand-primary-ink'
         : 'text-brand-secondary-ink';
 
-  const allineamento = align === 'center' ? 'justify-center' : 'justify-center lg:justify-start';
+  const allineamento = align === 'center' ? 'text-center' : 'text-center lg:text-left';
 
   return (
-    <div className={`flex items-center gap-3 sm:gap-4 ${allineamento} ${className}`}>
-      <span className={`h-px w-8 shrink-0 sm:w-12 ${rule}`} aria-hidden="true"></span>
-      <span className={`${label} text-eyebrow font-semibold uppercase`}>{children}</span>
-      <span
-        className={`h-px w-8 shrink-0 sm:w-12 ${rule} ${align === 'center' ? '' : 'lg:hidden'}`}
-        aria-hidden="true"
-      ></span>
-    </div>
+    <p className={`${label} ${allineamento} text-eyebrow font-semibold uppercase ${className}`}>
+      {children}
+    </p>
   );
 }

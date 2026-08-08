@@ -3,6 +3,8 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { porte } from '../../data/site';
+import ArrowButton from '../ui/ArrowButton';
+import Eyebrow from '../ui/Eyebrow';
 
 /**
  * I percorsi, in card scorrevoli.
@@ -37,12 +39,7 @@ export default function ProjectsCarousel() {
             di testo torna a sinistra e le frecce le stanno di fianco. */}
         <div className="flex flex-col items-center gap-6 text-center mb-12 md:flex-row md:items-end md:justify-between md:text-left">
           <div className="max-w-xl">
-            <div className="flex items-center justify-center gap-4 mb-5 md:justify-start">
-              <div className="w-12 h-[1px] bg-brand-primary"></div>
-              <span className="text-brand-primary text-xs tracking-widest uppercase font-medium">
-                I nostri percorsi
-              </span>
-            </div>
+            <Eyebrow align="left" className="mb-5">I nostri percorsi</Eyebrow>
 
             <h2 className="text-h2 font-sans font-bold text-brand-dark mb-4">
               Da dove <span className="text-brand-primary">vuoi partire?</span>
@@ -112,7 +109,7 @@ export default function ProjectsCarousel() {
                   </div>
 
                   <div className="flex flex-col flex-1 p-7">
-                    <h3 className="text-2xl font-sans font-bold text-brand-dark leading-snug mb-3">
+                    <h3 className="text-h3 font-sans font-bold text-brand-dark mb-3">
                       {porta.titolo}
                     </h3>
 
@@ -121,17 +118,18 @@ export default function ProjectsCarousel() {
                     </p>
 
                     <span className={`w-8 h-[2px] ${accento} mt-6 group-hover:w-14 transition-all duration-500`}></span>
-
-                    <span className="inline-flex items-center gap-2 mt-6 text-sm font-medium text-brand-dark">
-                      Scopri i servizi
-                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                    </span>
                   </div>
                 </Link>
               </motion.li>
             );
           })}
         </ul>
+
+        {/* Una sola chiamata per tutta la sezione: ripeterla su ogni card
+            faceva tre inviti identici uno accanto all'altro. */}
+        <div className="mt-12 flex justify-center">
+          <ArrowButton to="/servizi">Scopri tutti i servizi</ArrowButton>
+        </div>
       </div>
     </section>
   );
