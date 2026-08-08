@@ -5,6 +5,13 @@ export function WaveBackground() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
+    // La parallasse segue il mouse: su un telefono il mouse non c'è, e restare
+    // in ascolto costa soltanto batteria. Stesso discorso per chi ha chiesto
+    // meno animazioni al sistema operativo.
+    const puntatorePreciso = window.matchMedia('(pointer: fine)').matches;
+    const menoAnimazioni = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!puntatorePreciso || menoAnimazioni) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
         x: (e.clientX / window.innerWidth - 0.5) * 40,

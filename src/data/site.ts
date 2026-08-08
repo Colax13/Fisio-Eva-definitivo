@@ -757,7 +757,7 @@ export const gallery = [
   {
     src: immagini.bambini,
     alt: 'Attività di psicomotricità',
-    categoria: 'Progetti',
+    categoria: 'Percorsi',
     span: 'normal' as const,
   },
   {
@@ -774,4 +774,4 @@ export const gallery = [
   },
 ];
 
-export const galleryCategorie = ['Tutte', 'Lo studio', 'Trattamenti', 'Riabilitazione', 'Progetti'];
+export const galleryCategorie = ['Tutte', 'Lo studio', 'Trattamenti', 'Riabilitazione', 'Percorsi'];

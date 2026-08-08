@@ -26,8 +26,16 @@ export default function Layout() {
   return (
     <div className="font-sans bg-brand-light min-h-screen flex flex-col">
       <ScrollManager />
+      {/* Chi naviga da tastiera o con uno screen reader non deve rileggersi la
+          navbar a ogni cambio pagina. */}
+      <a
+        href="#contenuto"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-full focus:bg-brand-dark focus:px-6 focus:py-3 focus:text-sm focus:font-medium focus:text-white"
+      >
+        Vai al contenuto
+      </a>
       <Navbar />
-      <main className="flex-1">
+      <main id="contenuto" className="flex-1">
         <Outlet />
       </main>
       <GalleryStrip />

@@ -15,7 +15,7 @@ const valori = [
     testo:
       'Ogni percorso comincia da una conversazione. Capire come vivi, come ti muovi e cosa ti preoccupa vale quanto la valutazione clinica.',
     bg: 'bg-brand-primary/10',
-    text: 'text-brand-primary',
+    text: 'text-brand-primary-ink',
   },
   {
     icona: Sparkles,
@@ -23,7 +23,7 @@ const valori = [
     testo:
       'Niente protocolli fotocopia. Il programma nasce dai tuoi obiettivi e si aggiorna insieme a te, seduta dopo seduta.',
     bg: 'bg-brand-secondary/10',
-    text: 'text-brand-secondary',
+    text: 'text-brand-secondary-ink',
   },
   {
     icona: MapPin,
@@ -31,7 +31,7 @@ const valori = [
     testo:
       'Una nuova sede in Via di Boccea 755, a pochi passi da dove ci avete sempre trovate. Le stesse mani, uno spazio pensato per voi.',
     bg: 'bg-brand-primary/10',
-    text: 'text-brand-primary',
+    text: 'text-brand-primary-ink',
   },
 ];
 
@@ -58,17 +58,17 @@ export default function ChiSiamo() {
       <AboutSection cta={null} />
 
       {/* Valori */}
-      <section className="relative bg-brand-light py-24 px-6 overflow-hidden">
+      <section className="relative overflow-hidden bg-brand-light px-5 py-16 sm:px-6 md:py-24">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-brand-secondary/10 blur-[120px]"></div>
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <SectionHeading eyebrow="Il nostro approccio" className="mb-16">
-            Tre cose su cui <span className="text-brand-primary">non transigiamo</span>
+          <SectionHeading eyebrow="Il nostro approccio" className="mb-10 md:mb-16">
+            Tre cose su cui <span className="text-brand-primary-ink">non transigiamo</span>
           </SectionHeading>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
             {valori.map((valore, idx) => (
               <motion.div
                 key={valore.titolo}
@@ -76,15 +76,15 @@ export default function ChiSiamo() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: idx * 0.12 }}
-                className="bg-white/80 backdrop-blur-md rounded-[2rem] p-8 shadow-xl border border-white"
+                className="flex flex-col items-center rounded-[2rem] border border-white bg-white/80 p-6 text-center shadow-xl backdrop-blur-md sm:p-8 md:items-start md:text-left"
               >
                 <div
-                  className={`w-12 h-12 rounded-2xl ${valore.bg} ${valore.text} flex items-center justify-center mb-6`}
+                  className={`h-12 w-12 rounded-2xl ${valore.bg} ${valore.text} mb-5 flex items-center justify-center`}
                 >
-                  <valore.icona className="w-6 h-6" />
+                  <valore.icona className="h-6 w-6" />
                 </div>
-                <h3 className="font-sans font-bold text-brand-dark text-xl mb-3">{valore.titolo}</h3>
-                <p className="text-gray-600 font-light leading-relaxed">{valore.testo}</p>
+                <h3 className="text-h3 mb-3 font-sans font-bold text-brand-dark">{valore.titolo}</h3>
+                <p className="text-body leading-relaxed font-light text-gray-600">{valore.testo}</p>
               </motion.div>
             ))}
           </div>

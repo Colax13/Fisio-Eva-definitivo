@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
+import Eyebrow from '../ui/Eyebrow';
 
 type Props = {
   eyebrow?: string;
@@ -11,12 +12,12 @@ type Props = {
 };
 
 /**
- * Dark banner that opens every inner page: title, breadcrumb and an optional
- * background photo dimmed behind the brand gradient.
+ * Fascia scura che apre ogni pagina interna: titolo, briciole di navigazione e
+ * una foto opzionale sotto la velatura del marchio.
  */
 export default function PageHero({ eyebrow, title, subtitle, breadcrumb, image }: Props) {
   return (
-    <section className="relative pt-40 pb-24 md:pt-48 md:pb-32 px-6 overflow-hidden bg-brand-dark">
+    <section className="relative overflow-hidden bg-brand-dark px-5 pt-28 pb-16 sm:px-6 md:pt-44 md:pb-28">
       {image && (
         <div className="absolute inset-0 z-0">
           <motion.img
@@ -26,32 +27,29 @@ export default function PageHero({ eyebrow, title, subtitle, breadcrumb, image }
             src={image}
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-brand-dark/85"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-brand-dark/60"></div>
         </div>
       )}
 
-      {/* Brand glow */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute -top-[40%] -right-[5%] w-[50%] h-[140%] rounded-full bg-brand-primary/20 blur-[120px]"></div>
-        <div className="absolute -bottom-[60%] -left-[5%] w-[50%] h-[140%] rounded-full bg-brand-secondary/20 blur-[120px]"></div>
+      {/* Alone del marchio */}
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <div className="absolute -top-[40%] -right-[5%] h-[140%] w-[50%] rounded-full bg-brand-primary/20 blur-[120px]"></div>
+        <div className="absolute -bottom-[60%] -left-[5%] h-[140%] w-[50%] rounded-full bg-brand-secondary/20 blur-[120px]"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto text-center">
+      <div className="relative z-10 mx-auto max-w-7xl text-center">
         {eyebrow && (
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex items-center justify-center gap-4 mb-6"
           >
-            <div className="w-12 h-[1px] bg-brand-primary"></div>
-            <span className="text-brand-primary text-xs tracking-widest uppercase font-medium">
+            <Eyebrow tone="light" className="mb-5">
               {eyebrow}
-            </span>
-            <div className="w-12 h-[1px] bg-brand-primary"></div>
+            </Eyebrow>
           </motion.div>
         )}
 
@@ -59,7 +57,7 @@ export default function PageHero({ eyebrow, title, subtitle, breadcrumb, image }
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl md:text-6xl font-sans font-bold text-white leading-[1.1]"
+          className="text-h1 font-sans font-bold text-white"
         >
           {title}
         </motion.h1>
@@ -69,7 +67,7 @@ export default function PageHero({ eyebrow, title, subtitle, breadcrumb, image }
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-gray-300 font-light text-base md:text-lg leading-relaxed mt-6 max-w-2xl mx-auto"
+            className="text-lead mx-auto mt-5 max-w-2xl font-light text-gray-300"
           >
             {subtitle}
           </motion.p>
@@ -80,12 +78,15 @@ export default function PageHero({ eyebrow, title, subtitle, breadcrumb, image }
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           aria-label="Percorso di navigazione"
-          className="flex items-center justify-center gap-2 text-xs tracking-wider uppercase mt-8"
+          className="mt-7 flex items-center justify-center gap-2 text-xs tracking-wider uppercase"
         >
-          <Link to="/" className="text-gray-400 hover:text-brand-secondary transition-colors">
+          <Link
+            to="/"
+            className="flex min-h-11 items-center px-1 text-gray-300 transition-colors hover:text-brand-secondary"
+          >
             Home
           </Link>
-          <span className="w-1 h-1 rounded-full bg-brand-primary"></span>
+          <span className="h-1 w-1 rounded-full bg-brand-primary" aria-hidden="true"></span>
           <span className="text-brand-primary">{breadcrumb}</span>
         </motion.nav>
       </div>

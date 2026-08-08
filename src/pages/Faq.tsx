@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import PageHero from '../components/layout/PageHero';
 import CtaBand from '../components/sections/CtaBand';
 import usePageMeta from '../hooks/usePageMeta';
+import FilterPills from '../components/ui/FilterPills';
 import { faq } from '../data/site';
 
 const categorie = ['Tutte', 'Generali', 'Prima visita', 'Trattamenti'] as const;
@@ -32,27 +33,19 @@ export default function Faq() {
         breadcrumb="FAQ"
       />
 
-      <section className="relative bg-brand-light py-24 px-6 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-brand-primary/10 blur-[120px]"></div>
+      <section className="relative overflow-hidden bg-brand-light px-5 py-16 sm:px-6 md:py-24">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-[20%] -right-[10%] h-[60%] w-[60%] rounded-full bg-brand-primary/10 blur-[120px]"></div>
         </div>
 
-        <div className="max-w-5xl mx-auto relative z-10">
-          <div className="flex flex-wrap items-center justify-center gap-2 mb-14 bg-white/70 backdrop-blur-md rounded-full p-2 w-max mx-auto border border-white shadow-sm">
-            {categorie.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setCategoria(cat)}
-                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-colors duration-300 ${
-                  categoria === cat
-                    ? 'bg-brand-dark text-white'
-                    : 'text-brand-dark hover:bg-brand-primary/10'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+        <div className="relative z-10 mx-auto max-w-5xl">
+          <FilterPills
+            voci={categorie}
+            attiva={categoria}
+            onSelect={(v) => setCategoria(v as (typeof categorie)[number])}
+            etichetta="Filtra le domande per argomento"
+            className="mb-10 md:mb-14"
+          />
 
           <div className="space-y-4">
             {visibili.map((item, idx) => {
@@ -74,18 +67,18 @@ export default function Faq() {
                   <button
                     onClick={() => setAperta(isOpen ? null : item.domanda)}
                     aria-expanded={isOpen}
-                    className="w-full flex items-center gap-5 px-6 md:px-8 py-6 text-left"
+                    className="flex w-full items-center gap-4 px-5 py-5 text-left sm:gap-5 sm:px-6 md:px-8 md:py-6"
                   >
                     <span className="flex-1">
                       <span
-                        className={`block text-[10px] tracking-widest uppercase font-medium mb-1.5 ${
-                          isOpen ? 'text-brand-primary' : 'text-brand-secondary'
+                        className={`text-eyebrow mb-1.5 block font-semibold uppercase ${
+                          isOpen ? 'text-brand-primary' : 'text-brand-secondary-ink'
                         }`}
                       >
                         {item.categoria}
                       </span>
                       <span
-                        className={`block font-sans font-medium text-lg leading-snug ${
+                        className={`block font-sans text-base leading-snug font-medium sm:text-lg ${
                           isOpen ? 'text-white' : 'text-brand-dark'
                         }`}
                       >
@@ -94,7 +87,7 @@ export default function Faq() {
                     </span>
 
                     <span
-                      className={`w-10 h-10 rounded-full shrink-0 flex items-center justify-center transition-colors duration-300 ${
+                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${
                         isOpen
                           ? 'bg-brand-primary text-white'
                           : 'border border-gray-200 text-brand-dark'
@@ -113,7 +106,7 @@ export default function Faq() {
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
                         className="overflow-hidden"
                       >
-                        <p className="px-6 md:px-8 pb-7 text-gray-300 font-light leading-relaxed">
+                        <p className="px-5 pb-6 leading-relaxed font-light text-gray-300 sm:px-6 md:px-8 md:pb-7">
                           {item.risposta}
                         </p>
                       </motion.div>
