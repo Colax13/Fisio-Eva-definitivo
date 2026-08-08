@@ -1,125 +1,106 @@
-import { Mail, MapPin, Phone, Instagram, Clock } from 'lucide-react';
+import { Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { studio, team } from '../../data/site';
+import { studio } from '../../data/site';
 
+/**
+ * Footer.
+ *
+ * Chiaro come tutto il resto del sito: il fondo scuro spezzava la pagina e non
+ * apparteneva alla palette. Niente foto, niente colonne di link ripetuti —
+ * restano indirizzo, contatti e legale, che è quello che si cerca davvero
+ * quando si arriva in fondo.
+ *
+ * La colonna "Naviga" si vede solo da tablet in su: su mobile ripeterebbe il
+ * menu dell'hamburger, che sta a due dita di distanza.
+ */
 const naviga = [
-  { label: 'Home', to: '/' },
-  { label: 'Chi Siamo', to: '/chi-siamo' },
   { label: 'Servizi', to: '/servizi' },
-  { label: 'Progetti', to: '/progetti' },
   { label: 'Team', to: '/team' },
-  { label: 'Gallery', to: '/gallery' },
-  { label: 'FAQ', to: '/faq' },
+  { label: 'Chi siamo', to: '/chi-siamo' },
   { label: 'Contatti', to: '/contatti' },
+  { label: 'FAQ', to: '/faq' },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-dark text-white relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -bottom-[40%] -left-[10%] w-[50%] h-[80%] rounded-full bg-brand-primary/10 blur-[120px]"></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 pt-20 pb-10 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+    <footer className="bg-brand-light border-t border-brand-primary/15">
+      <div className="max-w-7xl mx-auto px-6 py-14">
+        <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr] gap-10 md:gap-12">
           <div>
-            <div className="bg-white rounded-2xl p-4 w-max mb-6">
-              <img src="/logo.svg" alt="FisioEVA" className="h-12 w-auto object-contain" />
-            </div>
-            <p className="text-gray-400 font-light text-sm leading-relaxed max-w-xs">
-              {studio.claim} a Casalotti, Roma. Un percorso costruito su di te, a due
-              passi da casa tua.
+            <img src="/logo.svg" alt="FisioEVA" className="h-10 w-auto object-contain mb-5" />
+            <p className="text-gray-600 font-light text-sm leading-relaxed max-w-xs">
+              {studio.claim} a {studio.zone}, Roma. Un percorso costruito su di te, in ogni fase
+              della vita.
             </p>
-            <a
-              href={studio.instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center gap-3 text-sm text-gray-300 hover:text-brand-primary transition-colors group"
-            >
-              <span className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:border-brand-primary transition-colors">
-                <Instagram className="w-5 h-5" />
-              </span>
-              @{studio.instagram}
-            </a>
           </div>
 
+          {/* Contatti tutti allineati a sinistra, una riga per voce. */}
           <div>
-            <h3 className="font-sans font-medium text-lg mb-6">Naviga</h3>
-            <ul className="space-y-3">
-              {naviga.map((link) => (
-                <li key={link.to}>
-                  <Link
-                    to={link.to}
-                    className="text-gray-400 font-light text-sm hover:text-brand-secondary transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-sans font-medium text-lg mb-6">Contatti</h3>
-            <ul className="space-y-4 text-sm">
+            <h2 className="text-brand-dark font-sans font-bold text-sm mb-5">Contatti</h2>
+            <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                <span className="text-gray-400 font-light">
+                <span className="text-gray-600 font-light">
                   {studio.address}
                   <br />
-                  {studio.city} ({studio.zone})
+                  {studio.city}
                 </span>
               </li>
-              {team
-                .filter((m) => m.phone)
-                .map((m) => (
-                  <li key={m.slug} className="flex items-start gap-3">
-                    <Phone className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                    <a
-                      href={m.phoneHref}
-                      className="text-gray-400 font-light hover:text-brand-secondary transition-colors"
-                    >
-                      {m.phone} <span className="text-gray-500">({m.short})</span>
-                    </a>
-                  </li>
-                ))}
+              <li className="flex items-start gap-3">
+                <Phone className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
+                <a
+                  href={studio.phoneHref}
+                  className="text-gray-600 font-light hover:text-brand-dark transition-colors"
+                >
+                  {studio.phone}
+                </a>
+              </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
                 <a
                   href={`mailto:${studio.email}`}
-                  className="text-gray-400 font-light hover:text-brand-secondary transition-colors break-all"
+                  className="text-gray-600 font-light hover:text-brand-dark transition-colors break-all"
                 >
                   {studio.email}
+                </a>
+              </li>
+              <li className="flex items-start gap-3">
+                <Instagram className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
+                <a
+                  href={studio.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 font-light hover:text-brand-dark transition-colors"
+                >
+                  @{studio.instagram}
                 </a>
               </li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-sans font-medium text-lg mb-6">Orari</h3>
-            <ul className="space-y-4 text-sm">
-              {studio.orari.map((o) => (
-                <li key={o.giorno} className="flex items-start gap-3">
-                  <Clock className="w-4 h-4 text-brand-secondary shrink-0 mt-0.5" />
-                  <span className="text-gray-400 font-light">
-                    {o.giorno}
-                    <br />
-                    <span className="text-white">{o.ore}</span>
-                  </span>
+          {/* Su mobile l'hamburger fa già questo lavoro. */}
+          <div className="hidden md:block">
+            <h2 className="text-brand-dark font-sans font-bold text-sm mb-5">Naviga</h2>
+            <ul className="space-y-3">
+              {naviga.map((voce) => (
+                <li key={voce.to}>
+                  <Link
+                    to={voce.to}
+                    className="text-sm text-gray-600 font-light hover:text-brand-dark transition-colors"
+                  >
+                    {voce.label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+        <div className="mt-12 pt-6 border-t border-brand-dark/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-gray-500">
           <p>
-            © {new Date().getFullYear()} {studio.name} — {studio.claim}. Tutti i diritti riservati.
+            © {new Date().getFullYear()} {studio.name} — {studio.claim}.
           </p>
-          <p className="flex items-center gap-2 tracking-[0.2em] uppercase">
-            Muoviti <span className="w-1 h-1 rounded-full bg-brand-secondary"></span> Respira{' '}
-            <span className="w-1 h-1 rounded-full bg-brand-secondary"></span> Vivi
-          </p>
+          <p>Apertura 26 settembre 2026</p>
         </div>
       </div>
     </footer>

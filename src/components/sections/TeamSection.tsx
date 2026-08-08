@@ -1,6 +1,6 @@
-import { Phone } from 'lucide-react';
+
 import { motion } from 'motion/react';
-import { team } from '../../data/site';
+import { accoglienza, team, teamClinico } from '../../data/site';
 import SectionHeading from '../ui/SectionHeading';
 
 const accenti = {
@@ -86,22 +86,56 @@ export default function TeamSection({ showHeading = true }: Props) {
                   {membro.description}
                 </p>
 
-                {membro.phone && (
-                  <a
-                    href={membro.phoneHref}
-                    className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-brand-dark hover:text-brand-secondary transition-colors"
-                  >
-                    <span
-                      className={`w-9 h-9 rounded-full ${a.soft} ${a.text} flex items-center justify-center`}
-                    >
-                      <Phone className="w-4 h-4" />
-                    </span>
-                    {membro.phone}
-                  </a>
-                )}
               </motion.article>
             );
           })}
+        </div>
+
+        {/* Il team clinico e l'accoglienza: card più piccole, perché il
+            racconto resta "tre titolari e le persone che hanno scelto". */}
+        <div className="mt-20">
+          <p className="text-brand-primary text-xs tracking-widest uppercase font-medium mb-8 text-center">
+            Il team clinico
+          </p>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+            {teamClinico.map((membro, idx) => {
+              const a = accenti[membro.accent];
+
+              return (
+                <motion.article
+                  key={membro.slug}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: Math.min(idx, 4) * 0.08 }}
+                  className="group bg-white/80 backdrop-blur-md rounded-[1.75rem] p-6 shadow-lg border border-white text-center flex flex-col items-center hover:shadow-xl transition-shadow duration-300"
+                >
+                  <div
+                    className={`w-20 h-20 rounded-full ${a.soft} ${a.text} ring-4 ${a.ring} ring-offset-4 ring-offset-white mb-4 flex items-center justify-center font-sans font-bold text-xl transition-transform duration-500 group-hover:scale-105`}
+                    role="img"
+                    aria-label={`Ritratto non ancora disponibile di ${membro.name}`}
+                  >
+                    {iniziali(membro.name)}
+                  </div>
+
+                  <h3 className="font-sans font-bold text-brand-dark leading-snug">
+                    {membro.name}
+                  </h3>
+                  <p className={`${a.text} font-medium text-[11px] tracking-widest uppercase mt-1`}>
+                    {membro.role}
+                  </p>
+                </motion.article>
+              );
+            })}
+          </div>
+
+          <div className="mt-10 text-center">
+            <p className="text-gray-500 text-xs tracking-widest uppercase mb-3">Accoglienza</p>
+            <p className="text-gray-600 font-light">
+              {accoglienza.map((p) => p.name).join(' · ')}
+            </p>
+          </div>
         </div>
       </div>
     </section>

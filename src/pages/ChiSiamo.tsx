@@ -2,7 +2,6 @@ import { motion } from 'motion/react';
 import { MapPin, Sparkles, HeartHandshake } from 'lucide-react';
 import PageHero from '../components/layout/PageHero';
 import AboutSection from '../components/sections/AboutSection';
-import BenefitsSection from '../components/sections/BenefitsSection';
 import PercorsoCura from '../components/sections/PercorsoCura';
 import CtaBand from '../components/sections/CtaBand';
 import SectionHeading from '../components/ui/SectionHeading';
@@ -51,7 +50,7 @@ export default function ChiSiamo() {
             Le stesse mani, <span className="text-brand-primary">una nuova casa</span>
           </>
         }
-        subtitle="Dopo tanti anni all'interno di FisioLab Casalotti abbiamo aperto FisioEVA: uno studio nostro, costruito attorno al modo in cui abbiamo sempre voluto lavorare."
+        subtitle="Tre professioniste che hanno aperto il loro studio nel quartiere in cui lavorano da sempre, costruito attorno al modo in cui hanno sempre voluto lavorare."
         breadcrumb="Chi Siamo"
         image={immagini.trattamento}
       />
@@ -92,7 +91,6 @@ export default function ChiSiamo() {
         </div>
       </section>
 
-      <BenefitsSection />
       <PercorsoCura />
       <CtaBand />
     </>

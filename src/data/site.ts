@@ -31,6 +31,16 @@ export const studio = {
   instagram: 'fisioeva_boccea',
   instagramUrl: 'https://www.instagram.com/fisioeva_boccea',
   mapsQuery: 'Via+di+Boccea+755,+00166+Roma',
+
+  /*
+   * ⛔ NUMERO PROVVISORIO — da sostituire prima del go-live.
+   * Lo studio non ha ancora una linea propria. I cellulari personali delle
+   * professioniste stanno sui biglietti da visita, non sul sito: qui serve il
+   * numero dello studio.
+   */
+  phone: '+39 06 6155 0000',
+  phoneHref: 'tel:+390661550000',
+  phoneProvvisorio: true,
   orari: [
     { giorno: 'Lunedì — Venerdì', ore: '09:00 — 20:00' },
     { giorno: 'Sabato', ore: 'Su appuntamento' },
@@ -44,8 +54,6 @@ export const team = [
     name: 'Dott.ssa Azzurra De Angelis',
     short: 'Azzurra',
     role: 'Fisioterapista · Osteopata D.O.',
-    phone: '+39 380 364 0807',
-    phoneHref: 'tel:+393803640807',
     description:
       'Si è laureata in Fisioterapia all\'Università Cattolica – Policlinico Gemelli con 110/110 e lode, poi ha proseguito con il Master in Rieducazione Posturale Globale secondo il metodo Souchard e con la formazione in Osteopatia EDUCAM. Si occupa in modo particolare della salute della donna: gravidanza, recupero post-parto, pavimento pelvico, trattamento della cicatrice da cesareo.',
     photo: '/team/azzurra.png',
@@ -56,8 +64,6 @@ export const team = [
     name: 'Dott.ssa Elisa De Rubeis',
     short: 'Elisa',
     role: 'Fisioterapista · Osteopata',
-    phone: '+39 333 874 5324',
-    phoneHref: 'tel:+393338745324',
     description:
       'Oltre quindici anni di pratica clinica, quasi tutti in questo quartiere. Lavora con la terapia manuale e l\'approccio cranio-sacrale, e ha portato il metodo Pilates dentro il percorso riabilitativo — non come attività a sé, ma come strumento per far tornare il controllo del movimento dove si è perso.',
     photo: '/team/elisa.png',
@@ -68,8 +74,6 @@ export const team = [
     name: 'Dott.ssa Veronica Mirarchi',
     short: 'Veronica',
     role: 'Fisioterapista',
-    phone: '',
-    phoneHref: '',
     // ⛔ BIO DA ACQUISIRE. Quella che stava qui era inventata dal template:
     // su un professionista sanitario reale non si scrive niente a intuito.
     // Attenzione: risulta solo Fisioterapista, non osteopata — nessuna formula
@@ -78,6 +82,26 @@ export const team = [
     photo: '',
     accent: 'primary' as const,
   },
+];
+
+/**
+ * Il team clinico che lavora accanto alle titolari.
+ *
+ * ⛔ Titolo esatto, specializzazione e numero di albo vanno confermati prima
+ * del go-live: per un professionista sanitario il titolo è un obbligo di legge,
+ * non un dettaglio. Il ruolo qui sotto è provvisorio e nessuna bio è inventata.
+ */
+export const teamClinico = [
+  { slug: 'siria-ciccone', name: 'Siria Ciccone', short: 'Siria', role: 'Fisioterapista', accent: 'secondary' as const },
+  { slug: 'andrea-del-proposto', name: 'Andrea Del Proposto', short: 'Andrea', role: 'Fisioterapista', accent: 'primary' as const },
+  { slug: 'valentina-macchia', name: 'Valentina Macchia', short: 'Valentina', role: 'Fisioterapista', accent: 'secondary' as const },
+  { slug: 'maria-caterina-scrivo', name: 'Maria Caterina Scrivo', short: 'Maria Caterina', role: 'Nutrizionista', accent: 'primary' as const },
+];
+
+/** Accoglienza e segreteria. */
+export const accoglienza = [
+  { slug: 'francesca-de-rubeis', name: 'Francesca De Rubeis', role: 'Segreteria' },
+  { slug: 'laura-de-carli', name: 'Laura De Carli', role: 'Segreteria' },
 ];
 
 export const trattamentiManuali = [
@@ -459,7 +483,7 @@ export const porte: Porta[] = [
   },
   {
     slug: 'bambino',
-    titolo: 'Il tuo bambino',
+    titolo: 'Per il bambino',
     evidenza: 'Per lui',
     descrizione:
       'Il parto è il primo grande sforzo della vita. Anche per lui. L\'osteopatia neonatale usa tecniche a pressione minima, spesso mentre il bambino dorme.',
@@ -641,7 +665,7 @@ export const faq: Faq[] = [
     categoria: 'Generali',
     domanda: 'Dove si trova lo studio?',
     risposta:
-      'Siamo in Via di Boccea 755, a Roma, zona Casalotti. A pochi passi dalla sede storica di FisioLab Casalotti, dove abbiamo lavorato per anni.',
+      'Siamo in Via di Boccea 755, a Roma, zona Casalotti. Nel quartiere in cui lavoriamo da sempre.',
   },
   {
     categoria: 'Generali',

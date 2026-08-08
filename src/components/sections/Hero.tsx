@@ -1,13 +1,17 @@
 import { CalendarCheck, Phone } from 'lucide-react';
 import { motion } from 'motion/react';
-import { immagini, studio, team } from '../../data/site';
+import { immagini, studio } from '../../data/site';
 import ArrowButton from '../ui/ArrowButton';
 
 export default function Hero() {
-  const azzurra = team[0];
 
   return (
-    <section className="relative min-h-screen flex items-center pt-32 pb-16 overflow-hidden">
+    /*
+     * `dvh` e non `vh`: su mobile la barra degli indirizzi entra e esce, e con
+     * `vh` la hero non combacia mai con lo schermo — o avanza, o lascia
+     * intravedere la sezione sotto. `dvh` segue il viewport reale.
+     */
+    <section className="relative min-h-[100dvh] flex items-center pt-24 md:pt-28 pb-16 overflow-hidden">
       <div className="absolute inset-0 z-0">
         <motion.img
           initial={{ scale: 1.1 }}
@@ -65,8 +69,8 @@ export default function Hero() {
             <ArrowButton to="/contatti" icon={CalendarCheck}>
               Prenota una visita
             </ArrowButton>
-            <ArrowButton href={azzurra.phoneHref} variant="secondary" icon={Phone}>
-              {azzurra.phone}
+            <ArrowButton href={studio.phoneHref} variant="secondary" icon={Phone}>
+              {studio.phone}
             </ArrowButton>
           </motion.div>
         </div>

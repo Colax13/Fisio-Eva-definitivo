@@ -1,32 +1,24 @@
 import { useMemo, useState } from 'react';
-import { ArrowUpRight, Search, X } from 'lucide-react';
+import { Search, X } from 'lucide-react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import PageHero from '../components/layout/PageHero';
-import PercorsoCura from '../components/sections/PercorsoCura';
 import CtaBand from '../components/sections/CtaBand';
-import SectionHeading from '../components/ui/SectionHeading';
 import ArrowButton from '../components/ui/ArrowButton';
 import usePageMeta from '../hooks/usePageMeta';
-import {
-  categorie,
-  immagini,
-  trattamenti,
-  trattamentiDi,
-  type CategoriaSlug,
-  type Trattamento,
-} from '../data/site';
+import { categorie, immagini, trattamenti, trattamentiDi, type Trattamento } from '../data/site';
 
-// Segni diacritici combinanti, costruito da escape ASCII per non dipendere da
-// caratteri invisibili nel sorgente.
+// Segni diacritici combinanti, da escape ASCII per non dipendere da caratteri
+// invisibili nel sorgente.
 const DIACRITICI = new RegExp('[\\u0300-\\u036f]', 'g');
 
 const normalizza = (testo: string) =>
   testo.toLowerCase().normalize('NFD').replace(DIACRITICI, '');
 
 /**
- * Parole di servizio: chi cerca "torcicollo del neonato" intende "torcicollo"
- * e "neonato". Pretendere anche "del" farebbe fallire la ricerca su un testo
- * che parla esattamente di quello.
+ * Parole di servizio: chi cerca "torcicollo del neonato" intende "torcicollo" e
+ * "neonato". Pretendere anche "del" farebbe fallire la ricerca su un testo che
+ * parla esattamente di quello.
  */
 const VUOTE = new Set([
   'a', 'ad', 'al', 'alla', 'alle', 'che', 'con', 'da', 'dal', 'della', 'delle', 'di', 'e', 'ed',
@@ -52,29 +44,13 @@ const SINTOMI = [
   'Cicatrice cesareo', 'Gravidanza', 'Coliche', 'Torcicollo del neonato',
 ];
 
-/** Card di un trattamento. Non una voce di elenco: una card. */
-function CardTrattamento({ t, idx }: { t: Trattamento; idx: number }) {
-  return (
-    <motion.li
-      initial={{ opacity: 0, y: 18 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, delay: Math.min(idx, 8) * 0.05 }}
-      className="group bg-white/80 backdrop-blur-md rounded-[2rem] p-7 shadow-xl border border-white hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
-    >
-      <div className="flex items-start justify-between gap-4 mb-3">
-        <h3 className="font-sans font-bold text-brand-dark text-lg leading-snug">{t.nome}</h3>
-        <ArrowUpRight className="w-5 h-5 text-brand-primary shrink-0 mt-1 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-      </div>
-
-      <p className="text-gray-600 font-light text-sm leading-relaxed flex-1">{t.sottotitolo}</p>
-
-      <div className="w-8 h-[2px] bg-brand-primary mt-5 group-hover:w-14 transition-all duration-500"></div>
-    </motion.li>
-  );
-}
-
+/**
+ * Indice dei servizi: quattro aree, quattro card, quattro pagine.
+ *
+ * Le card sono link veri — prima cliccarle cambiava solo il contenuto più in
+ * basso e sembrava che non fosse successo niente.
+ */
 export default function Servizi() {
-  const [attiva, setAttiva] = useState<CategoriaSlug>('tornare-a-muoverti');
   const [query, setQuery] = useState('');
 
   usePageMeta(
@@ -84,8 +60,6 @@ export default function Servizi() {
 
   const risultati = useMemo(() => cerca(query), [query]);
   const inRicerca = query.trim().length > 0;
-  const categoria = categorie.find((c) => c.slug === attiva)!;
-  const elenco = trattamentiDi(attiva);
 
   return (
     <>
@@ -96,12 +70,11 @@ export default function Servizi() {
             Da dove <span className="text-brand-primary">vuoi partire?</span>
           </>
         }
-        subtitle="Non serve sapere di cosa hai bisogno. Serve sapere cosa senti. Qui trovi tutto quello che facciamo, diviso per come arriva la gente da noi."
+        subtitle="Non serve sapere di cosa hai bisogno. Serve sapere cosa senti. Scegli l'area che ti riguarda: dentro trovi tutti i trattamenti."
         breadcrumb="Servizi"
         image={immagini.manuale}
       />
 
-      {/* Ricerca per sintomo */}
       <section className="relative bg-white py-16 px-6">
         <div className="max-w-3xl mx-auto">
           <div className="relative">
@@ -141,71 +114,92 @@ export default function Servizi() {
               ))}
             </div>
           )}
+
+          {inRicerca && (
+            <div className="mt-10">
+              {risultati.length > 0 ? (
+                <>
+                  <p className="text-sm text-gray-500 mb-5">
+                    {risultati.length}{' '}
+                    {risultati.length === 1 ? 'trattamento trovato' : 'trattamenti trovati'}
+                  </p>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    {risultati.map((t) => {
+                      const cat = categorie.find((c) => c.slug === t.categoria)!;
+
+                      return (
+                        <li key={t.slug}>
+                          <Link
+                            to={`/servizi/${cat.slug}`}
+                            className="group block h-full bg-white rounded-[1.75rem] p-6 shadow-lg border border-brand-primary/15 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                          >
+                            <span className="text-[11px] tracking-widest uppercase text-gray-500">
+                              {cat.nome}
+                            </span>
+                            <h3 className="font-sans font-bold text-brand-dark leading-snug mt-1.5">
+                              {t.nome}
+                            </h3>
+                            <p className="text-gray-600 font-light text-sm leading-relaxed mt-2">
+                              {t.sottotitolo}
+                            </p>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </>
+              ) : (
+                <div className="bg-white rounded-[2rem] p-10 text-center shadow-lg border border-brand-primary/15">
+                  <p className="text-brand-dark mb-6">
+                    Non trovi quello che cerchi? Scrivici, ti diciamo se possiamo aiutarti.
+                  </p>
+                  <div className="flex justify-center">
+                    <ArrowButton to="/contatti" variant="secondary">
+                      Vai ai contatti
+                    </ArrowButton>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </section>
 
-      {inRicerca ? (
-        /* Risultati della ricerca */
-        <section className="relative bg-brand-light py-16 px-6 overflow-hidden">
+      {!inRicerca && (
+        <section className="relative bg-brand-light py-20 px-6 overflow-hidden">
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute -top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-brand-primary/10 blur-[120px]"></div>
+            <div className="absolute -bottom-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-brand-secondary/10 blur-[120px]"></div>
           </div>
 
           <div className="max-w-7xl mx-auto relative z-10">
-            {risultati.length > 0 ? (
-              <>
-                <p className="text-sm text-gray-500 mb-6">
-                  {risultati.length}{' '}
-                  {risultati.length === 1 ? 'trattamento trovato' : 'trattamenti trovati'}
-                </p>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {risultati.map((t, i) => (
-                    <CardTrattamento key={t.slug} t={t} idx={i} />
-                  ))}
-                </ul>
-              </>
-            ) : (
-              <div className="bg-white/80 backdrop-blur-md rounded-[2rem] p-10 text-center shadow-xl border border-white max-w-2xl mx-auto">
-                <p className="text-brand-dark mb-6">
-                  Non trovi quello che cerchi? Scrivici, ti diciamo se possiamo aiutarti.
-                </p>
-                <div className="flex justify-center">
-                  <ArrowButton to="/contatti" variant="secondary">
-                    Vai ai contatti
-                  </ArrowButton>
-                </div>
+            <div className="max-w-xl mb-12">
+              <div className="flex items-center gap-4 mb-5">
+                <div className="w-12 h-[1px] bg-brand-primary"></div>
+                <span className="text-brand-primary text-xs tracking-widest uppercase font-medium">
+                  Le aree di lavoro
+                </span>
               </div>
-            )}
-          </div>
-        </section>
-      ) : (
-        <>
-          {/* Selettore centrale delle categorie */}
-          <section className="relative bg-brand-light py-20 px-6 overflow-hidden">
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute -top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-brand-primary/10 blur-[120px]"></div>
-              <div className="absolute -bottom-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-brand-secondary/10 blur-[120px]"></div>
+              <h2 className="text-4xl md:text-5xl font-sans font-bold text-brand-dark leading-tight">
+                Scegli <span className="text-brand-primary">l'area</span>
+              </h2>
             </div>
 
-            <div className="max-w-7xl mx-auto relative z-10">
-              <SectionHeading eyebrow="Le aree di lavoro" className="mb-14">
-                Scegli <span className="text-brand-primary">l'area</span>, poi il trattamento
-              </SectionHeading>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {categorie.map((c, idx) => {
+                const quanti = trattamentiDi(c.slug).length;
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {categorie.map((c) => {
-                  const isAttiva = c.slug === attiva;
-                  const quanti = trattamentiDi(c.slug).length;
-
-                  return (
-                    <button
-                      key={c.slug}
-                      type="button"
-                      onClick={() => setAttiva(c.slug)}
-                      aria-pressed={isAttiva}
-                      className={`group relative min-h-[15rem] rounded-[2rem] overflow-hidden text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-primary/40 ${
-                        isAttiva ? 'ring-4 ring-brand-primary' : ''
-                      }`}
+                return (
+                  <motion.div
+                    key={c.slug}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.08 }}
+                  >
+                    <Link
+                      to={`/servizi/${c.slug}`}
+                      className="group relative block min-h-[19rem] rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
                     >
                       <img
                         src={c.image}
@@ -214,70 +208,33 @@ export default function Servizi() {
                         loading="lazy"
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      {/* Senza il gradiente il testo bianco non regge il
-                          contrasto su una foto qualsiasi. */}
+                      {/* Senza gradiente il testo bianco non regge il contrasto
+                          su una foto qualsiasi. */}
                       <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/55 to-brand-dark/20"></div>
-                      <div
-                        className={`absolute inset-0 transition-opacity duration-300 ${
-                          c.accent === 'primary' ? 'bg-brand-primary/25' : 'bg-brand-secondary/25'
-                        } ${isAttiva ? 'opacity-100' : 'opacity-0 group-hover:opacity-60'}`}
-                      ></div>
 
-                      <div className="relative flex flex-col justify-end h-full min-h-[15rem] p-7">
+                      <div className="relative flex flex-col justify-end h-full min-h-[19rem] p-8">
                         <span className="text-white/80 text-[11px] tracking-widest uppercase font-medium mb-2">
                           {quanti} {quanti === 1 ? 'trattamento' : 'trattamenti'}
                         </span>
-                        <span className="text-white font-sans font-bold text-2xl leading-tight">
+                        <span className="text-white font-sans font-bold text-2xl md:text-3xl leading-tight">
                           {c.nome}
                         </span>
-                        <span className="text-white/85 font-light text-sm leading-relaxed mt-2">
+                        <span className="text-white/85 font-light text-sm leading-relaxed mt-2 max-w-sm">
                           {c.sottotitolo}
                         </span>
+                        <span className="inline-flex items-center gap-2 text-white text-sm font-medium mt-6 border-b border-white/40 pb-1 w-max group-hover:border-white transition-colors">
+                          Scopri di più
+                        </span>
                       </div>
-                    </button>
-                  );
-                })}
-              </div>
+                    </Link>
+                  </motion.div>
+                );
+              })}
             </div>
-          </section>
-
-          {/* I trattamenti dell'area scelta, in card */}
-          <section className="relative bg-white py-20 px-6 overflow-hidden">
-            <div className="max-w-7xl mx-auto">
-              <div className="flex items-center gap-4 mb-4">
-                <div
-                  className={`w-12 h-[1px] ${
-                    categoria.accent === 'primary' ? 'bg-brand-primary' : 'bg-brand-secondary'
-                  }`}
-                ></div>
-                <span
-                  className={`text-xs tracking-widest uppercase font-medium ${
-                    categoria.accent === 'primary' ? 'text-brand-primary' : 'text-brand-secondary'
-                  }`}
-                >
-                  {categoria.nome}
-                </span>
-              </div>
-
-              <h2 className="text-3xl md:text-4xl font-sans font-light text-brand-dark leading-tight mb-3">
-                {categoria.sottotitolo}
-              </h2>
-
-              <p className="text-gray-500 font-light text-sm mb-12">
-                {elenco.length} {elenco.length === 1 ? 'trattamento' : 'trattamenti'} in quest'area.
-              </p>
-
-              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {elenco.map((t, i) => (
-                  <CardTrattamento key={t.slug} t={t} idx={i} />
-                ))}
-              </ul>
-            </div>
-          </section>
-        </>
+          </div>
+        </section>
       )}
 
-      <PercorsoCura />
       <CtaBand titolo="Non sai da quale trattamento partire?" />
     </>
   );

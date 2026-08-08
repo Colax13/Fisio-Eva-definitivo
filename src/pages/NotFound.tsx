@@ -2,11 +2,10 @@ import { Home, Phone } from 'lucide-react';
 import { motion } from 'motion/react';
 import ArrowButton from '../components/ui/ArrowButton';
 import usePageMeta from '../hooks/usePageMeta';
-import { team } from '../data/site';
+import { studio } from '../data/site';
 
 export default function NotFound() {
   usePageMeta('Pagina non trovata — FisioEVA');
-  const azzurra = team[0];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 py-40 overflow-hidden bg-brand-dark">
@@ -46,8 +45,8 @@ export default function NotFound() {
           <ArrowButton to="/" icon={Home}>
             Torna alla home
           </ArrowButton>
-          <ArrowButton href={azzurra.phoneHref} variant="ghost" icon={Phone}>
-            {azzurra.phone}
+          <ArrowButton href={studio.phoneHref} variant="ghost" icon={Phone}>
+            {studio.phone}
           </ArrowButton>
         </div>
       </motion.div>

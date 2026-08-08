@@ -17,6 +17,30 @@ body {
   font-family: var(--font-sans);
   background-color: var(--color-brand-light);
   color: var(--color-brand-dark);
+
+  /*
+   * Le animazioni d'ingresso partono spostate di 40px (x: -40 / x: 40): finché
+   * la sezione non entra in vista quei blocchi stanno fuori dallo schermo e su
+   * mobile aprono una barra di scorrimento orizzontale. Con la pagina
+   * scorrevole in orizzontale la navbar, che è fissa, sembra disallineata a
+   * destra al primo caricamento.
+   */
+  overflow-x: hidden;
+}
+
+/* Serve anche su html: con il solo body l'elemento radice resta `visible` e
+   continua a produrre la barra orizzontale. */
+html {
+  overflow-x: hidden;
+}
+
+/* `clip` non crea un contenitore di scorrimento, quindi non rompe position:
+   sticky come farebbe `hidden`. Dove non c'è, resta il fallback sopra. */
+@supports (overflow: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
 }
 
 section[id] {

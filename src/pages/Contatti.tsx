@@ -96,27 +96,22 @@ export default function Contatti() {
                 </div>
               </div>
 
-              {team
-                .filter((m) => m.phone)
-                .map((membro) => (
-                  <a
-                    key={membro.slug}
-                    href={membro.phoneHref}
-                    className="group bg-white/80 backdrop-blur-md rounded-[2rem] p-6 shadow-xl border border-white flex items-center gap-5 hover:shadow-2xl transition-shadow duration-300"
-                  >
-                    <span className="w-12 h-12 rounded-2xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      <Phone className="w-6 h-6" />
-                    </span>
-                    <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
-                        {membro.name}
-                      </p>
-                      <p className="font-sans font-medium text-brand-dark group-hover:text-brand-secondary transition-colors">
-                        {membro.phone}
-                      </p>
-                    </div>
-                  </a>
-                ))}
+              {/* Il numero dello studio, non i cellulari delle professioniste:
+                  quelli stanno sui biglietti da visita. */}
+              <a
+                href={studio.phoneHref}
+                className="group bg-white/80 backdrop-blur-md rounded-[2rem] p-6 shadow-xl border border-white flex items-center gap-5 hover:shadow-2xl transition-shadow duration-300"
+              >
+                <span className="w-12 h-12 rounded-2xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <Phone className="w-6 h-6" />
+                </span>
+                <div>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Telefono</p>
+                  <p className="font-sans font-medium text-brand-dark group-hover:text-brand-secondary transition-colors">
+                    {studio.phone}
+                  </p>
+                </div>
+              </a>
 
               <a
                 href={`mailto:${studio.email}`}

@@ -1,139 +1,129 @@
-import { useEffect, useState } from 'react';
-import { ArrowRight, Check } from 'lucide-react';
-import { AnimatePresence, motion } from 'motion/react';
+import { useRef } from 'react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { porte } from '../../data/site';
-import SectionHeading from '../ui/SectionHeading';
 
+/**
+ * I percorsi, in card scorrevoli.
+ *
+ * Prima era un carosello che girava da solo: per vedere la terza card bisognava
+ * aspettare. Qui le card stanno tutte su una riga e si scorre a mano — col
+ * dito, con la rotella o con le due frecce.
+ *
+ * Titolo, testo e card sono tutti allineati a sinistra: mezza sezione centrata
+ * e mezza a sinistra è la cosa che si nota per prima, e in male.
+ */
 export default function ProjectsCarousel() {
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const pista = useRef<HTMLUListElement>(null);
 
-  useEffect(() => {
-    if (paused) return;
-    const timer = setInterval(() => setIndex((i) => (i + 1) % porte.length), 6000);
-    return () => clearInterval(timer);
-  }, [paused]);
-
-  const progetto = porte[index];
-  const accentText = progetto.accent === 'primary' ? 'text-brand-primary' : 'text-brand-secondary';
+  const scorri = (verso: 1 | -1) => {
+    const el = pista.current;
+    if (!el) return;
+    // Una card più il gap: si scorre di un elemento per volta, non a caso.
+    const passo = el.firstElementChild?.clientWidth ?? el.clientWidth * 0.8;
+    el.scrollBy({ left: verso * (passo + 24), behavior: 'smooth' });
+  };
 
   return (
-    <section
-      className="relative bg-brand-light overflow-hidden py-24 px-6"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
+    <section className="relative bg-brand-light overflow-hidden py-24 px-6">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-brand-primary/10 blur-[120px]"></div>
         <div className="absolute -bottom-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-brand-secondary/10 blur-[120px]"></div>
       </div>
 
       <div className="w-full max-w-7xl mx-auto relative z-10">
-        <SectionHeading eyebrow="I nostri percorsi" className="mb-16">
-          Da dove <span className="text-brand-primary">vuoi partire?</span>
-        </SectionHeading>
+        <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
+          <div className="max-w-xl">
+            <div className="flex items-center gap-4 mb-5">
+              <div className="w-12 h-[1px] bg-brand-primary"></div>
+              <span className="text-brand-primary text-xs tracking-widest uppercase font-medium">
+                I nostri percorsi
+              </span>
+            </div>
 
-        <div className="relative w-full min-h-[600px] md:min-h-[420px]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
-              className="absolute inset-0 flex flex-col md:flex-row items-center gap-8 md:gap-12"
-            >
-              <div className="w-full md:w-[55%] order-2 md:order-1 relative z-20">
-                <p className={`${accentText} text-xs tracking-widest uppercase font-medium mb-3`}>
-                  {progetto.evidenza}
-                </p>
+            <h2 className="text-4xl md:text-5xl font-sans font-bold text-brand-dark leading-tight mb-4">
+              Da dove <span className="text-brand-primary">vuoi partire?</span>
+            </h2>
 
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-sans font-light text-brand-dark leading-[1.2] mb-4">
-                  <span className={accentText}>{progetto.titolo}</span>
-                </h3>
+            <p className="text-gray-600 font-light leading-relaxed">
+              Non serve sapere di cosa hai bisogno. Serve sapere cosa senti.
+            </p>
+          </div>
 
-                <p className="text-gray-600 mb-6 font-light text-sm md:text-base leading-relaxed max-w-lg">
-                  {progetto.descrizione}
-                </p>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                  {progetto.benefici.map((beneficio) => (
-                    <div key={beneficio} className="flex items-center gap-2">
-                      <span className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 border border-brand-primary">
-                        <Check className="w-2.5 h-2.5 text-brand-primary" strokeWidth={2.5} />
-                      </span>
-                      <span className="text-brand-dark font-light text-xs md:text-sm">
-                        {beneficio}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                <Link
-                  to={progetto.to}
-                  className="group inline-flex items-center border border-brand-primary/30 bg-transparent text-brand-dark rounded-full px-6 py-2.5 transition-all duration-300 hover:bg-white hover:border-brand-primary/60 font-medium text-sm"
-                >
-                  <span>Scopri i servizi</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-              </div>
-
-              <div className="w-full md:w-[45%] h-[260px] md:h-[400px] order-1 md:order-2 flex items-center justify-center">
-                <div className="relative w-full h-full max-w-[380px]">
-                  <div
-                    className="absolute inset-0 bg-gradient-to-tr from-brand-primary/40 to-brand-secondary/40 z-10 animate-blob"
-                    style={{ borderRadius: '50% 50% 50% 50% / 55% 45% 45% 55%' }}
-                  ></div>
-                  <div
-                    className="absolute inset-[4%] overflow-hidden z-20 border-[4px] border-white shadow-lg bg-white"
-                    style={{ borderRadius: '55% 45% 45% 55% / 50% 50% 50% 50%' }}
-                  >
-                    <img
-                      src={progetto.image}
-                      alt={progetto.titolo}
-                      loading="lazy"
-                      className="w-full h-full object-cover scale-105"
-                    />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        <div className="flex items-center justify-center gap-3 mt-8 relative z-20">
-          {porte.map((p, idx) => (
+          {/* Le frecce stanno in alto a destra, fuori dalla pista: dentro
+              coprirebbero le foto. */}
+          <div className="flex items-center gap-3">
             <button
-              key={p.slug}
-              onClick={() => setIndex(idx)}
-              aria-label={`Vai a ${p.titolo}`}
-              aria-current={idx === index}
-              className={`transition-all duration-300 rounded-full h-2 ${
-                idx === index ? 'w-10 bg-brand-primary' : 'w-2 bg-brand-primary/30 hover:bg-brand-primary/60'
-              }`}
-            />
-          ))}
+              type="button"
+              onClick={() => scorri(-1)}
+              aria-label="Percorso precedente"
+              className="w-11 h-11 rounded-full border border-brand-primary/30 flex items-center justify-center text-brand-dark hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => scorri(1)}
+              aria-label="Percorso successivo"
+              className="w-11 h-11 rounded-full border border-brand-primary/30 flex items-center justify-center text-brand-dark hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-colors"
+            >
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
-        {/* Le strumentali stanno su una riga sola: dargli lo spazio di una card
-            vorrebbe dire dare al macchinario lo stesso peso delle mani. */}
-        <div className="mt-12 relative z-20">
-          <Link
-            to="/servizi"
-            className="group flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 rounded-3xl border border-brand-secondary/25 bg-white/70 backdrop-blur-md px-7 py-5 transition-colors hover:border-brand-secondary/60"
-          >
-            <span className="text-brand-secondary text-xs tracking-widest uppercase font-medium shrink-0">
-              Terapie strumentali
-            </span>
-            <span className="hidden sm:block w-px h-4 bg-brand-dark/15 shrink-0"></span>
-            <span className="text-gray-600 font-light text-sm flex-1">
-              A supporto del lavoro manuale: tecarterapia, laser ad alta potenza, ultrasuonoterapia,
-              magnetoterapia, TENS, ionoforesi, elettrostimolazione.
-            </span>
-            <ArrowRight className="w-4 h-4 text-brand-secondary shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
-        </div>
+        <ul
+          ref={pista}
+          className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {porte.map((porta, idx) => {
+            const accento = porta.accent === 'primary' ? 'bg-brand-primary' : 'bg-brand-secondary';
+
+            return (
+              <motion.li
+                key={porta.slug}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="snap-start shrink-0 w-[85%] sm:w-[380px]"
+              >
+                <Link
+                  to={porta.to}
+                  className="group flex flex-col h-full bg-white rounded-[2rem] overflow-hidden shadow-xl border border-white hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="relative h-52 overflow-hidden">
+                    <img
+                      src={porta.image}
+                      alt={porta.titolo}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/40 to-transparent"></div>
+                  </div>
+
+                  <div className="flex flex-col flex-1 p-7">
+                    <h3 className="text-2xl font-sans font-bold text-brand-dark leading-snug mb-3">
+                      {porta.titolo}
+                    </h3>
+
+                    <p className="text-gray-600 font-light text-sm leading-relaxed flex-1">
+                      {porta.descrizione}
+                    </p>
+
+                    <span className={`w-8 h-[2px] ${accento} mt-6 group-hover:w-14 transition-all duration-500`}></span>
+
+                    <span className="inline-flex items-center gap-2 mt-6 text-sm font-medium text-brand-dark">
+                      Scopri i servizi
+                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    </span>
+                  </div>
+                </Link>
+              </motion.li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );

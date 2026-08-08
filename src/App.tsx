@@ -3,7 +3,7 @@ import Layout from './components/layout/Layout';
 import Home from './pages/Home';
 import ChiSiamo from './pages/ChiSiamo';
 import Servizi from './pages/Servizi';
-import Progetti from './pages/Progetti';
+import ServiziCategoria from './pages/ServiziCategoria';
 import Team from './pages/Team';
 import Gallery from './pages/Gallery';
 import Faq from './pages/Faq';
@@ -18,7 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/chi-siamo" element={<ChiSiamo />} />
           <Route path="/servizi" element={<Servizi />} />
-          <Route path="/progetti" element={<Progetti />} />
+          <Route path="/servizi/:categoria" element={<ServiziCategoria />} />
           <Route path="/team" element={<Team />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/faq" element={<Faq />} />

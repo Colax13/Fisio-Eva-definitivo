@@ -1,6 +1,6 @@
 import { CalendarCheck, Phone } from 'lucide-react';
 import { motion } from 'motion/react';
-import { team } from '../../data/site';
+import { studio } from '../../data/site';
 import ArrowButton from '../ui/ArrowButton';
 
 type Props = {
@@ -13,7 +13,6 @@ export default function CtaBand({
   titolo = 'Pronto a rimetterti in movimento?',
   testo = 'Raccontaci cosa ti succede: la prima cosa che facciamo è ascoltarti. Da lì costruiamo insieme il percorso più adatto a te.',
 }: Props) {
-  const azzurra = team[0];
 
   return (
     <section className="relative bg-brand-light py-24 px-6 overflow-hidden">
@@ -51,8 +50,8 @@ export default function CtaBand({
             <ArrowButton to="/contatti" icon={CalendarCheck}>
               Scrivici un messaggio
             </ArrowButton>
-            <ArrowButton href={azzurra.phoneHref} variant="ghost" icon={Phone}>
-              {azzurra.phone}
+            <ArrowButton href={studio.phoneHref} variant="ghost" icon={Phone}>
+              {studio.phone}
             </ArrowButton>
           </div>
         </div>
