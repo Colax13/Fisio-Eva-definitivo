@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import GalleryStrip from './GalleryStrip';
 
 /** Scrolls to the top on navigation, or to the anchor when the URL carries a hash. */
 function ScrollManager() {
@@ -38,7 +37,6 @@ export default function Layout() {
       <main id="contenuto" className="flex-1">
         <Outlet />
       </main>
-      <GalleryStrip />
       <Footer />
     </div>
   );

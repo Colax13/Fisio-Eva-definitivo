@@ -99,7 +99,7 @@ export default function ServiziCategoria() {
 
           <ul
             ref={pista}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 pista-card scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {elenco.map((t, idx) => (
               <motion.li
@@ -108,7 +108,7 @@ export default function ServiziCategoria() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: Math.min(idx, 6) * 0.06 }}
-                className="snap-start shrink-0 w-[80%] sm:w-[330px]"
+                className="snap-center shrink-0 w-[300px] sm:w-[330px]"
               >
                 <div className="h-full bg-white rounded-[2rem] p-7 shadow-xl border border-white flex flex-col">
                   <h3 className="font-sans font-bold text-brand-dark text-lg leading-snug mb-3">

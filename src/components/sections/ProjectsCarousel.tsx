@@ -33,16 +33,18 @@ export default function ProjectsCarousel() {
       </div>
 
       <div className="w-full max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
+        {/* Sul telefono tutto al centro, come le card; da desktop la colonna
+            di testo torna a sinistra e le frecce le stanno di fianco. */}
+        <div className="flex flex-col items-center gap-6 text-center mb-12 md:flex-row md:items-end md:justify-between md:text-left">
           <div className="max-w-xl">
-            <div className="flex items-center gap-4 mb-5">
+            <div className="flex items-center justify-center gap-4 mb-5 md:justify-start">
               <div className="w-12 h-[1px] bg-brand-primary"></div>
               <span className="text-brand-primary text-xs tracking-widest uppercase font-medium">
                 I nostri percorsi
               </span>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-sans font-bold text-brand-dark leading-tight mb-4">
+            <h2 className="text-h2 font-sans font-bold text-brand-dark mb-4">
               Da dove <span className="text-brand-primary">vuoi partire?</span>
             </h2>
 
@@ -73,9 +75,15 @@ export default function ProjectsCarousel() {
           </div>
         </div>
 
+        {/*
+         * `snap-center` e non `snap-start`: la card si ferma al centro dello
+         * schermo invece di incollarsi al bordo sinistro. Il padding laterale
+         * calcolato serve a dare alla prima e all'ultima lo spazio per
+         * arrivarci davvero — senza, restano appiccicate ai margini.
+         */}
         <ul
           ref={pista}
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 pista-card scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {porte.map((porta, idx) => {
             const accento = porta.accent === 'primary' ? 'bg-brand-primary' : 'bg-brand-secondary';
@@ -87,7 +95,7 @@ export default function ProjectsCarousel() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="snap-start shrink-0 w-[85%] sm:w-[380px]"
+                className="snap-center shrink-0 w-[300px] sm:w-[380px]"
               >
                 <Link
                   to={porta.to}

@@ -38,12 +38,6 @@ function cerca(query: string): Trattamento[] {
   });
 }
 
-const SINTOMI = [
-  'Mal di schiena', 'Cervicale', 'Sciatica', 'Ginocchio', 'Dopo un intervento',
-  'Infortunio sportivo', 'Postura', 'Gambe gonfie', 'Dopo il parto', 'Perdite urinarie',
-  'Cicatrice cesareo', 'Gravidanza', 'Coliche', 'Torcicollo del neonato',
-];
-
 /**
  * Indice dei servizi: quattro aree, quattro card, quattro pagine.
  *
@@ -100,20 +94,6 @@ export default function Servizi() {
               </button>
             )}
           </div>
-
-          {!inRicerca && (
-            <div className="mt-6 flex flex-wrap justify-center gap-2">
-              {SINTOMI.map((s) => (
-                <button
-                  key={s}
-                  onClick={() => setQuery(s)}
-                  className="rounded-full border border-brand-primary/40 px-4 py-1.5 text-sm font-light text-brand-dark hover:bg-brand-primary hover:text-white transition-colors"
-                >
-                  {s}
-                </button>
-              ))}
-            </div>
-          )}
 
           {inRicerca && (
             <div className="mt-10">

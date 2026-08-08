@@ -69,3 +69,55 @@ section[id] {
 .animate-blob {
   animation: blob 8s ease-in-out infinite;
 }
+
+/*
+ * Scala tipografica fluida.
+ *
+ * `text-h1`, `text-h2` e `text-lead` erano usate nei componenti ma non definite
+ * da nessuna parte: Tailwind non generava niente e quei titoli cadevano sul
+ * default del browser, per questo su desktop erano minuscoli.
+ *
+ * Con clamp() la stessa classe serve entrambi gli schermi: il primo valore è la
+ * misura sul telefono, il terzo quella sul desktop grande, e in mezzo cresce
+ * con la larghezza. Nessun breakpoint da tenere allineato a mano.
+ */
+@utility text-h1 {
+  font-size: clamp(2.25rem, 1.4rem + 3.8vw, 4.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+@utility text-h2 {
+  font-size: clamp(1.875rem, 1.3rem + 2.4vw, 3.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+@utility text-lead {
+  font-size: clamp(1rem, 0.94rem + 0.35vw, 1.25rem);
+  line-height: 1.7;
+}
+
+/*
+ * Pista di card che scorre di lato.
+ *
+ * `snap-center` da solo non basta: la prima e l'ultima card non riescono ad
+ * arrivare al centro se non hanno spazio davanti e dietro. Il padding
+ * calcolato glielo dà, così a riposo la card sta al centro dello schermo
+ * invece che appiccicata al bordo sinistro.
+ *
+ * È in CSS e non in una classe arbitraria di Tailwind perché `max()` con un
+ * `calc()` annidato non veniva interpretato e cadeva sul valore minimo.
+ */
+.pista-card {
+  padding-inline: max(1.5rem, calc((100vw - 300px) / 2));
+  scroll-padding-inline: max(1.5rem, calc((100vw - 300px) / 2));
+}
+
+/* Da tablet in su entrano più card: si riparte dal bordo del contenitore. */
+@media (min-width: 640px) {
+  .pista-card {
+    padding-inline: 1.5rem;
+    scroll-padding-inline: 1.5rem;
+  }
+}

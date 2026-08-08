@@ -1,54 +1,73 @@
-import { CalendarCheck, Phone } from 'lucide-react';
+import { CalendarCheck, MessageSquare, Phone } from 'lucide-react';
 import { motion } from 'motion/react';
-import { studio } from '../../data/site';
-import ArrowButton from '../ui/ArrowButton';
-import Eyebrow from '../ui/Eyebrow';
+import { Link } from 'react-router-dom';
+import { immagini, studio } from '../../data/site';
 
 type Props = {
   titolo?: string;
-  testo?: string;
 };
 
-/** Fascia di chiamata all'azione in chiusura delle pagine interne. */
-export default function CtaBand({
-  titolo = 'Pronto a rimetterti in movimento?',
-  testo = 'Raccontaci cosa ti succede: la prima cosa che facciamo è ascoltarti. Da lì costruiamo insieme il percorso più adatto a te.',
-}: Props) {
-
+/**
+ * La fascia di chiusura del sito.
+ *
+ * Foto a tutta larghezza con la velatura scura sopra, una domanda e tre modi
+ * per rispondere. Le tre azioni sono affiancate su desktop e impilate a piena
+ * larghezza sul telefono, dove un pulsante stretto è solo più difficile da
+ * centrare col pollice.
+ */
+export default function CtaBand({ titolo = 'Pronto a rimetterti in movimento?' }: Props) {
   return (
-    <section className="relative overflow-hidden bg-brand-light px-5 py-16 sm:px-6 md:py-24">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-[30%] left-1/2 h-[140%] w-[70%] -translate-x-1/2 rounded-full bg-brand-secondary/10 blur-[120px]"></div>
+    <section className="relative overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <img
+          src={immagini.riabilitazione}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-brand-dark/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/70 via-brand-dark/40 to-brand-primary/20"></div>
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-        className="relative z-10 mx-auto max-w-5xl overflow-hidden rounded-[2rem] bg-brand-dark px-6 py-12 text-center shadow-2xl sm:px-8 md:rounded-[2.5rem] md:px-16 md:py-20"
+        transition={{ duration: 0.6 }}
+        className="relative z-10 mx-auto max-w-4xl px-6 py-24 text-center md:py-32"
       >
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-[50%] -right-[10%] h-[180%] w-[60%] rounded-full bg-brand-primary/20 blur-[100px]"></div>
-        </div>
+        <h2 className="text-h2 font-sans font-bold text-white">{titolo}</h2>
 
-        <div className="relative z-10">
-          <Eyebrow tone="light" className="mb-5">
+        <p className="text-lead mx-auto mt-5 max-w-xl font-light text-gray-200">
+          Raccontaci cosa senti e da quanto tempo. Dalla prima valutazione capiamo insieme come
+          impostare il percorso.
+        </p>
+
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4">
+          <Link
+            to="/contatti"
+            className="inline-flex min-h-13 items-center justify-center gap-2.5 rounded-full bg-white px-8 py-3.5 text-sm font-medium text-brand-dark transition-colors duration-300 hover:bg-brand-primary hover:text-white"
+          >
+            <CalendarCheck className="h-4 w-4" aria-hidden="true" />
             Prenota ora
-          </Eyebrow>
+          </Link>
 
-          <h2 className="text-h2 mb-5 font-sans font-light text-white">{titolo}</h2>
+          <a
+            href={`mailto:${studio.email}`}
+            className="inline-flex min-h-13 items-center justify-center gap-2.5 rounded-full border-2 border-white/40 px-8 py-3.5 text-sm font-medium text-white transition-colors duration-300 hover:border-white hover:bg-white hover:text-brand-dark"
+          >
+            <MessageSquare className="h-4 w-4" aria-hidden="true" />
+            Scrivi un messaggio
+          </a>
 
-          <p className="text-lead mx-auto mb-9 max-w-2xl font-light text-gray-300">{testo}</p>
-
-          <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
-            <ArrowButton to="/contatti" icon={CalendarCheck}>
-              Scrivici un messaggio
-            </ArrowButton>
-            <ArrowButton href={studio.phoneHref} variant="ghost" icon={Phone}>
-              {studio.phone}
-            </ArrowButton>
-          </div>
+          <a
+            href={studio.phoneHref}
+            className="inline-flex min-h-13 items-center justify-center gap-2.5 rounded-full border-2 border-white/40 px-8 py-3.5 text-sm font-medium text-white transition-colors duration-300 hover:border-white hover:bg-white hover:text-brand-dark"
+          >
+            <Phone className="h-4 w-4" aria-hidden="true" />
+            Chiama
+          </a>
         </div>
       </motion.div>
     </section>
