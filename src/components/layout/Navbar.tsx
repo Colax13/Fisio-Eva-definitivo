@@ -11,6 +11,7 @@ const links = [
   { label: 'Team', to: '/team' },
   { label: 'Gallery', to: '/gallery' },
   { label: 'FAQ', to: '/faq' },
+  { label: 'Contatti', to: '/contatti' },
 ];
 
 export default function Navbar() {

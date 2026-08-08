@@ -46,7 +46,23 @@ function cerca(query: string): Trattamento[] {
   });
 }
 
-/** La card di un trattamento. */
+/**
+ * Le foto che accompagnano le card dei trattamenti.
+ *
+ * ⛔ Sono gli stessi segnaposto stock del resto del sito, fatti ruotare perché
+ * due card vicine non mostrino lo stesso scatto. Con le foto vere si assegna
+ * `image` al singolo trattamento e questa rotazione sparisce.
+ */
+const FOTO = [
+  immagini.riabilitazione,
+  immagini.manuale,
+  immagini.postura,
+  immagini.trattamento,
+  immagini.calma,
+  immagini.anziani,
+];
+
+/** La card di un trattamento: stessa forma di quelle dei percorsi in home. */
 function CardTrattamento({ t, accento, idx }: { t: Trattamento; accento: string; idx: number }) {
   return (
     <motion.li
@@ -56,10 +72,25 @@ function CardTrattamento({ t, accento, idx }: { t: Trattamento; accento: string;
       transition={{ duration: 0.4, delay: Math.min(idx, 6) * 0.06 }}
       className="snap-center shrink-0 w-[300px] sm:w-[340px]"
     >
-      <div className="flex h-full flex-col rounded-[2rem] border border-white bg-white p-7 shadow-xl">
-        <h3 className="text-h3 font-sans font-bold text-brand-dark mb-3">{t.nome}</h3>
-        <p className="flex-1 text-sm leading-relaxed font-light text-gray-600">{t.sottotitolo}</p>
-        <span className={`mt-6 h-[2px] w-8 rounded-full ${accento}`}></span>
+      <div className="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-white bg-white shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+        <div className="relative h-44 overflow-hidden">
+          <img
+            src={t.image ?? FOTO[idx % FOTO.length]}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/40 to-transparent"></div>
+        </div>
+
+        <div className="flex flex-1 flex-col p-7">
+          <h3 className="text-h3 font-sans font-bold text-brand-dark mb-3">{t.nome}</h3>
+          <p className="flex-1 text-sm leading-relaxed font-light text-gray-600">{t.sottotitolo}</p>
+          <span
+            className={`mt-6 h-[2px] w-8 rounded-full ${accento} transition-all duration-500 group-hover:w-14`}
+          ></span>
+        </div>
       </div>
     </motion.li>
   );

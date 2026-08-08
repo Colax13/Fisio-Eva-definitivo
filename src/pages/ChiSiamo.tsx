@@ -45,12 +45,18 @@ export default function ChiSiamo() {
     <>
       <PageHero
         eyebrow="La nostra storia"
+        /*
+         * "Le stesse mani, una nuova casa" guardava indietro, al vecchio
+         * studio, e chiedeva al paziente di sapere cosa c'era prima. Questo
+         * guarda avanti e dice la cosa che distingue davvero: uno studio di
+         * donne, con una specializzazione precisa.
+         */
         title={
           <>
-            Le stesse mani, <span className="text-brand-primary">una nuova casa</span>
+            Uno studio di donne, <span className="text-brand-primary">per ogni donna</span>
           </>
         }
-        subtitle="Tre professioniste che hanno aperto il loro studio nel quartiere in cui lavorano da sempre, costruito attorno al modo in cui hanno sempre voluto lavorare."
+        subtitle="Tre professioniste che hanno aperto il loro studio nel quartiere in cui lavorano da sempre. Ci occupiamo di tutto quello che riguarda il movimento, con una cura particolare per ciò di cui si parla ancora troppo poco."
         breadcrumb="Chi Siamo"
         image={immagini.trattamento}
       />

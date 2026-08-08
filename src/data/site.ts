@@ -139,7 +139,8 @@ export type CategoriaSlug =
   | 'tornare-a-muoverti'
   | 'salute-della-donna'
   | 'bambino'
-  | 'terapie-strumentali';
+  | 'terapie-strumentali'
+  | 'terapie-di-gruppo';
 
 export type Categoria = {
   slug: CategoriaSlug;
@@ -179,6 +180,15 @@ export const categorie: Categoria[] = [
     image: immagini.manuale,
     accent: 'primary',
   },
+  {
+    // Il piano superiore. Non è fisioterapia e va detto: attività di gruppo,
+    // non prestazioni sanitarie. Sta in fondo, dopo tutto il clinico.
+    slug: 'terapie-di-gruppo',
+    nome: 'Terapie di gruppo',
+    sottotitolo: 'Al piano superiore: muoversi bene, insieme. Non è fisioterapia.',
+    image: immagini.postura,
+    accent: 'secondary',
+  },
 ];
 
 export type Trattamento = {
@@ -188,6 +198,12 @@ export type Trattamento = {
   categoria: CategoriaSlug;
   /** Sintomi in lingua del paziente: alimentano la ricerca. */
   sintomi: string[];
+  /**
+   * ⛔ Segnaposto stock, come tutte le foto del sito: qui servono solo a dare
+   * alle card lo stesso peso visivo di quelle in home. Con lo shooting si
+   * sostituiscono i valori in `immagini` e queste seguono da sole.
+   */
+  image?: string;
 };
 
 export const trattamenti: Trattamento[] = [
@@ -359,6 +375,28 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Riattivare un muscolo che ha smesso di rispondere.',
     categoria: 'terapie-strumentali',
     sintomi: ['elettrostimolazione', 'ipotrofia', 'dopo il gesso', 'atrofia'],
+  },
+  // — Terapie di gruppo (piano superiore, attività non sanitarie)
+  {
+    slug: 'posturale-di-gruppo',
+    nome: 'Posturale di gruppo',
+    sottotitolo: 'Il lavoro sulla postura in piccolo gruppo, con la guida di un istruttore.',
+    categoria: 'terapie-di-gruppo',
+    sintomi: ['postura', 'gruppo', 'mantenimento', 'schiena'],
+  },
+  {
+    slug: 'yoga',
+    nome: 'Yoga',
+    sottotitolo: 'Respiro, mobilità e forza, al proprio ritmo.',
+    categoria: 'terapie-di-gruppo',
+    sintomi: ['yoga', 'respirazione', 'flessibilità', 'rilassamento'],
+  },
+  {
+    slug: 'pilates',
+    nome: 'Pilates',
+    sottotitolo: 'Controllo del centro e del movimento, esercizio dopo esercizio.',
+    categoria: 'terapie-di-gruppo',
+    sintomi: ['pilates', 'core', 'controllo', 'tonificazione'],
   },
 ];
 
