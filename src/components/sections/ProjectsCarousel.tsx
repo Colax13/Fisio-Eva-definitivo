@@ -42,14 +42,17 @@ export default function ProjectsCarousel() {
         </div>
 
         {/*
-         * `snap-center` e non `snap-start`: la card si ferma al centro dello
-         * schermo invece di incollarsi al bordo sinistro. Il padding laterale
-         * calcolato serve a dare alla prima e all'ultima lo spazio per
-         * arrivarci davvero — senza, restano appiccicate ai margini.
+         * Da desktop è una griglia: le quattro card ci stanno tutte e non c'è
+         * niente da scorrere. In fila orizzontale l'ultima restava fuori
+         * schermo e — senza frecce, con la barra di scorrimento nascosta e la
+         * rotella che va in verticale — non c'era modo di raggiungerla.
+         *
+         * Sul telefono resta la fila che si trascina col dito, dove il gesto
+         * esiste ed è naturale. `snap-center` ferma la card al centro invece
+         * che incollata al bordo; il padding di `pista-card` dà alla prima e
+         * all'ultima lo spazio per arrivarci.
          */}
-        <ul
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 pista-card scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
+        <ul className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 pista-card scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0 lg:pb-0">
           {porte.map((porta, idx) => {
             const accento = porta.accent === 'primary' ? 'bg-brand-primary' : 'bg-brand-secondary';
 
@@ -60,7 +63,7 @@ export default function ProjectsCarousel() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="snap-center shrink-0 w-[300px] sm:w-[380px]"
+                className="snap-center shrink-0 w-[300px] sm:w-[380px] lg:w-auto lg:shrink"
               >
                 <Link
                   to={porta.to}

@@ -1,7 +1,7 @@
 import { CalendarCheck, MessageSquare, Phone } from 'lucide-react';
 import { motion } from 'motion/react';
-import { Link } from 'react-router-dom';
 import { immagini, studio } from '../../data/site';
+import ArrowButton from '../ui/ArrowButton';
 
 type Props = {
   titolo?: string;
@@ -44,30 +44,21 @@ export default function CtaBand({ titolo = 'Pronto a rimetterti in movimento?' }
           impostare il percorso.
         </p>
 
+        {/* Gli stessi bottoni del resto del sito, con la freccia che cambia
+            lato: erano tre link scritti a mano e si muovevano in modo diverso
+            da tutti gli altri. */}
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4">
-          <Link
-            to="/contatti"
-            className="inline-flex min-h-13 items-center justify-center gap-2.5 rounded-full bg-white px-8 py-3.5 text-sm font-medium text-brand-dark transition-colors duration-300 hover:bg-brand-primary hover:text-white"
-          >
-            <CalendarCheck className="h-4 w-4" aria-hidden="true" />
+          <ArrowButton to="/contatti" icon={CalendarCheck}>
             Prenota ora
-          </Link>
+          </ArrowButton>
 
-          <a
-            href={`mailto:${studio.email}`}
-            className="inline-flex min-h-13 items-center justify-center gap-2.5 rounded-full border-2 border-white/40 px-8 py-3.5 text-sm font-medium text-white transition-colors duration-300 hover:border-white hover:bg-white hover:text-brand-dark"
-          >
-            <MessageSquare className="h-4 w-4" aria-hidden="true" />
+          <ArrowButton href={`mailto:${studio.email}`} variant="ghost" icon={MessageSquare}>
             Scrivi un messaggio
-          </a>
+          </ArrowButton>
 
-          <a
-            href={studio.phoneHref}
-            className="inline-flex min-h-13 items-center justify-center gap-2.5 rounded-full border-2 border-white/40 px-8 py-3.5 text-sm font-medium text-white transition-colors duration-300 hover:border-white hover:bg-white hover:text-brand-dark"
-          >
-            <Phone className="h-4 w-4" aria-hidden="true" />
+          <ArrowButton href={studio.phoneHref} variant="ghost" icon={Phone}>
             Chiama
-          </a>
+          </ArrowButton>
         </div>
       </motion.div>
     </section>

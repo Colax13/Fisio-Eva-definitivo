@@ -48,20 +48,28 @@ export default function SpazioCorsi() {
               Il piano superiore
             </Eyebrow>
 
-            <h2 className="text-h2 font-sans font-bold text-brand-dark mb-5 text-center lg:text-left">
-              {SPAZIO_CORSI_NOME}
+            {/* Il titolo dice cosa si fa, non come si chiama: "LongEva" da
+                solo non spiega niente a chi arriva. Il nome resta sotto. */}
+            <h2 className="text-h2 font-sans font-bold text-brand-dark mb-3 text-center lg:text-left">
+              Terapie di gruppo
             </h2>
+
+            <p className="mb-5 text-center text-sm font-medium text-brand-secondary-ink lg:text-left">
+              Il progetto {SPAZIO_CORSI_NOME}
+            </p>
 
             <p className="text-body mb-8 max-w-md text-center font-light text-gray-600 lg:text-left">
               Non è fisioterapia, e non lo diventa. È il posto dove si continua a muoversi bene:
               quando il percorso clinico è finito, o quando non è mai servito.
             </p>
 
-            <ul className="mb-9 flex flex-wrap justify-center gap-3 lg:justify-start">
+            {/* In colonna sul telefono: in fila le tre pillole andavano a capo
+                in modo diverso a ogni larghezza e la sezione sembrava storta. */}
+            <ul className="mb-9 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start">
               {attivita.map((voce) => (
                 <li
                   key={voce}
-                  className="rounded-full border border-brand-secondary/40 px-5 py-2 text-sm font-light text-brand-dark"
+                  className="rounded-full border border-brand-secondary/40 px-5 py-2.5 text-center text-sm font-light text-brand-dark sm:text-left"
                 >
                   {voce}
                 </li>
