@@ -1,11 +1,12 @@
-import { useMemo, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, Search, X } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { Search, X } from 'lucide-react';
 import { motion } from 'motion/react';
 import PageHero from '../components/layout/PageHero';
 import CtaBand from '../components/sections/CtaBand';
 import { WaveBackground } from '../components/WaveBackground';
 import ArrowButton from '../components/ui/ArrowButton';
 import SectionHeading from '../components/ui/SectionHeading';
+import FilaCard from '../components/ui/FilaCard';
 import usePageMeta from '../hooks/usePageMeta';
 import {
   categorie,
@@ -103,16 +104,8 @@ function CardTrattamento({ t, accento, idx }: { t: Trattamento; accento: string;
  * per categoria costringeva a tornare indietro per guardarne un'altra.
  */
 function Area({ categoria }: { categoria: Categoria }) {
-  const pista = useRef<HTMLUListElement>(null);
   const elenco = trattamentiDi(categoria.slug);
   const accento = categoria.accent === 'primary' ? 'bg-brand-primary' : 'bg-brand-secondary';
-
-  const scorri = (verso: 1 | -1) => {
-    const el = pista.current;
-    if (!el) return;
-    const passo = el.firstElementChild?.clientWidth ?? el.clientWidth * 0.8;
-    el.scrollBy({ left: verso * (passo + 24), behavior: 'smooth' });
-  };
 
   return (
     <div className="scroll-mt-28" id={categoria.slug}>
@@ -125,35 +118,11 @@ function Area({ categoria }: { categoria: Categoria }) {
         {categoria.nome}
       </SectionHeading>
 
-      {elenco.length > 2 && (
-        <div className="mb-8 flex items-center justify-center gap-3">
-          <button
-            type="button"
-            onClick={() => scorri(-1)}
-            aria-label={`${categoria.nome}: trattamento precedente`}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-primary/30 text-brand-dark transition-colors hover:border-brand-primary hover:bg-brand-primary hover:text-white"
-          >
-            <ArrowLeft className="h-4 w-4" />
-          </button>
-          <button
-            type="button"
-            onClick={() => scorri(1)}
-            aria-label={`${categoria.nome}: trattamento successivo`}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-primary/30 text-brand-dark transition-colors hover:border-brand-primary hover:bg-brand-primary hover:text-white"
-          >
-            <ArrowRight className="h-4 w-4" />
-          </button>
-        </div>
-      )}
-
-      <ul
-        ref={pista}
-        className="pista-card -mx-6 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
+      <FilaCard etichetta={categoria.nome}>
         {elenco.map((t, i) => (
           <CardTrattamento key={t.slug} t={t} accento={accento} idx={i} />
         ))}
-      </ul>
+      </FilaCard>
     </div>
   );
 }

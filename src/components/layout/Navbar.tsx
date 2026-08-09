@@ -2,12 +2,19 @@ import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { servizi } from '../../data/site';
+import { categorie } from '../../data/site';
 
 const links = [
   { label: 'Home', to: '/' },
   { label: 'Chi Siamo', to: '/chi-siamo' },
-  { label: 'Servizi', to: '/servizi', children: servizi.map((s) => ({ label: s.titolo, to: `/servizi#${s.slug}` })) },
+  // Le voci del menu puntano alle aree reali della pagina servizi — prima
+  // erano ancore a sezioni che non esistevano più, quindi non portavano da
+  // nessuna parte. Le terapie di gruppo sono fra queste.
+  {
+    label: 'Servizi',
+    to: '/servizi',
+    children: categorie.map((c) => ({ label: c.nome, to: `/servizi#${c.slug}` })),
+  },
   { label: 'Team', to: '/team' },
   { label: 'Gallery', to: '/gallery' },
   { label: 'FAQ', to: '/faq' },

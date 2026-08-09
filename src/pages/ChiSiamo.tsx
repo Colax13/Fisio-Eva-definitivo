@@ -26,10 +26,13 @@ const valori = [
     text: 'text-brand-secondary-ink',
   },
   {
-    icona: MapPin,
-    titolo: 'Vicine, davvero',
+    // "Vicine, davvero" parlava della sede e guardava indietro al vecchio
+    // studio. Le altre due card raccontano come si lavora: questa ora fa lo
+    // stesso, e dice la cosa su cui lo studio si è specializzato.
+    icona: Sparkles,
+    titolo: 'Anche di quello di cui non si parla',
     testo:
-      'Una nuova sede in Via di Boccea 755, a pochi passi da dove ci avete sempre trovate. Le stesse mani, uno spazio pensato per voi.',
+      'Pavimento pelvico, post-parto, cicatrice da cesareo. Sono cose comuni, non normali, e meritano lo stesso spazio di un mal di schiena.',
     bg: 'bg-brand-primary/10',
     text: 'text-brand-primary-ink',
   },

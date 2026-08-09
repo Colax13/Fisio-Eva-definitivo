@@ -64,8 +64,11 @@ export const team = [
     name: 'Dott.ssa Elisa De Rubeis',
     short: 'Elisa',
     role: 'Fisioterapista · Osteopata',
+    // Sintesi del curriculum fornito dallo studio: stessa lunghezza e stesso
+    // registro della bio di Azzurra. L'elenco completo dei corsi resta nel
+    // materiale interno — qui conta cosa sa fare, non quante attestazioni ha.
     description:
-      'Oltre quindici anni di pratica clinica, quasi tutti in questo quartiere. Lavora con la terapia manuale e l\'approccio cranio-sacrale, e ha portato il metodo Pilates dentro il percorso riabilitativo — non come attività a sé, ma come strumento per far tornare il controllo del movimento dove si è perso.',
+      'Si è laureata in Fisioterapia nel 2004 con 110/110 e lode, con una tesi sul legame tra emozione, postura e respiro — il filo che ha poi seguito in tutta la sua formazione. Ha completato il triennio di Rieducazione Posturale Globale con il metodo Souchard, il biennio di Terapia Manuale secondo Maitland e i livelli di approccio cranio-sacrale Upledger e di manipolazione fasciale. Lavora con il Pilates applicato alla riabilitazione della colonna e con la ginnastica ipopressiva.',
     photo: '/team/elisa.png',
     accent: 'primary' as const,
   },

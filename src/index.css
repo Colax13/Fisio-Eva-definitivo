@@ -110,6 +110,15 @@ section[id] {
  * `calc()` annidato non veniva interpretato e cadeva sul valore minimo.
  */
 .pista-card {
+  /*
+   * Il gesto verticale deve arrivare alla pagina, non alla fila di card.
+   * Con touch-action automatico il browser blocca l'asse al primo movimento:
+   * se il dito parte sopra una card, lo scroll verso il basso si impunta e
+   * sembra che la pagina non risponda. Con pan-x qui si gestisce solo
+   * l'orizzontale, e il verticale passa alla pagina.
+   */
+  touch-action: pan-x;
+  overscroll-behavior-x: contain;
   padding-inline: max(1.5rem, calc((100vw - 300px) / 2));
   scroll-padding-inline: max(1.5rem, calc((100vw - 300px) / 2));
 }
