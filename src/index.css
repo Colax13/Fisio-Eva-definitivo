@@ -26,27 +26,29 @@ body {
   background-color: var(--color-brand-light);
   color: var(--color-brand-dark);
 
-  /*
-   * Le animazioni d'ingresso partono spostate di 40px (x: -40 / x: 40): finché
-   * la sezione non entra in vista quei blocchi stanno fuori dallo schermo e su
-   * mobile aprono una barra di scorrimento orizzontale. Con la pagina
-   * scorrevole in orizzontale la navbar, che è fissa, sembra disallineata a
-   * destra al primo caricamento.
-   */
-  overflow-x: hidden;
 }
 
-/* Serve anche su html: con il solo body l'elemento radice resta `visible` e
-   continua a produrre la barra orizzontale. */
+/*
+ * Il taglio orizzontale sta solo su html, non piu' anche su body.
+ *
+ * Serve perche' le animazioni d'ingresso partono spostate di 40px: finche' la
+ * sezione non entra in vista quei blocchi stanno fuori schermo e aprirebbero una
+ * barra di scorrimento laterale, con la navbar fissa che sembra disallineata.
+ *
+ * Su body faceva danni: quando un asse non e' `visible` il browser calcola
+ * l'altro ad `auto`, quindi body diventava un contenitore di scorrimento
+ * verticale in mezzo alla catena. Le file di card che chiedevano di scorrere
+ * alla pagina trovavano lui, che non aveva niente da scorrere, e il gesto
+ * moriva li'. Su html l'effetto e' lo stesso senza l'inghippo, perche' e'
+ * l'elemento radice a propagare l'overflow al viewport.
+ */
 html {
   overflow-x: hidden;
 }
 
-/* `clip` non crea un contenitore di scorrimento, quindi non rompe position:
-   sticky come farebbe `hidden`. Dove non c'è, resta il fallback sopra. */
+/* `clip` non crea un contenitore di scorrimento; dove non c'e', resta `hidden`. */
 @supports (overflow: clip) {
-  html,
-  body {
+  html {
     overflow-x: clip;
   }
 }
@@ -134,11 +136,19 @@ section[id] {
   overflow-y: hidden;
 
   /*
-   * Sul touch: con touch-action automatico il browser blocca l'asse al primo
-   * movimento, e se il dito parte sopra una card lo scroll verso il basso si
-   * impunta. Con pan-x qui si gestisce solo l'orizzontale.
+   * `touch-action` resta automatico, ed è importante che lo resti.
+   *
+   * Qui c'era `pan-x`, messo credendo volesse dire "di questo elemento gestisco
+   * l'orizzontale, il verticale lo passo alla pagina". Non è così: la proprietà
+   * dichiara quali gesti sono PERMESSI a partire da questo elemento, e il
+   * browser interseca il valore con quello degli antenati. Con `pan-x` il gesto
+   * verticale non veniva delegato — veniva vietato. Da lì il blocco: sopra i
+   * caroselli il sito accettava solo lo scorrimento laterale.
+   *
+   * Lasciandolo automatico decide il browser in base alla direzione del dito:
+   * di lato muove la fila, in verticale scorre la pagina.
    */
-  touch-action: pan-x;
+  touch-action: auto;
 
   /* La catena verticale deve arrivare alla pagina: solo l'orizzontale si ferma qui. */
   overscroll-behavior-x: contain;
