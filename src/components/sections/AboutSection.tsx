@@ -11,7 +11,7 @@ type Props = {
 export default function AboutSection({ overlap = false, cta = { label: 'Scopri di più', to: '/chi-siamo' } }: Props) {
   return (
     <section
-      className={`relative bg-brand-light z-20 px-6 py-24 md:py-32 ${
+      className={`relative bg-brand-light/75 backdrop-blur-[2px] z-20 px-6 py-24 md:py-32 ${
         overlap ? 'rounded-t-[3rem] -mt-8 shadow-[0_-10px_40px_rgba(0,0,0,0.1)]' : ''
       }`}
     >

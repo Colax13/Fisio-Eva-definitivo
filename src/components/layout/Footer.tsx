@@ -23,7 +23,7 @@ const naviga = [
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-light border-t border-brand-primary/15">
+    <footer className="relative z-10 bg-brand-light/80 backdrop-blur-[2px] border-t border-brand-primary/15">
       <div className="max-w-7xl mx-auto px-6 py-14">
         <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr] gap-10 md:gap-12">
           <div>

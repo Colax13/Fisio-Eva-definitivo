@@ -20,7 +20,7 @@ const attivita = ['Posturale di gruppo', 'Yoga', 'Pilates'];
 
 export default function SpazioCorsi() {
   return (
-    <section className="relative overflow-hidden bg-brand-light px-6 py-24">
+    <section className="relative overflow-hidden bg-brand-light/70 backdrop-blur-[2px] px-6 py-24">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-[20%] -left-[10%] h-[60%] w-[60%] rounded-full bg-brand-secondary/10 blur-[120px]"></div>
       </div>

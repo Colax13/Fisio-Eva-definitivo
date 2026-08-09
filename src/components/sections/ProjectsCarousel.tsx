@@ -18,7 +18,7 @@ export default function ProjectsCarousel() {
      * Fondo bianco e non off-white: Chi siamo sopra usa lo stesso off-white,
      * e senza il cambio le due sezioni si leggevano come un unico blocco lungo.
      */
-    <section className="relative bg-white overflow-hidden py-28 md:py-32 px-6 border-t border-brand-primary/10">
+    <section className="relative bg-white/70 backdrop-blur-[2px] overflow-hidden py-28 md:py-32 px-6 border-t border-brand-primary/10">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-brand-primary/10 blur-[120px]"></div>
         <div className="absolute -bottom-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-brand-secondary/10 blur-[120px]"></div>
@@ -52,7 +52,7 @@ export default function ProjectsCarousel() {
          * che incollata al bordo; il padding di `pista-card` dà alla prima e
          * all'ultima lo spazio per arrivarci.
          */}
-        <ul className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 pista-card scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0 lg:pb-0">
+        <ul className="pista-card -mx-6 flex snap-x gap-6 sm:mx-0 lg:grid lg:grid-cols-4">
           {porte.map((porta, idx) => {
             const accento = porta.accent === 'primary' ? 'bg-brand-primary' : 'bg-brand-secondary';
 

@@ -26,7 +26,7 @@ const righe = [
 
 export default function DoveSiamo() {
   return (
-    <section className="relative bg-white overflow-hidden py-24 md:py-32 px-6">
+    <section className="relative bg-white/70 backdrop-blur-[2px] overflow-hidden py-24 md:py-32 px-6">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { WaveBackground } from '../WaveBackground';
 
 /** Scrolls to the top on navigation, or to the anchor when the URL carries a hash. */
 function ScrollManager() {
@@ -23,8 +24,16 @@ function ScrollManager() {
 
 export default function Layout() {
   return (
-    <div className="font-sans bg-brand-light min-h-screen flex flex-col">
+    <div className="font-sans min-h-screen flex flex-col">
       <ScrollManager />
+
+      {/*
+       * Lo sfondo a onde sta qui, una volta sola e ancorato al viewport: prima
+       * viveva dentro due sezioni e compariva a tratti. Le sezioni chiare sopra
+       * sono traslucide, così le onde continuano a leggersi per tutta la
+       * pagina invece di accendersi e spegnersi mentre si scorre.
+       */}
+      <WaveBackground fisso />
       {/* Chi naviga da tastiera o con uno screen reader non deve rileggersi la
           navbar a ogni cambio pagina. */}
       <a
@@ -34,7 +43,7 @@ export default function Layout() {
         Vai al contenuto
       </a>
       <Navbar />
-      <main id="contenuto" className="flex-1">
+      <main id="contenuto" className="relative z-10 flex-1">
         <Outlet />
       </main>
       <Footer />

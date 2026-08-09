@@ -3,7 +3,6 @@ import { Search, X } from 'lucide-react';
 import { motion } from 'motion/react';
 import PageHero from '../components/layout/PageHero';
 import CtaBand from '../components/sections/CtaBand';
-import { WaveBackground } from '../components/WaveBackground';
 import ArrowButton from '../components/ui/ArrowButton';
 import SectionHeading from '../components/ui/SectionHeading';
 import FilaCard from '../components/ui/FilaCard';
@@ -219,7 +218,6 @@ export default function Servizi() {
       {/* Tutte le aree, una sotto l'altra, sulla stessa pagina. */}
       {!inRicerca && (
         <section className="relative overflow-hidden px-6 py-20">
-          <WaveBackground />
 
           <div className="relative z-10 mx-auto max-w-7xl space-y-24">
             {categorie.map((c) => (

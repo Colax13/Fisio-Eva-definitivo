@@ -1,7 +1,18 @@
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 
-export function WaveBackground() {
+type Props = {
+  /**
+   * Ancorato al viewport invece che alla sezione.
+   *
+   * Serve per montarlo una volta sola dietro tutta la pagina: le onde non
+   * ripartono da capo a ogni blocco e il fondo resta continuo mentre si scorre,
+   * invece di comparire solo in una sezione e sparire in quella dopo.
+   */
+  fisso?: boolean;
+};
+
+export function WaveBackground({ fisso = false }: Props) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -24,7 +35,11 @@ export function WaveBackground() {
   }, []);
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none bg-[#fbf9f8] z-0">
+    <div
+      className={`${
+        fisso ? 'fixed' : 'absolute'
+      } inset-0 overflow-hidden pointer-events-none bg-[#fbf9f8] z-0`}
+    >
       <motion.div 
         animate={{
           x: mousePosition.x,

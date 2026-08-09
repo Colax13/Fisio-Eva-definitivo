@@ -1,7 +1,6 @@
 import { Activity, Check, Sparkles } from 'lucide-react';
 import { motion } from 'motion/react';
 import { trattamentiManuali, trattamentiStrumentali } from '../../data/site';
-import { WaveBackground } from '../WaveBackground';
 import ArrowButton from '../ui/ArrowButton';
 import SectionHeading from '../ui/SectionHeading';
 
@@ -31,7 +30,6 @@ const colonne = [
 export default function ServicesPreview() {
   return (
     <section className="relative overflow-hidden px-5 py-16 sm:px-6 md:py-24">
-      <WaveBackground />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl">
         <SectionHeading eyebrow="I Nostri Trattamenti" className="mb-10 md:mb-16">

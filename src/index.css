@@ -110,17 +110,63 @@ section[id] {
  * `calc()` annidato non veniva interpretato e cadeva sul valore minimo.
  */
 .pista-card {
+  overflow-x: auto;
+
   /*
-   * Il gesto verticale deve arrivare alla pagina, non alla fila di card.
-   * Con touch-action automatico il browser blocca l'asse al primo movimento:
-   * se il dito parte sopra una card, lo scroll verso il basso si impunta e
-   * sembra che la pagina non risponda. Con pan-x qui si gestisce solo
-   * l'orizzontale, e il verticale passa alla pagina.
+   * `safe center` fa il lavoro che prima provava a fare un pezzo di JavaScript:
+   * centra la fila quando le card ci stanno tutte, e torna ad allinearle da
+   * sinistra quando debordano. Con un semplice `center` la prima card finirebbe
+   * tagliata fuori dal bordo e irraggiungibile — è il difetto classico di un
+   * contenitore flex centrato che va in overflow.
+   *
+   * In CSS e non in JS perché la misura va rifatta a ogni cambio di larghezza:
+   * affidarla a un observer voleva dire ritrovarsi con la fila allineata come
+   * era prima del ridimensionamento.
+   */
+  justify-content: safe center;
+
+  /*
+   * `overflow-y` va dichiarato esplicitamente. Quando un asse non è `visible`
+   * l'altro viene calcolato ad `auto` dal browser: la fila diventava così un
+   * contenitore di scorrimento verticale senza niente da scorrere, e la rotella
+   * del mouse ci restava dentro invece di far scendere la pagina.
+   */
+  overflow-y: hidden;
+
+  /*
+   * Sul touch: con touch-action automatico il browser blocca l'asse al primo
+   * movimento, e se il dito parte sopra una card lo scroll verso il basso si
+   * impunta. Con pan-x qui si gestisce solo l'orizzontale.
    */
   touch-action: pan-x;
+
+  /* La catena verticale deve arrivare alla pagina: solo l'orizzontale si ferma qui. */
   overscroll-behavior-x: contain;
+  overscroll-behavior-y: auto;
+
+  /*
+   * `proximity` invece di `mandatory`: con l'aggancio obbligatorio il browser
+   * riallinea la fila anche durante uno scorrimento verticale, e il movimento
+   * della pagina si incespica.
+   */
+  scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
+
+  /*
+   * Spazio sotto per l'ombra delle card. Un contenitore che scorre ritaglia
+   * quello che esce, e l'ombra veniva tagliata netta a filo del bordo.
+   */
+  padding-block-end: 2.5rem;
+  margin-block-end: -1.5rem;
+
   padding-inline: max(1.5rem, calc((100vw - 300px) / 2));
   scroll-padding-inline: max(1.5rem, calc((100vw - 300px) / 2));
+
+  scrollbar-width: none;
+}
+
+.pista-card::-webkit-scrollbar {
+  display: none;
 }
 
 /* Da tablet in su entrano più card: si riparte dal bordo del contenitore. */
