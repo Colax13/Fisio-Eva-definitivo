@@ -130,11 +130,45 @@ export default function TeamSection({ showHeading = true }: Props) {
             })}
           </div>
 
-          <div className="mt-10 text-center">
-            <p className="text-gray-500 text-xs tracking-widest uppercase mb-3">Accoglienza</p>
-            <p className="text-gray-600 font-light">
-              {accoglienza.map((p) => p.name).join(' · ')}
-            </p>
+        </div>
+
+        {/* Accoglienza, con le stesse card del team clinico: erano due nomi
+            su una riga e sembravano una nota a piè di pagina. */}
+        <div className="mt-16">
+          <p className="text-brand-primary text-eyebrow font-semibold uppercase mb-8 text-center">
+            Accoglienza
+          </p>
+
+          <div className="grid grid-cols-2 gap-5 max-w-2xl mx-auto">
+            {accoglienza.map((persona, idx) => {
+              const a = accenti[idx % 2 === 0 ? 'secondary' : 'primary'];
+
+              return (
+                <motion.article
+                  key={persona.slug}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: idx * 0.08 }}
+                  className="group bg-white/80 backdrop-blur-md rounded-[1.75rem] p-6 shadow-lg border border-white text-center flex flex-col items-center hover:shadow-xl transition-shadow duration-300"
+                >
+                  <div
+                    className={`w-20 h-20 rounded-full ${a.soft} ${a.text} ring-4 ${a.ring} ring-offset-4 ring-offset-white mb-4 flex items-center justify-center font-sans font-bold text-xl transition-transform duration-500 group-hover:scale-105`}
+                    role="img"
+                    aria-label={`Ritratto non ancora disponibile di ${persona.name}`}
+                  >
+                    {iniziali(persona.name)}
+                  </div>
+
+                  <h3 className="font-sans font-bold text-brand-dark leading-snug">
+                    {persona.name}
+                  </h3>
+                  <p className={`${a.text} font-medium text-[11px] tracking-widest uppercase mt-1`}>
+                    {persona.role}
+                  </p>
+                </motion.article>
+              );
+            })}
           </div>
         </div>
       </div>

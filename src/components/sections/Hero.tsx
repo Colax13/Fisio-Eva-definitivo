@@ -32,10 +32,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex items-center gap-4 mb-6"
+            className="mb-6"
           >
-            <div className="w-12 h-[1px] bg-brand-primary"></div>
-            <span className="text-brand-primary text-xs tracking-widest uppercase font-medium">
+            <span className="text-brand-primary text-eyebrow font-semibold uppercase">
               {studio.claim}
             </span>
           </motion.div>

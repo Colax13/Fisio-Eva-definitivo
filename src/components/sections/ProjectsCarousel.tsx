@@ -1,5 +1,4 @@
-import { useRef } from 'react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { porte } from '../../data/site';
@@ -9,26 +8,17 @@ import Eyebrow from '../ui/Eyebrow';
 /**
  * I percorsi, in card scorrevoli.
  *
- * Prima era un carosello che girava da solo: per vedere la terza card bisognava
- * aspettare. Qui le card stanno tutte su una riga e si scorre a mano — col
- * dito, con la rotella o con le due frecce.
- *
- * Titolo, testo e card sono tutti allineati a sinistra: mezza sezione centrata
- * e mezza a sinistra è la cosa che si nota per prima, e in male.
+ * Le card stanno su una riga che si scorre a mano, col dito o con la rotella.
+ * Le frecce non ci sono: su una fila che si trascina erano un doppione, e su
+ * mobile occupavano spazio senza aggiungere niente.
  */
 export default function ProjectsCarousel() {
-  const pista = useRef<HTMLUListElement>(null);
-
-  const scorri = (verso: 1 | -1) => {
-    const el = pista.current;
-    if (!el) return;
-    // Una card più il gap: si scorre di un elemento per volta, non a caso.
-    const passo = el.firstElementChild?.clientWidth ?? el.clientWidth * 0.8;
-    el.scrollBy({ left: verso * (passo + 24), behavior: 'smooth' });
-  };
-
   return (
-    <section className="relative bg-brand-light overflow-hidden py-24 px-6">
+    /*
+     * Fondo bianco e non off-white: Chi siamo sopra usa lo stesso off-white,
+     * e senza il cambio le due sezioni si leggevano come un unico blocco lungo.
+     */
+    <section className="relative bg-white overflow-hidden py-28 md:py-32 px-6 border-t border-brand-primary/10">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-brand-primary/10 blur-[120px]"></div>
         <div className="absolute -bottom-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-brand-secondary/10 blur-[120px]"></div>
@@ -36,7 +26,7 @@ export default function ProjectsCarousel() {
 
       <div className="w-full max-w-7xl mx-auto relative z-10">
         {/* Sul telefono tutto al centro, come le card; da desktop la colonna
-            di testo torna a sinistra e le frecce le stanno di fianco. */}
+            di testo torna a sinistra. */}
         <div className="flex flex-col items-center gap-6 text-center mb-12 md:flex-row md:items-end md:justify-between md:text-left">
           <div className="max-w-xl">
             <Eyebrow align="left" className="mb-5">I nostri percorsi</Eyebrow>
@@ -49,27 +39,6 @@ export default function ProjectsCarousel() {
               Non serve sapere di cosa hai bisogno. Serve sapere cosa senti.
             </p>
           </div>
-
-          {/* Le frecce stanno in alto a destra, fuori dalla pista: dentro
-              coprirebbero le foto. */}
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => scorri(-1)}
-              aria-label="Percorso precedente"
-              className="w-11 h-11 rounded-full border border-brand-primary/30 flex items-center justify-center text-brand-dark hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-            </button>
-            <button
-              type="button"
-              onClick={() => scorri(1)}
-              aria-label="Percorso successivo"
-              className="w-11 h-11 rounded-full border border-brand-primary/30 flex items-center justify-center text-brand-dark hover:bg-brand-primary hover:text-white hover:border-brand-primary transition-colors"
-            >
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
         </div>
 
         {/*
@@ -79,7 +48,6 @@ export default function ProjectsCarousel() {
          * arrivarci davvero — senza, restano appiccicate ai margini.
          */}
         <ul
-          ref={pista}
           className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 pista-card scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {porte.map((porta, idx) => {

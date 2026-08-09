@@ -96,11 +96,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-brand-dark/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs text-gray-500">
+        <div className="mt-12 pt-6 border-t border-brand-dark/10 text-xs text-gray-500">
           <p>
             © {new Date().getFullYear()} {studio.name} — {studio.claim}.
-          </p>
-          <p>Apertura 26 settembre 2026</p>
+          </p>
         </div>
       </div>
     </footer>

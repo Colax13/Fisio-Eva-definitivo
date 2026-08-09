@@ -22,7 +22,6 @@ const righe = [
   { voce: 'Zona', valore: `${studio.zone} — si arriva dal Raccordo, uscita Boccea` },
   // ⛔ Orari non ancora forniti: niente valori inventati.
   { voce: 'Orari', valore: 'In definizione' },
-  { voce: 'Apertura', valore: '26 settembre 2026' },
 ];
 
 export default function DoveSiamo() {

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { immagini } from '../../data/site';
+import { immagini, team } from '../../data/site';
 import ArrowButton from '../ui/ArrowButton';
 
 type Props = {
@@ -67,14 +67,11 @@ export default function AboutSection({ overlap = false, cta = { label: 'Scopri d
             transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
             className="lg:pl-10"
           >
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-2 h-2 rounded-full bg-brand-primary"></div>
-              <span className="text-brand-primary text-xs tracking-widest uppercase font-medium">
-                Chi Siamo
-              </span>
-            </div>
+            <p className="text-brand-primary-ink text-eyebrow font-semibold uppercase mb-6">
+              Chi siamo
+            </p>
 
-            <h2 className="text-4xl md:text-5xl font-sans font-bold text-brand-dark leading-tight mb-6">
+            <h2 className="text-h2 font-sans font-bold text-brand-dark mb-6">
               Uno studio di donne, <span className="text-brand-primary">nato per le donne</span>
             </h2>
 
@@ -87,11 +84,55 @@ export default function AboutSection({ overlap = false, cta = { label: 'Scopri d
               specializzazione precisa: la salute della donna, in ogni fase della vita.
             </p>
 
-            {cta && (
-              <div className="mt-10">
-                <ArrowButton to={cta.to}>{cta.label}</ArrowButton>
+            {/*
+             * Il team in home sta qui: tre ritratti tondi e un link.
+             * La sezione completa con tutte le card vive nella pagina Team —
+             * ripeterla per intero anche in home la faceva pesare il doppio di
+             * quello che serve a questo punto della pagina.
+             */}
+            <div className="mt-10 flex flex-wrap items-center gap-5 border-t border-brand-dark/10 pt-8">
+              <div className="flex -space-x-4">
+                {team.map((m) =>
+                  m.photo ? (
+                    <img
+                      key={m.slug}
+                      src={m.photo}
+                      alt={m.name}
+                      className="h-14 w-14 rounded-full border-2 border-brand-light object-cover"
+                    />
+                  ) : (
+                    <span
+                      key={m.slug}
+                      className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-brand-light bg-brand-primary/15 font-sans text-sm font-bold text-brand-primary-ink"
+                      role="img"
+                      aria-label={`Ritratto non ancora disponibile di ${m.name}`}
+                    >
+                      {m.name
+                        .replace('Dott.ssa ', '')
+                        .split(' ')
+                        .map((p) => p[0])
+                        .join('')
+                        .slice(0, 2)
+                        .toUpperCase()}
+                    </span>
+                  )
+                )}
               </div>
-            )}
+
+              <div>
+                <p className="text-xs tracking-wider text-gray-500 uppercase">Il nostro team</p>
+                <p className="font-sans font-bold text-brand-dark">Azzurra, Elisa e Veronica</p>
+              </div>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-4">
+              <ArrowButton to="/team">Scopri il team</ArrowButton>
+              {cta && (
+                <ArrowButton to={cta.to} variant="secondary">
+                  {cta.label}
+                </ArrowButton>
+              )}
+            </div>
           </motion.div>
         </div>
       </div>

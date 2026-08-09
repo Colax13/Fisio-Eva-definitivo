@@ -535,6 +535,22 @@ export const porte: Porta[] = [
     accent: 'secondary',
     to: '/servizi',
   },
+  {
+    slug: 'terapie-strumentali',
+    titolo: 'Terapie strumentali',
+    evidenza: 'A supporto',
+    descrizione:
+      'Tecarterapia, laser ad alta potenza, ultrasuoni, magnetoterapia, TENS, ionoforesi ed elettrostimolazione. Entrano nel percorso quando servono, per il tempo che serve — mai al posto del lavoro manuale.',
+    benefici: [
+      'Contratture e tendinopatie',
+      'Infiammazioni localizzate',
+      'Gonfiore dopo un intervento',
+      'Recupero della forza',
+    ],
+    image: immagini.manuale,
+    accent: 'primary',
+    to: '/servizi',
+  },
 ];
 
 export type Progetto = {

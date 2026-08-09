@@ -1,6 +1,5 @@
 import Hero from '../components/sections/Hero';
 import AboutSection from '../components/sections/AboutSection';
-import TeamSection from '../components/sections/TeamSection';
 import ProjectsCarousel from '../components/sections/ProjectsCarousel';
 import ServicesPreview from '../components/sections/ServicesPreview';
 import EmotionalSection from '../components/sections/EmotionalSection';
@@ -12,9 +11,10 @@ import usePageMeta from '../hooks/usePageMeta';
 /**
  * Ordine delle sezioni.
  *
- * Chi siamo resta attaccato alla hero perché la sovrapposizione è costruita su
- * quel punto. Il team viene subito dopo, una volta sola: ripeterlo più in basso
- * non aggiungeva niente.
+ * Chi siamo resta attaccato alla hero — la sovrapposizione è costruita su quel
+ * punto — e porta con sé i tre ritratti del team con il link alla pagina
+ * dedicata. Subito dopo arrivano i percorsi e i trattamenti: chi scorre la home
+ * cerca quelli, non una seconda biografia.
  */
 export default function Home() {
   usePageMeta(
@@ -26,7 +26,6 @@ export default function Home() {
     <>
       <Hero />
       <AboutSection overlap />
-      <TeamSection />
       <ProjectsCarousel />
       <ServicesPreview />
       <EmotionalSection />
