@@ -54,8 +54,11 @@ export const team = [
     name: 'Dott.ssa Azzurra De Angelis',
     short: 'Azzurra',
     role: 'Fisioterapista · Osteopata D.O.',
+    // Sintesi del curriculum fornito dallo studio. La specializzazione sulla
+    // donna non è una scelta commerciale: nasce dalla tesi di osteopatia, e
+    // dirlo vale più di qualsiasi elenco di corsi.
     description:
-      'Si è laureata in Fisioterapia all\'Università Cattolica – Policlinico Gemelli con 110/110 e lode, poi ha proseguito con il Master in Rieducazione Posturale Globale secondo il metodo Souchard e con la formazione in Osteopatia EDUCAM. Si occupa in modo particolare della salute della donna: gravidanza, recupero post-parto, pavimento pelvico, trattamento della cicatrice da cesareo.',
+      'Si è laureata in Fisioterapia nel 2011 all\'Università Cattolica del Sacro Cuore con 110/110 e lode, con una tesi in riabilitazione neurologica. Ha proseguito con il Master in Rieducazione Posturale Globale secondo il metodo Souchard e la formazione superiore per le patologie cranio-cervicali, poi con la specializzazione in linfodrenaggio manuale. Ha completato gli studi in Osteopatia alla scuola EDUCAM, di nuovo con 110/110 e lode: la tesi, sul trattamento osteopatico della cicatrice da taglio cesareo, è il punto da cui è partito il suo lavoro con le donne in gravidanza e nel post-parto.',
     photo: '/team/azzurra.png',
     accent: 'secondary' as const,
   },
