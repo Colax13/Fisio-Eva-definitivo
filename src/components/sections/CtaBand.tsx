@@ -48,15 +48,15 @@ export default function CtaBand({ titolo = 'Pronto a rimetterti in movimento?' }
             lato: erano tre link scritti a mano e si muovevano in modo diverso
             da tutti gli altri. */}
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4">
-          <ArrowButton to="/contatti" icon={CalendarCheck}>
+          <ArrowButton to="/contatti" icon={CalendarCheck} verso="inizio">
             Prenota ora
           </ArrowButton>
 
-          <ArrowButton href={`mailto:${studio.email}`} variant="ghost" icon={MessageSquare}>
+          <ArrowButton href={`mailto:${studio.email}`} variant="ghost" icon={MessageSquare} verso="inizio">
             Scrivi un messaggio
           </ArrowButton>
 
-          <ArrowButton href={studio.phoneHref} variant="ghost" icon={Phone}>
+          <ArrowButton href={studio.phoneHref} variant="ghostSecondary" icon={Phone} verso="inizio">
             Chiama
           </ArrowButton>
         </div>

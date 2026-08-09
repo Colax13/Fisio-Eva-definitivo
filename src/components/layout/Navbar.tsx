@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { CalendarCheck, ChevronDown, Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { categorie } from '../../data/site';
+import { categorie, studio } from '../../data/site';
+import ArrowButton from '../ui/ArrowButton';
 
 const links = [
   { label: 'Home', to: '/' },
@@ -32,6 +33,16 @@ export default function Navbar() {
     setDropdownOpen(false);
   }, [location.pathname]);
 
+  /* Con il menu a tutta pagina aperto, il sito dietro non deve scorrere. */
+  useEffect(() => {
+    if (!menuOpen) return;
+    const precedente = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = precedente;
+    };
+  }, [menuOpen]);
+
   useEffect(() => {
     const onClickOutside = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
@@ -48,8 +59,14 @@ export default function Navbar() {
     }`;
 
   return (
-    /* Attaccata in alto, a filo: niente pillola fluttuante e nessun margine. */
-    <nav className="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur-sm border-b border-brand-primary/10 shadow-sm">
+    <>
+      {/*
+       * Attaccata in alto, a filo: niente pillola fluttuante e nessun margine.
+       * Il menu a tutta pagina sta FUORI da questo elemento: il backdrop-blur
+       * crea un blocco contenitore, e un figlio `fixed` ci resterebbe dentro —
+       * l'overlay veniva alto zero.
+       */}
+      <nav className="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur-sm border-b border-brand-primary/10 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between gap-4">
         <Link to="/" className="flex items-center shrink-0">
           <img src="/logo.svg" alt="FisioEVA" className="h-9 md:h-12 w-auto object-contain" />
@@ -118,13 +135,13 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
-          <Link
-            to="/contatti"
-            /* Solo quando c'è il menu esteso: su mobile restano logo e hamburger. */
-            className="hidden xl:inline-flex items-center border-2 border-brand-primary bg-white text-brand-dark hover:bg-brand-primary hover:text-white rounded-full px-6 lg:px-8 py-2.5 transition-colors duration-300 font-medium text-sm shadow-sm whitespace-nowrap"
-          >
-            Prenota ora
-          </Link>
+          {/* Lo stesso bottone della chiusura di pagina: prima era una pillola a sé,
+              con un'animazione diversa da tutte le altre del sito. */}
+          <span className="hidden xl:block">
+            <ArrowButton to="/contatti" icon={CalendarCheck} verso="inizio" block={false}>
+              Prenota ora
+            </ArrowButton>
+          </span>
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -136,39 +153,72 @@ export default function Navbar() {
           </button>
         </div>
       </div>
-
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="xl:hidden bg-white border-t border-brand-primary/10 px-6 py-6 shadow-lg flex flex-col gap-4 max-h-[70vh] overflow-y-auto"
-          >
-            {links.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                end={link.to === '/'}
-                className={({ isActive }) =>
-                  `text-base font-medium transition-colors ${
-                    isActive ? 'text-brand-secondary' : 'text-brand-dark hover:text-brand-secondary'
-                  }`
-                }
-              >
-                {link.label}
-              </NavLink>
-            ))}
-            <Link
-              to="/contatti"
-              className="mt-2 flex items-center justify-center border-2 border-brand-primary bg-white text-brand-dark hover:bg-brand-primary hover:text-white rounded-full px-8 py-3 transition-colors duration-300 font-medium text-sm"
-            >
-              Prenota ora
-            </Link>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </nav>
+
+    {/*
+     * Menu a tutta pagina. Il pannello a fisarmonica sotto la barra lasciava
+     * intravedere il sito dietro e obbligava a scorrere dentro un riquadro
+     * alto 70vh. A schermo pieno le voci sono grandi, stanno tutte, e il
+     * pollice le prende senza mirare.
+     */}
+    <AnimatePresence>
+      {menuOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          className="fixed inset-0 top-[var(--altezza-navbar,4.25rem)] z-40 flex flex-col overflow-y-auto bg-brand-light xl:hidden"
+        >
+          <nav className="flex flex-1 flex-col justify-center gap-1 px-8 py-10">
+            {links.map((link, i) => (
+              <motion.div
+                key={link.to}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.05 + i * 0.045 }}
+              >
+                <NavLink
+                  to={link.to}
+                  end={link.to === '/'}
+                  className={({ isActive }) =>
+                    `flex items-baseline gap-4 border-b border-brand-dark/10 py-4 font-sans text-3xl font-bold transition-colors ${
+                      isActive ? 'text-brand-primary' : 'text-brand-dark'
+                    }`
+                  }
+                >
+                  <span className="text-eyebrow font-semibold text-brand-primary-ink">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  {link.label}
+                </NavLink>
+              </motion.div>
+            ))}
+          </nav>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.4 }}
+            className="px-8 pb-12"
+          >
+            <ArrowButton to="/contatti" icon={CalendarCheck} verso="inizio">
+              Prenota ora
+            </ArrowButton>
+
+            <p className="mt-6 text-sm font-light text-gray-600">
+              {studio.address}, {studio.city}
+            </p>
+            <a
+              href={`mailto:${studio.email}`}
+              className="text-sm font-light text-brand-primary-ink underline underline-offset-4"
+            >
+              {studio.email}
+            </a>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+    </>
   );
 }
