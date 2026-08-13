@@ -16,7 +16,7 @@ export default function Gallery() {
   const [categoria, setCategoria] = useState('Tutte');
   usePageMeta(
     'Gallery — FisioEVA | Lo studio a Roma Casalotti',
-    'Uno sguardo dentro lo studio FisioEVA: gli spazi, i trattamenti e i percorsi di riabilitazione in Via di Boccea 755, Roma.'
+    'Uno sguardo dentro lo studio FisioEVA: gli spazi, i trattamenti e i percorsi di riabilitazione in Via della Cellulosa 1, Roma.'
   );
 
   const visibili =
@@ -87,7 +87,7 @@ export default function Gallery() {
         </div>
       </section>
 
-      <CtaBand titolo="Ti aspettiamo in Via di Boccea 755" />
+      <CtaBand titolo="Ti aspettiamo in Via della Cellulosa 1" />
     </>
   );
 }

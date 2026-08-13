@@ -11,28 +11,25 @@ import { immagini } from '../data/site';
 const valori = [
   {
     icona: HeartHandshake,
-    titolo: 'Prima ascoltiamo',
+    titolo: 'Ascolto',
     testo:
       'Ogni percorso comincia da una conversazione. Capire come vivi, come ti muovi e cosa ti preoccupa vale quanto la valutazione clinica.',
     bg: 'bg-brand-primary/10',
     text: 'text-brand-primary-ink',
   },
   {
-    icona: Sparkles,
-    titolo: 'Un piano su misura',
+    icona: HeartHandshake,
+    titolo: 'La persona al centro',
     testo:
-      'Niente protocolli fotocopia. Il programma nasce dai tuoi obiettivi e si aggiorna insieme a te, seduta dopo seduta.',
+      'Non trattiamo un ginocchio o una schiena, ma la persona che ci cammina dentro: la tua storia, le abitudini e gli obiettivi guidano ogni scelta.',
     bg: 'bg-brand-secondary/10',
     text: 'text-brand-secondary-ink',
   },
   {
-    // "Vicine, davvero" parlava della sede e guardava indietro al vecchio
-    // studio. Le altre due card raccontano come si lavora: questa ora fa lo
-    // stesso, e dice la cosa su cui lo studio si è specializzato.
     icona: Sparkles,
-    titolo: 'Anche di quello di cui non si parla',
+    titolo: 'Personalizzazione',
     testo:
-      'Pavimento pelvico, post-parto, cicatrice da cesareo. Sono cose comuni, non normali, e meritano lo stesso spazio di un mal di schiena.',
+      'Niente protocolli fotocopia. Il programma nasce dai tuoi obiettivi, si costruisce sul tuo problema e si aggiorna insieme a te, seduta dopo seduta.',
     bg: 'bg-brand-primary/10',
     text: 'text-brand-primary-ink',
   },
@@ -56,10 +53,10 @@ export default function ChiSiamo() {
          */
         title={
           <>
-            Uno studio di donne, <span className="text-brand-primary">per ogni donna</span>
+            Ci prendiamo cura <span className="text-brand-primary">della persona</span>
           </>
         }
-        subtitle="Tre professioniste che hanno aperto il loro studio nel quartiere in cui lavorano da sempre. Ci occupiamo di tutto quello che riguarda il movimento, con una cura particolare per ciò di cui si parla ancora troppo poco."
+        subtitle="Tre professioniste che hanno aperto il loro studio nel quartiere in cui lavorano da sempre. Ci occupiamo di tutto ciò che riguarda il movimento, con un approccio che parte dall'ascolto e costruisce per ognuno un piano su misura."
         breadcrumb="Chi Siamo"
         image={immagini.trattamento}
       />
@@ -74,7 +71,7 @@ export default function ChiSiamo() {
 
         <div className="max-w-7xl mx-auto relative z-10">
           <SectionHeading eyebrow="Il nostro approccio" className="mb-10 md:mb-16">
-            Tre cose su cui <span className="text-brand-primary-ink">non transigiamo</span>
+            I principi che guidano <span className="text-brand-primary-ink">ogni percorso</span>
           </SectionHeading>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">

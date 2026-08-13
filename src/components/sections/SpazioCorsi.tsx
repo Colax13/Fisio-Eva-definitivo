@@ -16,7 +16,7 @@ import Eyebrow from '../ui/Eyebrow';
  */
 const SPAZIO_CORSI_NOME = 'LongEva';
 
-const attivita = ['Posturale di gruppo', 'Yoga', 'Pilates'];
+const attivita = ['Posturale di gruppo', 'Metodo Feldenkrais', 'Yoga', 'Pilates'];
 
 export default function SpazioCorsi() {
   return (
@@ -45,7 +45,7 @@ export default function SpazioCorsi() {
 
           <div className="flex flex-col justify-center p-9 md:p-14">
             <Eyebrow align="left" accent="secondary" className="mb-5">
-              Il piano superiore
+              {`In collaborazione con ${SPAZIO_CORSI_NOME}`}
             </Eyebrow>
 
             {/* Il titolo dice cosa si fa, non come si chiama: "LongEva" da
@@ -55,12 +55,13 @@ export default function SpazioCorsi() {
             </h2>
 
             <p className="mb-5 text-center text-sm font-medium text-brand-secondary-ink lg:text-left">
-              Il progetto {SPAZIO_CORSI_NOME}
+              Un progetto dell'associazione culturale {SPAZIO_CORSI_NOME}
             </p>
 
             <p className="text-body mb-8 max-w-md text-center font-light text-gray-600 lg:text-left">
-              Non è fisioterapia, e non lo diventa. È il posto dove si continua a muoversi bene:
-              quando il percorso clinico è finito, o quando non è mai servito.
+              Le terapie di gruppo nascono dalla collaborazione con {SPAZIO_CORSI_NOME}, associazione
+              culturale con cui condividiamo lo spazio al piano superiore. È il posto dove si continua
+              a muoversi bene, insieme: quando il percorso clinico è finito, o anche a prescindere.
             </p>
 
             {/* In colonna sul telefono: in fila le tre pillole andavano a capo

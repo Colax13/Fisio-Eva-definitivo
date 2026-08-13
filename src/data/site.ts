@@ -17,20 +17,20 @@ export const immagini = {
   bambini: unsplash('photo-1555252333-9f8e92e65df9'), // neonato
   anziani: unsplash('photo-1622253692010-333f2da6031d'), // paziente anziana seguita
   calma: unsplash('photo-1600334089648-b0d9d3028eb2'), // relax e benessere
-  sede: '/team/studio.png', // la sede di Via di Boccea 755
+  sede: '/team/studio.png', // la sede di Via della Cellulosa 1
 };
 
 export const studio = {
   name: 'FisioEVA',
   claim: 'Studio di Fisioterapia e Osteopatia',
-  address: 'Via di Boccea, 755',
+  address: 'Via della Cellulosa, 1',
   city: '00166 Roma',
-  zone: 'Casalotti',
+  zone: 'Casalotti · Uscita 2 Boccea',
   // Attenzione: bocc**e**a, non boccia. È un refuso ricorrente nei materiali.
   email: 'fisioeva.boccea@gmail.com',
   instagram: 'fisioeva_boccea',
   instagramUrl: 'https://www.instagram.com/fisioeva_boccea',
-  mapsQuery: 'Via+di+Boccea+755,+00166+Roma',
+  mapsQuery: 'Via+della+Cellulosa+1,+00166+Roma',
 
   /*
    * ⛔ NUMERO PROVVISORIO — da sostituire prima del go-live.
@@ -42,8 +42,8 @@ export const studio = {
   phoneHref: 'tel:+390661550000',
   phoneProvvisorio: true,
   orari: [
-    { giorno: 'Lunedì — Venerdì', ore: '09:00 — 20:00' },
-    { giorno: 'Sabato', ore: 'Su appuntamento' },
+    { giorno: 'Lunedì — Venerdì', ore: '08:00 — 20:00' },
+    { giorno: 'Sabato', ore: '08:00 — 14:00' },
     { giorno: 'Domenica', ore: 'Chiuso' },
   ],
 };
@@ -187,11 +187,11 @@ export const categorie: Categoria[] = [
     accent: 'primary',
   },
   {
-    // Il piano superiore. Non è fisioterapia e va detto: attività di gruppo,
-    // non prestazioni sanitarie. Sta in fondo, dopo tutto il clinico.
+    // Il piano superiore: attività di gruppo in collaborazione con LongEva,
+    // associazione culturale distinta dallo studio. Sta in fondo, dopo il clinico.
     slug: 'terapie-di-gruppo',
     nome: 'Terapie di gruppo',
-    sottotitolo: 'Al piano superiore: muoversi bene, insieme. Non è fisioterapia.',
+    sottotitolo: 'Al piano superiore: muoversi bene, insieme. In collaborazione con LongEva.',
     image: immagini.postura,
     accent: 'secondary',
   },
@@ -229,18 +229,12 @@ export const trattamenti: Trattamento[] = [
     sintomi: ['contrattura', 'collo rigido', 'spalla bloccata', 'dolore muscolare', 'tensione'],
   },
   {
-    slug: 'rieducazione-posturale-rpg',
-    nome: 'Rieducazione posturale (metodo RPG Souchard)',
-    sottotitolo: 'Un metodo specialistico per rimettere in asse la colonna.',
-    categoria: 'tornare-a-muoverti',
-    sintomi: ['postura', 'scoliosi', 'spalle curve', 'iperlordosi', 'mal di schiena cronico'],
-  },
-  {
     slug: 'ginnastica-posturale',
-    nome: 'Ginnastica posturale',
-    sottotitolo: 'Esercizi mirati per riprendere il controllo della postura.',
+    nome: 'Ginnastica Posturale Individuale',
+    sottotitolo:
+      'Metodo Mézières-Souchard: un metodo di rieducazione globale mirato al ripristino delle curve fisiologiche della tua colonna.',
     categoria: 'tornare-a-muoverti',
-    sintomi: ['postura', 'schiena curva', 'dolore cervicale da ufficio', 'rigidità'],
+    sintomi: ['postura', 'scoliosi', 'schiena curva', 'iperlordosi', 'dolore cervicale da ufficio', 'rigidità', 'mal di schiena cronico'],
   },
   {
     slug: 'fisiokinesiterapia',
@@ -404,6 +398,13 @@ export const trattamenti: Trattamento[] = [
     categoria: 'terapie-di-gruppo',
     sintomi: ['pilates', 'core', 'controllo', 'tonificazione'],
   },
+  {
+    slug: 'feldenkrais',
+    nome: 'Metodo Feldenkrais',
+    sottotitolo: 'Imparare a muoversi con meno sforzo, attraverso la consapevolezza del movimento.',
+    categoria: 'terapie-di-gruppo',
+    sintomi: ['feldenkrais', 'consapevolezza', 'movimento', 'postura', 'rilassamento'],
+  },
 ];
 
 export const trattamentiDi = (categoria: CategoriaSlug) =>
@@ -451,7 +452,7 @@ export const servizi: Servizio[] = [
     sottotitolo: 'Riallineare le abitudini, non solo la schiena',
     descrizione:
       'Analisi posturale e ginnastica dedicata per correggere gli squilibri che si accumulano ogni giorno, tra scrivania, sport e gesti ripetuti.',
-    punti: ['Ginnastica posturale', 'Valutazione posturale', 'Consapevolezza corporea'],
+    punti: ['Ginnastica Posturale Individuale', 'Valutazione posturale', 'Consapevolezza corporea'],
     image: immagini.postura,
     accent: 'primary',
   },
@@ -526,18 +527,34 @@ export const porte: Porta[] = [
     to: '/servizi',
   },
   {
-    slug: 'bambino',
-    titolo: 'Per il bambino',
-    evidenza: 'Per lui',
+    slug: 'rieducazione-motoria',
+    titolo: 'Rieducazione motoria',
+    evidenza: 'Reimparare il movimento',
     descrizione:
-      'Il parto è il primo grande sforzo della vita. Anche per lui. L\'osteopatia neonatale usa tecniche a pressione minima, spesso mentre il bambino dorme.',
+      'Quando un gesto va reimparato e non solo recuperato: equilibrio, coordinazione, controllo del movimento. Il lavoro parte da come ti muovi oggi e si costruisce passo dopo passo.',
     benefici: [
-      'Coliche e pianto inconsolabile',
-      'Sonno disturbato',
-      'Difficoltà di suzione',
-      'Plagiocefalia e torcicollo',
+      'Equilibrio e coordinazione',
+      'Controllo del movimento',
+      'Recupero neuromotorio',
+      'Prevenzione delle cadute',
     ],
-    image: immagini.bambini,
+    image: immagini.riabilitazione,
+    accent: 'secondary',
+    to: '/servizi',
+  },
+  {
+    slug: 'rieducazione-post-chirurgica',
+    titolo: 'Rieducazione post-chirurgica',
+    evidenza: 'Il recupero dopo un intervento',
+    descrizione:
+      'Il ritorno alla piena funzione dopo un\'operazione, guidato passo dopo passo. Un percorso costruito sui tempi del tuo recupero, dal primo movimento fino alle tue attività.',
+    benefici: [
+      'Dopo protesi di anca o ginocchio',
+      'Ricostruzione del crociato',
+      'Recupero dopo una frattura',
+      'Ritorno alla piena mobilità',
+    ],
+    image: immagini.postura,
     accent: 'secondary',
     to: '/servizi',
   },
@@ -637,8 +654,8 @@ export const percorso = [
     desc: 'Un momento dedicato per ascoltare la tua storia clinica e comprendere i tuoi obiettivi.',
   },
   {
-    titolo: 'Valutazione posturale',
-    desc: 'Analisi dettagliata del tuo corpo per individuare le cause specifiche del problema.',
+    titolo: 'Valutazione clinica',
+    desc: 'Analisi clinica e posturale del tuo corpo per individuare le cause specifiche del problema, non solo i sintomi.',
   },
   {
     titolo: 'Piano terapeutico',
@@ -650,7 +667,7 @@ export const percorso = [
   },
   {
     titolo: 'Mantenimento',
-    desc: 'Esercizi e consigli posturali per mantenere i risultati nel tempo e prevenire ricadute.',
+    desc: 'Esercizi e attività di gruppo con l\'associazione culturale LongEva per mantenere i risultati nel tempo e prevenire ricadute.',
   },
 ];
 
@@ -725,7 +742,7 @@ export const faq: Faq[] = [
     categoria: 'Generali',
     domanda: 'Dove si trova lo studio?',
     risposta:
-      'Siamo in Via di Boccea 755, a Roma, zona Casalotti. Nel quartiere in cui lavoriamo da sempre.',
+      'Siamo in Via della Cellulosa 1, a Roma, zona Casalotti (uscita 2 Boccea). Nel quartiere in cui lavoriamo da sempre.',
   },
   {
     categoria: 'Generali',
@@ -822,7 +839,7 @@ export const gallery = [
   },
   {
     src: immagini.sede,
-    alt: 'La nuova sede di Via di Boccea 755',
+    alt: 'La nuova sede di Via della Cellulosa 1',
     categoria: 'Lo studio',
     span: 'wide' as const,
   },

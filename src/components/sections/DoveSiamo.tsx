@@ -63,7 +63,7 @@ export default function DoveSiamo() {
             </div>
 
             <h2 className="text-3xl md:text-4xl font-sans font-bold text-brand-dark leading-tight mb-10">
-              A Casalotti, in <span className="text-brand-primary">Via di Boccea</span>
+              A Casalotti, in <span className="text-brand-primary">Via della Cellulosa</span>
             </h2>
 
             <dl className="space-y-5 mb-10">

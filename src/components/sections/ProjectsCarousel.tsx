@@ -52,7 +52,7 @@ export default function ProjectsCarousel() {
          * che incollata al bordo; il padding di `pista-card` dà alla prima e
          * all'ultima lo spazio per arrivarci.
          */}
-        <ul className="pista-card -mx-6 flex snap-x gap-6 sm:mx-0 lg:grid lg:grid-cols-4">
+        <ul className="pista-card -mx-6 flex snap-x gap-6 sm:mx-0 lg:grid lg:grid-cols-5">
           {porte.map((porta, idx) => {
             const accento = porta.accent === 'primary' ? 'bg-brand-primary' : 'bg-brand-secondary';
 

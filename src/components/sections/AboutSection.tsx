@@ -51,7 +51,7 @@ export default function AboutSection({ overlap = false, cta = { label: 'Scopri d
               transition={{ delay: 0.3, type: 'spring', stiffness: 100 }}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-brand-dark text-white w-32 h-32 rounded-full flex flex-col items-center justify-center text-center p-4 border-8 border-brand-light"
             >
-              <span className="text-2xl font-sans font-bold">10+</span>
+              <span className="text-2xl font-sans font-bold">20+</span>
               <span className="text-[10px] uppercase tracking-wider text-gray-300 mt-1">
                 Anni di
                 <br />
@@ -72,7 +72,7 @@ export default function AboutSection({ overlap = false, cta = { label: 'Scopri d
             </p>
 
             <h2 className="text-h2 font-sans font-bold text-brand-dark mb-6">
-              Uno studio di donne, <span className="text-brand-primary">nato per le donne</span>
+              Uno studio costruito <span className="text-brand-primary">intorno a te</span>
             </h2>
 
             {/* Un paragrafo solo, stretto. Tutto il resto — formazione, titoli,
@@ -80,8 +80,9 @@ export default function AboutSection({ overlap = false, cta = { label: 'Scopri d
                 allungherebbe e basta. */}
             <p className="text-brand-dark font-light leading-relaxed text-lg max-w-md">
               Tre professioniste che hanno aperto il loro studio nel quartiere in cui lavorano da
-              sempre. Ci occupiamo di tutto quello che riguarda il movimento, ma con una
-              specializzazione precisa: la salute della donna, in ogni fase della vita.
+              sempre. Ci occupiamo di tutto ciò che riguarda il movimento con un metodo che parte
+              sempre dalla persona: ascoltare il problema, capirne le cause e costruire insieme un
+              percorso personale e su misura.
             </p>
 
             {/*

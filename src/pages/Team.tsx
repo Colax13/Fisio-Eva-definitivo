@@ -7,7 +7,7 @@ import { immagini } from '../data/site';
 export default function Team() {
   usePageMeta(
     'Il Team — FisioEVA | Fisioterapiste e Osteopata a Roma',
-    'Azzurra De Angelis, Elisa De Rubeis e Veronica Mirarchi: le professioniste dello studio FisioEVA in Via di Boccea 755, Roma.'
+    'Azzurra De Angelis, Elisa De Rubeis e Veronica Mirarchi: le professioniste dello studio FisioEVA in Via della Cellulosa 1, Roma.'
   );
 
   return (
