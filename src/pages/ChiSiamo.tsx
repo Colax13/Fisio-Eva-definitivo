@@ -18,10 +18,10 @@ const valori = [
     text: 'text-brand-primary-ink',
   },
   {
-    icona: HeartHandshake,
-    titolo: 'La persona al centro',
+    icona: Sparkles,
+    titolo: 'Personificazione',
     testo:
-      'Non trattiamo un ginocchio o una schiena, ma la persona che ci cammina dentro: la tua storia, le abitudini e gli obiettivi guidano ogni scelta.',
+      'Niente protocolli fotocopia. Il programma nasce dai tuoi obiettivi e si aggiorna insieme a te, seduta dopo seduta.',
     bg: 'bg-brand-secondary/10',
     text: 'text-brand-secondary-ink',
   },
@@ -29,7 +29,7 @@ const valori = [
     icona: Sparkles,
     titolo: 'Personalizzazione',
     testo:
-      'Niente protocolli fotocopia. Il programma nasce dai tuoi obiettivi, si costruisce sul tuo problema e si aggiorna insieme a te, seduta dopo seduta.',
+      'Nessun percorso è uguale a un altro. Il tuo nasce dal tuo problema, dai tuoi tempi e dai tuoi obiettivi, e si adatta a te lungo tutta la strada.',
     bg: 'bg-brand-primary/10',
     text: 'text-brand-primary-ink',
   },

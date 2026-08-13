@@ -72,7 +72,7 @@ export default function AboutSection({ overlap = false, cta = { label: 'Scopri d
             </p>
 
             <h2 className="text-h2 font-sans font-bold text-brand-dark mb-6">
-              Uno studio costruito <span className="text-brand-primary">intorno a te</span>
+              Uno studio costruito <span className="text-brand-primary">su di te</span>
             </h2>
 
             {/* Un paragrafo solo, stretto. Tutto il resto — formazione, titoli,
