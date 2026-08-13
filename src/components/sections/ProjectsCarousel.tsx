@@ -52,13 +52,7 @@ export default function ProjectsCarousel() {
          * che incollata al bordo; il padding di `pista-card` dà alla prima e
          * all'ultima lo spazio per arrivarci.
          */}
-        {/*
-         * Da desktop: griglia 3 + 2 centrata. Sei colonne, ogni card ne occupa
-         * due (3 per riga); la quarta card parte dalla colonna 2 così le due
-         * della seconda riga restano centrate. Su mobile resta la fila che si
-         * trascina col dito.
-         */}
-        <ul className="pista-card -mx-6 flex snap-x gap-6 sm:mx-0 lg:grid lg:grid-cols-6">
+        <ul className="pista-card -mx-6 flex snap-x gap-6 sm:mx-0 lg:grid lg:grid-cols-4">
           {porte.map((porta, idx) => {
             const accento = porta.accent === 'primary' ? 'bg-brand-primary' : 'bg-brand-secondary';
 
@@ -69,9 +63,7 @@ export default function ProjectsCarousel() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`snap-center shrink-0 w-[300px] sm:w-[380px] lg:w-auto lg:shrink lg:col-span-2 ${
-                  idx === 3 ? 'lg:col-start-2' : ''
-                }`}
+                className="snap-center shrink-0 w-[300px] sm:w-[380px] lg:w-auto lg:shrink"
               >
                 <Link
                   to={porta.to}

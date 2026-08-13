@@ -511,22 +511,6 @@ export const porte: Porta[] = [
     to: '/servizi',
   },
   {
-    slug: 'salute-della-donna',
-    titolo: 'La salute della donna',
-    evidenza: 'Per te',
-    descrizione:
-      'Una cura pensata per te, per ciò di cui spesso nessuno parla. Pavimento pelvico, gravidanza, recupero post-parto, trattamento della cicatrice da cesareo.',
-    benefici: [
-      'Riabilitazione del pavimento pelvico',
-      'Recupero post-parto',
-      'Fisioterapia in gravidanza',
-      'Cicatrice da cesareo',
-    ],
-    image: immagini.donna,
-    accent: 'primary',
-    to: '/servizi',
-  },
-  {
     slug: 'rieducazione-motoria',
     titolo: 'Rieducazione motoria',
     evidenza: 'Reimparare il movimento',
