@@ -1,6 +1,7 @@
 import Hero from '../components/sections/Hero';
 import AboutSection from '../components/sections/AboutSection';
 import ProjectsCarousel from '../components/sections/ProjectsCarousel';
+import PercorsoDonna from '../components/sections/PercorsoDonna';
 import ServicesPreview from '../components/sections/ServicesPreview';
 import EmotionalSection from '../components/sections/EmotionalSection';
 import SpazioCorsi from '../components/sections/SpazioCorsi';
@@ -27,6 +28,7 @@ export default function Home() {
       <Hero />
       <AboutSection overlap />
       <ProjectsCarousel />
+      <PercorsoDonna />
       <ServicesPreview />
       <EmotionalSection />
       <SpazioCorsi />

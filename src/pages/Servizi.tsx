@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Search, X } from 'lucide-react';
 import { motion } from 'motion/react';
 import PageHero from '../components/layout/PageHero';
@@ -128,6 +129,18 @@ function Area({ categoria }: { categoria: Categoria }) {
 
 export default function Servizi() {
   const [query, setQuery] = useState('');
+  const { hash } = useLocation();
+
+  // Arrivando con un'ancora (es. /servizi#salute-della-donna dal "Scopri di più"
+  // della sezione donna in home), scorre fino a quell'area.
+  useEffect(() => {
+    if (!hash) return;
+    const id = hash.slice(1);
+    const t = setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+    return () => clearTimeout(t);
+  }, [hash]);
 
   usePageMeta(
     'Servizi e Trattamenti — FisioEVA | Fisioterapia e Osteopatia a Roma',
