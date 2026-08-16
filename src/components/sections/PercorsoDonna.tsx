@@ -40,7 +40,7 @@ export default function PercorsoDonna() {
             Un'attenzione specifica per ciò di cui spesso si parla troppo poco.
           </p>
 
-          <ul className="mb-8 flex flex-wrap gap-2.5">
+          <ul className="mb-8 grid max-w-sm grid-cols-2 gap-2.5 justify-items-start">
             {voci.map((v) => (
               <li
                 key={v}
