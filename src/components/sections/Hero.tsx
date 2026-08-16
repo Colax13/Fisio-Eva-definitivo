@@ -24,6 +24,12 @@ export default function Hero() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/85 via-brand-dark/55 to-brand-primary/25"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/80 via-brand-dark/30 to-transparent"></div>
+        {/*
+         * Chiusura verso il colore della sezione Chi siamo: senza, il fondo
+         * della hero resta velato di lilla e il riquadro chiaro sotto sembra un
+         * blocco staccato. Così i due si fondono in un continuum.
+         */}
+        <div className="absolute inset-x-0 bottom-0 h-40 md:h-48 bg-gradient-to-b from-transparent to-brand-light"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
