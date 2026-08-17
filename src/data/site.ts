@@ -79,12 +79,11 @@ export const team = [
     slug: 'veronica-mirarchi',
     name: 'Dott.ssa Veronica Mirarchi',
     short: 'Veronica',
-    role: 'Fisioterapista',
-    // ⛔ BIO DA ACQUISIRE. Quella che stava qui era inventata dal template:
-    // su un professionista sanitario reale non si scrive niente a intuito.
-    // Attenzione: risulta solo Fisioterapista, non osteopata — nessuna formula
-    // al plurale del tipo "le titolari sono fisioterapiste e osteopate".
-    description: 'Bio in arrivo.',
+    role: 'Osteopata e Fisioterapista',
+    // Bio fornita dallo studio (osteopata dal 2020, fisioterapista dal 2025):
+    // quindi è sia osteopata sia fisioterapista, e il ruolo lo riflette.
+    description:
+      'Si è diplomata in Osteopatia presso il CERDO nel 2020, con una tesi dedicata al trattamento osteopatico delle disfunzioni gastrointestinali. Nel 2025 si è laureata in Fisioterapia presso l’Università UniCamillus con 110/110 e lode, discutendo una tesi sulla riabilitazione del pavimento pelvico nelle donne con endometriosi. Durante il percorso universitario ha svolto un importante periodo di formazione presso il CONI, lavorando a contatto con atleti di livello internazionale. Il suo passato da sportiva e l’interesse per la salute femminile orientano oggi il suo lavoro, nel quale integra fisioterapia e osteopatia attraverso un approccio globale e attento alle esigenze della persona.',
     photo: '',
     accent: 'primary' as const,
   },
