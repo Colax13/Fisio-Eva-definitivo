@@ -13,8 +13,8 @@ export default function Contatti() {
   const [messaggio, setMessaggio] = useState('');
 
   usePageMeta(
-    'Contatti — FisioEVA | Via della Cellulosa 1, Roma',
-    'Prenota una visita allo studio FisioEVA in Via della Cellulosa 1, Roma Casalotti. Telefono, email, orari e mappa per raggiungerci.'
+    'Contatti — FisioEVA | Via di Boccea 755, Roma',
+    'Prenota una visita allo studio FisioEVA in Via di Boccea 755, Roma Casalotti. Telefono, email, orari e mappa per raggiungerci.'
   );
 
   /**
@@ -52,7 +52,7 @@ export default function Contatti() {
             Prenota la tua <span className="text-brand-primary">visita</span>
           </>
         }
-        subtitle="Siamo in Via della Cellulosa 1, a Roma. Scrivici o chiamaci: ti richiamiamo per fissare insieme il primo appuntamento."
+        subtitle="Siamo in Via di Boccea 755, a Roma. Scrivici o chiamaci: ti richiamiamo per fissare insieme il primo appuntamento."
         breadcrumb="Contatti"
         image={immagini.sede}
       />
@@ -270,7 +270,7 @@ export default function Contatti() {
       {/* Map */}
       <section className="relative">
         <iframe
-          title="Mappa — FisioEVA, Via della Cellulosa 1, Roma"
+          title="Mappa — FisioEVA, Via di Boccea 755, Roma"
           src={`https://www.google.com/maps?q=${studio.mapsQuery}&output=embed`}
           className="w-full h-[420px] md:h-[520px] border-0 grayscale-[30%]"
           loading="lazy"

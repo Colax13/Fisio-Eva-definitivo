@@ -17,20 +17,20 @@ export const immagini = {
   bambini: unsplash('photo-1555252333-9f8e92e65df9'), // neonato
   anziani: unsplash('photo-1622253692010-333f2da6031d'), // paziente anziana seguita
   calma: unsplash('photo-1600334089648-b0d9d3028eb2'), // relax e benessere
-  sede: '/team/studio.png', // la sede di Via della Cellulosa 1
+  sede: '/team/studio.png', // la sede di Via di Boccea 755
 };
 
 export const studio = {
   name: 'FisioEVA',
   claim: 'Studio di Fisioterapia e Osteopatia',
-  address: 'Via della Cellulosa, 1',
+  address: 'Via di Boccea, 755',
   city: '00166 Roma',
-  zone: 'Casalotti · Uscita 2 Boccea',
+  zone: 'Casalotti',
   // Attenzione: bocc**e**a, non boccia. È un refuso ricorrente nei materiali.
   email: 'fisioeva.boccea@gmail.com',
   instagram: 'fisioeva_boccea',
   instagramUrl: 'https://www.instagram.com/fisioeva_boccea',
-  mapsQuery: 'Via+della+Cellulosa+1,+00166+Roma',
+  mapsQuery: 'Via+di+Boccea+755,+00166+Roma',
 
   /*
    * ⛔ NUMERO PROVVISORIO — da sostituire prima del go-live.
@@ -726,7 +726,7 @@ export const faq: Faq[] = [
     categoria: 'Generali',
     domanda: 'Dove si trova lo studio?',
     risposta:
-      'Siamo in Via della Cellulosa 1, a Roma, zona Casalotti (uscita 2 Boccea). Nel quartiere in cui lavoriamo da sempre.',
+      'Siamo in Via di Boccea 755, a Roma, zona Casalotti, all\'angolo con Via della Cellulosa. Nel quartiere in cui lavoriamo da sempre.',
   },
   {
     categoria: 'Generali',
@@ -823,7 +823,7 @@ export const gallery = [
   },
   {
     src: immagini.sede,
-    alt: 'La nuova sede di Via della Cellulosa 1',
+    alt: 'La nuova sede di Via di Boccea 755',
     categoria: 'Lo studio',
     span: 'wide' as const,
   },

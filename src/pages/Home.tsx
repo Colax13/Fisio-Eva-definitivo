@@ -20,7 +20,7 @@ import usePageMeta from '../hooks/usePageMeta';
 export default function Home() {
   usePageMeta(
     'FisioEVA — Studio di Fisioterapia e Osteopatia | Casalotti, Roma',
-    'Studio di fisioterapia e osteopatia in Via della Cellulosa 1, Roma. Terapia manuale, osteopatia, riabilitazione, salute della donna e osteopatia neonatale.'
+    'Studio di fisioterapia e osteopatia in Via di Boccea 755, Roma. Terapia manuale, osteopatia, riabilitazione, salute della donna e osteopatia neonatale.'
   );
 
   return (

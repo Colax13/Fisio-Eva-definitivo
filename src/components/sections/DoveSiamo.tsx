@@ -19,9 +19,8 @@ const MAPS = `https://www.google.com/maps/search/?api=1&query=${encodeURICompone
 
 const righe = [
   { voce: 'Indirizzo', valore: `${studio.address}, ${studio.city}` },
-  { voce: 'Zona', valore: `${studio.zone} — si arriva dal Raccordo, uscita Boccea` },
-  // ⛔ Orari non ancora forniti: niente valori inventati.
-  { voce: 'Orari', valore: 'In definizione' },
+  { voce: 'Come arrivare', valore: 'Tra Casalotti e Boccea, all\'angolo con Via della Cellulosa' },
+  { voce: 'Orari', valore: 'Lun–Ven 8:00–20:00 · Sab 8:00–14:00' },
 ];
 
 export default function DoveSiamo() {
@@ -63,7 +62,7 @@ export default function DoveSiamo() {
             </div>
 
             <h2 className="text-3xl md:text-4xl font-sans font-bold text-brand-dark leading-tight mb-10">
-              A Casalotti, in <span className="text-brand-primary">Via della Cellulosa</span>
+              A Casalotti, in <span className="text-brand-primary">Via di Boccea</span>
             </h2>
 
             <dl className="space-y-5 mb-10">
