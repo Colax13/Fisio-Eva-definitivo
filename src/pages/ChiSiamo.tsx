@@ -1,12 +1,11 @@
 import { motion } from 'motion/react';
-import { MapPin, Sparkles, HeartHandshake } from 'lucide-react';
-import PageHero from '../components/layout/PageHero';
+import { Sparkles, HeartHandshake } from 'lucide-react';
+import EvaHero from '../components/sections/EvaHero';
 import AboutSection from '../components/sections/AboutSection';
 import PercorsoCura from '../components/sections/PercorsoCura';
 import CtaBand from '../components/sections/CtaBand';
 import SectionHeading from '../components/ui/SectionHeading';
 import usePageMeta from '../hooks/usePageMeta';
-import { immagini } from '../data/site';
 
 const valori = [
   {
@@ -43,23 +42,7 @@ export default function ChiSiamo() {
 
   return (
     <>
-      <PageHero
-        eyebrow="La nostra storia"
-        /*
-         * "Le stesse mani, una nuova casa" guardava indietro, al vecchio
-         * studio, e chiedeva al paziente di sapere cosa c'era prima. Questo
-         * guarda avanti e dice la cosa che distingue davvero: uno studio di
-         * donne, con una specializzazione precisa.
-         */
-        title={
-          <>
-            Ci prendiamo cura <span className="text-brand-primary">della persona</span>
-          </>
-        }
-        subtitle="Tre professioniste che hanno aperto il loro studio nel quartiere in cui lavorano da sempre. Ci occupiamo di tutto ciò che riguarda il movimento, con un approccio che parte dall'ascolto e costruisce per ognuno un piano su misura."
-        breadcrumb="Chi Siamo"
-        image={immagini.trattamento}
-      />
+      <EvaHero />
 
       <AboutSection cta={null} />
 
