@@ -1,29 +1,25 @@
 import { useEffect, useState } from 'react';
-import { motion, useScroll, useTransform, useReducedMotion, type MotionValue } from 'motion/react';
+import { motion, useScroll, useMotionValueEvent, useReducedMotion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { immagini } from '../../data/site';
 
 /**
  * Apertura della pagina Chi Siamo: il logo che si apre nei nomi.
  *
- * Ricrea la scritta del marchio nello stile del logo (Nunito) — "Fisio" in
- * teal, "EVA" in lilla — ma disposta in verticale:
+ * All'apertura si vede "FisioEVA" grosso, tutto su una riga, nello stile e nei
+ * colori del logo (Fisio teal, EVA lilla). Appena si scorre un po', le tre
+ * lettere di EVA si spostano e vanno a comporre i nomi delle titolari —
+ * E → Elisa, V → Veronica, A → Azzurra — con "Fisio" che sale in cima. Sotto
+ * compare il sottotitolo. Scorrendo ancora si prosegue nella pagina.
  *
- *     Fisio
- *     E
- *     V
- *     A
+ * Il movimento delle lettere è reale: gli stessi elementi passano dalla riga
+ * orizzontale alla colonna grazie al `layout` di motion (FLIP). Non è agganciato
+ * pixel-per-pixel allo scroll (che dava attrito): una piccola soglia di scroll
+ * fa scattare la transizione, che poi si gioca liscia. È reversibile: tornando
+ * su, i nomi si richiudono in FisioEVA.
  *
- * Poi, scorrendo, ogni lettera di EVA "diventa" il nome della titolare:
- * E → Elisa, V → Veronica, A → Azzurra. Sono le iniziali, lette dall'alto
- * dicono ancora EVA, e insieme a "Fisio" ricompongono FisioEVA.
- *
- *  - Desktop: la crescita dei nomi è agganciata allo scroll (sticky). In tre
- *    scatti escono i tre nomi, poi il sottotitolo, poi si prosegue.
- *  - Mobile / reduced-motion: niente pin (lo scroll-scrubbing sul telefono dà
- *    attrito). I nomi si completano da soli, in sequenza.
- *
- * Driver: `scrollY` grezzo con soglie sul viewport — monotòno e stabile.
+ *  - Desktop: pin corto, la soglia di scroll apre/chiude.
+ *  - Mobile / reduced-motion: nessun pin, i nomi si compongono da soli.
  */
 
 const NOMI = [
@@ -32,11 +28,12 @@ const NOMI = [
   { iniziale: 'A', resto: 'zzurra' },
 ] as const;
 
-const SIZE = 'font-logo leading-[1.05] tracking-tight text-[3.25rem] sm:text-7xl md:text-8xl';
+const SIZE = 'font-logo leading-[1.02] tracking-tight text-[3rem] sm:text-7xl md:text-8xl';
 const FISIO = `${SIZE} font-medium text-brand-secondary`;
 const INIZIALE = `${SIZE} font-medium text-brand-primary`;
 const RESTO = `${SIZE} font-light text-white`;
 const SOTTOTITOLO = 'Tre professioniste, un unico modo di prendersi cura di te.';
+const LAYOUT_T = { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const };
 
 function useIsDesktop() {
   const [isDesktop, setIsDesktop] = useState(false);
@@ -80,9 +77,49 @@ function Sfondo() {
   );
 }
 
-function Raccordo() {
+/**
+ * La scritta che si apre. `aperto` decide se è "FisioEVA" (riga) o i nomi
+ * (colonna). Gli stessi elementi si spostano con `layout`.
+ */
+function Marchio({ aperto }: { aperto: boolean }) {
   return (
-    <>
+    <div className="flex justify-center" role="img" aria-label="FisioEVA: Elisa, Veronica e Azzurra">
+      <motion.div
+        layout
+        transition={LAYOUT_T}
+        className={`flex ${aperto ? 'flex-col items-start gap-1 md:gap-2' : 'items-baseline'}`}
+      >
+        <motion.span layout transition={LAYOUT_T} className={FISIO}>
+          Fisio
+        </motion.span>
+        {NOMI.map((n) => (
+          <motion.div layout transition={LAYOUT_T} key={n.iniziale} className="flex items-baseline">
+            <span className={INIZIALE}>{n.iniziale}</span>
+            {aperto && (
+              <motion.span
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.28 }}
+                className={RESTO}
+              >
+                {n.resto}
+              </motion.span>
+            )}
+          </motion.div>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+function Raccordo({ visibile, reduce }: { visibile: boolean; reduce: boolean }) {
+  return (
+    <motion.div
+      initial={false}
+      animate={{ opacity: visibile ? 1 : 0, y: visibile ? 0 : 20 }}
+      transition={{ duration: 0.5, delay: visibile && !reduce ? 0.35 : 0 }}
+      aria-hidden={!visibile}
+    >
       <p className="text-lead mx-auto mt-10 max-w-2xl text-center font-light text-gray-200 md:mt-12">
         {SOTTOTITOLO}
       </p>
@@ -99,114 +136,54 @@ function Raccordo() {
         <span className="h-1 w-1 rounded-full bg-brand-primary" aria-hidden="true"></span>
         <span className="text-brand-primary">Chi Siamo</span>
       </nav>
-    </>
+    </motion.div>
   );
 }
 
-/** Il resto del nome che cresce dall'iniziale man mano che scorri [da, a] (px). */
-function RestoScroll({
-  scrollY,
-  da,
-  a,
-  children,
-}: {
-  scrollY: MotionValue<number>;
-  da: number;
-  a: number;
-  children: React.ReactNode;
-}) {
-  const opacity = useTransform(scrollY, [da, a], [0, 1]);
-  const x = useTransform(scrollY, [da, a], [-14, 0]);
-  return (
-    <motion.span style={{ opacity, x }} className={RESTO}>
-      {children}
-    </motion.span>
-  );
-}
-
-/** La scritta "Fisio / EVA", con EVA che diventa i nomi. `progress` opzionale
- *  per la versione desktro agganciata allo scroll. */
-function Marchio({
-  scrollY,
-  vh,
-  reduce,
-}: {
-  scrollY?: MotionValue<number>;
-  vh: number;
-  reduce: boolean;
-}) {
-  return (
-    <div className="flex justify-center" role="img" aria-label="FisioEVA: Elisa, Veronica e Azzurra">
-      <div className="inline-flex flex-col items-start gap-1 md:gap-2">
-        <span className={FISIO}>Fisio</span>
-        {NOMI.map((n, i) => (
-          <div key={n.iniziale} className="flex items-baseline">
-            <span className={INIZIALE}>{n.iniziale}</span>
-            {scrollY ? (
-              <RestoScroll scrollY={scrollY} da={(0.2 + i * 0.45) * vh} a={(0.55 + i * 0.45) * vh}>
-                {n.resto}
-              </RestoScroll>
-            ) : (
-              <motion.span
-                initial={reduce ? false : { opacity: 0, x: -14 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: reduce ? 0 : 0.4 + i * 0.3 }}
-                className={RESTO}
-              >
-                {n.resto}
-              </motion.span>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/** Versione desktop: EVA cresce nei nomi agganciata allo scroll, con pin. */
+/** Desktop: pin corto, una soglia di scroll apre/chiude la scritta. */
 function HeroScroll({ vh }: { vh: number }) {
   const { scrollY } = useScroll();
-  // Il sottotitolo entra dopo il terzo nome (~1.45vh di scroll).
-  const raccordoOpacity = useTransform(scrollY, [1.6 * vh, 1.95 * vh], [0, 1]);
-  const raccordoY = useTransform(scrollY, [1.6 * vh, 1.95 * vh], [28, 0]);
+  const [aperto, setAperto] = useState(false);
+
+  useMotionValueEvent(scrollY, 'change', (v) => {
+    const deveAprirsi = v > 0.16 * vh;
+    setAperto((prev) => (prev === deveAprirsi ? prev : deveAprirsi));
+  });
+
   return (
-    <div className="relative h-[320vh]">
+    <div className="relative h-[180vh]">
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden px-5 sm:px-6">
         <Sfondo />
-        <div className="relative z-10 w-full max-w-4xl">
+        <div className="relative z-10 w-full max-w-5xl">
           <p className="text-eyebrow mb-8 text-center font-semibold tracking-wider text-brand-primary uppercase md:mb-10">
             Chi siamo
           </p>
-          <Marchio scrollY={scrollY} vh={vh} reduce={false} />
-          <motion.div style={{ opacity: raccordoOpacity, y: raccordoY }}>
-            <Raccordo />
-          </motion.div>
+          <Marchio aperto={aperto} />
+          <Raccordo visibile={aperto} reduce={false} />
         </div>
       </div>
     </div>
   );
 }
 
-/** Versione mobile / reduced-motion: nomi a tempo, senza pin. */
-function HeroTimed({ reduce, vh }: { reduce: boolean; vh: number }) {
-  const ritardoRaccordo = reduce ? 0 : NOMI.length * 0.3 + 0.5;
+/** Mobile / reduced-motion: nessun pin, i nomi si compongono da soli. */
+function HeroTimed({ reduce }: { reduce: boolean }) {
+  const [aperto, setAperto] = useState(reduce);
+  useEffect(() => {
+    if (reduce) return;
+    const t = setTimeout(() => setAperto(true), 1100);
+    return () => clearTimeout(t);
+  }, [reduce]);
+
   return (
     <section className="relative flex min-h-[88vh] items-center justify-center overflow-hidden px-5 pt-28 pb-16 sm:px-6">
       <Sfondo />
-      <div className="relative z-10 w-full max-w-4xl">
+      <div className="relative z-10 w-full max-w-5xl">
         <p className="text-eyebrow mb-8 text-center font-semibold tracking-wider text-brand-primary uppercase">
           Chi siamo
         </p>
-        <Marchio vh={vh} reduce={reduce} />
-        <motion.div
-          initial={reduce ? false : { opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: ritardoRaccordo }}
-        >
-          <Raccordo />
-        </motion.div>
+        <Marchio aperto={aperto} />
+        <Raccordo visibile={aperto} reduce={reduce} />
       </div>
     </section>
   );
@@ -220,5 +197,5 @@ export default function EvaHero() {
   if (isDesktop && !reduce) {
     return <HeroScroll vh={vh} />;
   }
-  return <HeroTimed reduce={!!reduce} vh={vh} />;
+  return <HeroTimed reduce={!!reduce} />;
 }
