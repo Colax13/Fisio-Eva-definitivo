@@ -37,40 +37,40 @@ export default function Footer() {
           {/* Contatti tutti allineati a sinistra, una riga per voce. */}
           <div>
             <h2 className="text-brand-dark font-sans font-bold text-sm mb-5">Contatti</h2>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-1 text-sm">
               <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary" />
                 <span className="text-gray-600 font-light">
                   {studio.address}
                   <br />
                   {studio.city}
                 </span>
               </li>
-              <li className="flex items-start gap-3">
-                <Phone className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
+              <li className="flex items-center gap-3">
+                <Phone className="h-4 w-4 shrink-0 text-brand-primary" />
                 <a
                   href={studio.phoneHref}
-                  className="text-gray-600 font-light hover:text-brand-dark transition-colors"
+                  className="inline-flex min-h-11 items-center font-light text-gray-600 transition-colors hover:text-brand-dark"
                 >
                   {studio.phone}
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <Mail className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
+              <li className="flex items-center gap-3">
+                <Mail className="h-4 w-4 shrink-0 text-brand-primary" />
                 <a
                   href={`mailto:${studio.email}`}
-                  className="text-gray-600 font-light hover:text-brand-dark transition-colors break-all"
+                  className="inline-flex min-h-11 items-center font-light break-all text-gray-600 transition-colors hover:text-brand-dark"
                 >
                   {studio.email}
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <Instagram className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
+              <li className="flex items-center gap-3">
+                <Instagram className="h-4 w-4 shrink-0 text-brand-primary" />
                 <a
                   href={studio.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 font-light hover:text-brand-dark transition-colors"
+                  className="inline-flex min-h-11 items-center font-light text-gray-600 transition-colors hover:text-brand-dark"
                 >
                   @{studio.instagram}
                 </a>
@@ -86,7 +86,7 @@ export default function Footer() {
                 <li key={voce.to}>
                   <Link
                     to={voce.to}
-                    className="text-sm text-gray-600 font-light hover:text-brand-dark transition-colors"
+                    className="inline-flex min-h-9 items-center text-sm font-light text-gray-600 transition-colors hover:text-brand-dark"
                   >
                     {voce.label}
                   </Link>
@@ -99,7 +99,8 @@ export default function Footer() {
         <div className="mt-12 pt-6 border-t border-brand-dark/10 text-xs text-gray-500">
           <p>
             © {new Date().getFullYear()} {studio.name} — {studio.claim}.
-          </p>
+          </p>
+
         </div>
       </div>
     </footer>

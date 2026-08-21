@@ -134,7 +134,7 @@ function Raccordo({ visibile, reduce }: { visibile: boolean; reduce: boolean }) 
           Home
         </Link>
         <span className="h-1 w-1 rounded-full bg-brand-primary" aria-hidden="true"></span>
-        <span className="text-brand-primary">Chi Siamo</span>
+        <span className="text-brand-primary-chiaro">Chi Siamo</span>
       </nav>
     </motion.div>
   );
@@ -155,7 +155,7 @@ function HeroScroll({ vh }: { vh: number }) {
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden px-5 sm:px-6">
         <Sfondo />
         <div className="relative z-10 w-full max-w-5xl">
-          <p className="text-eyebrow mb-8 text-center font-semibold tracking-wider text-brand-primary uppercase md:mb-10">
+          <p className="text-eyebrow mb-8 text-center font-semibold tracking-wider text-brand-primary-chiaro uppercase md:mb-10">
             Chi siamo
           </p>
           <Marchio aperto={aperto} />
@@ -179,7 +179,7 @@ function HeroTimed({ reduce }: { reduce: boolean }) {
     <section className="relative flex min-h-[88vh] items-center justify-center overflow-hidden px-5 pt-28 pb-16 sm:px-6">
       <Sfondo />
       <div className="relative z-10 w-full max-w-5xl">
-        <p className="text-eyebrow mb-8 text-center font-semibold tracking-wider text-brand-primary uppercase">
+        <p className="text-eyebrow mb-8 text-center font-semibold tracking-wider text-brand-primary-chiaro uppercase">
           Chi siamo
         </p>
         <Marchio aperto={aperto} />

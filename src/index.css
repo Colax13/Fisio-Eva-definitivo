@@ -1,4 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Nunito:wght@300;500&display=swap');
+/*
+ * I font non si caricano piu' da qui.
+ *
+ * Un `@import` dentro un foglio di stile e' l'ultimo anello di una catena:
+ * il browser scarica il CSS, ci trova dentro il rimando a Google, apre una
+ * seconda connessione, scarica il secondo CSS e solo allora i font. Fino a
+ * quel momento il testo resta invisibile. La dichiarazione e' passata in
+ * `index.html`, dove parte subito e con un `preconnect` davanti.
+ */
 @import "tailwindcss";
 
 @theme {
@@ -13,6 +21,13 @@
    */
   --color-brand-primary-ink: #8b5c92;
   --color-brand-secondary-ink: #2c7d6f;
+  /*
+   * Il rovescio del discorso: il lilla del marchio su fondo scuro arriva a
+   * 4.4:1, appena sotto la soglia che serve al corpo piccolo (4.5:1). Gli
+   * occhielli sono tutti a 12px maiuscoletto, cioe' il caso peggiore. Questa
+   * variante schiarita passa a 4.7:1 e a occhio resta lo stesso colore.
+   */
+  --color-brand-primary-chiaro: #c69ecb;
 
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   /* Il font del logo: EVA e "Fisio" sono in Nunito. Serve solo dove vogliamo

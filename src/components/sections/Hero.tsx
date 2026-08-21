@@ -40,7 +40,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-6"
           >
-            <span className="text-brand-primary text-eyebrow font-semibold uppercase">
+            <span className="text-brand-primary-chiaro text-eyebrow font-semibold uppercase">
               {studio.claim}
             </span>
           </motion.div>

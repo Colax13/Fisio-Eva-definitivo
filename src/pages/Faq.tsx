@@ -72,7 +72,7 @@ export default function Faq() {
                     <span className="flex-1">
                       <span
                         className={`text-eyebrow mb-1.5 block font-semibold uppercase ${
-                          isOpen ? 'text-brand-primary' : 'text-brand-secondary-ink'
+                          isOpen ? 'text-brand-primary-chiaro' : 'text-brand-secondary-ink'
                         }`}
                       >
                         {item.categoria}

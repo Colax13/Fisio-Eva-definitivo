@@ -75,7 +75,7 @@ export default function Gallery() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-brand-dark/10 to-transparent opacity-70 group-hover:opacity-95 transition-opacity duration-300"></div>
                   <figcaption className="absolute bottom-0 left-0 right-0 p-6">
-                    <span className="text-eyebrow font-semibold text-brand-primary uppercase">
+                    <span className="text-eyebrow font-semibold text-brand-primary-chiaro uppercase">
                       {shot.categoria}
                     </span>
                     <p className="text-white font-light text-sm mt-1 leading-snug">{shot.alt}</p>

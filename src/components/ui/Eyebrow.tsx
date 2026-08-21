@@ -1,7 +1,11 @@
 type Props = {
   children: string;
-  /** Allineamento da desktop in su. Sul telefono è sempre centrato. */
-  align?: 'left' | 'center';
+  /**
+   * `center` centra ovunque, `left` centra sul telefono e va a sinistra da
+   * desktop. `start` sta a sinistra su tutte le larghezze: serve dentro le
+   * card, dove il testo e' una colonna sua e centrarlo lascia bordi frastagliati.
+   */
+  align?: 'left' | 'center' | 'start';
   tone?: 'dark' | 'light';
   accent?: 'primary' | 'secondary';
   className?: string;
@@ -29,7 +33,8 @@ export default function Eyebrow({
         ? 'text-brand-primary-ink'
         : 'text-brand-secondary-ink';
 
-  const allineamento = align === 'center' ? 'text-center' : 'text-center lg:text-left';
+  const allineamento =
+    align === 'center' ? 'text-center' : align === 'start' ? 'text-left' : 'text-center lg:text-left';
 
   return (
     <p className={`${label} ${allineamento} text-eyebrow font-semibold uppercase ${className}`}>

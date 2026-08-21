@@ -1,9 +1,15 @@
 import { useState, type FormEvent } from 'react';
-import { Clock, Instagram, Mail, MapPin, Phone, Send } from 'lucide-react';
+import { ArrowUpRight, Clock, Instagram, Mail, MapPin, Phone, Send } from 'lucide-react';
 import { motion } from 'motion/react';
 import PageHero from '../components/layout/PageHero';
 import usePageMeta from '../hooks/usePageMeta';
+import ArrowButton from '../components/ui/ArrowButton';
 import { immagini, servizi, studio, team } from '../data/site';
+
+/** Stessa destinazione del riquadro "Dove siamo" in home. */
+const MAPS_ESTERNA = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${studio.address}, ${studio.city}`
+)}`;
 
 export default function Contatti() {
   const [nome, setNome] = useState('');
@@ -40,6 +46,12 @@ export default function Contatti() {
     )}&body=${encodeURIComponent(corpo)}`;
   };
 
+  /*
+   * `name` e `autoComplete` non sono formalita': senza, il telefono non
+   * propone nome, mail e numero gia' salvati, e su una tastiera piccola
+   * riscriverli a mano e' la ragione piu' comune per cui un modulo di contatto
+   * viene abbandonato a meta'.
+   */
   const inputClass =
     'w-full bg-white border border-gray-200 rounded-2xl px-5 py-3.5 text-sm text-brand-dark placeholder:text-gray-400 focus:outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20 transition-colors';
 
@@ -72,7 +84,7 @@ export default function Contatti() {
             transition={{ duration: 0.7 }}
           >
             <div className="flex items-center gap-4 mb-6">
-              <span className="text-brand-primary text-xs tracking-widest uppercase font-medium">
+              <span className="text-brand-primary-chiaro text-xs tracking-widest uppercase font-medium">
                 Dove trovarci
               </span>
             </div>
@@ -179,7 +191,7 @@ export default function Contatti() {
 
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-5">
-                  <span className="text-brand-primary text-xs tracking-widest uppercase font-medium">
+                  <span className="text-brand-primary-chiaro text-xs tracking-widest uppercase font-medium">
                     Scrivici
                   </span>
                 </div>
@@ -187,7 +199,7 @@ export default function Contatti() {
                 <h2 className="text-3xl md:text-4xl font-sans font-light text-white leading-tight mb-3">
                   Raccontaci <span className="text-brand-primary font-medium">cosa ti succede</span>
                 </h2>
-                <p className="text-gray-400 font-light text-sm leading-relaxed mb-8">
+                <p className="mb-8 text-sm leading-relaxed font-light text-gray-300">
                   Compila i campi: si aprirà il tuo programma di posta con il messaggio già pronto da
                   inviare.
                 </p>
@@ -196,6 +208,8 @@ export default function Contatti() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <input
                       required
+                      name="nome"
+                      autoComplete="name"
                       value={nome}
                       onChange={(e) => setNome(e.target.value)}
                       placeholder="Nome e cognome *"
@@ -205,6 +219,9 @@ export default function Contatti() {
                     <input
                       required
                       type="email"
+                      name="email"
+                      autoComplete="email"
+                      inputMode="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Email *"
@@ -216,6 +233,9 @@ export default function Contatti() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <input
                       type="tel"
+                      name="telefono"
+                      autoComplete="tel"
+                      inputMode="tel"
                       value={telefono}
                       onChange={(e) => setTelefono(e.target.value)}
                       placeholder="Telefono"
@@ -223,6 +243,7 @@ export default function Contatti() {
                       className={inputClass}
                     />
                     <select
+                      name="servizio"
                       value={servizio}
                       onChange={(e) => setServizio(e.target.value)}
                       aria-label="Trattamento di interesse"
@@ -240,6 +261,7 @@ export default function Contatti() {
 
                   <textarea
                     required
+                    name="messaggio"
                     rows={5}
                     value={messaggio}
                     onChange={(e) => setMessaggio(e.target.value)}
@@ -256,7 +278,7 @@ export default function Contatti() {
                     <Send className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </button>
 
-                  <p className="text-gray-500 text-xs font-light leading-relaxed pt-1">
+                  <p className="pt-1 text-xs leading-relaxed font-light text-gray-300">
                     Inviando la richiesta acconsenti al trattamento dei tuoi dati per essere
                     ricontattato. Non li usiamo per nient'altro.
                   </p>
@@ -267,17 +289,71 @@ export default function Contatti() {
         </div>
       </section>
 
-      {/* Map */}
-      <section className="relative">
+      {/* Mappa */}
+      <MappaSuRichiesta />
+    </>
+  );
+}
+
+/**
+ * La mappa, ma solo se la si chiede.
+ *
+ * L'iframe di Google partiva da solo al caricamento della pagina. Vuol dire
+ * che Google riceveva l'indirizzo IP di ogni visitatore e piazzava i suoi
+ * cookie prima che qualcuno avesse acconsentito a niente — e il banner di
+ * consenso su questo sito non c'e' ancora. La sezione "Dove siamo" in home
+ * aveva gia' preso la strada giusta, con un semplice link; qui la pagina
+ * faceva il contrario, nella stessa visita.
+ *
+ * Cosi' si tiene la mappa dov'e' utile — nella pagina dei contatti — e la si
+ * carica al primo clic. Chi vuole solo l'indirizzo lo legge sopra e non paga
+ * niente; chi vuole la mappa la apre e sa di averla aperta.
+ */
+function MappaSuRichiesta() {
+  const [caricata, setCaricata] = useState(false);
+
+  return (
+    <section className="relative" aria-label="Mappa dello studio">
+      {caricata ? (
         <iframe
           title="Mappa — FisioEVA, Via di Boccea 755, Roma"
           src={`https://www.google.com/maps?q=${studio.mapsQuery}&output=embed`}
-          className="w-full h-[420px] md:h-[520px] border-0 grayscale-[30%]"
+          className="h-[420px] w-full border-0 grayscale-[30%] md:h-[520px]"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           allowFullScreen
         ></iframe>
-      </section>
-    </>
+      ) : (
+        <div className="relative flex h-[420px] w-full flex-col items-center justify-center gap-5 overflow-hidden bg-brand-dark px-6 text-center md:h-[520px]">
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute -top-[30%] -left-[10%] h-[120%] w-[55%] rounded-full bg-brand-secondary/20 blur-[120px]"></div>
+            <div className="absolute -right-[10%] -bottom-[30%] h-[120%] w-[55%] rounded-full bg-brand-primary/20 blur-[120px]"></div>
+          </div>
+
+          <span className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-brand-primary">
+            <MapPin className="h-7 w-7" />
+          </span>
+
+          <div className="relative">
+            <p className="font-sans text-xl font-bold text-white">
+              {studio.address} — {studio.city}
+            </p>
+            <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed font-light text-gray-300">
+              La mappa arriva da Google e, per mostrarla, il tuo browser deve
+              contattare i loro server. La carichiamo solo se ce lo chiedi.
+            </p>
+          </div>
+
+          <div className="relative flex w-full max-w-md flex-col items-center gap-3 sm:w-auto sm:flex-row">
+            <ArrowButton onClick={() => setCaricata(true)} variant="ghost" icon={MapPin}>
+              Carica la mappa
+            </ArrowButton>
+            <ArrowButton href={MAPS_ESTERNA} variant="ghostSecondary" icon={ArrowUpRight}>
+              Aprila su Google Maps
+            </ArrowButton>
+          </div>
+        </div>
+      )}
+    </section>
   );
 }

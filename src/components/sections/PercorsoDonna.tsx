@@ -28,7 +28,7 @@ export default function PercorsoDonna() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           className="max-w-xl"
         >
-          <p className="mb-4 text-eyebrow font-semibold uppercase tracking-wider text-brand-primary">
+          <p className="mb-4 text-eyebrow font-semibold uppercase tracking-wider text-brand-primary-chiaro">
             Un percorso dedicato
           </p>
 

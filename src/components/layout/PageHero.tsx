@@ -87,7 +87,7 @@ export default function PageHero({ eyebrow, title, subtitle, breadcrumb, image }
             Home
           </Link>
           <span className="h-1 w-1 rounded-full bg-brand-primary" aria-hidden="true"></span>
-          <span className="text-brand-primary">{breadcrumb}</span>
+          <span className="text-brand-primary-chiaro">{breadcrumb}</span>
         </motion.nav>
       </div>
     </section>

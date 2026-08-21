@@ -2,14 +2,126 @@
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <meta name="description" content="FisioEVA — Studio di Fisioterapia e Osteopatia in Via di Boccea 755, Roma. Terapia manuale, osteopatia, riabilitazione e terapie strumentali." />
-    <title>FisioEVA — Studio di Fisioterapia e Osteopatia | Roma</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!--
+      Favicon: la sola ballerina, non il logo intero.
+      `logo.svg` contiene anche la scritta "FisioEVA" e la riga di didascalia
+      sotto: in una scheda del browser, o accanto a un risultato di Google, quel
+      disegno viene rimpicciolito a 16 o 32 pixel e le due scritte diventano
+      macchie grigie illeggibili. `favicon.svg` tiene solo la figura.
+
+      L'ordine conta: i browser moderni prendono l'SVG, gli altri e Google
+      ricadono sull'.ico (che dentro ha i formati 16, 32 e 48).
+    -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#fafafa" />
+
+    <!--
+      I font stavano in un `@import` dentro `index.css`. Cosi' il browser deve
+      prima scaricare il CSS, poi scoprirci dentro il rimando a Google, poi
+      scaricare quello, poi i font: quattro viaggi in fila prima di poter
+      disegnare una parola. Dichiarati qui partono subito, e il `preconnect`
+      apre la connessione mentre il resto della pagina e' ancora in arrivo.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Nunito:wght@300;500&display=swap"
+    />
+
+    <title>FisioEVA — Studio di Fisioterapia e Osteopatia | Roma Casalotti</title>
+    <meta
+      name="description"
+      content="FisioEVA — Studio di Fisioterapia e Osteopatia in Via di Boccea 755, Roma. Terapia manuale, osteopatia, riabilitazione e terapie strumentali."
+    />
+
+    <!--
+      ⛔ Il sito resta chiuso ai motori finche' non apre: privacy e cookie policy
+      non ci sono ancora e mancano i dati legali obbligatori. Il blocco e'
+      dichiarato in tre punti — qui, in `public/robots.txt` e nell'header
+      `X-Robots-Tag` di `vercel.json` — e al go-live vanno tolti tutti e tre.
+    -->
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!--
+      Anteprima nelle condivisioni (WhatsApp, Facebook, LinkedIn).
+      ⛔ `og:url` punta al dominio previsto, `fisioeva.it`, che non e' ancora
+      registrato: va confermato prima di pubblicare.
+    -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="FisioEVA" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:url" content="https://www.fisioeva.it/" />
+    <meta
+      property="og:title"
+      content="FisioEVA — Studio di Fisioterapia e Osteopatia | Roma Casalotti"
+    />
+    <meta
+      property="og:description"
+      content="Fisioterapia, osteopatia e riabilitazione in Via di Boccea 755, Roma. Un percorso costruito su di te, in ogni fase della vita."
+    />
+    <meta property="og:image" content="https://www.fisioeva.it/og-fisioeva.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="FisioEVA — Studio di Fisioterapia e Osteopatia" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!--
+      Scheda dello studio per i motori di ricerca: e' quello che alimenta il
+      riquadro laterale con indirizzo, orari e telefono su una ricerca locale.
+      ⛔ `telephone` e' ancora il numero provvisorio di `src/data/site.ts`, e
+      va sostituito con quello vero insieme a quello del sito.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Physiotherapy",
+        "name": "FisioEVA",
+        "description": "Studio di Fisioterapia e Osteopatia a Roma Casalotti: terapia manuale, osteopatia, riabilitazione, salute della donna e osteopatia neonatale.",
+        "url": "https://www.fisioeva.it/",
+        "image": "https://www.fisioeva.it/og-fisioeva.png",
+        "logo": "https://www.fisioeva.it/icon-512.png",
+        "telephone": "+39 06 6155 0000",
+        "email": "fisioeva.boccea@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Via di Boccea, 755",
+          "addressLocality": "Roma",
+          "postalCode": "00166",
+          "addressRegion": "RM",
+          "addressCountry": "IT"
+        },
+        "areaServed": "Roma",
+        "sameAs": ["https://www.instagram.com/fisioeva_boccea"],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "20:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "08:00",
+            "closes": "14:00"
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      Per usare il sito di FisioEVA serve JavaScript attivo. Puoi comunque
+      chiamarci allo <a href="tel:+390661550000">+39 06 6155 0000</a> o scrivere a
+      <a href="mailto:fisioeva.boccea@gmail.com">fisioeva.boccea@gmail.com</a>.
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

@@ -10,8 +10,26 @@ type Props = {
 
 export default function AboutSection({ overlap = false, cta = { label: 'Scopri di più', to: '/chi-siamo' } }: Props) {
   return (
+    /*
+     * `overflow-x-clip` non e' decorativo: e' la riparazione di un bug che si
+     * vedeva solo sul telefono.
+     *
+     * Le due colonne entrano scivolando di 40px sull'asse orizzontale, e
+     * `initial` e' applicato dal primo istante — anche prima che la sezione
+     * arrivi in vista. Con una colonna sola quel blocco e' largo quanto il
+     * contenitore, quindi i 40px di scarto uscivano dal bordo destro della
+     * pagina: 406px di contenuto su uno schermo da 390. A quel punto il
+     * browser mobile allarga il blocco contenitore per contenerli, e tutto
+     * cio' che e' `fixed` — la navbar — viene disegnato su 406px. Da qui il
+     * difetto segnalato: la barra in alto sembrava spostata a destra e il
+     * bottone del menu finiva mezzo fuori schermo.
+     *
+     * `clip` taglia lo sconfinamento qui dentro senza creare un contenitore di
+     * scorrimento (a differenza di `hidden`), quindi l'animazione resta e la
+     * pagina non si allarga piu'.
+     */
     <section
-      className={`relative bg-brand-light/75 backdrop-blur-[2px] z-20 px-6 py-24 md:py-32 ${
+      className={`relative z-20 overflow-x-clip bg-brand-light/75 px-6 py-24 backdrop-blur-[2px] md:py-32 ${
         overlap ? 'rounded-t-[3rem] -mt-8 shadow-[0_-10px_40px_rgba(0,0,0,0.1)]' : ''
       }`}
     >
