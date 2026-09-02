@@ -54,24 +54,11 @@ export const team = [
     name: 'Dott.ssa Azzurra De Angelis',
     short: 'Azzurra',
     role: 'Fisioterapista · Osteopata D.O.',
-    // Sintesi del curriculum fornito dallo studio. La specializzazione sulla
-    // donna non è una scelta commerciale: nasce dalla tesi di osteopatia, e
-    // dirlo vale più di qualsiasi elenco di corsi.
+    // Curriculum fornito dallo studio: la formazione post-laurea è riportata
+    // per esteso su richiesta di Elisa, perché è il percorso che spiega come
+    // lavora — dalla postura globale al movimento consapevole.
     description:
-      'Si è laureata in Fisioterapia nel 2011 all\'Università Cattolica del Sacro Cuore con 110/110 e lode, con una tesi in riabilitazione neurologica. Ha proseguito con il Master in Rieducazione Posturale Globale secondo il metodo Souchard e la formazione superiore per le patologie cranio-cervicali, poi con la specializzazione in linfodrenaggio manuale. Ha completato gli studi in Osteopatia alla scuola EDUCAM, di nuovo con 110/110 e lode: la tesi, sul trattamento osteopatico della cicatrice da taglio cesareo, è il punto da cui è partito il suo lavoro con le donne in gravidanza e nel post-parto.',
-    photo: '/team/azzurra.png',
-    accent: 'secondary' as const,
-  },
-  {
-    slug: 'elisa-de-rubeis',
-    name: 'Dott.ssa Elisa De Rubeis',
-    short: 'Elisa',
-    role: 'Fisioterapista · Osteopata',
-    // Sintesi del curriculum fornito dallo studio: stessa lunghezza e stesso
-    // registro della bio di Azzurra. L'elenco completo dei corsi resta nel
-    // materiale interno — qui conta cosa sa fare, non quante attestazioni ha.
-    description:
-      'Si è laureata in Fisioterapia nel 2004 con 110/110 e lode, con una tesi sul legame tra emozione, postura e respiro — il filo che ha poi seguito in tutta la sua formazione. Ha completato il triennio di Rieducazione Posturale Globale con il metodo Souchard, il biennio di Terapia Manuale secondo Maitland e i livelli di approccio cranio-sacrale Upledger e di manipolazione fasciale. Lavora con il Pilates applicato alla riabilitazione della colonna e con la ginnastica ipopressiva.',
+      'Si è laureata in Fisioterapia nel 2004 con 110/110 e lode, con una tesi sul legame tra emozione, postura e respiro — il filo che ha poi seguito in tutta la sua formazione. Ha proseguito con il master in Rieducazione Posturale Globale (metodo Souchard), con il corso annuale in terapia manuale secondo il concetto Maitland, con un primo livello di cranio-sacrale e con due livelli di manipolazione fasciale viscerale secondo il metodo Upledger. Ha seguito il corso di «Corpo e Coscienza» di G. Courchinoux, ginnastica posturale di gruppo che integra sistemi occidentali con tecniche ed esercizi orientali. Lavora con il Pilates applicato alla colonna e ha seguito corsi post-graduate formativi di ginnastica ipopressiva post-partum (tecnica Caufriez e metodo De Gasquet). Attualmente è in formazione quadriennale (al terzo anno) del metodo Feldenkrais. È abilitata all’insegnamento delle C.A.M. (Conoscersi Attraverso il Movimento), metodo volto alla scoperta del movimento fisiologico attraverso esplorazioni del sistema nervoso che organizza in maniera naturale il movimento rendendolo efficiente e piacevole.',
     photo: '/team/elisa.png',
     accent: 'primary' as const,
   },
