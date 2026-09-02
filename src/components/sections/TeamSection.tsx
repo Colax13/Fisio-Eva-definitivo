@@ -1,5 +1,7 @@
 
-import { motion } from 'motion/react';
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
+import { ChevronDown } from 'lucide-react';
 import { accoglienza, team } from '../../data/site';
 import SectionHeading from '../ui/SectionHeading';
 import DatoMancante from '../ui/DatoMancante';
@@ -33,6 +35,10 @@ type Props = {
 };
 
 export default function TeamSection({ showHeading = true }: Props) {
+  // Quale percorso è aperto per esteso. Uno alla volta: due schede lunghe
+  // affiancate ricreerebbero lo squilibrio che questo serve a togliere.
+  const [aperta, setAperta] = useState<string | null>(null);
+
   return (
     <section className="relative bg-brand-light overflow-hidden py-24 px-6">
       <div className="absolute inset-0 pointer-events-none">
@@ -98,9 +104,47 @@ export default function TeamSection({ showHeading = true }: Props) {
                 </p>
                 <div className={`w-8 h-[2px] ${a.bg} mb-5 group-hover:w-14 transition-all duration-500`}></div>
 
-                <p className="text-gray-600 font-light text-sm leading-relaxed flex-1">
-                  {membro.description}
-                </p>
+                {/* Chi ha una versione breve mostra quella, con il percorso
+                    completo a un clic. Chi non ce l'ha mostra la sua e basta. */}
+                {'descrizioneBreve' in membro && membro.descrizioneBreve ? (
+                  <div className="flex flex-1 flex-col">
+                    <p className="text-gray-600 font-light text-sm leading-relaxed">
+                      {aperta === membro.slug ? membro.description : membro.descrizioneBreve}
+                    </p>
+
+                    <AnimatePresence initial={false}>
+                      {aperta !== membro.slug && (
+                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                          <button
+                            type="button"
+                            onClick={() => setAperta(membro.slug)}
+                            aria-expanded={false}
+                            className={`mt-4 inline-flex items-center gap-1.5 text-xs font-medium ${a.text} transition-opacity hover:opacity-70`}
+                          >
+                            Il percorso completo
+                            <ChevronDown className="h-3.5 w-3.5" />
+                          </button>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    {aperta === membro.slug && (
+                      <button
+                        type="button"
+                        onClick={() => setAperta(null)}
+                        aria-expanded
+                        className={`mt-4 inline-flex items-center gap-1.5 text-xs font-medium ${a.text} transition-opacity hover:opacity-70`}
+                      >
+                        Chiudi
+                        <ChevronDown className="h-3.5 w-3.5 rotate-180" />
+                      </button>
+                    )}
+                  </div>
+                ) : (
+                  <p className="text-gray-600 font-light text-sm leading-relaxed flex-1">
+                    {membro.description}
+                  </p>
+                )}
 
               </motion.article>
             );
