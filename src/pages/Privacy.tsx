@@ -66,7 +66,10 @@ export default function Privacy() {
             <li>
               Punto di contatto: <a href={`mailto:${legale.emailPrivacy}`}>{legale.emailPrivacy}</a>
             </li>
-            <li>PEC: {legale.pec ?? <DatoMancante id="PEC" />}</li>
+            {/* La PEC compare solo se esiste: una riga "in aggiornamento" a
+                tempo indeterminato su un documento legale è peggio che non
+                averla. */}
+            {legale.pec ? <li>PEC: {legale.pec}</li> : null}
             <li>
               Telefono: <a href={studio.phoneHref}>{studio.phone}</a>
             </li>

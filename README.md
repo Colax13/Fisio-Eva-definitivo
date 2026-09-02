@@ -89,7 +89,7 @@ Ancora da avere dallo studio:
 
 1. **Partita IVA di Veronica Mirarchi** e **codice fiscale di tutte e tre** (`legale.contitolari` in `site.ts`). Quelle di Elisa e Azzurra sono inserite e la cifra di controllo torna.
 2. **Numero di albo di Veronica** e, per tutte e tre, **l'Ordine TSRM-PSTRP presso cui sono iscritte**: l'albo è provinciale, quindi il solo numero non identifica l'iscrizione (`team[].ordine`).
-3. Una **PEC** e, se la si vuole separata da quella dello studio, un'email dedicata alle richieste privacy.
+3. Una **PEC**, se lo studio ne attiva una: senza, la riga semplicemente non compare nell'informativa.
 4. Per **FisioDesk**: ragione sociale del fornitore e paese in cui sono conservati i dati, presi dal contratto e non dal sito commerciale (`legale.responsabili`).
 5. L'**accordo di contitolarità firmato** e le nomine a responsabile dei fornitori: sono documenti, non codice, ma l'informativa li promette al paziente.
 
