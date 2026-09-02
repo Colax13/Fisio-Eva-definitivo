@@ -1,3 +1,5 @@
 # Sito non ancora pubblico: apertura 26 settembre 2026.
+# Si apre mettendo PUBBLICO: true in src/data/site.ts e togliendo
+# l'header X-Robots-Tag da vercel.json.
 User-agent: *
 Disallow: /

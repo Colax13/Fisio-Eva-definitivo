@@ -7,6 +7,8 @@ import Team from './pages/Team';
 import Gallery from './pages/Gallery';
 import Faq from './pages/Faq';
 import Contatti from './pages/Contatti';
+import Privacy from './pages/Privacy';
+import CookiePolicy from './pages/CookiePolicy';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -21,6 +23,8 @@ function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/contatti" element={<Contatti />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

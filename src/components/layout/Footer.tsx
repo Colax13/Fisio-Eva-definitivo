@@ -1,6 +1,7 @@
 import { Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { studio } from '../../data/site';
+import { legale, studio } from '../../data/site';
+import DatoMancante from '../ui/DatoMancante';
 
 /**
  * Footer.
@@ -96,10 +97,31 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-brand-dark/10 text-xs text-gray-500">
+        {/* Riga legale: dati identificativi e i due documenti obbligatori. Su
+            un sito che tratta dati sanitari è la parte che non può mancare, e
+            va raggiungibile da ogni pagina. */}
+        <div className="mt-12 flex flex-col gap-4 border-t border-brand-dark/10 pt-6 text-xs text-gray-500 md:flex-row md:items-center md:justify-between">
           <p>
-            © {new Date().getFullYear()} {studio.name} — {studio.claim}.
-          </p>
+            © {new Date().getFullYear()} {studio.name} — {studio.claim}.{' '}
+            {legale.partitaIva ? (
+              <>P.IVA {legale.partitaIva}.</>
+            ) : (
+              <DatoMancante id="partita IVA" nascondiInProduzione />
+            )}
+          </p>
+
+          <ul className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <li>
+              <Link to="/privacy" className="transition-colors hover:text-brand-dark">
+                Privacy policy
+              </Link>
+            </li>
+            <li>
+              <Link to="/cookie-policy" className="transition-colors hover:text-brand-dark">
+                Cookie policy
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </footer>

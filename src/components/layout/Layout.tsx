@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { WaveBackground } from '../WaveBackground';
+import DatiStrutturati from '../DatiStrutturati';
 
 /** Scrolls to the top on navigation, or to the anchor when the URL carries a hash. */
 function ScrollManager() {
@@ -26,6 +27,7 @@ export default function Layout() {
   return (
     <div className="font-sans min-h-screen flex flex-col">
       <ScrollManager />
+      <DatiStrutturati />
 
       {/*
        * Lo sfondo a onde sta qui, una volta sola e ancorato al viewport: prima

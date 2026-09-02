@@ -48,6 +48,73 @@ export const studio = {
   ],
 };
 
+/**
+ * Identità del sito e stato di pubblicazione.
+ *
+ * `PUBBLICO` è l'interruttore unico dell'indicizzazione: finché è `false` il
+ * sito resta chiuso ai motori (robots.txt con Disallow e meta robots noindex).
+ * Va acceso solo quando i dati legali qui sotto sono completi e il numero di
+ * telefono è quello vero — un motore di ricerca che indicizza un recapito
+ * sbagliato di uno studio sanitario fa un danno che poi si rincorre per mesi.
+ */
+export const sito = {
+  PUBBLICO: false,
+  dominio: 'https://www.fisioeva.it', // ⛔ dominio non ancora registrato
+  apertura: '26 settembre 2026',
+};
+
+/**
+ * Dati legali e privacy: la fonte unica per footer, informativa e cookie policy.
+ *
+ * ⛔ I campi a `null` non sono ancora stati forniti dallo studio. Non ci si
+ * mette un valore verosimile: un numero di partita IVA inventato su un sito
+ * sanitario è un dato falso a tutti gli effetti, e potrebbe perfino appartenere
+ * a qualcun altro. Restano `null` e il componente <DatoMancante> li segnala.
+ */
+export const legale = {
+  // Chi risponde giuridicamente del trattamento dei dati. Se le tre
+  // professioniste operano con partite IVA separate va indicata la
+  // contitolarità (art. 26 GDPR); se esiste una società o uno studio
+  // associato, il titolare è quello e le P.IVA individuali non servono.
+  titolare: null as string | null,
+  formaGiuridica: null as string | null,
+  partitaIva: null as string | null,
+  codiceFiscale: null as string | null,
+  pec: null as string | null,
+  iscrizioneAlbo: null as string | null,
+
+  // Recapito per l'esercizio dei diritti (artt. 15-22 GDPR). Finché non c'è
+  // una casella dedicata si usa quella dello studio.
+  emailPrivacy: 'fisioeva.boccea@gmail.com',
+
+  // Non nominato: uno studio di fisioterapia che tratta dati sanitari dei
+  // propri pazienti non rientra nel "trattamento su larga scala" dell'art. 37.
+  // Se lo studio decide comunque di nominarlo, il nome va qui.
+  dpo: null as string | null,
+
+  // Dove finiscono materialmente i dati. Ogni voce è un responsabile del
+  // trattamento da nominare ex art. 28 prima del go-live.
+  responsabili: [
+    {
+      nome: 'Vercel Inc.',
+      ruolo: 'Hosting del sito',
+      paese: 'Stati Uniti — EU-U.S. Data Privacy Framework',
+    },
+    {
+      nome: 'Google Ireland Ltd.',
+      ruolo: 'Casella di posta (Gmail) su cui arrivano le richieste dal sito',
+      paese: 'Irlanda, con trasferimenti negli Stati Uniti',
+    },
+  ],
+
+  // ⛔ La piattaforma su cui lo studio archivierà i contatti e le schede
+  // paziente non è ancora stata scelta. Quando lo sarà va aggiunta ai
+  // responsabili qui sopra e citata nell'informativa.
+  gestionale: null as string | null,
+
+  ultimoAggiornamento: '2 settembre 2026',
+};
+
 export const team = [
   {
     slug: 'azzurra-de-angelis',

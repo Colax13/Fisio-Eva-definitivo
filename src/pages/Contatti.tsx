@@ -1,7 +1,9 @@
 import { useState, type FormEvent } from 'react';
 import { Clock, Instagram, Mail, MapPin, Phone, Send } from 'lucide-react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import PageHero from '../components/layout/PageHero';
+import MappaConsenso from '../components/ui/MappaConsenso';
 import usePageMeta from '../hooks/usePageMeta';
 import { immagini, servizi, studio, team } from '../data/site';
 
@@ -11,6 +13,7 @@ export default function Contatti() {
   const [telefono, setTelefono] = useState('');
   const [servizio, setServizio] = useState('');
   const [messaggio, setMessaggio] = useState('');
+  const [consenso, setConsenso] = useState(false);
 
   usePageMeta(
     'Contatti — FisioEVA | Via di Boccea 755, Roma',
@@ -188,8 +191,9 @@ export default function Contatti() {
                   Raccontaci <span className="text-brand-primary font-medium">cosa ti succede</span>
                 </h2>
                 <p className="text-gray-400 font-light text-sm leading-relaxed mb-8">
-                  Compila i campi: si aprirà il tuo programma di posta con il messaggio già pronto da
-                  inviare.
+                  Compila i campi: si aprirà il tuo programma di posta con il messaggio già pronto
+                  da inviare. Niente passa dai nostri server — l'email parte dal tuo indirizzo e
+                  arriva alla casella dello studio.
                 </p>
 
                 <form onSubmit={inviaEmail} className="space-y-4">
@@ -243,22 +247,50 @@ export default function Contatti() {
                     rows={5}
                     value={messaggio}
                     onChange={(e) => setMessaggio(e.target.value)}
-                    placeholder="Raccontaci il tuo problema, da quanto tempo lo hai e cosa vorresti tornare a fare *"
+                    placeholder="Che cosa ti serve, da quanto tempo e cosa vorresti tornare a fare *"
                     aria-label="Messaggio"
                     className={`${inputClass} resize-none`}
                   />
 
+                  {/* Consenso esplicito e separato dall'invio: il messaggio può
+                      contenere dati sulla salute (art. 9 GDPR), e per quelli una
+                      casella già spuntata o un consenso implicito nel clic non
+                      valgono nulla. */}
+                  <label className="flex cursor-pointer items-start gap-3 pt-1">
+                    <input
+                      required
+                      type="checkbox"
+                      checked={consenso}
+                      onChange={(e) => setConsenso(e.target.checked)}
+                      className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-brand-primary"
+                    />
+                    <span className="text-xs font-light leading-relaxed text-gray-400">
+                      Ho letto l'
+                      <Link
+                        to="/privacy"
+                        className="text-brand-primary underline underline-offset-2"
+                      >
+                        informativa privacy
+                      </Link>{' '}
+                      e acconsento al trattamento dei miei dati — comprese le eventuali
+                      informazioni sulla salute che scelgo di scrivere qui — per essere
+                      ricontattato. *
+                    </span>
+                  </label>
+
                   <button
                     type="submit"
-                    className="group w-full flex items-center justify-center gap-3 bg-brand-primary text-white hover:bg-white hover:text-brand-dark rounded-full px-8 py-4 transition-colors duration-300 font-medium text-sm"
+                    disabled={!consenso}
+                    className="group w-full flex items-center justify-center gap-3 bg-brand-primary text-white hover:bg-white hover:text-brand-dark rounded-full px-8 py-4 transition-colors duration-300 font-medium text-sm disabled:cursor-not-allowed disabled:bg-white/15 disabled:text-gray-500 disabled:hover:bg-white/15 disabled:hover:text-gray-500"
                   >
                     <span>Invia la richiesta</span>
                     <Send className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </button>
 
-                  <p className="text-gray-500 text-xs font-light leading-relaxed pt-1">
-                    Inviando la richiesta acconsenti al trattamento dei tuoi dati per essere
-                    ricontattato. Non li usiamo per nient'altro.
+                  <p className="text-gray-500 text-xs font-light leading-relaxed">
+                    Usiamo quello che scrivi solo per risponderti. Non serve raccontare qui la tua
+                    storia clinica: se preferisci, dicci solo che cosa ti serve e ne parliamo di
+                    persona.
                   </p>
                 </form>
               </div>
@@ -267,16 +299,9 @@ export default function Contatti() {
         </div>
       </section>
 
-      {/* Map */}
+      {/* La mappa non parte da sola: vedi MappaConsenso. */}
       <section className="relative">
-        <iframe
-          title="Mappa — FisioEVA, Via di Boccea 755, Roma"
-          src={`https://www.google.com/maps?q=${studio.mapsQuery}&output=embed`}
-          className="w-full h-[420px] md:h-[520px] border-0 grayscale-[30%]"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          allowFullScreen
-        ></iframe>
+        <MappaConsenso />
       </section>
     </>
   );

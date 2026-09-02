@@ -64,12 +64,36 @@ Prima di toccare un testo, tre cose da sapere:
 
 Esiste inoltre una lista di frasi già scartate che non vanno reintrodotte: la trovi commentata in `src/content/testi.ts`.
 
+## GDPR e dati legali
+
+Il sito tratta **dati relativi alla salute** (art. 9 GDPR), quindi la parte legale non è un adempimento di facciata.
+
+Cosa c'è già:
+
+- `src/pages/Privacy.tsx` — informativa artt. 13-14, con la base giuridica corretta per le finalità di cura (art. 9.2.h, non il consenso).
+- `src/pages/CookiePolicy.tsx` — cookie policy.
+- `src/components/ui/MappaConsenso.tsx` — la mappa di Google **non si carica da sola**. È il motivo per cui non serve un banner: senza strumenti di tracciamento attivi non c'è nulla da far consentire.
+- Nel modulo contatti, un consenso esplicito e spuntabile a parte, non implicito nel clic su "Invia".
+
+**Tutti i dati legali stanno in un unico posto: l'oggetto `legale` in `src/data/site.ts`.** I campi ancora a `null` sono quelli che lo studio non ha fornito: compilarli lì aggiorna informativa e footer insieme. Non si mettono valori inventati — al loro posto compare `<DatoMancante>`.
+
+Da chiedere allo studio per chiudere la parte GDPR:
+
+1. **Chi è il titolare del trattamento** — se le tre professioniste hanno partite IVA separate serve la contitolarità (art. 26); se esiste una società o uno studio associato, il titolare è quello.
+2. Partita IVA, codice fiscale e PEC del titolare.
+3. **Su quale piattaforma vengono archiviati contatti e schede paziente**: va nominata responsabile ex art. 28 e citata nell'informativa.
+4. Numeri di iscrizione all'albo delle professioniste (obbligo di legge, non solo GDPR).
+5. Un'email dedicata alle richieste privacy, se si vuole tenerla separata da quella dello studio.
+
+⚠️ Se un domani si aggiungono Google Analytics, un pixel o un widget che parte da solo, la cookie policy da sola non basta più: serve un banner con consenso preventivo e granulare, e il tracciamento va bloccato finché il consenso non arriva.
+
 ## Prima del go-live
 
-- Completare privacy e cookie policy: quelle in `src/pages/Legale.tsx` sono uno scheletro, non un testo legale validato. Il sito tratta dati sanitari.
-- Attivare il banner di consenso ai cookie.
+- Completare l'oggetto `legale` in `src/data/site.ts` (vedi sopra).
+- Sostituire il numero di telefono provvisorio e mettere `phoneProvvisorio: false`: finché è `true` il telefono resta fuori dai dati strutturati.
 - Confermare titoli e numeri di albo di tutti i professionisti: è un obbligo di legge.
-- Registrare il dominio `fisioeva.it` e attivare la casella di posta.
+- Registrare il dominio `fisioeva.it`, attivare la casella di posta e allineare `sito.dominio`.
+- Aprire il sito ai motori (vedi sotto).
 
 ## Deploy
 
@@ -95,9 +119,16 @@ Senza `--prod` viene creata un'anteprima; `npx vercel --prod` pubblica sul domin
 
 Finché non si apre, il sito **non deve farsi indicizzare**: privacy e cookie policy sono in bozza, mancano i dati legali obbligatori e lo studio apre il 26 settembre 2026.
 
-Il blocco è in due punti:
+Il blocco è in tre punti:
 
-1. `PUBBLICO = false` in `scripts/genera-sitemap.mjs` — genera un `robots.txt` con `Disallow: /`
-2. L'header `X-Robots-Tag: noindex, nofollow` in `vercel.json`
+1. `PUBBLICO: false` in `sito`, dentro `src/data/site.ts`. Da lì dipendono sia il `robots.txt` con `Disallow: /` (generato a ogni build da `scripts/genera-sitemap.mjs`) sia il meta `robots` applicato a ogni pagina da `usePageMeta`.
+2. L'header `X-Robots-Tag: noindex, nofollow` in `vercel.json`.
+3. Il `<meta name="robots">` statico in `index.html`, che copre il momento prima che React parta.
 
-**Al go-live vanno tolti entrambi**, dopo aver completato privacy, cookie policy e banner di consenso.
+**Al go-live vanno tolti tutti e tre**, dopo aver completato i dati legali. Metterne a posto due su tre e credere di aver aperto il sito è l'errore facile: per questo l'interruttore vero è uno solo, il punto 1.
+
+### Cosa c'è già per l'indicizzazione
+
+- `public/sitemap.xml` e `public/robots.txt` sono **generati**, non scritti a mano: `npm run sitemap`, e comunque a ogni `npm run build`. Aggiungendo una rotta va aggiunta anche all'elenco dentro lo script.
+- `usePageMeta` mette su ogni pagina titolo, descrizione, URL canonico e tag Open Graph. Su un sito a pagina singola nulla di questo succede da solo.
+- `src/components/DatiStrutturati.tsx` pubblica la scheda `MedicalClinic` in JSON-LD (indirizzo, orari, specialità), che è la base per comparire nelle ricerche locali. Telefono e partita IVA entrano nella scheda solo quando saranno quelli veri.
