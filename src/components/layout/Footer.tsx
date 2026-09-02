@@ -1,6 +1,6 @@
 import { Instagram, Mail, MapPin, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { legale, studio } from '../../data/site';
+import { partiteIva, studio } from '../../data/site';
 import DatoMancante from '../ui/DatoMancante';
 
 /**
@@ -103,10 +103,10 @@ export default function Footer() {
         <div className="mt-12 flex flex-col gap-4 border-t border-brand-dark/10 pt-6 text-xs text-gray-500 md:flex-row md:items-center md:justify-between">
           <p>
             © {new Date().getFullYear()} {studio.name} — {studio.claim}.{' '}
-            {legale.partitaIva ? (
-              <>P.IVA {legale.partitaIva}.</>
+            {partiteIva.length ? (
+              <>P.IVA {partiteIva.join(' · ')}.</>
             ) : (
-              <DatoMancante id="partita IVA" nascondiInProduzione />
+              <DatoMancante id="partite IVA delle contitolari" nascondiInProduzione />
             )}
           </p>
 

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { legale, sito, studio } from '../data/site';
+import { sito, studio } from '../data/site';
 
 /**
  * Scheda dell'attività in formato schema.org (JSON-LD).
@@ -53,10 +53,12 @@ export default function DatiStrutturati() {
       openingHoursSpecification: orari,
     };
 
-    // Solo quando saranno quelli veri.
+    // Solo quando sarà quello vero.
     if (!studio.phoneProvvisorio) scheda.telephone = studio.phone;
-    if (legale.partitaIva) scheda.vatID = legale.partitaIva;
-    if (legale.titolare) scheda.legalName = legale.titolare;
+
+    // Niente `vatID`: le professioniste sono contitolari con partite IVA
+    // distinte, e schema.org ne prevede una sola per organizzazione. Attribuirne
+    // una alle altre due sarebbe sbagliato.
 
     const tag = document.createElement('script');
     tag.type = 'application/ld+json';

@@ -14,20 +14,14 @@ import { legale, studio } from '../data/site';
  *    giuridica, e non è il consenso — è l'art. 9.2.h (finalità di cura svolte
  *    da professionisti tenuti al segreto professionale). Chiedere il consenso
  *    dove non serve è un errore che il Garante ha contestato più volte.
- * 2. I dati identificativi del titolare non sono ancora stati forniti. Finché
- *    restano `null` in `legale`, questa pagina è una bozza completa nella
- *    struttura ma non pubblicabile: un'informativa senza titolare non assolve
- *    l'obbligo dell'art. 13.
+ * 2. Le tre professioniste lavorano con partite IVA distinte, quindi sono
+ *    contitolari ai sensi dell'art. 26 e non un titolare unico: l'informativa
+ *    deve dirlo, indicare un punto di contatto unico e mettere a disposizione
+ *    il contenuto essenziale dell'accordo fra loro.
+ * 3. Le partite IVA non sono ancora state fornite. Finché restano `null` in
+ *    `legale` questa pagina è completa nella struttura ma non pubblicabile:
+ *    un'informativa senza i dati identificativi non assolve l'art. 13.
  */
-
-/** Il titolare, o il segnaposto se lo studio non lo ha ancora comunicato. */
-function Titolare() {
-  return legale.titolare ? (
-    <strong>{legale.titolare}</strong>
-  ) : (
-    <DatoMancante id="titolare del trattamento" fallback="lo Studio FisioEVA" />
-  );
-}
 
 export default function Privacy() {
   usePageMeta(
@@ -42,23 +36,42 @@ export default function Privacy() {
       corpo: (
         <>
           <p>
-            Il titolare del trattamento è <Titolare />
-            {legale.formaGiuridica && <> ({legale.formaGiuridica})</>}, con sede in {studio.address},{' '}
-            {studio.city}.
+            Lo studio FisioEVA di {studio.address}, {studio.city}, è il luogo in cui lavorano tre
+            professioniste che esercitano ciascuna in proprio. Per la legge sulla protezione dei
+            dati questo significa che non c'è un titolare unico: sono{' '}
+            <strong>contitolari del trattamento</strong> ai sensi dell'art. 26 del Regolamento.
+          </p>
+          <ul>
+            {legale.contitolari.map((c) => (
+              <li key={c.slug}>
+                <strong>{c.nome}</strong> — P.IVA{' '}
+                {c.partitaIva ?? <DatoMancante id={`P.IVA ${c.nome}`} />}, C.F.{' '}
+                {c.codiceFiscale ?? <DatoMancante id={`C.F. ${c.nome}`} />}
+              </li>
+            ))}
+          </ul>
+          <p>
+            Hanno definito fra loro, con un accordo di contitolarità, chi fa che cosa rispetto ai
+            tuoi dati e chi risponde di ciascun adempimento.{' '}
+            <strong>Il contenuto essenziale di quell'accordo ti viene messo a disposizione su
+            richiesta</strong>, come prevede l'art. 26.2: basta chiederlo ai recapiti qui sotto.
+          </p>
+          <p>
+            Quello che conta per te è più semplice: <strong>puoi rivolgerti a una qualsiasi delle
+            tre</strong>, o al punto di contatto unico, e ti risponde chi di dovere senza che tu
+            debba capire chi custodisce quale dato. I tuoi diritti li puoi far valere nei confronti
+            di ciascuna di loro (art. 26.3).
           </p>
           <ul>
             <li>
-              Partita IVA: {legale.partitaIva ?? <DatoMancante id="partita IVA" />}
-            </li>
-            <li>
-              Codice fiscale: {legale.codiceFiscale ?? <DatoMancante id="codice fiscale" />}
-            </li>
-            <li>
-              Email: <a href={`mailto:${legale.emailPrivacy}`}>{legale.emailPrivacy}</a>
+              Punto di contatto: <a href={`mailto:${legale.emailPrivacy}`}>{legale.emailPrivacy}</a>
             </li>
             <li>PEC: {legale.pec ?? <DatoMancante id="PEC" />}</li>
             <li>
               Telefono: <a href={studio.phoneHref}>{studio.phone}</a>
+            </li>
+            <li>
+              Sede: {studio.address}, {studio.city}
             </li>
           </ul>
           <p>
@@ -67,7 +80,7 @@ export default function Privacy() {
             ) : (
               <>
                 Non è stato nominato un Responsabile della protezione dei dati: lo studio non
-                effettua trattamenti su larga scala tra quelli che lo rendono obbligatorio ai sensi
+                effettua i trattamenti su larga scala che lo rendono obbligatorio ai sensi
                 dell'art. 37 del Regolamento. Per ogni questione sui tuoi dati puoi scrivere
                 direttamente ai recapiti qui sopra.
               </>

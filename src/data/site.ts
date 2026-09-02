@@ -72,24 +72,49 @@ export const sito = {
  * a qualcun altro. Restano `null` e il componente <DatoMancante> li segnala.
  */
 export const legale = {
-  // Chi risponde giuridicamente del trattamento dei dati. Se le tre
-  // professioniste operano con partite IVA separate va indicata la
-  // contitolarità (art. 26 GDPR); se esiste una società o uno studio
-  // associato, il titolare è quello e le P.IVA individuali non servono.
-  titolare: null as string | null,
-  formaGiuridica: null as string | null,
-  partitaIva: null as string | null,
-  codiceFiscale: null as string | null,
-  pec: null as string | null,
-  iscrizioneAlbo: null as string | null,
+  /*
+   * Le tre professioniste lavorano ciascuna con la propria partita IVA:
+   * sono quindi CONTITOLARI del trattamento ai sensi dell'art. 26 GDPR, non
+   * un titolare unico. La differenza non è formale — determina chi risponde
+   * verso il paziente e obbliga a mettergli a disposizione il contenuto
+   * essenziale dell'accordo di contitolarità.
+   *
+   * ⛔ Le partite IVA non sono ancora state fornite. Restano `null` e il
+   * componente <DatoMancante> le segnala: un numero inventato su un sito
+   * sanitario è un dato falso, e potrebbe perfino appartenere a qualcun altro.
+   */
+  contitolari: [
+    {
+      nome: 'Dott.ssa Azzurra De Angelis',
+      slug: 'azzurra-de-angelis',
+      partitaIva: null as string | null,
+      codiceFiscale: null as string | null,
+    },
+    {
+      nome: 'Dott.ssa Elisa De Rubeis',
+      slug: 'elisa-de-rubeis',
+      partitaIva: null as string | null,
+      codiceFiscale: null as string | null,
+    },
+    {
+      nome: 'Dott.ssa Veronica Mirarchi',
+      slug: 'veronica-mirarchi',
+      partitaIva: null as string | null,
+      codiceFiscale: null as string | null,
+    },
+  ],
 
-  // Recapito per l'esercizio dei diritti (artt. 15-22 GDPR). Finché non c'è
-  // una casella dedicata si usa quella dello studio.
+  /**
+   * Punto di contatto unico previsto dall'art. 26.1: il paziente deve poter
+   * esercitare i suoi diritti scrivendo a un solo indirizzo, senza dover
+   * capire quale delle tre professioniste detiene quale dato.
+   */
   emailPrivacy: 'fisioeva.boccea@gmail.com',
+  pec: null as string | null,
 
-  // Non nominato: uno studio di fisioterapia che tratta dati sanitari dei
-  // propri pazienti non rientra nel "trattamento su larga scala" dell'art. 37.
-  // Se lo studio decide comunque di nominarlo, il nome va qui.
+  // Non nominato: uno studio di fisioterapia che tratta i dati dei propri
+  // pazienti non rientra nel "trattamento su larga scala" che lo rende
+  // obbligatorio ai sensi dell'art. 37. Se lo si nomina comunque, il nome va qui.
   dpo: null as string | null,
 
   // Dove finiscono materialmente i dati. Ogni voce è un responsabile del
@@ -107,13 +132,18 @@ export const legale = {
     },
   ],
 
-  // ⛔ La piattaforma su cui lo studio archivierà i contatti e le schede
-  // paziente non è ancora stata scelta. Quando lo sarà va aggiunta ai
-  // responsabili qui sopra e citata nell'informativa.
+  // ⛔ La piattaforma su cui lo studio archivierà contatti e schede paziente
+  // non è ancora stata scelta. Quando lo sarà va aggiunta ai responsabili qui
+  // sopra e citata nell'informativa.
   gestionale: null as string | null,
 
   ultimoAggiornamento: '2 settembre 2026',
 };
+
+/** Le partite IVA effettivamente disponibili, per footer e dati strutturati. */
+export const partiteIva = legale.contitolari
+  .map((c) => c.partitaIva)
+  .filter((p): p is string => Boolean(p));
 
 export const team = [
   {

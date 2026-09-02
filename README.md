@@ -77,13 +77,21 @@ Cosa c'è già:
 
 **Tutti i dati legali stanno in un unico posto: l'oggetto `legale` in `src/data/site.ts`.** I campi ancora a `null` sono quelli che lo studio non ha fornito: compilarli lì aggiorna informativa e footer insieme. Non si mettono valori inventati — al loro posto compare `<DatoMancante>`.
 
-Da chiedere allo studio per chiudere la parte GDPR:
+### Contitolarità
 
-1. **Chi è il titolare del trattamento** — se le tre professioniste hanno partite IVA separate serve la contitolarità (art. 26); se esiste una società o uno studio associato, il titolare è quello.
-2. Partita IVA, codice fiscale e PEC del titolare.
-3. **Su quale piattaforma vengono archiviati contatti e schede paziente**: va nominata responsabile ex art. 28 e citata nell'informativa.
+Le tre professioniste lavorano ciascuna con la propria partita IVA, quindi sono **contitolari** del trattamento ai sensi dell'art. 26, non un titolare unico. Da questo discendono tre obblighi che l'informativa già assolve:
+
+- i dati identificativi di **tutte e tre** vanno indicati;
+- serve un **punto di contatto unico** per i pazienti (oggi l'email dello studio);
+- il **contenuto essenziale dell'accordo di contitolarità** va messo a disposizione su richiesta — il che presuppone che quell'accordo esista come documento firmato, non solo come intesa verbale. È l'unico adempimento che non si risolve nel codice.
+
+Ancora da avere dallo studio:
+
+1. **Partita IVA e codice fiscale di ciascuna delle tre** professioniste (`legale.contitolari` in `site.ts`).
+2. **Su quale piattaforma vengono archiviati contatti e schede paziente**: va nominata responsabile ex art. 28 e citata nell'informativa (`legale.gestionale`).
+3. Una **PEC** e, se la si vuole separata da quella dello studio, un'email dedicata alle richieste privacy.
 4. Numeri di iscrizione all'albo delle professioniste (obbligo di legge, non solo GDPR).
-5. Un'email dedicata alle richieste privacy, se si vuole tenerla separata da quella dello studio.
+5. L'accordo di contitolarità firmato, e le nomine a responsabile dei fornitori elencati in `legale.responsabili`.
 
 ⚠️ Se un domani si aggiungono Google Analytics, un pixel o un widget che parte da solo, la cookie policy da sola non basta più: serve un banner con consenso preventivo e granulare, e il tracciamento va bloccato finché il consenso non arriva.
 
