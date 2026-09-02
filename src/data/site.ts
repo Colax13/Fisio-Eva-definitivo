@@ -87,13 +87,13 @@ export const legale = {
     {
       nome: 'Dott.ssa Azzurra De Angelis',
       slug: 'azzurra-de-angelis',
-      partitaIva: null as string | null,
+      partitaIva: '02739390603',
       codiceFiscale: null as string | null,
     },
     {
       nome: 'Dott.ssa Elisa De Rubeis',
       slug: 'elisa-de-rubeis',
-      partitaIva: null as string | null,
+      partitaIva: '08349121007',
       codiceFiscale: null as string | null,
     },
     {
@@ -121,9 +121,19 @@ export const legale = {
   // trattamento da nominare ex art. 28 prima del go-live.
   responsabili: [
     {
+      // Il gestionale di studio: è il fornitore che tratta i dati più
+      // delicati, perché ci passano cartelle cliniche e Sistema Tessera
+      // Sanitaria. ⛔ Ragione sociale del fornitore e collocazione dei server
+      // vanno prese dal contratto e dall'accordo ex art. 28, non dal sito
+      // commerciale.
+      nome: 'FisioDesk',
+      ruolo: 'Gestionale di studio: agenda, schede paziente e fatturazione',
+      paese: null as string | null,
+    },
+    {
       nome: 'Vercel Inc.',
       ruolo: 'Hosting del sito',
-      paese: 'Stati Uniti — EU-U.S. Data Privacy Framework',
+      paese: 'Stati Uniti — EU-U.S. Data Privacy Framework' as string | null,
     },
     {
       nome: 'Google Ireland Ltd.',
@@ -132,10 +142,7 @@ export const legale = {
     },
   ],
 
-  // ⛔ La piattaforma su cui lo studio archivierà contatti e schede paziente
-  // non è ancora stata scelta. Quando lo sarà va aggiunta ai responsabili qui
-  // sopra e citata nell'informativa.
-  gestionale: null as string | null,
+  gestionale: 'FisioDesk' as string | null,
 
   ultimoAggiornamento: '2 settembre 2026',
 };
@@ -145,12 +152,36 @@ export const partiteIva = legale.contitolari
   .map((c) => c.partitaIva)
   .filter((p): p is string => Boolean(p));
 
+/*
+ * ⛔ L'Albo dei Fisioterapisti è tenuto dagli Ordini TSRM-PSTRP su base
+ * PROVINCIALE: il solo numero non identifica l'iscrizione, serve anche
+ * l'Ordine presso cui è iscritta ciascuna professionista. Manca, e il numero
+ * da solo resta ambiguo — due professioniste di province diverse possono
+ * avere lo stesso numero.
+ */
 export const team = [
   {
     slug: 'azzurra-de-angelis',
     name: 'Dott.ssa Azzurra De Angelis',
     short: 'Azzurra',
+    albo: '6174',
+    ordine: null as string | null,
     role: 'Fisioterapista · Osteopata D.O.',
+    // Sintesi del curriculum fornito dallo studio. La specializzazione sulla
+    // donna non è una scelta commerciale: nasce dalla tesi di osteopatia, e
+    // dirlo vale più di qualsiasi elenco di corsi.
+    description:
+      'Si è laureata in Fisioterapia nel 2011 all\'Università Cattolica del Sacro Cuore con 110/110 e lode, con una tesi in riabilitazione neurologica. Ha proseguito con il Master in Rieducazione Posturale Globale secondo il metodo Souchard e la formazione superiore per le patologie cranio-cervicali, poi con la specializzazione in linfodrenaggio manuale. Ha completato gli studi in Osteopatia alla scuola EDUCAM, di nuovo con 110/110 e lode: la tesi, sul trattamento osteopatico della cicatrice da taglio cesareo, è il punto da cui è partito il suo lavoro con le donne in gravidanza e nel post-parto.',
+    photo: '/team/azzurra.png',
+    accent: 'secondary' as const,
+  },
+  {
+    slug: 'elisa-de-rubeis',
+    name: 'Dott.ssa Elisa De Rubeis',
+    short: 'Elisa',
+    albo: '4948',
+    ordine: null as string | null,
+    role: 'Fisioterapista · Osteopata',
     // Curriculum fornito dallo studio: la formazione post-laurea è riportata
     // per esteso su richiesta di Elisa, perché è il percorso che spiega come
     // lavora — dalla postura globale al movimento consapevole.
@@ -163,6 +194,8 @@ export const team = [
     slug: 'veronica-mirarchi',
     name: 'Dott.ssa Veronica Mirarchi',
     short: 'Veronica',
+    albo: null as string | null,
+    ordine: null as string | null,
     role: 'Osteopata e Fisioterapista',
     // Bio fornita dallo studio (osteopata dal 2020, fisioterapista dal 2025):
     // quindi è sia osteopata sia fisioterapista, e il ruolo lo riflette.

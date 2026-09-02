@@ -2,6 +2,7 @@
 import { motion } from 'motion/react';
 import { accoglienza, team } from '../../data/site';
 import SectionHeading from '../ui/SectionHeading';
+import DatoMancante from '../ui/DatoMancante';
 
 const accenti = {
   primary: {
@@ -77,8 +78,23 @@ export default function TeamSection({ showHeading = true }: Props) {
                 <h3 className="font-sans font-bold text-brand-dark text-xl leading-snug mb-1">
                   {membro.name}
                 </h3>
-                <p className={`${a.text} font-medium text-xs tracking-widest uppercase mb-4`}>
+                <p className={`${a.text} font-medium text-xs tracking-widest uppercase mb-2`}>
                   {membro.role}
+                </p>
+
+                {/* Il numero di iscrizione all'albo non è un vezzo: per un
+                    professionista sanitario è ciò che rende verificabile il
+                    titolo, e la pubblicità sanitaria deve permetterlo. */}
+                <p className="mb-4 text-[11px] font-light text-gray-400">
+                  {membro.albo ? (
+                    <>
+                      Albo dei Fisioterapisti n. {membro.albo}
+                      {membro.ordine ? ` — ${membro.ordine}` : ''}
+                      {!membro.ordine && <DatoMancante id={`ordine TSRM-PSTRP di ${membro.short}`} nascondiInProduzione />}
+                    </>
+                  ) : (
+                    <DatoMancante id={`n. albo di ${membro.short}`} nascondiInProduzione />
+                  )}
                 </p>
                 <div className={`w-8 h-[2px] ${a.bg} mb-5 group-hover:w-14 transition-all duration-500`}></div>
 

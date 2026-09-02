@@ -227,7 +227,16 @@ export default function Privacy() {
           <ul>
             {legale.responsabili.map((r) => (
               <li key={r.nome}>
-                <strong>{r.nome}</strong> — {r.ruolo} ({r.paese}).
+                <strong>{r.nome}</strong> — {r.ruolo}
+                {r.paese ? (
+                  <> ({r.paese}).</>
+                ) : (
+                  <>
+                    {' '}
+                    (<DatoMancante id={`sede e server di ${r.nome}`} fallback="sede del fornitore" />
+                    ).
+                  </>
+                )}
               </li>
             ))}
             <li>
@@ -239,9 +248,11 @@ export default function Privacy() {
             </li>
           </ul>
           <p>
-            I dati possono infine essere comunicati alle autorità quando la legge lo impone, ad
-            esempio all'Agenzia delle Entrate per le spese sanitarie destinate alla dichiarazione
-            precompilata — comunicazione alla quale hai comunque il diritto di opporti.
+            I dati possono infine essere comunicati alle autorità quando la legge lo impone. Il
+            caso più frequente è l'invio delle spese sanitarie al{' '}
+            <strong>Sistema Tessera Sanitaria</strong> per la dichiarazione dei redditi
+            precompilata: <strong>a questo invio puoi opporti</strong>, dicendocelo al momento del
+            pagamento o direttamente sul sito del Sistema Tessera Sanitaria.
           </p>
         </>
       ),
@@ -259,8 +270,15 @@ export default function Privacy() {
             contrattuali tipo approvate dalla Commissione Europea.
           </p>
           <p>
-            <strong>Le schede cliniche dei pazienti non passano da questi strumenti</strong> e
-            restano nello studio.
+            <strong>Le schede cliniche non passano né dal sito né dalla posta</strong>: sono tenute
+            nel gestionale di studio{legale.gestionale ? ` ${legale.gestionale}` : ''}, un servizio
+            distinto e ad accesso riservato alle professioniste.{' '}
+            {!legale.responsabili.find((r) => r.nome === legale.gestionale)?.paese && (
+              <DatoMancante
+                id="paese di conservazione dei dati del gestionale"
+                fallback="Il paese in cui sono conservati è indicato nel contratto con il fornitore."
+              />
+            )}
           </p>
         </>
       ),

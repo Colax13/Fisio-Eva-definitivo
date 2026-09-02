@@ -87,11 +87,11 @@ Le tre professioniste lavorano ciascuna con la propria partita IVA, quindi sono 
 
 Ancora da avere dallo studio:
 
-1. **Partita IVA e codice fiscale di ciascuna delle tre** professioniste (`legale.contitolari` in `site.ts`).
-2. **Su quale piattaforma vengono archiviati contatti e schede paziente**: va nominata responsabile ex art. 28 e citata nell'informativa (`legale.gestionale`).
+1. **Partita IVA di Veronica Mirarchi** e **codice fiscale di tutte e tre** (`legale.contitolari` in `site.ts`). Quelle di Elisa e Azzurra sono inserite e la cifra di controllo torna.
+2. **Numero di albo di Veronica** e, per tutte e tre, **l'Ordine TSRM-PSTRP presso cui sono iscritte**: l'albo è provinciale, quindi il solo numero non identifica l'iscrizione (`team[].ordine`).
 3. Una **PEC** e, se la si vuole separata da quella dello studio, un'email dedicata alle richieste privacy.
-4. Numeri di iscrizione all'albo delle professioniste (obbligo di legge, non solo GDPR).
-5. L'accordo di contitolarità firmato, e le nomine a responsabile dei fornitori elencati in `legale.responsabili`.
+4. Per **FisioDesk**: ragione sociale del fornitore e paese in cui sono conservati i dati, presi dal contratto e non dal sito commerciale (`legale.responsabili`).
+5. L'**accordo di contitolarità firmato** e le nomine a responsabile dei fornitori: sono documenti, non codice, ma l'informativa li promette al paziente.
 
 ⚠️ Se un domani si aggiungono Google Analytics, un pixel o un widget che parte da solo, la cookie policy da sola non basta più: serve un banner con consenso preventivo e granulare, e il tracciamento va bloccato finché il consenso non arriva.
 
