@@ -94,7 +94,7 @@ export const legale = {
     {
       nome: 'Dott.ssa Veronica Mirarchi',
       slug: 'veronica-mirarchi',
-      partitaIva: null as string | null,
+      partitaIva: '18687241002',
       codiceFiscale: null as string | null,
     },
   ],
@@ -195,7 +195,7 @@ export const team = [
     slug: 'veronica-mirarchi',
     name: 'Dott.ssa Veronica Mirarchi',
     short: 'Veronica',
-    albo: null as string | null,
+    albo: '11463',
     ordine: null as string | null,
     role: 'Osteopata e Fisioterapista',
     // Bio fornita dallo studio (osteopata dal 2020, fisioterapista dal 2025):

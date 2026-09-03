@@ -45,7 +45,7 @@ Rotte: `/` · `/servizi` · `/servizi/[categoria]` · `/servizi/[categoria]/[slu
 
 Dove il cliente non ha ancora fornito un dato **non c'è un valore inventato**: c'è `<DatoMancante id="..." />`, che in sviluppo mostra un badge giallo e in produzione sparisce (o mostra un testo neutro).
 
-Per vedere tutti i buchi aperti basta far girare il sito in locale e guardare i badge gialli. Oggi mancano: P.IVA di Veronica, orari, numeri di albo, destinazione della prenotazione, bio di Veronica Mirarchi, titoli esatti dei quattro collaboratori, durata delle sedute, nome del piano superiore, parcheggio.
+Per vedere tutti i buchi aperti basta far girare il sito in locale e guardare i badge gialli. Oggi mancano: orari, destinazione della prenotazione, titoli esatti dei quattro collaboratori, durata delle sedute, nome del piano superiore, parcheggio.
 
 ## Immagini
 
@@ -87,8 +87,8 @@ Le tre professioniste lavorano ciascuna con la propria partita IVA, quindi sono 
 
 Ancora da avere dallo studio:
 
-1. **Partita IVA di Veronica Mirarchi** e **codice fiscale di tutte e tre** (`legale.contitolari` in `site.ts`). Quelle di Elisa e Azzurra sono inserite e la cifra di controllo torna.
-2. **Numero di albo di Veronica** e, per tutte e tre, **l'Ordine TSRM-PSTRP presso cui sono iscritte**: l'albo è provinciale, quindi il solo numero non identifica l'iscrizione (`team[].ordine`).
+1. **Codice fiscale di tutte e tre** (`legale.contitolari` in `site.ts`). Le tre partite IVA sono inserite e la cifra di controllo torna per tutte.
+2. **L'Ordine TSRM-PSTRP presso cui è iscritta ciascuna**: l'albo è provinciale, quindi il solo numero non identifica l'iscrizione (`team[].ordine`). I tre numeri di albo sono già inseriti.
 3. Una **PEC**, se lo studio ne attiva una: senza, la riga semplicemente non compare nell'informativa.
 4. Per **FisioDesk**: ragione sociale del fornitore e paese in cui sono conservati i dati, presi dal contratto e non dal sito commerciale (`legale.responsabili`).
 5. L'**accordo di contitolarità firmato** e le nomine a responsabile dei fornitori: sono documenti, non codice, ma l'informativa li promette al paziente.
