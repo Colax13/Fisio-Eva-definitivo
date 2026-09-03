@@ -45,7 +45,7 @@ Rotte: `/` · `/servizi` · `/servizi/[categoria]` · `/servizi/[categoria]/[slu
 
 Dove il cliente non ha ancora fornito un dato **non c'è un valore inventato**: c'è `<DatoMancante id="..." />`, che in sviluppo mostra un badge giallo e in produzione sparisce (o mostra un testo neutro).
 
-Per vedere tutti i buchi aperti basta far girare il sito in locale e guardare i badge gialli. Oggi mancano: telefono, orari, P.IVA, numeri di albo, destinazione della prenotazione, bio di Veronica Mirarchi, titoli esatti dei quattro collaboratori, durata delle sedute, nome del piano superiore, parcheggio.
+Per vedere tutti i buchi aperti basta far girare il sito in locale e guardare i badge gialli. Oggi mancano: P.IVA di Veronica, orari, numeri di albo, destinazione della prenotazione, bio di Veronica Mirarchi, titoli esatti dei quattro collaboratori, durata delle sedute, nome del piano superiore, parcheggio.
 
 ## Immagini
 
@@ -98,7 +98,6 @@ Ancora da avere dallo studio:
 ## Prima del go-live
 
 - Completare l'oggetto `legale` in `src/data/site.ts` (vedi sopra).
-- Sostituire il numero di telefono provvisorio e mettere `phoneProvvisorio: false`: finché è `true` il telefono resta fuori dai dati strutturati.
 - Confermare titoli e numeri di albo di tutti i professionisti: è un obbligo di legge.
 - Registrare il dominio `fisioeva.it`, attivare la casella di posta e allineare `sito.dominio`.
 - Aprire il sito ai motori (vedi sotto).

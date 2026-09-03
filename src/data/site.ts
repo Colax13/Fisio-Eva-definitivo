@@ -32,15 +32,10 @@ export const studio = {
   instagramUrl: 'https://www.instagram.com/fisioeva_boccea',
   mapsQuery: 'Via+di+Boccea+755,+00166+Roma',
 
-  /*
-   * ⛔ NUMERO PROVVISORIO — da sostituire prima del go-live.
-   * Lo studio non ha ancora una linea propria. I cellulari personali delle
-   * professioniste stanno sui biglietti da visita, non sul sito: qui serve il
-   * numero dello studio.
-   */
-  phone: '+39 06 6155 0000',
-  phoneHref: 'tel:+390661550000',
-  phoneProvvisorio: true,
+  // Il numero dello studio, fornito dallo studio.
+  phone: '+39 392 960 5972',
+  phoneHref: 'tel:+393929605972',
+  phoneProvvisorio: false,
   orari: [
     { giorno: 'Lunedì — Venerdì', ore: '08:00 — 20:00' },
     { giorno: 'Sabato', ore: '08:00 — 14:00' },
