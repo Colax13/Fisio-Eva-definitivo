@@ -15,7 +15,7 @@ npm run dev
 | --- | --- |
 | `npm run dev` | server di sviluppo su `localhost:3000` |
 | `npm run build` | rigenera la sitemap e compila in `dist/` |
-| `npm run sitemap` | rigenera solo `public/sitemap.xml` e `robots.txt` |
+| `npm run sitemap` | rigenera `sitemap.xml`, `robots.txt`, `llms.txt` e i tag generati in `index.html`, senza compilare |
 | `npm run lint` | controllo dei tipi TypeScript |
 
 ## Struttura
@@ -100,7 +100,7 @@ Ancora da avere dallo studio:
 - Completare l'oggetto `legale` in `src/data/site.ts` (vedi sopra).
 - Confermare titoli e numeri di albo di tutti i professionisti: è un obbligo di legge.
 - Registrare il dominio `fisioeva.it`, attivare la casella di posta e allineare `sito.dominio`.
-- Aprire il sito ai motori (vedi sotto).
+- Aprire il sito ai motori di ricerca (vedi sotto).
 
 ## Deploy
 
@@ -122,20 +122,33 @@ npx vercel
 
 Senza `--prod` viene creata un'anteprima; `npx vercel --prod` pubblica sul dominio di produzione.
 
-### ⚠️ Il sito è chiuso ai motori di ricerca
+### ⚠️ Il sito è chiuso ai motori di ricerca, aperto solo alle AI
 
-Finché non si apre, il sito **non deve farsi indicizzare**: privacy e cookie policy sono in bozza, mancano i dati legali obbligatori e lo studio apre il 26 settembre 2026.
+Due interruttori indipendenti in `sito`, dentro `src/data/site.ts`, decidono chi può leggere il sito:
 
-Il blocco è in tre punti:
+- **`PUBBLICO`** — apre a Google, Bing e ai motori tradizionali. Oggi `false`: privacy e cookie policy sono in bozza, mancano dei dati legali e lo studio apre il 26 settembre 2026.
+- **`APERTO_ALLE_AI`** — apre ai crawler delle AI (elenco in `scripts/crawler-ai.mjs`), lasciando chiusi i motori. Oggi `true`, per scelta esplicita: la parte legale essenziale (contitolari, P.IVA, numeri di albo) è a posto, quindi il sito può farsi leggere da chi cerca tramite un'AI anche prima del lancio ufficiale.
 
-1. `PUBBLICO: false` in `sito`, dentro `src/data/site.ts`. Da lì dipendono sia il `robots.txt` con `Disallow: /` (generato a ogni build da `scripts/genera-sitemap.mjs`) sia il meta `robots` applicato a ogni pagina da `usePageMeta`.
-2. L'header `X-Robots-Tag: noindex, nofollow` in `vercel.json`.
-3. Il `<meta name="robots">` statico in `index.html`, che copre il momento prima che React parta.
+Da entrambi dipendono, generati insieme a ogni build da `scripts/genera-sitemap.mjs`:
 
-**Al go-live vanno tolti tutti e tre**, dopo aver completato i dati legali. Metterne a posto due su tre e credere di aver aperto il sito è l'errore facile: per questo l'interruttore vero è uno solo, il punto 1.
+1. `public/robots.txt` — `Disallow: /` per tutti se sono entrambi `false`; se `APERTO_ALLE_AI` è `true` resta `Disallow: /` per `*` ma con un `Allow: /` esplicito per ciascun crawler in `crawler-ai.mjs`; se `PUBBLICO` è `true`, aperto a tutti.
+2. Il `<meta name="robots">` in `index.html` — segue `PUBBLICO || APERTO_ALLE_AI`.
+3. `public/llms.txt` (vedi sotto).
 
-### Cosa c'è già per l'indicizzazione
+**Resta fuori da questi due flag** l'header `X-Robots-Tag: noindex, nofollow` in `vercel.json`: è applicato a ogni risposta senza distinguere per user-agent (Vercel non lo permette nel formato base di `headers`), quindi resta acceso finché non si apre anche ai motori tradizionali. Non è un problema per le AI elencate: la loro esclusione/inclusione la decidono tramite `robots.txt`, non tramite questo header, che è una convenzione specifica di Google/Bing.
 
-- `public/sitemap.xml` e `public/robots.txt` sono **generati**, non scritti a mano: `npm run sitemap`, e comunque a ogni `npm run build`. Aggiungendo una rotta va aggiunta anche all'elenco dentro lo script.
-- `usePageMeta` mette su ogni pagina titolo, descrizione, URL canonico e tag Open Graph. Su un sito a pagina singola nulla di questo succede da solo.
-- `src/components/DatiStrutturati.tsx` pubblica la scheda `MedicalClinic` in JSON-LD (indirizzo, orari, specialità), che è la base per comparire nelle ricerche locali. Telefono e partita IVA entrano nella scheda solo quando saranno quelli veri.
+**Al go-live vero** (motori compresi) vanno messi entrambi i flag a `true` e tolto l'header da `vercel.json`, dopo aver completato i dati legali.
+
+### Leggibilità per le AI
+
+Aprire ai crawler delle AI non basta da solo, per un motivo tecnico specifico di questo sito: è un'app a pagina singola (React), e il contenuto di ogni pagina viene scritto nel DOM da JavaScript **dopo** che la pagina è arrivata al browser. La maggior parte dei crawler delle AI documentati oggi non esegue JavaScript — vede solo l'HTML grezzo, che per una SPA senza accorgimenti è quasi vuoto (`<div id="root"></div>`).
+
+`scripts/genera-sitemap.mjs` risolve il problema scrivendo il contenuto **staticamente**, non lasciandolo solo a React:
+
+- **`public/llms.txt`** — un riepilogo in Markdown pensato apposta per le AI (convenzione informale, non uno standard universale, ma sempre più adottata): contatti, elenco delle pagine, servizi, team. Generato dagli stessi dati del sito (`studio`, `servizi`, `team` in `site.ts`), non va scritto a mano.
+- **Il blocco `<noscript>` in `index.html`** — lo stesso riepilogo in HTML, dentro la pagina stessa: chi la legge senza eseguire JavaScript lo vede sempre, qualunque rotta richieda (la SPA su Vercel serve `index.html` per ogni indirizzo).
+- **La scheda `MedicalClinic` in JSON-LD**, `<script id="scheda-clinica">` — scritta staticamente in `index.html` da `creaSchedaClinica()` (`src/lib/schemaOrg.ts`) e poi tenuta aggiornata lato client da `src/components/DatiStrutturati.tsx`, che aggiorna lo stesso tag invece di aggiungerne uno nuovo. Una sola fonte, due momenti in cui viene resa.
+
+Quello che questi tre meccanismi **non** risolvono: il contenuto specifico di ogni pagina (i testi di `/servizi`, `/faq`, le bio del team) resta visibile solo a chi esegue JavaScript. La soluzione vera sarebbe il pre-rendering o il server-side rendering di ogni rotta — non l'ho aggiunto perché richiederebbe un browser headless nella build di Vercel (Playwright/Chromium), un cambiamento alla pipeline di deploy rischioso da introdurre senza poterlo verificare direttamente su Vercel. Se in futuro serve davvero, è il prossimo passo naturale.
+
+`scripts/crawler-ai.mjs` elenca i crawler aperti (GPTBot, ClaudeBot, PerplexityBot e altri), ciascuno con una riga su chi lo pubblica e a cosa serve. Ogni azienda aggiorna la propria lista nel tempo: va ricontrollata di tanto in tanto sulle pagine ufficiali, non è definitiva.

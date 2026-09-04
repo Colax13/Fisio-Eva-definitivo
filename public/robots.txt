@@ -1,5 +1,53 @@
-# Sito non ancora pubblico: apertura 26 settembre 2026.
-# Si apre mettendo PUBBLICO: true in src/data/site.ts e togliendo
-# l'header X-Robots-Tag da vercel.json.
+# Sito non ancora aperto ai motori di ricerca tradizionali: apertura
+# dello studio il 26 settembre 2026. È invece leggibile dalle AI elencate qui
+# sotto — la lista, con una riga di spiegazione per ciascuna, sta in
+# scripts/crawler-ai.mjs. Un riepilogo pensato per loro è su /llms.txt.
 User-agent: *
 Disallow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+Sitemap: https://www.fisioeva.it/sitemap.xml

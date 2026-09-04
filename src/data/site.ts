@@ -46,14 +46,21 @@ export const studio = {
 /**
  * Identità del sito e stato di pubblicazione.
  *
- * `PUBBLICO` è l'interruttore unico dell'indicizzazione: finché è `false` il
- * sito resta chiuso ai motori (robots.txt con Disallow e meta robots noindex).
- * Va acceso solo quando i dati legali qui sotto sono completi e il numero di
- * telefono è quello vero — un motore di ricerca che indicizza un recapito
- * sbagliato di uno studio sanitario fa un danno che poi si rincorre per mesi.
+ * `PUBBLICO` è l'interruttore dell'indicizzazione sui motori di ricerca
+ * tradizionali: finché è `false` restano fuori (robots.txt con Disallow e
+ * meta robots noindex). Va acceso solo quando i dati legali qui sotto sono
+ * completi — un motore che indicizza un recapito sbagliato di uno studio
+ * sanitario fa un danno che poi si rincorre per mesi.
+ *
+ * `APERTO_ALLE_AI` è un secondo interruttore, indipendente: apre il sito ai
+ * crawler delle AI (elencati in `scripts/crawler-ai.mjs`) restando chiuso a
+ * Google e Bing. Sono due pubblici diversi — chi cerca su Google trova un
+ * sito che dice "chiuso", chi chiede a un'AI può farsi rispondere — ed è per
+ * questo che sono due flag e non uno.
  */
 export const sito = {
   PUBBLICO: false,
+  APERTO_ALLE_AI: true,
   dominio: 'https://www.fisioeva.it', // ⛔ dominio non ancora registrato
   apertura: '26 settembre 2026',
 };

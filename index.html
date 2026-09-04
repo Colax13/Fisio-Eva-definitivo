@@ -9,13 +9,19 @@
     <meta name="description" content="FisioEVA — Studio di Fisioterapia e Osteopatia in Via di Boccea 755, Roma. Terapia manuale, osteopatia, riabilitazione e terapie strumentali." />
 
     <!--
-      Il sito è chiuso ai motori di ricerca finché non apre lo studio. Il blocco
-      sta in tre punti, e vanno tolti tutti e tre insieme:
-        1. PUBBLICO in src/data/site.ts (governa robots.txt e il meta robots)
-        2. l'header X-Robots-Tag in vercel.json
-        3. il meta qui sotto
+      Chi può leggere il sito è governato da due interruttori indipendenti in
+      src/data/site.ts, entrambi letti da scripts/genera-sitemap.mjs a ogni
+      build — che riscrive questo file, robots.txt e public/llms.txt insieme,
+      perché aprirne uno e dimenticare gli altri è l'errore facile:
+        - PUBBLICO     apre a Google, Bing e ai motori tradizionali
+        - APERTO_ALLE_AI  apre ai crawler delle AI elencati in
+                          scripts/crawler-ai.mjs, lasciando chiusi i motori
+      Il meta robots qui sotto e l'header X-Robots-Tag in vercel.json seguono
+      PUBBLICO: bloccano i motori di ricerca, non le AI elencate, che si
+      escludono solo tramite robots.txt (è lì che vale la differenza fra le
+      due liste di user-agent).
     -->
-    <meta name="robots" content="noindex, nofollow" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
 
     <!-- Anteprima quando il link viene condiviso. Titolo, descrizione e URL
          vengono poi riscritti per ogni pagina da usePageMeta. -->
@@ -27,9 +33,46 @@
     <meta name="twitter:card" content="summary_large_image" />
 
     <title>FisioEVA — Studio di Fisioterapia e Osteopatia | Roma</title>
+
+    <!--
+      Scheda schema.org statica: la stessa che DatiStrutturati.tsx scrive nel
+      browser, ma già pronta qui per chi legge la pagina senza eseguire
+      JavaScript — la maggior parte dei crawler delle AI funziona così.
+      Generata da scripts/genera-sitemap.mjs a partire da src/data/site.ts:
+      non va scritta a mano, verrebbe sovrascritta al build successivo.
+    -->
+    <script type="application/ld+json" id="scheda-clinica">{"@context":"https://schema.org","@type":"MedicalClinic","name":"FisioEVA","description":"Studio di Fisioterapia e Osteopatia a Casalotti, Roma.","url":"https://www.fisioeva.it","address":{"@type":"PostalAddress","streetAddress":"Via di Boccea, 755","postalCode":"00166","addressLocality":"Roma","addressRegion":"RM","addressCountry":"IT"},"email":"fisioeva.boccea@gmail.com","sameAs":["https://www.instagram.com/fisioeva_boccea"],"medicalSpecialty":["Physiotherapy","PhysicalTherapy"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"20:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"08:00","closes":"14:00"}],"telephone":"+39 392 960 5972"}</script>
   </head>
   <body>
     <div id="root"></div>
+
+    <!--
+      Riepilogo statico dello studio, per chi legge la pagina senza eseguire
+      JavaScript — questa applicazione è un'app a pagina singola, e senza
+      JavaScript il resto della pagina è vuoto. Generato da
+      scripts/genera-sitemap.mjs insieme a public/llms.txt, dagli stessi dati:
+      non va scritto a mano.
+    -->
+    <noscript id="riepilogo">
+      <h1>FisioEVA — Studio di Fisioterapia e Osteopatia</h1>
+      <p>Via di Boccea, 755, 00166 Roma (Casalotti). Telefono: +39 392 960 5972. Email: fisioeva.boccea@gmail.com.</p>
+      <p>Orari: Lunedì — Venerdì: 08:00 — 20:00 · Sabato: 08:00 — 14:00 · Domenica: Chiuso.</p>
+      <h2>Servizi</h2>
+      <ul>
+        <li><strong>Terapia manuale e osteopatia</strong> — Valutazione osteopatica e trattamento manuale per sciogliere le tensioni, ridurre il dolore e restituire mobilità alle articolazioni. Ogni seduta parte da ciò che il tuo corpo racconta.</li>
+        <li><strong>Riabilitazione e rieducazione</strong> — Percorsi di recupero dopo un intervento, un infortunio sportivo o un periodo di stop. Il programma cresce con te, seduta dopo seduta, fino al ritorno alle tue attività.</li>
+        <li><strong>Postura e movimento</strong> — Analisi posturale e ginnastica dedicata per correggere gli squilibri che si accumulano ogni giorno, tra scrivania, sport e gesti ripetuti.</li>
+        <li><strong>Terapie fisiche strumentali</strong> — Strumenti che accelerano il recupero e agiscono sull'infiammazione, sempre integrati in un percorso terapeutico e mai usati come scorciatoia.</li>
+      </ul>
+      <h2>Team</h2>
+      <ul>
+        <li>Dott.ssa Azzurra De Angelis — Fisioterapista · Osteopata D.O. — Albo dei Fisioterapisti n. 6174</li>
+        <li>Dott.ssa Elisa De Rubeis — Fisioterapista · Osteopata — Albo dei Fisioterapisti n. 4948</li>
+        <li>Dott.ssa Veronica Mirarchi — Osteopata e Fisioterapista — Albo dei Fisioterapisti n. 11463</li>
+      </ul>
+      <p><a href="/privacy">Privacy policy</a> · <a href="/cookie-policy">Cookie policy</a> · <a href="/llms.txt">Riepilogo per le AI</a></p>
+    </noscript>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
