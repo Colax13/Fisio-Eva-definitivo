@@ -48,19 +48,20 @@ const percorsiFoto = [
 
 const mancanti = percorsiFoto.filter((v) => !existsSync(join(radice, 'public', v)));
 if (mancanti.length) {
-  const elenco = `Mancano ${mancanti.length} foto in public/:\n  ` + mancanti.join('\n  ');
-
   /*
-   * In anteprima è un avviso, non un errore: su un deploy di prova le immagini
-   * rotte si vedono a schermo, ed è esattamente a questo che serve
-   * un'anteprima. Bloccarla lascerebbe solo una X rossa fissa che col tempo
-   * finisce per nascondere un guasto vero.
+   * Ferma anche le anteprime, non solo la produzione.
+   *
+   * Per un giorno il controllo lasciava passare le anteprime, per non tenere
+   * una X rossa fissa nella dashboard. Errore: Vercel pubblicava un'anteprima
+   * verde in cui mancavano tutte le immagini, e a chi la apriva sembrava che
+   * il sito fosse rotto. Un deploy che non parte si capisce; uno che parte e
+   * si vede a metà no.
    */
-  if (process.env.VERCEL_ENV === 'preview') {
-    console.warn(`\n⚠️  ${elenco}\n\nL'anteprima prosegue: le vedrai come immagini rotte.\n`);
-  } else {
-    throw new Error(`${elenco}\n\nCopiale prima di pubblicare (vedi la sezione Immagini del README).`);
-  }
+  throw new Error(
+    `Mancano ${mancanti.length} foto in public/:\n  ` +
+      mancanti.join('\n  ') +
+      '\n\nCopiale prima di pubblicare (vedi la sezione Immagini del README).'
+  );
 }
 
 const escapeHtml = (testo) =>
