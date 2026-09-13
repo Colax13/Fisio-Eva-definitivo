@@ -45,8 +45,8 @@ export default function Privacy() {
             {legale.contitolari.map((c) => (
               <li key={c.slug}>
                 <strong>{c.nome}</strong> — P.IVA{' '}
-                {c.partitaIva ?? <DatoMancante id={`P.IVA ${c.nome}`} />}, C.F.{' '}
-                {c.codiceFiscale ?? <DatoMancante id={`C.F. ${c.nome}`} />}
+                {c.partitaIva ?? <DatoMancante id={`P.IVA ${c.nome}`} />}
+                {c.codiceFiscale && <>, C.F. {c.codiceFiscale}</>}
               </li>
             ))}
           </ul>

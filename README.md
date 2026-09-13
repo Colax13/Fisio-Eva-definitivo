@@ -45,7 +45,7 @@ Rotte: `/` · `/servizi` · `/servizi/[categoria]` · `/servizi/[categoria]/[slu
 
 Dove il cliente non ha ancora fornito un dato **non c'è un valore inventato**: c'è `<DatoMancante id="..." />`, che in sviluppo mostra un badge giallo e in produzione sparisce (o mostra un testo neutro).
 
-Per vedere tutti i buchi aperti basta far girare il sito in locale e guardare i badge gialli. Oggi mancano: orari, destinazione della prenotazione, titoli esatti dei quattro collaboratori, durata delle sedute, nome del piano superiore, parcheggio.
+Per vedere tutti i buchi aperti basta far girare il sito in locale e guardare i badge gialli. Oggi mancano: destinazione della prenotazione, titoli esatti dei quattro collaboratori del team clinico (nascosti su richiesta dello studio), durata delle sedute, nome del piano superiore, parcheggio.
 
 ## Immagini
 
@@ -85,13 +85,16 @@ Le tre professioniste lavorano ciascuna con la propria partita IVA, quindi sono 
 - serve un **punto di contatto unico** per i pazienti (oggi l'email dello studio);
 - il **contenuto essenziale dell'accordo di contitolarità** va messo a disposizione su richiesta — il che presuppone che quell'accordo esista come documento firmato, non solo come intesa verbale. È l'unico adempimento che non si risolve nel codice.
 
-Ancora da avere dallo studio:
+Ancora aperto:
 
-1. **Codice fiscale di tutte e tre** (`legale.contitolari` in `site.ts`). Le tre partite IVA sono inserite e la cifra di controllo torna per tutte.
-2. **L'Ordine TSRM-PSTRP presso cui è iscritta ciascuna**: l'albo è provinciale, quindi il solo numero non identifica l'iscrizione (`team[].ordine`). I tre numeri di albo sono già inseriti.
-3. Una **PEC**, se lo studio ne attiva una: senza, la riga semplicemente non compare nell'informativa.
-4. Per **FisioDesk**: ragione sociale del fornitore e paese in cui sono conservati i dati, presi dal contratto e non dal sito commerciale (`legale.responsabili`).
-5. L'**accordo di contitolarità firmato** e le nomine a responsabile dei fornitori: sono documenti, non codice, ma l'informativa li promette al paziente.
+1. L'**accordo di contitolarità firmato** e le nomine a responsabile dei fornitori: sono documenti, non codice, ma l'informativa li promette al paziente. È l'unica voce con un peso legale reale fra quelle rimaste.
+2. **L'Ordine TSRM-PSTRP di ciascuna** è impostato su Roma per tutte e tre, ma è un'ipotesi: lo studio non lo sapeva con certezza e ha chiesto di mettere Roma nel dubbio. Se una risulta iscritta altrove va corretta (`team[].ordine`).
+3. Per **FisioDesk**: ragione sociale del fornitore e paese in cui sono conservati i dati, dal contratto e non dal sito commerciale (`legale.responsabili`).
+
+Chiusi per scelta dello studio, non da rincorrere:
+
+- **Codice fiscale** delle contitolari — l'art. 13 chiede identità e contatti, non il codice fiscale, e le tre partite IVA identificano già ciascuna. Se un giorno arriva, basta valorizzare `codiceFiscale` e la riga ricompare da sola.
+- **PEC** — lo studio non ne ha una. La riga non compare nell'informativa finché `legale.pec` resta `null`.
 
 ⚠️ Se un domani si aggiungono Google Analytics, un pixel o un widget che parte da solo, la cookie policy da sola non basta più: serve un banner con consenso preventivo e granulare, e il tracciamento va bloccato finché il consenso non arriva.
 
@@ -122,22 +125,24 @@ npx vercel
 
 Senza `--prod` viene creata un'anteprima; `npx vercel --prod` pubblica sul dominio di produzione.
 
-### ⚠️ Il sito è chiuso ai motori di ricerca, aperto solo alle AI
+### Il sito è pubblico
 
-Due interruttori indipendenti in `sito`, dentro `src/data/site.ts`, decidono chi può leggere il sito:
+Dal 13 settembre 2026 il sito è **aperto a tutti**: motori di ricerca e crawler delle AI. Prima era chiuso, e la struttura per richiuderlo è rimasta intatta.
 
-- **`PUBBLICO`** — apre a Google, Bing e ai motori tradizionali. Oggi `false`: privacy e cookie policy sono in bozza, mancano dei dati legali e lo studio apre il 26 settembre 2026.
-- **`APERTO_ALLE_AI`** — apre ai crawler delle AI (elenco in `scripts/crawler-ai.mjs`), lasciando chiusi i motori. Oggi `true`, per scelta esplicita: la parte legale essenziale (contitolari, P.IVA, numeri di albo) è a posto, quindi il sito può farsi leggere da chi cerca tramite un'AI anche prima del lancio ufficiale.
+Due interruttori indipendenti in `sito`, dentro `src/data/site.ts`, decidono chi può leggerlo:
+
+- **`PUBBLICO`** — apre a Google, Bing e ai motori tradizionali. Oggi `true`.
+- **`APERTO_ALLE_AI`** — apre ai crawler delle AI (elenco in `scripts/crawler-ai.mjs`). Oggi `true`. Era stato acceso da solo, prima dell'apertura ai motori, quando lo studio voleva farsi leggere dalle AI ma non ancora comparire su Google: è la ragione per cui sono due flag e non uno.
 
 Da entrambi dipendono, generati insieme a ogni build da `scripts/genera-sitemap.mjs`:
 
-1. `public/robots.txt` — `Disallow: /` per tutti se sono entrambi `false`; se `APERTO_ALLE_AI` è `true` resta `Disallow: /` per `*` ma con un `Allow: /` esplicito per ciascun crawler in `crawler-ai.mjs`; se `PUBBLICO` è `true`, aperto a tutti.
+1. `public/robots.txt` — `Disallow: /` per tutti se sono entrambi `false`; se solo `APERTO_ALLE_AI` è `true`, resta `Disallow: /` per `*` ma con un `Allow: /` esplicito per ciascun crawler in `crawler-ai.mjs`; se `PUBBLICO` è `true`, aperto a tutti.
 2. Il `<meta name="robots">` in `index.html` — segue `PUBBLICO || APERTO_ALLE_AI`.
 3. `public/llms.txt` (vedi sotto).
 
-**Resta fuori da questi due flag** l'header `X-Robots-Tag: noindex, nofollow` in `vercel.json`: è applicato a ogni risposta senza distinguere per user-agent (Vercel non lo permette nel formato base di `headers`), quindi resta acceso finché non si apre anche ai motori tradizionali. Non è un problema per le AI elencate: la loro esclusione/inclusione la decidono tramite `robots.txt`, non tramite questo header, che è una convenzione specifica di Google/Bing.
+L'header `X-Robots-Tag: noindex, nofollow` che stava in `vercel.json` **è stato tolto** all'apertura: era applicato a ogni risposta senza distinguere per user-agent (Vercel non lo permette nel formato base di `headers`), quindi avrebbe tenuto il sito fuori da Google anche con `PUBBLICO: true`. Se un giorno serve richiudere il sito, va rimesso insieme ai due flag — non basta spegnere i flag.
 
-**Al go-live vero** (motori compresi) vanno messi entrambi i flag a `true` e tolto l'header da `vercel.json`, dopo aver completato i dati legali.
+⚠️ **Il dominio `fisioeva.it` è dello studio ma il collegamento DNS verso questo deploy è ancora da fare.** Sitemap, canonical e scheda schema.org puntano tutti lì: finché il DNS non è collegato, i motori trovano indirizzi che non risolvono. È una configurazione da fare nella dashboard del registrar e di Vercel, non in questo codice.
 
 ### Leggibilità per le AI
 

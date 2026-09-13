@@ -47,21 +47,22 @@ export const studio = {
  * Identità del sito e stato di pubblicazione.
  *
  * `PUBBLICO` è l'interruttore dell'indicizzazione sui motori di ricerca
- * tradizionali: finché è `false` restano fuori (robots.txt con Disallow e
- * meta robots noindex). Va acceso solo quando i dati legali qui sotto sono
- * completi — un motore che indicizza un recapito sbagliato di uno studio
- * sanitario fa un danno che poi si rincorre per mesi.
+ * tradizionali (Google, Bing) — a `true`, per scelta dello studio, dal
+ * 13 settembre 2026, insieme ad `APERTO_ALLE_AI` (già aperto in precedenza).
+ * Governano insieme `robots.txt`, il meta robots e `llms.txt`, generati a
+ * ogni build da `scripts/genera-sitemap.mjs`: se in futuro serve richiudere
+ * il sito, si rimette `false` qui, non nei singoli file generati.
  *
- * `APERTO_ALLE_AI` è un secondo interruttore, indipendente: apre il sito ai
- * crawler delle AI (elencati in `scripts/crawler-ai.mjs`) restando chiuso a
- * Google e Bing. Sono due pubblici diversi — chi cerca su Google trova un
- * sito che dice "chiuso", chi chiede a un'AI può farsi rispondere — ed è per
- * questo che sono due flag e non uno.
+ * ⚠️ `dominio` punta a fisioeva.it, di proprietà dello studio ma non ancora
+ * collegato via DNS a questo deploy: finché il collegamento non è fatto,
+ * sitemap, canonical e scheda Google puntano a un indirizzo che i motori
+ * non possono ancora raggiungere. Va fatto dalla dashboard del registrar o
+ * di Vercel — non è una modifica di questo codice.
  */
 export const sito = {
-  PUBBLICO: false,
+  PUBBLICO: true,
   APERTO_ALLE_AI: true,
-  dominio: 'https://www.fisioeva.it', // ⛔ dominio non ancora registrato
+  dominio: 'https://www.fisioeva.it',
   apertura: '26 settembre 2026',
 };
 
@@ -146,7 +147,7 @@ export const legale = {
 
   gestionale: 'FisioDesk' as string | null,
 
-  ultimoAggiornamento: '2 settembre 2026',
+  ultimoAggiornamento: '13 settembre 2026',
 };
 
 /** Le partite IVA effettivamente disponibili, per footer e dati strutturati. */
@@ -155,11 +156,15 @@ export const partiteIva = legale.contitolari
   .filter((p): p is string => Boolean(p));
 
 /*
- * ⛔ L'Albo dei Fisioterapisti è tenuto dagli Ordini TSRM-PSTRP su base
+ * L'Albo dei Fisioterapisti è tenuto dagli Ordini TSRM-PSTRP su base
  * PROVINCIALE: il solo numero non identifica l'iscrizione, serve anche
- * l'Ordine presso cui è iscritta ciascuna professionista. Manca, e il numero
- * da solo resta ambiguo — due professioniste di province diverse possono
- * avere lo stesso numero.
+ * l'Ordine presso cui è iscritta ciascuna professionista.
+ *
+ * Lo studio non ha saputo indicare con certezza l'Ordine di ciascuna: su
+ * indicazione dello studio, nel dubbio, è impostato "Roma" per tutte e tre
+ * (è dove ha sede lo studio, l'ipotesi più probabile). Se una risulta
+ * iscritta altrove — capita se ci si è iscritti quando si viveva o
+ * lavorava in un'altra provincia — va corretto qui.
  */
 export const team = [
   {
@@ -167,7 +172,7 @@ export const team = [
     name: 'Dott.ssa Azzurra De Angelis',
     short: 'Azzurra',
     albo: '6174',
-    ordine: null as string | null,
+    ordine: 'Ordine TSRM-PSTRP di Roma' as string | null,
     role: 'Fisioterapista · Osteopata D.O.',
     // Sintesi del curriculum fornito dallo studio. La specializzazione sulla
     // donna non è una scelta commerciale: nasce dalla tesi di osteopatia, e
@@ -182,7 +187,7 @@ export const team = [
     name: 'Dott.ssa Elisa De Rubeis',
     short: 'Elisa',
     albo: '4948',
-    ordine: null as string | null,
+    ordine: 'Ordine TSRM-PSTRP di Roma' as string | null,
     role: 'Fisioterapista · Osteopata',
     /*
      * Elisa ha mandato il curriculum per esteso e non si taglia: il percorso
@@ -203,7 +208,7 @@ export const team = [
     name: 'Dott.ssa Veronica Mirarchi',
     short: 'Veronica',
     albo: '11463',
-    ordine: null as string | null,
+    ordine: 'Ordine TSRM-PSTRP di Roma' as string | null,
     role: 'Osteopata e Fisioterapista',
     // Bio fornita dallo studio (osteopata dal 2020, fisioterapista dal 2025):
     // quindi è sia osteopata sia fisioterapista, e il ruolo lo riflette.
