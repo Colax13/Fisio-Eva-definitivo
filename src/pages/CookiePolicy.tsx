@@ -124,6 +124,11 @@ export default function CookiePolicy() {
               Finché non lo clicchi, Instagram non sa che sei qui.
             </li>
             <li>
+              <strong>I caratteri tipografici</strong> — non arrivano da Google. I font del sito
+              sono copiati sul nostro server e serviti da qui, quindi caricando una pagina il tuo
+              browser non contatta fonts.google.com e il tuo indirizzo IP non esce verso nessuno.
+            </li>
+            <li>
               <strong>Vercel</strong> — ospita il sito e registra nei log tecnici le richieste al
               server (indirizzo IP, data e ora, pagina richiesta, browser), per sicurezza e
               diagnostica. Non sono usati per identificarti né per profilarti.
