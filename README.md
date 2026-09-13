@@ -49,9 +49,33 @@ Per vedere tutti i buchi aperti basta far girare il sito in locale e guardare i 
 
 ## Immagini
 
-Lo shooting è previsto dopo l'apertura, quindi **non ci sono foto stock**: al loro posto il componente `<Figura>` disegna un blocco colore con il motivo a linea, allo stesso rapporto d'aspetto della foto definitiva. Quando le foto arrivano si passa `src` e il layout non cambia di un pixel.
+Le foto dello shooting di settembre 2026 stanno in `public/foto/` (scatti dello studio) e `public/team/` (i tre ritratti), servite dal nostro dominio come i font: nessuna richiesta a servizi esterni.
 
-Le uniche immagini reali già presenti sono i ritratti di Azzurra ed Elisa in `public/team/`, ritagliati dal flyer del branding.
+Per copiarle dall'export dentro il sito con i nomi giusti c'è **`scripts/copia-foto.ps1`** (Windows):
+
+```
+powershell -ExecutionPolicy Bypass -File scripts\copia-foto.ps1
+```
+
+Sceglie da solo le 27 foto usate dal sito, fra le 54 dell'export, e le rinomina. Aggiungerne una significa aggiungere una riga alla mappa nello script e una voce a `immagini` o `foto` in `site.ts`.
+
+**Il build fallisce se manca una foto** referenziata dal codice (controllo in `scripts/genera-sitemap.mjs`): il sito è pubblico e indicizzato, e pubblicare una versione con le immagini rotte è peggio che non pubblicarla — a occhio non te ne accorgi finché non apri ogni pagina.
+
+### ⚠️ Le sei foto con il volto di una paziente
+
+Sei scatti mostrano il volto riconoscibile della persona in trattamento. Di ciascuno esiste in `05_privacy` una versione lavorata — `_CROP` (tagliata sopra il viso) e `_DOF` (viso sfocato) — e **sul sito va usata sempre quella**: pubblicare il volto di un paziente identificabile richiede il suo consenso scritto, e in un contesto sanitario quell'immagine rivela anche che sta ricevendo cure. Lo script copia già le versioni `_CROP`; gli originali a volto scoperto restano fuori dal repo.
+
+Le altre foto non hanno una versione lavorata perché il volto non si riconosce. Se in una di quelle il soggetto risultasse comunque identificabile, va trattata come le sei.
+
+### Foto che ancora mancano
+
+Tre sezioni del sito non hanno uno scatto proprio e restano su Unsplash — sono l'unico motivo per cui il sito contatta ancora un dominio esterno. Servono foto vere o stock scaricate e ospitate in `public/foto/` come le altre:
+
+- **percorso donna** — gravidanza e post-parto, che è poi la specializzazione dello studio
+- **osteopatia neonatale e pediatrica**
+- **percorso terza età**
+
+Manca anche uno scatto di riabilitazione attiva (esercizio guidato): oggi al suo posto c'è una terapia manuale al ginocchio, che è la cosa più vicina fra quelle disponibili.
 
 ## Regole di scrittura
 

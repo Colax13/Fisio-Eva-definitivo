@@ -2,22 +2,60 @@ const unsplash = (id: string, w = 1400) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&q=80&w=${w}`;
 
 /**
- * Every photo used across the site, in one place.
- * These are stock placeholders: swap the values for the studio's own shots
- * (drop the files in /public and point the keys at them) without touching
- * any component.
+ * Ogni foto del sito, in un posto solo.
+ *
+ * Sono gli scatti dello shooting di settembre 2026, serviti dal nostro
+ * dominio: nessuna richiesta a servizi esterni, in linea con la scelta fatta
+ * per i font e per la mappa.
+ *
+ * ⚠️ PRIVACY — Sei scatti mostrano il volto riconoscibile di una paziente. Di
+ * quelli esiste una versione lavorata (_CROP, taglio che esclude il viso, e
+ * _DOF, sfocatura) e **sul sito va usata sempre quella**: pubblicare il volto
+ * di un paziente identificabile richiede il suo consenso scritto, e in un
+ * contesto sanitario quell'immagine rivela anche che sta ricevendo cure. I
+ * file in `/foto` che derivano da uno di quei sei sono già le versioni
+ * lavorate; l'originale non va messo online.
  */
 export const immagini = {
-  trattamento: unsplash('photo-1519824145371-296894a0daa9'), // mani sulla schiena
-  manuale: unsplash('photo-1584515933487-779824d29309'), // terapia manuale, dettaglio
-  riabilitazione: unsplash('photo-1571019614242-c5c5dee9f50b'), // esercizio guidato
-  postura: unsplash('photo-1571019613454-1cb2f99b2d8b'), // esercizio a terra
-  strumentale: unsplash('photo-1581056771107-24ca5f033842'), // professionista con paziente
-  donna: unsplash('photo-1518611012118-696072aa579a'), // ginnastica dolce
-  bambini: unsplash('photo-1555252333-9f8e92e65df9'), // neonato
-  anziani: unsplash('photo-1622253692010-333f2da6031d'), // paziente anziana seguita
-  calma: unsplash('photo-1600334089648-b0d9d3028eb2'), // relax e benessere
-  sede: '/team/studio.png', // la sede di Via di Boccea 755
+  // Trattamenti manuali
+  trattamento: '/foto/terapia-manuale-momento-di-cura.jpg',
+  manuale: '/foto/terapia-manuale-schiena.jpg',
+  riabilitazione: '/foto/terapia-manuale-ginocchio.jpg',
+  postura: '/foto/valutazione-posturale-spalle.jpg',
+  strumentale: '/foto/tecar-in-trattamento.jpg',
+  calma: '/foto/relazione-sorriso.jpg',
+  sede: '/foto/sede-reception.jpg',
+
+  /*
+   * ⛔ MANCANTI dallo shooting. Restano su Unsplash finché non arrivano scatti
+   * veri o stock scaricate e ospitate qui come le altre — lasciarle su
+   * Unsplash è l'unica ragione per cui il sito contatta ancora un dominio
+   * esterno.
+   */
+  donna: unsplash('photo-1518611012118-696072aa579a'), // ⛔ percorso donna, gravidanza e post-parto
+  bambini: unsplash('photo-1555252333-9f8e92e65df9'), // ⛔ osteopatia neonatale e pediatrica
+  anziani: unsplash('photo-1622253692010-333f2da6031d'), // ⛔ percorso terza età
+};
+
+/** Gli altri scatti dello shooting, usati nella gallery e nelle schede. */
+export const foto = {
+  terapiaManualeCaviglia: '/foto/terapia-manuale-caviglia.jpg',
+  terapiaManualeSostegnoCervicale: '/foto/terapia-manuale-sostegno-cervicale.jpg', // versione CROP
+  valutazionePosturaleProfilo: '/foto/valutazione-posturale-profilo.jpg', // versione CROP
+  osteopatiaCranialeDettaglio: '/foto/osteopatia-craniale-dettaglio.jpg', // versione CROP
+  osteopatiaCranialeManiCapo: '/foto/osteopatia-craniale-mani-capo.jpg', // versione CROP
+  osteopatiaCervicale: '/foto/osteopatia-cervicale.jpg', // versione CROP
+  tecarFianco: '/foto/tecar-fianco.jpg',
+  tecarFisiowarm: '/foto/tecar-fisiowarm.jpg',
+  laserSpalla: '/foto/laser-spalla.jpg',
+  laserGomito: '/foto/laser-gomito.jpg',
+  laserIlux: '/foto/laser-ilux.jpg',
+  salaLettinoLaser: '/foto/sala-lettino-e-laser.jpg',
+  teamGruppo: '/foto/team-gruppo.jpg',
+  teamGruppoRelazionale: '/foto/team-gruppo-relazionale.jpg',
+  professionalitaOcchialiLaser: '/foto/professionalita-occhiali-laser.jpg',
+  tecnologiaTouchscreen: '/foto/tecnologia-touchscreen.jpg',
+  brandLogoCamice: '/foto/brand-logo-camice.jpg',
 };
 
 export const studio = {
@@ -179,7 +217,7 @@ export const team = [
     // dirlo vale più di qualsiasi elenco di corsi.
     description:
       'Si è laureata in Fisioterapia nel 2011 all\'Università Cattolica del Sacro Cuore con 110/110 e lode, con una tesi in riabilitazione neurologica. Ha proseguito con il Master in Rieducazione Posturale Globale secondo il metodo Souchard e la formazione superiore per le patologie cranio-cervicali, poi con la specializzazione in linfodrenaggio manuale. Ha completato gli studi in Osteopatia alla scuola EDUCAM, di nuovo con 110/110 e lode: la tesi, sul trattamento osteopatico della cicatrice da taglio cesareo, è il punto da cui è partito il suo lavoro con le donne in gravidanza e nel post-parto.',
-    photo: '/team/azzurra.png',
+    photo: '/team/azzurra.jpg',
     accent: 'secondary' as const,
   },
   {
@@ -200,7 +238,7 @@ export const team = [
       'Si è laureata in Fisioterapia nel 2004 con 110/110 e lode, con una tesi sul legame tra emozione, postura e respiro — il filo che ha poi seguito in tutta la sua formazione. Ha proseguito con il master in Rieducazione Posturale Globale secondo il metodo Souchard, il corso annuale di terapia manuale secondo il concetto Maitland e i livelli di cranio-sacrale e di manipolazione fasciale viscerale del metodo Upledger. Lavora con il Pilates applicato alla colonna e con la ginnastica ipopressiva post-partum. Oggi è al terzo anno della formazione quadriennale in metodo Feldenkrais.',
     description:
       'Si è laureata in Fisioterapia nel 2004 con 110/110 e lode, con una tesi sul legame tra emozione, postura e respiro — il filo che ha poi seguito in tutta la sua formazione. Ha proseguito con il master in Rieducazione Posturale Globale (metodo Souchard), con il corso annuale in terapia manuale secondo il concetto Maitland, con un primo livello di cranio-sacrale e con due livelli di manipolazione fasciale viscerale secondo il metodo Upledger. Ha seguito il corso di «Corpo e Coscienza» di G. Courchinoux, ginnastica posturale di gruppo che integra sistemi occidentali con tecniche ed esercizi orientali. Lavora con il Pilates applicato alla colonna e ha seguito corsi post-graduate formativi di ginnastica ipopressiva post-partum (tecnica Caufriez e metodo De Gasquet). Attualmente è in formazione quadriennale (al terzo anno) del metodo Feldenkrais. È abilitata all’insegnamento delle C.A.M. (Conoscersi Attraverso il Movimento), metodo volto alla scoperta del movimento fisiologico attraverso esplorazioni del sistema nervoso che organizza in maniera naturale il movimento rendendolo efficiente e piacevole.',
-    photo: '/team/elisa.png',
+    photo: '/team/elisa.jpg',
     accent: 'primary' as const,
   },
   {
@@ -214,7 +252,7 @@ export const team = [
     // quindi è sia osteopata sia fisioterapista, e il ruolo lo riflette.
     description:
       'Si è diplomata in Osteopatia presso il CERDO nel 2020, con una tesi dedicata al trattamento osteopatico delle disfunzioni gastrointestinali. Nel 2025 si è laureata in Fisioterapia presso l’Università UniCamillus con 110/110 e lode, discutendo una tesi sulla riabilitazione del pavimento pelvico nelle donne con endometriosi. Durante il percorso universitario ha svolto un importante periodo di formazione presso il CONI, lavorando a contatto con atleti di livello internazionale. Il suo passato da sportiva e l’interesse per la salute femminile orientano oggi il suo lavoro, nel quale integra fisioterapia e osteopatia attraverso un approccio globale e attento alle esigenze della persona.',
-    photo: '',
+    photo: '/team/veronica.jpg',
     accent: 'primary' as const,
   },
 ];
@@ -910,58 +948,82 @@ export const faq: Faq[] = [
 export const gallery = [
   {
     src: immagini.manuale,
-    alt: 'Seduta di terapia manuale',
+    alt: 'Trattamento manuale della schiena',
     categoria: 'Trattamenti',
     span: 'tall' as const,
   },
   {
-    src: immagini.riabilitazione,
-    alt: 'Esercizio di rieducazione motoria',
-    categoria: 'Riabilitazione',
-    span: 'normal' as const,
-  },
-  {
-    src: immagini.strumentale,
-    alt: 'Terapia strumentale in studio',
+    src: foto.osteopatiaCranialeManiCapo,
+    alt: 'Trattamento di osteopatia craniale',
     categoria: 'Trattamenti',
     span: 'normal' as const,
   },
   {
-    src: immagini.trattamento,
-    alt: 'Momento di benessere e respirazione',
+    src: immagini.strumentale,
+    alt: 'Tecarterapia durante una seduta',
+    categoria: 'Trattamenti',
+    span: 'normal' as const,
+  },
+  {
+    src: foto.teamGruppo,
+    alt: 'Le professioniste dello studio FisioEVA',
     categoria: 'Lo studio',
     span: 'wide' as const,
   },
   {
     src: immagini.postura,
-    alt: 'Ginnastica posturale',
+    alt: 'Valutazione posturale delle spalle',
     categoria: 'Riabilitazione',
     span: 'normal' as const,
   },
   {
-    src: immagini.anziani,
-    alt: 'Percorso dedicato alla terza età',
-    categoria: 'Riabilitazione',
+    src: foto.laserSpalla,
+    alt: 'Laser ad alta potenza sulla spalla',
+    categoria: 'Trattamenti',
     span: 'normal' as const,
   },
   {
-    src: immagini.bambini,
-    alt: 'Attività di psicomotricità',
-    categoria: 'Percorsi',
+    src: foto.salaLettinoLaser,
+    alt: 'La sala trattamenti con lettino e laser',
+    categoria: 'Lo studio',
     span: 'normal' as const,
   },
   {
     src: immagini.sede,
-    alt: 'La nuova sede di Via di Boccea 755',
+    alt: 'La reception dello studio in Via di Boccea 755',
     categoria: 'Lo studio',
     span: 'wide' as const,
   },
   {
-    src: immagini.calma,
-    alt: 'Spazio dedicato al benessere',
+    src: foto.terapiaManualeCaviglia,
+    alt: 'Terapia manuale della caviglia',
+    categoria: 'Riabilitazione',
+    span: 'normal' as const,
+  },
+  {
+    src: foto.tecarFisiowarm,
+    alt: 'La tecar Fisiowarm accanto al lettino',
     categoria: 'Lo studio',
+    span: 'normal' as const,
+  },
+  {
+    src: immagini.calma,
+    alt: 'Un sorriso durante il lavoro in studio',
+    categoria: 'Lo studio',
+    span: 'normal' as const,
+  },
+  {
+    src: foto.laserIlux,
+    alt: 'Il laser iLux accanto al lettino',
+    categoria: 'Trattamenti',
     span: 'normal' as const,
   },
 ];
 
-export const galleryCategorie = ['Tutte', 'Lo studio', 'Trattamenti', 'Riabilitazione', 'Percorsi'];
+/*
+ * Solo le categorie che hanno davvero degli scatti: "Percorsi" è uscita con
+ * lo shooting di settembre, perché le foto dei percorsi donna, pediatrico e
+ * terza età non esistono ancora. Va rimessa insieme alle foto, non prima —
+ * un filtro che apre su una griglia vuota sembra un sito rotto.
+ */
+export const galleryCategorie = ['Tutte', 'Lo studio', 'Trattamenti', 'Riabilitazione'];

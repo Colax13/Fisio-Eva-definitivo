@@ -20,11 +20,11 @@
  * llms.txt). Per questo il riepilogo e llms.txt contengono i fatti principali
  * per esteso, invece di limitarsi a un link.
  */
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { CRAWLER_AI } from './crawler-ai.mjs';
-import { sito, studio, servizi, team } from '../src/data/site.ts';
+import { sito, studio, servizi, team, immagini, foto } from '../src/data/site.ts';
 import { creaSchedaClinica } from '../src/lib/schemaOrg.ts';
 
 const radice = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -32,6 +32,28 @@ const PUBBLICO = sito.PUBBLICO;
 const APERTO_ALLE_AI = sito.APERTO_ALLE_AI;
 const APERTO = PUBBLICO || APERTO_ALLE_AI;
 const DOMINIO = sito.dominio.replace(/\/$/, '');
+
+/*
+ * Le foto referenziate dal codice devono esistere davvero in `public/`.
+ *
+ * Il sito è pubblico e indicizzato: pubblicare una versione con le immagini
+ * rotte è peggio che non pubblicare affatto, e a occhio non te ne accorgi
+ * finché non apri ogni pagina. Meglio far fallire il build.
+ */
+const percorsiFoto = [
+  ...Object.values(immagini),
+  ...Object.values(foto),
+  ...team.map((m) => m.photo),
+].filter((v) => typeof v === 'string' && v.startsWith('/'));
+
+const mancanti = percorsiFoto.filter((v) => !existsSync(join(radice, 'public', v)));
+if (mancanti.length) {
+  throw new Error(
+    `Mancano ${mancanti.length} foto in public/:\n  ` +
+      mancanti.join('\n  ') +
+      '\n\nCopiale prima di pubblicare (vedi la sezione Immagini del README).'
+  );
+}
 
 const escapeHtml = (testo) =>
   String(testo).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
