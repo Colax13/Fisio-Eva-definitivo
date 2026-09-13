@@ -61,11 +61,11 @@ Sceglie da solo le 27 foto usate dal sito, fra le 54 dell'export, e le rinomina.
 
 **Il build fallisce se manca una foto** referenziata dal codice (controllo in `scripts/genera-sitemap.mjs`): il sito è pubblico e indicizzato, e pubblicare una versione con le immagini rotte è peggio che non pubblicarla — a occhio non te ne accorgi finché non apri ogni pagina.
 
-### ⚠️ Le sei foto con il volto di una paziente
+### Le foto in cui si vede il volto
 
-Sei scatti mostrano il volto riconoscibile della persona in trattamento. Di ciascuno esiste in `05_privacy` una versione lavorata — `_CROP` (tagliata sopra il viso) e `_DOF` (viso sfocato) — e **sul sito va usata sempre quella**: pubblicare il volto di un paziente identificabile richiede il suo consenso scritto, e in un contesto sanitario quell'immagine rivela anche che sta ricevendo cure. Lo script copia già le versioni `_CROP`; gli originali a volto scoperto restano fuori dal repo.
+Cinque degli scatti usati dal sito mostrano il volto della persona in trattamento. Nell'export esiste anche una versione lavorata — `_CROP` (tagliata sopra il viso) e `_DOF` (viso sfocato) nella cartella `05_privacy` — ma **su indicazione dello studio il sito usa gli originali**.
 
-Le altre foto non hanno una versione lavorata perché il volto non si riconosce. Se in una di quelle il soggetto risultasse comunque identificabile, va trattata come le sei.
+La scelta presuppone che la persona ripresa abbia dato il consenso a comparire online, ed è lo studio a risponderne. Se quel consenso non ci fosse, le versioni `_CROP` sono già pronte nell'export: basta cambiare cinque righe nella mappa di `scripts/copia-foto.ps1` e ricopiare.
 
 ### Foto che ancora mancano
 

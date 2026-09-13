@@ -10,10 +10,10 @@
 
       powershell -ExecutionPolicy Bypass -File scripts\copia-foto.ps1 -Export "D:\altro\_export_editing"
 
-  ATTENZIONE alle sei foto della cartella 05_privacy: sono le uniche in cui si
-  riconosce il volto di una paziente, e qui viene copiata apposta la versione
-  _CROP (quella tagliata). L'originale a volto scoperto non va pubblicato senza
-  il consenso scritto della persona ripresa.
+  NOTA: cinque di questi scatti mostrano il volto della persona in trattamento.
+  Su indicazione dello studio si usano gli originali, non le versioni tagliate
+  della cartella 05_privacy. Presuppone che la persona ripresa abbia dato il
+  consenso a comparire sul sito.
 #>
 
 param(
@@ -48,12 +48,13 @@ $mappa = @(
   @{ da = "04_macchinari\FisioEVA_laser_ilux-e-lettino_DSC9589.jpg";                a = "public\foto\laser-ilux.jpg" }
   @{ da = "04_macchinari\FisioEVA_tecar_fisiowarm-e-lettino_DSC9581.jpg";           a = "public\foto\tecar-fisiowarm.jpg" }
 
-  # Versioni senza volto: vedi l'avvertenza in cima.
-  @{ da = "05_privacy\FisioEVA_osteopatia_craniale-dettaglio_DSC9753_CROP.jpg";     a = "public\foto\osteopatia-craniale-dettaglio.jpg" }
-  @{ da = "05_privacy\FisioEVA_osteopatia_craniale-mani-capo_DSC9771_CROP.jpg";     a = "public\foto\osteopatia-craniale-mani-capo.jpg" }
-  @{ da = "05_privacy\FisioEVA_osteopatia_cervicale_DSC9899_CROP.jpg";              a = "public\foto\osteopatia-cervicale.jpg" }
-  @{ da = "05_privacy\FisioEVA_terapia-manuale_sostegno-cervicale_DSC9921_CROP.jpg"; a = "public\foto\terapia-manuale-sostegno-cervicale.jpg" }
-  @{ da = "05_privacy\FisioEVA_valutazione-posturale_profilo_DSC9945_CROP.jpg";     a = "public\foto\valutazione-posturale-profilo.jpg" }
+  # Scatti in cui il volto è visibile: su indicazione dello studio si usano gli
+  # originali, non le versioni tagliate della cartella 05_privacy.
+  @{ da = "01_verticali\FisioEVA_osteopatia_craniale-dettaglio_DSC9753.jpg";        a = "public\foto\osteopatia-craniale-dettaglio.jpg" }
+  @{ da = "02_orizzontali\FisioEVA_osteopatia_craniale-mani-capo_DSC9771.jpg";      a = "public\foto\osteopatia-craniale-mani-capo.jpg" }
+  @{ da = "02_orizzontali\FisioEVA_osteopatia_cervicale_DSC9899.jpg";               a = "public\foto\osteopatia-cervicale.jpg" }
+  @{ da = "01_verticali\FisioEVA_terapia-manuale_sostegno-cervicale_DSC9921.jpg";   a = "public\foto\terapia-manuale-sostegno-cervicale.jpg" }
+  @{ da = "01_verticali\FisioEVA_valutazione-posturale_profilo_DSC9945.jpg";        a = "public\foto\valutazione-posturale-profilo.jpg" }
 )
 
 New-Item -ItemType Directory -Force -Path (Join-Path $Repo "public\foto") | Out-Null

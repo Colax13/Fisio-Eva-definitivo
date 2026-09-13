@@ -8,13 +8,11 @@ const unsplash = (id: string, w = 1400) =>
  * dominio: nessuna richiesta a servizi esterni, in linea con la scelta fatta
  * per i font e per la mappa.
  *
- * ⚠️ PRIVACY — Sei scatti mostrano il volto riconoscibile di una paziente. Di
- * quelli esiste una versione lavorata (_CROP, taglio che esclude il viso, e
- * _DOF, sfocatura) e **sul sito va usata sempre quella**: pubblicare il volto
- * di un paziente identificabile richiede il suo consenso scritto, e in un
- * contesto sanitario quell'immagine rivela anche che sta ricevendo cure. I
- * file in `/foto` che derivano da uno di quei sei sono già le versioni
- * lavorate; l'originale non va messo online.
+ * Cinque scatti mostrano il volto della persona in trattamento. Dell'export
+ * esiste anche una versione lavorata (`_CROP`, tagliata sopra il viso, e
+ * `_DOF`, sfocata) nella cartella 05_privacy, ma su indicazione dello studio
+ * il sito usa gli originali. Presuppone che la persona ripresa abbia dato il
+ * consenso a comparire online: è lo studio a rispondere di quel consenso.
  */
 export const immagini = {
   // Trattamenti manuali
@@ -40,11 +38,11 @@ export const immagini = {
 /** Gli altri scatti dello shooting, usati nella gallery e nelle schede. */
 export const foto = {
   terapiaManualeCaviglia: '/foto/terapia-manuale-caviglia.jpg',
-  terapiaManualeSostegnoCervicale: '/foto/terapia-manuale-sostegno-cervicale.jpg', // versione CROP
-  valutazionePosturaleProfilo: '/foto/valutazione-posturale-profilo.jpg', // versione CROP
-  osteopatiaCranialeDettaglio: '/foto/osteopatia-craniale-dettaglio.jpg', // versione CROP
-  osteopatiaCranialeManiCapo: '/foto/osteopatia-craniale-mani-capo.jpg', // versione CROP
-  osteopatiaCervicale: '/foto/osteopatia-cervicale.jpg', // versione CROP
+  terapiaManualeSostegnoCervicale: '/foto/terapia-manuale-sostegno-cervicale.jpg', // volto visibile
+  valutazionePosturaleProfilo: '/foto/valutazione-posturale-profilo.jpg', // volto visibile
+  osteopatiaCranialeDettaglio: '/foto/osteopatia-craniale-dettaglio.jpg', // volto visibile
+  osteopatiaCranialeManiCapo: '/foto/osteopatia-craniale-mani-capo.jpg', // volto visibile
+  osteopatiaCervicale: '/foto/osteopatia-cervicale.jpg', // volto visibile
   tecarFianco: '/foto/tecar-fianco.jpg',
   tecarFisiowarm: '/foto/tecar-fisiowarm.jpg',
   laserSpalla: '/foto/laser-spalla.jpg',
