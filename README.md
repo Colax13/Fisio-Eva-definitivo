@@ -59,7 +59,9 @@ powershell -ExecutionPolicy Bypass -File scripts\copia-foto.ps1
 
 Sceglie da solo le 27 foto usate dal sito, fra le 54 dell'export, e le rinomina. Aggiungerne una significa aggiungere una riga alla mappa nello script e una voce a `immagini` o `foto` in `site.ts`.
 
-**Il build fallisce se manca una foto** referenziata dal codice (controllo in `scripts/genera-sitemap.mjs`): il sito è pubblico e indicizzato, e pubblicare una versione con le immagini rotte è peggio che non pubblicarla — a occhio non te ne accorgi finché non apri ogni pagina.
+**Il build di produzione fallisce se manca una foto** referenziata dal codice (controllo in `scripts/genera-sitemap.mjs`): il sito è pubblico e indicizzato, e pubblicarlo con le immagini rotte è peggio che non aggiornarlo — a occhio non te ne accorgi finché non apri ogni pagina.
+
+Sulle anteprime di Vercel (`VERCEL_ENV=preview`) è invece solo un avviso e il build prosegue: lì le immagini rotte si vedono a schermo, ed è a questo che serve un'anteprima. Bloccarle lascerebbe una X rossa fissa nella dashboard, che col tempo finisce per nascondere un guasto vero.
 
 ### Le foto in cui si vede il volto
 
