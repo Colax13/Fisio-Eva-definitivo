@@ -63,9 +63,9 @@ Sceglie da solo le 27 foto usate dal sito, fra le 54 dell'export, e le rinomina.
 
 ### Le foto in cui si vede il volto
 
-Cinque degli scatti usati dal sito mostrano il volto della persona in trattamento. Nell'export esiste anche una versione lavorata — `_CROP` (tagliata sopra il viso) e `_DOF` (viso sfocato) nella cartella `05_privacy` — ma **su indicazione dello studio il sito usa gli originali**.
+Cinque degli scatti usati dal sito mostrano il volto della persona in trattamento: è **una modella che ha posato per lo shooting**, non una paziente, quindi si usano gli originali senza bisogno di altro.
 
-La scelta presuppone che la persona ripresa abbia dato il consenso a comparire online, ed è lo studio a risponderne. Se quel consenso non ci fosse, le versioni `_CROP` sono già pronte nell'export: basta cambiare cinque righe nella mappa di `scripts/copia-foto.ps1` e ricopiare.
+Nell'export esistono anche versioni con il viso tagliato (`_CROP`) o sfocato (`_DOF`), nella cartella `05_privacy`. Non servono oggi, ma vanno tenute presenti il giorno in cui si fotografassero pazienti veri: lì il consenso scritto della persona ripresa è obbligatorio, e su un sito sanitario quell'immagine rivela anche che sta ricevendo cure.
 
 ### Foto che ancora mancano
 

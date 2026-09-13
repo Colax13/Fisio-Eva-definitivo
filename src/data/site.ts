@@ -8,11 +8,11 @@ const unsplash = (id: string, w = 1400) =>
  * dominio: nessuna richiesta a servizi esterni, in linea con la scelta fatta
  * per i font e per la mappa.
  *
- * Cinque scatti mostrano il volto della persona in trattamento. Dell'export
- * esiste anche una versione lavorata (`_CROP`, tagliata sopra il viso, e
- * `_DOF`, sfocata) nella cartella 05_privacy, ma su indicazione dello studio
- * il sito usa gli originali. Presuppone che la persona ripresa abbia dato il
- * consenso a comparire online: è lo studio a rispondere di quel consenso.
+ * Cinque scatti mostrano il volto della persona in trattamento: è una modella
+ * che ha posato per lo shooting, non una paziente, quindi il sito usa gli
+ * originali. Nell'export esistono anche versioni con il viso tagliato
+ * (`_CROP`) o sfocato (`_DOF`), in 05_privacy: servirebbero solo se un domani
+ * si fotografassero pazienti veri, per cui il consenso scritto è obbligatorio.
  */
 export const immagini = {
   // Trattamenti manuali
