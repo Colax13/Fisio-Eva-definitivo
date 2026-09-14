@@ -16,7 +16,9 @@ const unsplash = (id: string, w = 1400) =>
  */
 export const immagini = {
   // Trattamenti manuali
-  trattamento: '/foto/terapia-manuale-momento-di-cura.webp',
+  trattamento: '/foto/terapia-manuale-momento-di-cura.webp', // Azzurra: il nome è ricamato sul camice
+  // Lo sfondo delle hero: le tre titolari insieme.
+  hero: '/foto/team-gruppo-hero.webp',
   manuale: '/foto/terapia-manuale-schiena.webp',
   riabilitazione: '/foto/terapia-manuale-ginocchio.webp',
   postura: '/foto/valutazione-posturale-spalle.webp',
@@ -78,6 +80,9 @@ export const foto = {
   // Tavoletta propriocettiva: equilibrio e controllo del movimento.
   propriocezioneTavoletta: '/foto/propriocezione-tavoletta.webp',
   propriocezioneMonopodalico: '/foto/propriocezione-monopodalico.webp',
+  // Manipolo sul basso addome (tecar_manipolo-addome, DSC9683), ritagliato in orizzontale.
+  // Nello scatto non si vede una cicatrice: mostra il lavoro sulla zona, scelto dallo studio per il cesareo.
+  addomeTrattamento: '/foto/addome-trattamento.webp',
 };
 
 export const studio = {
@@ -248,7 +253,8 @@ export const team = [
     short: 'Elisa',
     albo: '4948',
     ordine: 'Ordine TSRM-PSTRP di Roma' as string | null,
-    role: 'Fisioterapista · Osteopata',
+    // Solo fisioterapista: lo studio ha precisato che Elisa non è osteopata.
+    role: 'Fisioterapista',
     /*
      * Elisa ha mandato il curriculum per esteso e non si taglia: il percorso
      * è il punto. Ma tre schede affiancate devono potersi leggere insieme, e
@@ -412,7 +418,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Un approccio che guarda tutto il corpo, non solo il punto in cui senti male.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['mal di schiena', 'lombalgia', 'cervicale', 'cefalea', 'sciatica', 'vertigini'],
-    image: foto.osteopatiaCranialeScena,
+    image: immagini.trattamento,
   },
   {
     slug: 'terapia-manuale',
@@ -420,7 +426,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Le mani come strumento: contratture, tensioni e blocchi articolari.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['contrattura', 'collo rigido', 'spalla bloccata', 'dolore muscolare', 'tensione'],
-    image: immagini.manuale,
+    image: foto.osteopatiaCranialeScena,
   },
   {
     slug: 'ginnastica-posturale',
@@ -438,8 +444,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Il lavoro sul movimento: recuperare forza, mobilità e controllo.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['perdita di forza', 'articolazione rigida', 'dopo il gesso', 'mobilità ridotta'],
-    // Esercizio attivo guidato: il ginocchio sta già sulla card della post-chirurgica, accanto.
-    image: foto.esercizioGuidatoBraccia,
+    image: immagini.riabilitazione,
   },
   {
     slug: 'rieducazione-motoria',
@@ -455,8 +460,8 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Il recupero dopo un intervento, guidato passo dopo passo.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['dopo operazione', 'protesi anca', 'protesi ginocchio', 'crociato', 'frattura'],
-    // Prima c'era il sorriso in studio: bello, ma non mostrava un recupero.
-    image: immagini.riabilitazione,
+    // La caviglia: il ginocchio è già sulla card della fisiokinesiterapia, accanto.
+    image: foto.terapiaManualeCaviglia,
   },
   {
     slug: 'rieducazione-sportiva',
@@ -464,7 +469,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Tornare a giocare, non solo a camminare senza dolore.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['infortunio sportivo', 'distorsione', 'stiramento', 'tendinite', 'sovraccarico'],
-    image: foto.terapiaManualeCaviglia,
+    image: immagini.manuale,
   },
   {
     slug: 'taping-neuromuscolare',
@@ -502,6 +507,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Una cicatrice non è solo un segno: è un tessuto che tira.',
     categoria: 'salute-della-donna',
     sintomi: ['cicatrice cesareo', 'aderenze', 'pancia che tira', 'cicatrice dura'],
+    image: foto.addomeTrattamento,
   },
   {
     slug: 'linfodrenaggio',
@@ -1107,6 +1113,12 @@ export const gallery = [
   {
     src: foto.propriocezioneTavoletta,
     alt: 'Il piede sulla tavoletta propriocettiva',
+    categoria: 'Esercizio',
+    span: 'wide' as const,
+  },
+  {
+    src: foto.esercizioGuidatoBraccia,
+    alt: 'Esercizio attivo guidato a terra, con le braccia in elevazione',
     categoria: 'Esercizio',
     span: 'wide' as const,
   },

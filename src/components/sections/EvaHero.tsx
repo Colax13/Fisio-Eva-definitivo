@@ -62,7 +62,7 @@ function Sfondo() {
   return (
     <>
       <img
-        src={immagini.trattamento}
+        src={immagini.hero}
         alt=""
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover object-[center_15%]"

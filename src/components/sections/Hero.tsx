@@ -17,7 +17,7 @@ export default function Hero() {
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.5, ease: 'easeOut' }}
-          src={immagini.trattamento}
+          src={immagini.hero}
           alt=""
           aria-hidden="true"
           className="w-full h-full object-cover object-[center_15%]"
