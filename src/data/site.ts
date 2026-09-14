@@ -421,6 +421,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Quando il movimento va reimparato, non solo recuperato.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['equilibrio', 'coordinazione', 'camminata', 'neurologico', 'cadute'],
+    image: foto.valutazionePosturaleProfilo,
   },
   {
     slug: 'rieducazione-post-chirurgica',
@@ -428,6 +429,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Il recupero dopo un intervento, guidato passo dopo passo.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['dopo operazione', 'protesi anca', 'protesi ginocchio', 'crociato', 'frattura'],
+    image: immagini.calma,
   },
   {
     slug: 'rieducazione-sportiva',
