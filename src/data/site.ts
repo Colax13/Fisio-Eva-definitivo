@@ -55,6 +55,29 @@ export const foto = {
   professionalitaOcchialiLaser: '/foto/professionalita-occhiali-laser.webp',
   tecnologiaTouchscreen: '/foto/tecnologia-touchscreen.webp',
   brandLogoCamice: '/foto/brand-logo-camice.webp',
+
+  /*
+   * Secondo export (06_trattamenti e 07_esercizi_a_terra). Scelte guardando
+   * lo scatto, non il nome del file: per esempio "osteopatia_craniale-supina"
+   * mostra in realtà una presa sul braccio, e non è stato usato come craniale.
+   * Il volto è quello della modella dello shooting, come per gli altri.
+   */
+  mobilizzazioneArtoInferiore: '/foto/mobilizzazione-arto-inferiore.webp',
+  mobilizzazioneAnca: '/foto/mobilizzazione-anca.webp', // volto visibile
+  terapiaManualeSpalla: '/foto/terapia-manuale-spalla.webp',
+  terapiaManualeCervicale: '/foto/terapia-manuale-cervicale.webp', // volto visibile
+  tecarTrattamentoInCorso: '/foto/tecar-trattamento-in-corso.webp',
+  brandCamiceVeronica: '/foto/brand-camice-veronica.webp',
+  // Esercizio a terra in postura globale: supina, braccia aperte, mani del terapista sul torace.
+  esercizioATerraRiequilibrio: '/foto/esercizio-a-terra-riequilibrio.webp', // volto visibile
+  esercizioATerraBracciaAperte: '/foto/esercizio-a-terra-braccia-aperte.webp', // volto visibile
+  foamRollerScena: '/foto/foam-roller-scena.webp', // volto visibile
+  foamRollerEsercizioGuidato: '/foto/foam-roller-esercizio-guidato.webp', // volto visibile
+  // Ritaglio orizzontale di rieducazione_braccia-in-elevazione (DSC9870): in verticale la card tagliava le mani.
+  esercizioGuidatoBraccia: '/foto/esercizio-guidato-braccia.webp', // volto visibile
+  // Tavoletta propriocettiva: equilibrio e controllo del movimento.
+  propriocezioneTavoletta: '/foto/propriocezione-tavoletta.webp',
+  propriocezioneMonopodalico: '/foto/propriocezione-monopodalico.webp',
 };
 
 export const studio = {
@@ -358,7 +381,7 @@ export const categorie: Categoria[] = [
     slug: 'terapie-di-gruppo',
     nome: 'Terapie di gruppo',
     sottotitolo: 'Al piano superiore: muoversi bene, insieme. In collaborazione con LongEva.',
-    image: immagini.postura,
+    image: foto.foamRollerScena,
     accent: 'secondary',
   },
 ];
@@ -406,7 +429,8 @@ export const trattamenti: Trattamento[] = [
       'Metodo Mézières-Souchard: un metodo di rieducazione globale mirato al ripristino delle curve fisiologiche della tua colonna.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['postura', 'scoliosi', 'schiena curva', 'iperlordosi', 'dolore cervicale da ufficio', 'rigidità', 'mal di schiena cronico'],
-    image: immagini.postura,
+    // Una postura globale a terra, con le mani del terapista: è la seduta, non la valutazione.
+    image: foto.esercizioATerraRiequilibrio,
   },
   {
     slug: 'fisiokinesiterapia',
@@ -414,7 +438,8 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Il lavoro sul movimento: recuperare forza, mobilità e controllo.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['perdita di forza', 'articolazione rigida', 'dopo il gesso', 'mobilità ridotta'],
-    image: immagini.riabilitazione,
+    // Esercizio attivo guidato: il ginocchio sta già sulla card della post-chirurgica, accanto.
+    image: foto.esercizioGuidatoBraccia,
   },
   {
     slug: 'rieducazione-motoria',
@@ -422,7 +447,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Quando il movimento va reimparato, non solo recuperato.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['equilibrio', 'coordinazione', 'camminata', 'neurologico', 'cadute'],
-    image: foto.valutazionePosturaleProfilo,
+    image: foto.propriocezioneTavoletta,
   },
   {
     slug: 'rieducazione-post-chirurgica',
@@ -430,7 +455,8 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Il recupero dopo un intervento, guidato passo dopo passo.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['dopo operazione', 'protesi anca', 'protesi ginocchio', 'crociato', 'frattura'],
-    image: immagini.calma,
+    // Prima c'era il sorriso in studio: bello, ma non mostrava un recupero.
+    image: immagini.riabilitazione,
   },
   {
     slug: 'rieducazione-sportiva',
@@ -701,7 +727,7 @@ export const porte: Porta[] = [
       'Recupero neuromotorio',
       'Prevenzione delle cadute',
     ],
-    image: foto.terapiaManualeCaviglia,
+    image: foto.propriocezioneTavoletta,
     accent: 'secondary',
     to: '/servizi',
   },
@@ -792,7 +818,7 @@ export const progetti: Progetto[] = [
       'Aumento flessibilità',
       'Consapevolezza corporea',
     ],
-    image: immagini.postura,
+    image: foto.esercizioATerraRiequilibrio,
     accent: 'primary',
   },
   {
@@ -1030,6 +1056,66 @@ export const gallery = [
     categoria: 'Trattamenti',
     span: 'normal' as const,
   },
+  {
+    src: foto.terapiaManualeSpalla,
+    alt: 'Terapia manuale sulla spalla e sulla scapola',
+    categoria: 'Trattamenti',
+    span: 'tall' as const,
+  },
+  {
+    src: foto.esercizioATerraRiequilibrio,
+    alt: 'Ginnastica posturale a terra, con le mani della terapista sul torace',
+    categoria: 'Esercizio',
+    span: 'wide' as const,
+  },
+  {
+    src: foto.propriocezioneMonopodalico,
+    alt: 'Esercizio di equilibrio su una gamba sulla tavoletta propriocettiva',
+    categoria: 'Esercizio',
+    span: 'tall' as const,
+  },
+  {
+    src: foto.mobilizzazioneArtoInferiore,
+    alt: "Mobilizzazione dell'anca e del ginocchio sul lettino",
+    categoria: 'Riabilitazione',
+    span: 'normal' as const,
+  },
+  {
+    src: foto.foamRollerEsercizioGuidato,
+    alt: 'Esercizio guidato con il foam roller, braccia in elevazione',
+    categoria: 'Esercizio',
+    span: 'normal' as const,
+  },
+  {
+    src: foto.tecarTrattamentoInCorso,
+    alt: 'Tecarterapia durante il trattamento',
+    categoria: 'Trattamenti',
+    span: 'normal' as const,
+  },
+  {
+    src: foto.terapiaManualeCervicale,
+    alt: 'Trattamento manuale del tratto cervicale',
+    categoria: 'Trattamenti',
+    span: 'normal' as const,
+  },
+  {
+    src: foto.mobilizzazioneAnca,
+    alt: "Mobilizzazione dell'anca in posizione supina",
+    categoria: 'Riabilitazione',
+    span: 'normal' as const,
+  },
+  {
+    src: foto.propriocezioneTavoletta,
+    alt: 'Il piede sulla tavoletta propriocettiva',
+    categoria: 'Esercizio',
+    span: 'wide' as const,
+  },
+  {
+    src: foto.brandCamiceVeronica,
+    alt: 'Il logo FisioEVA sul camice della Dott.ssa Veronica Mirarchi',
+    categoria: 'Lo studio',
+    span: 'normal' as const,
+  },
 ];
 
 /*
@@ -1038,4 +1124,4 @@ export const gallery = [
  * terza età non esistono ancora. Va rimessa insieme alle foto, non prima —
  * un filtro che apre su una griglia vuota sembra un sito rotto.
  */
-export const galleryCategorie = ['Tutte', 'Lo studio', 'Trattamenti', 'Riabilitazione'];
+export const galleryCategorie = ['Tutte', 'Lo studio', 'Trattamenti', 'Riabilitazione', 'Esercizio'];

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { immagini } from '../../data/site';
+import { foto } from '../../data/site';
 import ArrowButton from '../ui/ArrowButton';
 import Eyebrow from '../ui/Eyebrow';
 
@@ -35,8 +35,9 @@ export default function SpazioCorsi() {
         >
           <div className="relative min-h-[280px] lg:min-h-[460px]">
             <img
-              src={immagini.postura}
-              alt="Lo spazio corsi al piano superiore"
+              src={foto.foamRollerScena}
+              // Non è detto che lo scatto sia al piano superiore: l'alt dice cosa si vede.
+              alt="Esercizio a terra con il foam roller, guidato da una terapista"
               loading="lazy"
               className="absolute inset-0 h-full w-full object-cover"
             />
