@@ -51,6 +51,10 @@ Per vedere tutti i buchi aperti basta far girare il sito in locale e guardare i 
 
 Le foto dello shooting di settembre 2026 stanno in `public/foto/` (scatti dello studio) e `public/team/` (i tre ritratti), servite dal nostro dominio come i font: nessuna richiesta a servizi esterni.
 
+Sono in **WebP**, ridimensionate a 1600px sul lato lungo e compresse a qualità 82: dai 9,5 MB degli export originali a 1,6 MB, l'83% in meno, con una differenza media di 1,4 su 255 rispetto al JPEG — invisibile alle dimensioni in cui il sito le mostra. WebP è supportato da ogni browser uscito dal 2020 in poi; non teniamo una copia JPEG di scorta.
+
+Il caricamento segue due regole opposte: l'immagine di apertura di ogni pagina parte subito e con priorità alta (è lei a decidere quanto il sito *sembra* veloce), tutte le altre sono `loading="lazy"` e scendono solo quando servono. Il risultato è che nessuna pagina scarica più di ~55 KB di immagini all'apertura.
+
 Per copiarle dall'export dentro il sito con i nomi giusti c'è **`scripts/copia-foto.ps1`** (Windows):
 
 ```

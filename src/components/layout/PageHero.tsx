@@ -20,6 +20,9 @@ export default function PageHero({ eyebrow, title, subtitle, breadcrumb, image }
     <section className="relative overflow-hidden bg-brand-dark px-5 pt-28 pb-16 sm:px-6 md:pt-44 md:pb-28">
       {image && (
         <div className="absolute inset-0 z-0">
+          {/* L'immagine di apertura è quasi sempre l'elemento più grande della
+              pagina, quindi è lei a determinare quanto il sito *sembra* veloce.
+              Va caricata subito e con priorità, al contrario di tutte le altre. */}
           <motion.img
             initial={{ scale: 1.08 }}
             animate={{ scale: 1 }}
@@ -27,6 +30,9 @@ export default function PageHero({ eyebrow, title, subtitle, breadcrumb, image }
             src={image}
             alt=""
             aria-hidden="true"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-brand-dark/85"></div>

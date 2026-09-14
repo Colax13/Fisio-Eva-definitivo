@@ -16,13 +16,13 @@ const unsplash = (id: string, w = 1400) =>
  */
 export const immagini = {
   // Trattamenti manuali
-  trattamento: '/foto/terapia-manuale-momento-di-cura.jpg',
-  manuale: '/foto/terapia-manuale-schiena.jpg',
-  riabilitazione: '/foto/terapia-manuale-ginocchio.jpg',
-  postura: '/foto/valutazione-posturale-spalle.jpg',
-  strumentale: '/foto/tecar-in-trattamento.jpg',
-  calma: '/foto/relazione-sorriso.jpg',
-  sede: '/foto/sede-reception.jpg',
+  trattamento: '/foto/terapia-manuale-momento-di-cura.webp',
+  manuale: '/foto/terapia-manuale-schiena.webp',
+  riabilitazione: '/foto/terapia-manuale-ginocchio.webp',
+  postura: '/foto/valutazione-posturale-spalle.webp',
+  strumentale: '/foto/tecar-in-trattamento.webp',
+  calma: '/foto/relazione-sorriso.webp',
+  sede: '/foto/sede-reception.webp',
 
   /*
    * ⛔ MANCANTI dallo shooting. Restano su Unsplash finché non arrivano scatti
@@ -37,23 +37,23 @@ export const immagini = {
 
 /** Gli altri scatti dello shooting, usati nella gallery e nelle schede. */
 export const foto = {
-  terapiaManualeCaviglia: '/foto/terapia-manuale-caviglia.jpg',
-  terapiaManualeSostegnoCervicale: '/foto/terapia-manuale-sostegno-cervicale.jpg', // volto visibile
-  valutazionePosturaleProfilo: '/foto/valutazione-posturale-profilo.jpg', // volto visibile
-  osteopatiaCranialeDettaglio: '/foto/osteopatia-craniale-dettaglio.jpg', // volto visibile
-  osteopatiaCranialeManiCapo: '/foto/osteopatia-craniale-mani-capo.jpg', // volto visibile
-  osteopatiaCervicale: '/foto/osteopatia-cervicale.jpg', // volto visibile
-  tecarFianco: '/foto/tecar-fianco.jpg',
-  tecarFisiowarm: '/foto/tecar-fisiowarm.jpg',
-  laserSpalla: '/foto/laser-spalla.jpg',
-  laserGomito: '/foto/laser-gomito.jpg',
-  laserIlux: '/foto/laser-ilux.jpg',
-  salaLettinoLaser: '/foto/sala-lettino-e-laser.jpg',
-  teamGruppo: '/foto/team-gruppo.jpg',
-  teamGruppoRelazionale: '/foto/team-gruppo-relazionale.jpg',
-  professionalitaOcchialiLaser: '/foto/professionalita-occhiali-laser.jpg',
-  tecnologiaTouchscreen: '/foto/tecnologia-touchscreen.jpg',
-  brandLogoCamice: '/foto/brand-logo-camice.jpg',
+  terapiaManualeCaviglia: '/foto/terapia-manuale-caviglia.webp',
+  terapiaManualeSostegnoCervicale: '/foto/terapia-manuale-sostegno-cervicale.webp', // volto visibile
+  valutazionePosturaleProfilo: '/foto/valutazione-posturale-profilo.webp', // volto visibile
+  osteopatiaCranialeDettaglio: '/foto/osteopatia-craniale-dettaglio.webp', // volto visibile
+  osteopatiaCranialeManiCapo: '/foto/osteopatia-craniale-mani-capo.webp', // volto visibile
+  osteopatiaCervicale: '/foto/osteopatia-cervicale.webp', // volto visibile
+  tecarFianco: '/foto/tecar-fianco.webp',
+  tecarFisiowarm: '/foto/tecar-fisiowarm.webp',
+  laserSpalla: '/foto/laser-spalla.webp',
+  laserGomito: '/foto/laser-gomito.webp',
+  laserIlux: '/foto/laser-ilux.webp',
+  salaLettinoLaser: '/foto/sala-lettino-e-laser.webp',
+  teamGruppo: '/foto/team-gruppo.webp',
+  teamGruppoRelazionale: '/foto/team-gruppo-relazionale.webp',
+  professionalitaOcchialiLaser: '/foto/professionalita-occhiali-laser.webp',
+  tecnologiaTouchscreen: '/foto/tecnologia-touchscreen.webp',
+  brandLogoCamice: '/foto/brand-logo-camice.webp',
 };
 
 export const studio = {
@@ -215,7 +215,7 @@ export const team = [
     // dirlo vale più di qualsiasi elenco di corsi.
     description:
       'Si è laureata in Fisioterapia nel 2011 all\'Università Cattolica del Sacro Cuore con 110/110 e lode, con una tesi in riabilitazione neurologica. Ha proseguito con il Master in Rieducazione Posturale Globale secondo il metodo Souchard e la formazione superiore per le patologie cranio-cervicali, poi con la specializzazione in linfodrenaggio manuale. Ha completato gli studi in Osteopatia alla scuola EDUCAM, di nuovo con 110/110 e lode: la tesi, sul trattamento osteopatico della cicatrice da taglio cesareo, è il punto da cui è partito il suo lavoro con le donne in gravidanza e nel post-parto.',
-    photo: '/team/azzurra.jpg',
+    photo: '/team/azzurra.webp',
     accent: 'secondary' as const,
   },
   {
@@ -236,7 +236,7 @@ export const team = [
       'Si è laureata in Fisioterapia nel 2004 con 110/110 e lode, con una tesi sul legame tra emozione, postura e respiro — il filo che ha poi seguito in tutta la sua formazione. Ha proseguito con il master in Rieducazione Posturale Globale secondo il metodo Souchard, il corso annuale di terapia manuale secondo il concetto Maitland e i livelli di cranio-sacrale e di manipolazione fasciale viscerale del metodo Upledger. Lavora con il Pilates applicato alla colonna e con la ginnastica ipopressiva post-partum. Oggi è al terzo anno della formazione quadriennale in metodo Feldenkrais.',
     description:
       'Si è laureata in Fisioterapia nel 2004 con 110/110 e lode, con una tesi sul legame tra emozione, postura e respiro — il filo che ha poi seguito in tutta la sua formazione. Ha proseguito con il master in Rieducazione Posturale Globale (metodo Souchard), con il corso annuale in terapia manuale secondo il concetto Maitland, con un primo livello di cranio-sacrale e con due livelli di manipolazione fasciale viscerale secondo il metodo Upledger. Ha seguito il corso di «Corpo e Coscienza» di G. Courchinoux, ginnastica posturale di gruppo che integra sistemi occidentali con tecniche ed esercizi orientali. Lavora con il Pilates applicato alla colonna e ha seguito corsi post-graduate formativi di ginnastica ipopressiva post-partum (tecnica Caufriez e metodo De Gasquet). Attualmente è in formazione quadriennale (al terzo anno) del metodo Feldenkrais. È abilitata all’insegnamento delle C.A.M. (Conoscersi Attraverso il Movimento), metodo volto alla scoperta del movimento fisiologico attraverso esplorazioni del sistema nervoso che organizza in maniera naturale il movimento rendendolo efficiente e piacevole.',
-    photo: '/team/elisa.jpg',
+    photo: '/team/elisa.webp',
     accent: 'primary' as const,
   },
   {
@@ -250,7 +250,7 @@ export const team = [
     // quindi è sia osteopata sia fisioterapista, e il ruolo lo riflette.
     description:
       'Si è diplomata in Osteopatia presso il CERDO nel 2020, con una tesi dedicata al trattamento osteopatico delle disfunzioni gastrointestinali. Nel 2025 si è laureata in Fisioterapia presso l’Università UniCamillus con 110/110 e lode, discutendo una tesi sulla riabilitazione del pavimento pelvico nelle donne con endometriosi. Durante il percorso universitario ha svolto un importante periodo di formazione presso il CONI, lavorando a contatto con atleti di livello internazionale. Il suo passato da sportiva e l’interesse per la salute femminile orientano oggi il suo lavoro, nel quale integra fisioterapia e osteopatia attraverso un approccio globale e attento alle esigenze della persona.',
-    photo: '/team/veronica.jpg',
+    photo: '/team/veronica.webp',
     accent: 'primary' as const,
   },
 ];

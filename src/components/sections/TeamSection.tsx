@@ -71,6 +71,10 @@ export default function TeamSection({ showHeading = true }: Props) {
                   <img
                     src={membro.photo}
                     alt={membro.name}
+                    loading="lazy"
+                    decoding="async"
+                    width={400}
+                    height={400}
                     className={`w-40 h-40 rounded-full object-cover ring-4 ${a.ring} ring-offset-4 ring-offset-white mb-6 transition-transform duration-500 group-hover:scale-105`}
                   />
                 ) : (
