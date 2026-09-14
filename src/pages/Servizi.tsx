@@ -48,20 +48,36 @@ function cerca(query: string): Trattamento[] {
 }
 
 /**
- * Le foto che accompagnano le card dei trattamenti.
+ * Niente foto a rotazione.
  *
- * ⛔ Sono gli stessi segnaposto stock del resto del sito, fatti ruotare perché
- * due card vicine non mostrino lo stesso scatto. Con le foto vere si assegna
- * `image` al singolo trattamento e questa rotazione sparisce.
+ * Fino allo shooting queste card pescavano da un elenco di stock generiche
+ * ruotando per indice, così due card vicine non mostravano lo stesso scatto.
+ * Con le foto vere quel meccanismo è diventato dannoso: assegnava il laser a
+ * "Magnetoterapia" e la valutazione posturale di un ragazzo a "Gravidanza".
+ *
+ * Su un sito sanitario quella non è un'approssimazione grafica, è
+ * un'informazione falsa: chi guarda crede di vedere il macchinario o il
+ * trattamento di cui sta leggendo. Ora ogni trattamento mostra solo la propria
+ * foto — assegnata a mano in `site.ts` — e dove non esiste si vede il riquadro
+ * qui sotto.
  */
-const FOTO = [
-  immagini.riabilitazione,
-  immagini.manuale,
-  immagini.postura,
-  immagini.trattamento,
-  immagini.calma,
-  immagini.anziani,
-];
+function SenzaFoto() {
+  return (
+    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-brand-primary/15 via-brand-light to-brand-secondary/15">
+      <svg
+        viewBox="0 0 60 60"
+        className="h-12 w-12 text-brand-primary/35"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        aria-hidden="true"
+      >
+        <circle cx="30" cy="30" r="22" />
+        <path d="M18 36c4-6 8-9 12-9s8 3 12 9" strokeLinecap="round" />
+      </svg>
+    </div>
+  );
+}
 
 /** La card di un trattamento: stessa forma di quelle dei percorsi in home. */
 function CardTrattamento({ t, accento, idx }: { t: Trattamento; accento: string; idx: number }) {
@@ -75,14 +91,21 @@ function CardTrattamento({ t, accento, idx }: { t: Trattamento; accento: string;
     >
       <div className="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-white bg-white shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
         <div className="relative h-44 overflow-hidden">
-          <img
-            src={t.image ?? FOTO[idx % FOTO.length]}
-            alt=""
-            aria-hidden="true"
-            loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/40 to-transparent"></div>
+          {t.image ? (
+            <>
+              <img
+                src={t.image}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/40 to-transparent"></div>
+            </>
+          ) : (
+            <SenzaFoto />
+          )}
         </div>
 
         <div className="flex flex-1 flex-col p-7">

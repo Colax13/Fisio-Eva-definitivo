@@ -348,7 +348,7 @@ export const categorie: Categoria[] = [
     slug: 'terapie-strumentali',
     nome: 'Terapie strumentali',
     sottotitolo: 'A supporto del lavoro manuale, mai al posto suo.',
-    image: immagini.manuale,
+    image: foto.tecarFisiowarm,
     accent: 'primary',
   },
   {
@@ -370,9 +370,12 @@ export type Trattamento = {
   /** Sintomi in lingua del paziente: alimentano la ricerca. */
   sintomi: string[];
   /**
-   * ⛔ Segnaposto stock, come tutte le foto del sito: qui servono solo a dare
-   * alle card lo stesso peso visivo di quelle in home. Con lo shooting si
-   * sostituiscono i valori in `immagini` e queste seguono da sole.
+   * Lo scatto dello shooting che ritrae DAVVERO questo trattamento.
+   *
+   * Si assegna solo quando la foto mostra quella cosa lì: su un sito sanitario
+   * una foto del laser accanto a "Magnetoterapia" non è un'approssimazione, è
+   * un'informazione falsa. Dove la foto non esiste il campo resta vuoto e la
+   * card mostra un riquadro neutro — mai una foto a caso.
    */
   image?: string;
 };
@@ -385,6 +388,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Un approccio che guarda tutto il corpo, non solo il punto in cui senti male.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['mal di schiena', 'lombalgia', 'cervicale', 'cefalea', 'sciatica', 'vertigini'],
+    image: foto.osteopatiaCervicale,
   },
   {
     slug: 'terapia-manuale',
@@ -392,6 +396,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Le mani come strumento: contratture, tensioni e blocchi articolari.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['contrattura', 'collo rigido', 'spalla bloccata', 'dolore muscolare', 'tensione'],
+    image: immagini.manuale,
   },
   {
     slug: 'ginnastica-posturale',
@@ -400,6 +405,7 @@ export const trattamenti: Trattamento[] = [
       'Metodo Mézières-Souchard: un metodo di rieducazione globale mirato al ripristino delle curve fisiologiche della tua colonna.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['postura', 'scoliosi', 'schiena curva', 'iperlordosi', 'dolore cervicale da ufficio', 'rigidità', 'mal di schiena cronico'],
+    image: immagini.postura,
   },
   {
     slug: 'fisiokinesiterapia',
@@ -407,6 +413,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Il lavoro sul movimento: recuperare forza, mobilità e controllo.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['perdita di forza', 'articolazione rigida', 'dopo il gesso', 'mobilità ridotta'],
+    image: immagini.riabilitazione,
   },
   {
     slug: 'rieducazione-motoria',
@@ -428,6 +435,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Tornare a giocare, non solo a camminare senza dolore.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['infortunio sportivo', 'distorsione', 'stiramento', 'tendinite', 'sovraccarico'],
+    image: foto.terapiaManualeCaviglia,
   },
   {
     slug: 'taping-neuromuscolare',
@@ -498,6 +506,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Calore profondo per accelerare il recupero dei tessuti.',
     categoria: 'terapie-strumentali',
     sintomi: ['tecar', 'contrattura profonda', 'tendinite', 'distorsione', 'edema'],
+    image: foto.tecarFianco,
   },
   {
     slug: 'laser-alta-potenza',
@@ -505,6 +514,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Energia luminosa concentrata su infiammazione e dolore.',
     categoria: 'terapie-strumentali',
     sintomi: ['laser', 'tendinite', 'infiammazione', 'borsite', 'epicondilite'],
+    image: foto.laserSpalla,
   },
   {
     slug: 'ultrasuonoterapia',
@@ -703,7 +713,7 @@ export const porte: Porta[] = [
       'Recupero dopo una frattura',
       'Ritorno alla piena mobilità',
     ],
-    image: immagini.postura,
+    image: immagini.riabilitazione,
     accent: 'secondary',
     to: '/servizi',
   },
@@ -719,7 +729,7 @@ export const porte: Porta[] = [
       'Gonfiore dopo un intervento',
       'Recupero della forza',
     ],
-    image: immagini.manuale,
+    image: foto.tecarFisiowarm,
     accent: 'primary',
     to: '/servizi',
   },
@@ -778,7 +788,7 @@ export const progetti: Progetto[] = [
       'Aumento flessibilità',
       'Consapevolezza corporea',
     ],
-    image: immagini.manuale,
+    image: immagini.postura,
     accent: 'primary',
   },
   {
