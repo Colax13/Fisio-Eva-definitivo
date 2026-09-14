@@ -10,6 +10,19 @@
 
       powershell -ExecutionPolicy Bypass -File scripts\copia-foto.ps1 -Export "D:\altro\_export_editing"
 
+  ⚠ ATTENZIONE — da sola questa copia NON aggiorna più il sito.
+
+  Il sito referenzia file .webp (public/foto/*.webp), non .jpg: gli scatti
+  vengono convertiti e ridimensionati prima di essere pubblicati, ed è così
+  che le foto pesano 1,6 MB invece di 9,5. Questo script copia dei .jpg, che
+  il codice non guarda: lanciarlo e fermarsi qui lascia il sito identico a
+  prima, con l'impressione sbagliata di aver caricato le foto nuove.
+
+  Per pubblicare un export nuovo: caricalo su Drive nella cartella dello
+  shooting. Le foto vengono guardate una per una, assegnate al trattamento
+  giusto e convertite in .webp — che è la parte che non si può fare a
+  occhi chiusi sui nomi dei file.
+
   NOTA: cinque di questi scatti mostrano il volto della persona in trattamento.
   Su indicazione dello studio si usano gli originali, non le versioni tagliate
   della cartella 05_privacy. Presuppone che la persona ripresa abbia dato il
