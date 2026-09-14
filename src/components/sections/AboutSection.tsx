@@ -26,8 +26,8 @@ export default function AboutSection({ overlap = false, cta = { label: 'Scopri d
           >
             <div className="grid grid-cols-2 gap-4">
               <img
-                src={immagini.trattamento}
-                alt="Benessere e salute"
+                src={immagini.calma}
+                alt="Una fisioterapista sorride durante un trattamento della schiena"
                 className="w-full h-full object-cover rounded-3xl min-h-[400px]"
               />
               <div className="flex flex-col gap-4">

@@ -65,7 +65,7 @@ function Sfondo() {
         src={immagini.trattamento}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover object-[center_15%]"
       />
       <div className="absolute inset-0 bg-brand-dark/88"></div>
       <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/55 to-brand-dark/75"></div>

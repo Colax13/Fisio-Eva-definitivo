@@ -42,7 +42,8 @@ export const foto = {
   valutazionePosturaleProfilo: '/foto/valutazione-posturale-profilo.webp', // volto visibile
   osteopatiaCranialeDettaglio: '/foto/osteopatia-craniale-dettaglio.webp', // volto visibile
   osteopatiaCranialeManiCapo: '/foto/osteopatia-craniale-mani-capo.webp', // volto visibile
-  osteopatiaCervicale: '/foto/osteopatia-cervicale.webp', // volto visibile
+  osteopatiaCervicale: '/foto/osteopatia-cervicale.webp', // volto visibile — ⚠ ancora col colore vecchio: manca nell'export nuovo
+  osteopatiaCranialeScena: '/foto/osteopatia-craniale-scena.webp', // volto visibile
   tecarFianco: '/foto/tecar-fianco.webp',
   tecarFisiowarm: '/foto/tecar-fisiowarm.webp',
   laserSpalla: '/foto/laser-spalla.webp',
@@ -388,7 +389,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Un approccio che guarda tutto il corpo, non solo il punto in cui senti male.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['mal di schiena', 'lombalgia', 'cervicale', 'cefalea', 'sciatica', 'vertigini'],
-    image: foto.osteopatiaCervicale,
+    image: foto.osteopatiaCranialeScena,
   },
   {
     slug: 'terapia-manuale',
@@ -683,7 +684,8 @@ export const porte: Porta[] = [
       'Recupero dopo un intervento',
       'Postura e rieducazione',
     ],
-    image: immagini.riabilitazione,
+    // Una foto diversa per ogni porta: prima erano tre card di fila con lo stesso ginocchio.
+    image: immagini.manuale,
     accent: 'secondary',
     to: '/servizi',
   },
@@ -699,7 +701,7 @@ export const porte: Porta[] = [
       'Recupero neuromotorio',
       'Prevenzione delle cadute',
     ],
-    image: immagini.riabilitazione,
+    image: foto.terapiaManualeCaviglia,
     accent: 'secondary',
     to: '/servizi',
   },

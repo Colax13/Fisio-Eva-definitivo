@@ -20,7 +20,7 @@ export default function Hero() {
           src={immagini.trattamento}
           alt=""
           aria-hidden="true"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-[center_15%]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/85 via-brand-dark/55 to-brand-primary/25"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/80 via-brand-dark/30 to-transparent"></div>
