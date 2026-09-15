@@ -28,7 +28,7 @@ const valori = [
     icona: Sparkles,
     titolo: 'Personalizzazione',
     testo:
-      'Nessun percorso è uguale a un altro. Il tuo nasce dal tuo problema, dai tuoi tempi e dai tuoi obiettivi, e si adatta a te lungo tutta la strada.',
+      'Nessun percorso è uguale all’altro.Il tuo nasce dal tuo problema, dai tuoi tempi e dai tuoi obiettivi, e si adatta a te lungo tutta la strada.',
     bg: 'bg-brand-primary/10',
     text: 'text-brand-primary-ink',
   },

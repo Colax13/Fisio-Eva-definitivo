@@ -33,12 +33,13 @@ export default function AboutSection({ overlap = false, cta = { label: 'Scopri d
               <div className="flex flex-col gap-4">
                 <img
                   src={immagini.manuale}
-                  alt="Terapia manuale"
+                  alt="La Dott.ssa Elisa De Rubeis durante una terapia manuale della schiena"
                   className="w-full h-48 object-cover rounded-3xl"
                 />
+                {/* Una foto per titolare: Veronica (sinistra), Elisa, Azzurra. */}
                 <img
-                  src={immagini.postura}
-                  alt="Rieducazione motoria"
+                  src={immagini.trattamento}
+                  alt="La Dott.ssa Azzurra De Angelis durante un trattamento"
                   className="w-full h-48 object-cover rounded-3xl"
                 />
               </div>

@@ -41,9 +41,13 @@ function cerca(query: string): Trattamento[] {
   const utili = tutti.filter((t) => !VUOTE.has(t));
   const termini = utili.length ? utili : tutti;
 
+  // Un trattamento può stare in più aree (il linfodrenaggio): nei risultati compare una volta sola.
+  const visti = new Set<string>();
   return trattamenti.filter((t) => {
     const testo = normalizza([t.nome, t.sottotitolo, ...t.sintomi].join(' '));
-    return termini.every((x) => testo.includes(x));
+    if (!termini.every((x) => testo.includes(x)) || visti.has(t.nome)) return false;
+    visti.add(t.nome);
+    return true;
   });
 }
 

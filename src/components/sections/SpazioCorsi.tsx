@@ -14,7 +14,7 @@ import Eyebrow from '../ui/Eyebrow';
  * ⛔ Il nome non è confermato: sta in una costante sola, così quando la
  * decisione arriva si cambia in un punto.
  */
-const SPAZIO_CORSI_NOME = 'LongEva';
+const SPAZIO_CORSI_NOME = 'StudioEVA';
 
 const attivita = ['Posturale di gruppo', 'Metodo Feldenkrais', 'Yoga', 'Pilates'];
 
@@ -49,7 +49,7 @@ export default function SpazioCorsi() {
               {`In collaborazione con ${SPAZIO_CORSI_NOME}`}
             </Eyebrow>
 
-            {/* Il titolo dice cosa si fa, non come si chiama: "LongEva" da
+            {/* Il titolo dice cosa si fa, non come si chiama: "StudioEVA" da
                 solo non spiega niente a chi arriva. Il nome resta sotto. */}
             <h2 className="text-h2 font-sans font-bold text-brand-dark mb-3 text-center lg:text-left">
               Terapie di gruppo
@@ -62,7 +62,7 @@ export default function SpazioCorsi() {
             <p className="text-body mb-8 max-w-md text-center font-light text-gray-600 lg:text-left">
               Le terapie di gruppo nascono dalla collaborazione con {SPAZIO_CORSI_NOME}, associazione
               culturale con cui condividiamo lo spazio al piano superiore. È il posto dove si continua
-              a muoversi bene, insieme: quando il percorso clinico è finito, o anche a prescindere.
+              a muoversi bene, insieme.
             </p>
 
             {/* In colonna sul telefono: in fila le tre pillole andavano a capo

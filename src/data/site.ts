@@ -53,6 +53,7 @@ export const stock = {
   // Piccolo gruppo seduto a terra con un'istruttrice.
   gruppoATerra: '/foto/stock-gruppo-a-terra.webp',
   psicomotricita: '/foto/stock-psicomotricita.webp',
+  pilates: '/foto/stock-pilates.webp',
 };
 
 /** Gli altri scatti dello shooting, usati nella gallery e nelle schede. */
@@ -136,11 +137,8 @@ export const studio = {
  * ogni build da `scripts/genera-sitemap.mjs`: se in futuro serve richiudere
  * il sito, si rimette `false` qui, non nei singoli file generati.
  *
- * ⚠️ `dominio` punta a fisioeva.it, di proprietà dello studio ma non ancora
- * collegato via DNS a questo deploy: finché il collegamento non è fatto,
- * sitemap, canonical e scheda Google puntano a un indirizzo che i motori
- * non possono ancora raggiungere. Va fatto dalla dashboard del registrar o
- * di Vercel — non è una modifica di questo codice.
+ * `dominio` è l'indirizzo pubblico: www.fisioeva.it risponde da questo deploy,
+ * e sitemap, canonical e dati strutturati puntano lì.
  */
 export const sito = {
   PUBBLICO: true,
@@ -257,11 +255,15 @@ export const team = [
     albo: '6174',
     ordine: 'Ordine TSRM-PSTRP di Roma' as string | null,
     role: 'Fisioterapista · Osteopata D.O.',
-    // Sintesi del curriculum fornito dallo studio. La specializzazione sulla
-    // donna non è una scelta commerciale: nasce dalla tesi di osteopatia, e
-    // dirlo vale più di qualsiasi elenco di corsi.
+    /*
+     * Curriculum fornito dallo studio, testo integrale. Come per Elisa, nella
+     * card si vede la versione breve e il percorso completo si apre a un clic:
+     * tre schede affiancate devono restare leggibili insieme.
+     */
+    descrizioneBreve:
+      'Si è laureata in Fisioterapia nel 2011 all\'Università Cattolica del Sacro Cuore con 110/110 e lode, con una tesi in riabilitazione neurologica. Ha proseguito con il Master in Rieducazione Posturale Globale di P. Souchard, si è specializzata in linfodrenaggio manuale e ha completato gli studi in Osteopatia alla scuola EDUCAM, di nuovo con 110/110 e lode. Dalla tesi sulla cicatrice da taglio cesareo nasce il suo lavoro con le donne in gravidanza e nel post-parto.',
     description:
-      'Si è laureata in Fisioterapia nel 2011 all\'Università Cattolica del Sacro Cuore con 110/110 e lode, con una tesi in riabilitazione neurologica. Ha proseguito con il Master in Rieducazione Posturale Globale secondo il metodo Souchard e la formazione superiore per le patologie cranio-cervicali, poi con la specializzazione in linfodrenaggio manuale. Ha completato gli studi in Osteopatia alla scuola EDUCAM, di nuovo con 110/110 e lode: la tesi, sul trattamento osteopatico della cicatrice da taglio cesareo, è il punto da cui è partito il suo lavoro con le donne in gravidanza e nel post-parto.',
+      'La Dott.ssa Azzurra De Angelis consegue la laurea in Fisioterapia nel 2011 con voto 110/110 con Lode presso l’Università Cattolica del Sacro Cuore, con una tesi in Riabilitazione Neurologica. Nello stesso anno frequenta il Corso Taping Neuromuscolare e Human Tecar Certified Operator. Prosegue il percorso di studi frequentando il Master di I livello in Rieducazione Posturale Globale di P. Souchard e la formazione superiore in RPG adatta alle Patologie Cranio Cervicali. Approfondisce le competenze relative alla rieducazione posturale frequentando vari corsi di formazione come: «Piede Postura ed Equilibrio», «Articolazione Temporo-Mandibolare: Valutazione e Trattamento», «Corso di Perfezionamento Pilates Reformer 1». Nel 2015 si specializza in Linfodrenaggio Manuale avvicinandosi quindi alla riabilitazione di patologie o disturbi linfatici e vascolari. Completa il percorso di studi in Osteopatia presso la scuola EDUCAM - Complementary and Alternative Medicine Education, con votazione finale di 110/110 con lode. Grazie agli studi effettuati per la sua tesi conclusiva «Approccio osteopatico al dolore lombosacrale mediante il trattamento della cicatrice da taglio cesareo» si specializza nel trattamento delle donne in gravidanza e post-parto.',
     photo: '/team/azzurra.webp',
     accent: 'secondary' as const,
   },
@@ -376,7 +378,7 @@ export const categorie: Categoria[] = [
   {
     slug: 'tornare-a-muoverti',
     nome: 'Per tornare a muoverti',
-    sottotitolo: 'Mal di schiena, cervicale, infortuni sportivi, recupero dopo un intervento.',
+    sottotitolo: 'Mal di schiena, dolore cervicale, infortuni sportivi, recupero dopo un intervento.',
     image: immagini.riabilitazione,
     accent: 'secondary',
   },
@@ -402,11 +404,11 @@ export const categorie: Categoria[] = [
     accent: 'primary',
   },
   {
-    // Il piano superiore: attività di gruppo in collaborazione con LongEva,
+    // Il piano superiore: attività di gruppo in collaborazione con StudioEVA,
     // associazione culturale distinta dallo studio. Sta in fondo, dopo il clinico.
     slug: 'terapie-di-gruppo',
     nome: 'Terapie di gruppo',
-    sottotitolo: 'Al piano superiore: muoversi bene, insieme. In collaborazione con LongEva.',
+    sottotitolo: 'Al piano superiore: muoversi bene, insieme. In collaborazione con StudioEVA.',
     image: foto.foamRollerScena,
     accent: 'secondary',
   },
@@ -435,7 +437,7 @@ export const trattamenti: Trattamento[] = [
   {
     slug: 'osteopatia',
     nome: 'Osteopatia',
-    sottotitolo: 'Un approccio che guarda tutto il corpo, non solo il punto in cui senti male.',
+    sottotitolo: 'Un approccio che guarda tutto il corpo, non solo il punto in cui senti dolore.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['mal di schiena', 'lombalgia', 'cervicale', 'cefalea', 'sciatica', 'vertigini'],
     image: immagini.trattamento,
@@ -446,6 +448,15 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Le mani come strumento: contratture, tensioni e blocchi articolari.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['contrattura', 'collo rigido', 'spalla bloccata', 'dolore muscolare', 'tensione'],
+    // Elisa che tratta la schiena.
+    image: immagini.manuale,
+  },
+  {
+    slug: 'terapia-cranio-sacrale',
+    nome: 'Terapia cranio-sacrale',
+    sottotitolo: 'Un contatto leggero su cranio, colonna e sacro, per sciogliere le tensioni più profonde.',
+    categoria: 'tornare-a-muoverti',
+    sintomi: ['cranio sacrale', 'craniosacrale', 'cefalea', 'mal di testa', 'tensione', 'stress', 'bruxismo'],
     image: foto.osteopatiaCranialeScena,
   },
   {
@@ -464,7 +475,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Il lavoro sul movimento: recuperare forza, mobilità e controllo.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['perdita di forza', 'articolazione rigida', 'dopo il gesso', 'mobilità ridotta'],
-    image: immagini.riabilitazione,
+    image: foto.terapiaManualeSpalla,
   },
   {
     slug: 'rieducazione-motoria',
@@ -480,7 +491,6 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Il recupero dopo un intervento, guidato passo dopo passo.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['dopo operazione', 'protesi anca', 'protesi ginocchio', 'crociato', 'frattura'],
-    // La caviglia: il ginocchio è già sulla card della fisiokinesiterapia, accanto.
     image: foto.terapiaManualeCaviglia,
   },
   {
@@ -489,7 +499,8 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Tornare a giocare, non solo a camminare senza dolore.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['infortunio sportivo', 'distorsione', 'stiramento', 'tendinite', 'sovraccarico'],
-    image: immagini.manuale,
+    // ⛔ Provvisoria: va sostituita con la stock dell'atleta appena scaricata.
+    image: foto.propriocezioneMonopodalico,
   },
   {
     slug: 'taping-neuromuscolare',
@@ -499,12 +510,22 @@ export const trattamenti: Trattamento[] = [
     sintomi: ['taping', 'kinesio', 'gonfiore', 'supporto articolare', 'contrattura'],
     image: stock.taping,
   },
+  {
+    // Lo stesso trattamento compare anche in "Per la donna", con un'altra foto:
+    // slug diverso perché le card hanno bisogno di una chiave unica.
+    slug: 'linfodrenaggio-riabilitativo',
+    nome: 'Linfodrenaggio',
+    sottotitolo: 'Manovre lente e leggere per ridurre gonfiori e ristagni.',
+    categoria: 'tornare-a-muoverti',
+    sintomi: ['gonfiore dopo un intervento', 'edema', 'linfedema', 'ristagno'],
+    image: immagini.riabilitazione,
+  },
 
   // — Per la donna
   {
     slug: 'pavimento-pelvico',
     nome: 'Riabilitazione del pavimento pelvico',
-    sottotitolo: 'Perdite, pesantezza, dolore: sono comuni, ma non sono normali.',
+    sottotitolo: 'Perdite, pesantezza, dolore: sono sintomi comuni, ma possiamo ridurli lavorando insieme.',
     categoria: 'salute-della-donna',
     sintomi: ['perdite urinarie', 'incontinenza', 'pesantezza', 'prolasso', 'dopo il parto'],
     image: stock.pavimentoPelvico,
@@ -621,7 +642,7 @@ export const trattamenti: Trattamento[] = [
   {
     slug: 'posturale-di-gruppo',
     nome: 'Posturale di gruppo',
-    sottotitolo: 'Il lavoro sulla postura in piccolo gruppo, con la guida di un istruttore.',
+    sottotitolo: 'Il lavoro sulla postura in piccolo gruppo, con la guida di un professionista specializzato.',
     categoria: 'terapie-di-gruppo',
     sintomi: ['postura', 'gruppo', 'mantenimento', 'schiena'],
     image: stock.gruppoATerra,
@@ -640,6 +661,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Controllo del centro e del movimento, esercizio dopo esercizio.',
     categoria: 'terapie-di-gruppo',
     sintomi: ['pilates', 'core', 'controllo', 'tonificazione'],
+    image: stock.pilates,
   },
   {
     slug: 'feldenkrais',
@@ -647,6 +669,8 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Imparare a muoversi con meno sforzo, attraverso la consapevolezza del movimento.',
     categoria: 'terapie-di-gruppo',
     sintomi: ['feldenkrais', 'consapevolezza', 'movimento', 'postura', 'rilassamento'],
+    // Elisa, che insegna il metodo, a terra mentre guida la paziente.
+    image: foto.esercizioATerraBracciaAperte,
   },
 ];
 
@@ -742,9 +766,9 @@ export const porte: Porta[] = [
     titolo: 'Tornare a muoverti',
     evidenza: 'Per chiunque abbia un corpo che non va',
     descrizione:
-      'Mal di schiena, cervicale, infortuni sportivi, recupero dopo un intervento. Terapia manuale, osteopatia e riabilitazione: la valutazione viene prima, il percorso si costruisce su quello che troviamo.',
+      'Mal di schiena, dolore cervicale, infortuni sportivi, recupero dopo un intervento. Terapia manuale, osteopatia e riabilitazione: la valutazione viene prima, il percorso si costruisce su quello che troviamo.',
     benefici: [
-      'Mal di schiena e cervicale',
+      'Mal di schiena e dolore cervicale',
       'Infortuni sportivi',
       'Recupero dopo un intervento',
       'Postura e rieducazione',
@@ -775,7 +799,7 @@ export const porte: Porta[] = [
     titolo: 'Rieducazione post-chirurgica',
     evidenza: 'Il recupero dopo un intervento',
     descrizione:
-      'Il ritorno alla piena funzione dopo un\'operazione, guidato passo dopo passo. Un percorso costruito sui tempi del tuo recupero, dal primo movimento fino alle tue attività.',
+      'Il ritorno alla piena funzione dopo un\'operazione, guidato passo dopo passo. Un percorso costruito sui tempi del tuo recupero, dal primo movimento fino alle attività quotidiane.',
     benefici: [
       'Dopo protesi di anca o ginocchio',
       'Ricostruzione del crociato',
@@ -895,7 +919,7 @@ export const percorso = [
   },
   {
     titolo: 'Mantenimento',
-    desc: 'Esercizi e attività di gruppo con l\'associazione culturale LongEva per mantenere i risultati nel tempo e prevenire ricadute.',
+    desc: 'Esercizi e attività di gruppo con l\'associazione culturale StudioEVA per mantenere i risultati nel tempo e prevenire ricadute.',
   },
 ];
 
@@ -1097,7 +1121,7 @@ export const gallery = [
   },
   {
     src: foto.terapiaManualeSpalla,
-    alt: 'Terapia manuale sulla spalla e sulla scapola',
+    alt: 'Terapia manuale sul diaframma',
     categoria: 'Trattamenti',
     span: 'tall' as const,
   },
@@ -1121,7 +1145,7 @@ export const gallery = [
   },
   {
     src: foto.foamRollerEsercizioGuidato,
-    alt: 'Esercizio guidato con il foam roller, braccia in elevazione',
+    alt: 'Esercizio guidato di stabilizzazione con il foam roller',
     categoria: 'Esercizio',
     span: 'normal' as const,
   },
@@ -1133,7 +1157,7 @@ export const gallery = [
   },
   {
     src: foto.terapiaManualeCervicale,
-    alt: 'Trattamento manuale del tratto cervicale',
+    alt: 'Manovra HVLA sul tratto dorsale',
     categoria: 'Trattamenti',
     span: 'normal' as const,
   },
@@ -1151,7 +1175,7 @@ export const gallery = [
   },
   {
     src: foto.esercizioGuidatoBraccia,
-    alt: 'Esercizio attivo guidato a terra, con le braccia in elevazione',
+    alt: 'Esercizio guidato di stabilizzazione con il foam roller, dettaglio',
     categoria: 'Esercizio',
     span: 'wide' as const,
   },
