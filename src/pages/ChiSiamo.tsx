@@ -18,19 +18,11 @@ const valori = [
   },
   {
     icona: Sparkles,
-    titolo: 'Personificazione',
-    testo:
-      'Niente protocolli fotocopia. Il programma nasce dai tuoi obiettivi e si aggiorna insieme a te, seduta dopo seduta.',
-    bg: 'bg-brand-secondary/10',
-    text: 'text-brand-secondary-ink',
-  },
-  {
-    icona: Sparkles,
     titolo: 'Personalizzazione',
     testo:
-      'Nessun percorso è uguale all’altro.Il tuo nasce dal tuo problema, dai tuoi tempi e dai tuoi obiettivi, e si adatta a te lungo tutta la strada.',
-    bg: 'bg-brand-primary/10',
-    text: 'text-brand-primary-ink',
+      'Nessun percorso è uguale all’altro. Niente protocolli fotocopia: il tuo nasce dal tuo problema, dai tuoi tempi e dai tuoi obiettivi, e si adatta a te lungo tutta la strada.',
+    bg: 'bg-brand-secondary/10',
+    text: 'text-brand-secondary-ink',
   },
 ];
 
@@ -57,7 +49,7 @@ export default function ChiSiamo() {
             I principi che guidano <span className="text-brand-primary-ink">ogni percorso</span>
           </SectionHeading>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
             {valori.map((valore, idx) => (
               <motion.div
                 key={valore.titolo}
