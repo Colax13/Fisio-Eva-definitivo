@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { CalendarCheck, ChevronDown, Menu, X } from 'lucide-react';
+import { CalendarCheck, ChevronDown, Instagram, Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { categorie, studio } from '../../data/site';
@@ -135,6 +135,18 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
+          {/* Il profilo Instagram si raggiungeva solo dal fondo pagina: in barra
+              è a portata da qualsiasi punto del sito. */}
+          <a
+            href={studio.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Instagram dello studio, @${studio.instagram}`}
+            className="hidden xl:flex h-10 w-10 items-center justify-center rounded-full border border-brand-primary/20 text-brand-dark transition-colors hover:bg-brand-primary/10 hover:text-brand-secondary"
+          >
+            <Instagram className="h-5 w-5" />
+          </a>
+
           {/* Lo stesso bottone della chiusura di pagina: prima era una pillola a sé,
               con un'animazione diversa da tutte le altre del sito. */}
           <span className="hidden xl:block">
@@ -214,6 +226,15 @@ export default function Navbar() {
               className="text-sm font-light text-brand-primary-ink underline underline-offset-4"
             >
               {studio.email}
+            </a>
+
+            <a
+              href={studio.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 flex w-fit items-center gap-2.5 text-sm font-light text-brand-dark"
+            >
+              <Instagram className="h-4 w-4 text-brand-primary" />@{studio.instagram}
             </a>
           </motion.div>
         </motion.div>
