@@ -55,7 +55,7 @@ export default function Contatti() {
             Prenota la tua <span className="text-brand-primary">visita</span>
           </>
         }
-        subtitle="Siamo in Via di Boccea 755, a Roma. Scrivici o chiamaci: ti richiamiamo per fissare insieme il primo appuntamento."
+        subtitle="Siamo in Via di Boccea 755, a Roma. Scrivici o chiamaci per fissare insieme il primo appuntamento."
         breadcrumb="Contatti"
         image={immagini.sedeIllustrazione}
       />
@@ -247,7 +247,7 @@ export default function Contatti() {
                     rows={5}
                     value={messaggio}
                     onChange={(e) => setMessaggio(e.target.value)}
-                    placeholder="Che cosa ti serve, da quanto tempo e cosa vorresti tornare a fare *"
+                    placeholder="Di cosa hai bisogno, da quanto tempo e cosa vorresti tornare a fare *"
                     aria-label="Messaggio"
                     className={`${inputClass} resize-none`}
                   />
@@ -289,7 +289,7 @@ export default function Contatti() {
 
                   <p className="text-gray-500 text-xs font-light leading-relaxed">
                     Usiamo quello che scrivi solo per risponderti. Non serve raccontare qui la tua
-                    storia clinica: se preferisci, dicci solo che cosa ti serve e ne parliamo di
+                    storia clinica: se preferisci, dicci solo di cosa hai bisogno e ne parliamo di
                     persona.
                   </p>
                 </form>
