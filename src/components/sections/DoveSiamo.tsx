@@ -41,8 +41,8 @@ export default function DoveSiamo() {
             className="group relative min-h-[280px] lg:min-h-[460px]"
           >
             <img
-              src={immagini.sede}
-              alt={`Lo studio FisioEVA in ${studio.address}`}
+              src={immagini.sedeIllustrazione}
+              alt={`Illustrazione dell'edificio dello studio FisioEVA in ${studio.address}`}
               loading="lazy"
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />

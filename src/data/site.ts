@@ -25,6 +25,9 @@ export const immagini = {
   strumentale: '/foto/tecar-in-trattamento.webp',
   calma: '/foto/relazione-sorriso.webp',
   sede: '/foto/sede-reception.webp',
+  // L'illustrazione della palazzina di Via di Boccea 755, nel blocco "Dove siamo" con il link alla mappa.
+  // Da sostituire con la foto vera degli esterni quando ci sarà.
+  sedeIllustrazione: '/foto/sede-illustrazione.webp',
 
   /*
    * ⛔ MANCANTI dallo shooting. Restano su Unsplash finché non arrivano scatti
@@ -301,8 +304,10 @@ export const teamClinico = [
 
 /** Accoglienza e segreteria. */
 export const accoglienza = [
-  { slug: 'francesca-de-rubeis', name: 'Francesca De Rubeis', role: 'Segreteria' },
-  { slug: 'laura-de-carli', name: 'Laura De Carli', role: 'Segreteria' },
+  // Nei file originali i nomi erano scambiati (frnacesca.jpeg è Laura, Laura.jpeg è Francesca):
+  // qui sono già abbinati alla persona giusta, su indicazione dello studio.
+  { slug: 'francesca-de-rubeis', name: 'Francesca De Rubeis', role: 'Segreteria', photo: '/team/francesca.webp' },
+  { slug: 'laura-de-carli', name: 'Laura De Carli', role: 'Segreteria', photo: '/team/laura.webp' },
 ];
 
 export const trattamentiManuali = [

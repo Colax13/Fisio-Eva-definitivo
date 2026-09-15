@@ -179,13 +179,15 @@ export default function TeamSection({ showHeading = true }: Props) {
                   transition={{ duration: 0.45, delay: idx * 0.08 }}
                   className="group bg-white/80 backdrop-blur-md rounded-[1.75rem] p-6 shadow-lg border border-white text-center flex flex-col items-center hover:shadow-xl transition-shadow duration-300"
                 >
-                  <div
-                    className={`w-20 h-20 rounded-full ${a.soft} ${a.text} ring-4 ${a.ring} ring-offset-4 ring-offset-white mb-4 flex items-center justify-center font-sans font-bold text-xl transition-transform duration-500 group-hover:scale-105`}
-                    role="img"
-                    aria-label={`Ritratto non ancora disponibile di ${persona.name}`}
-                  >
-                    {iniziali(persona.name)}
-                  </div>
+                  <img
+                    src={persona.photo}
+                    alt={persona.name}
+                    loading="lazy"
+                    decoding="async"
+                    width={240}
+                    height={240}
+                    className={`w-24 h-24 rounded-full object-cover ring-4 ${a.ring} ring-offset-4 ring-offset-white mb-4 transition-transform duration-500 group-hover:scale-105`}
+                  />
 
                   <h3 className="font-sans font-bold text-brand-dark leading-snug">
                     {persona.name}

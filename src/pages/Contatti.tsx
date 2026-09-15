@@ -57,7 +57,7 @@ export default function Contatti() {
         }
         subtitle="Siamo in Via di Boccea 755, a Roma. Scrivici o chiamaci: ti richiamiamo per fissare insieme il primo appuntamento."
         breadcrumb="Contatti"
-        image={immagini.sede}
+        image={immagini.sedeIllustrazione}
       />
 
       <section className="relative bg-brand-light py-24 px-6 overflow-hidden">
