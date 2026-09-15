@@ -50,8 +50,10 @@ export const stock = {
   elettrodiGambe: '/foto/stock-elettrodi-gambe.webp',
   elettrostimolazione: '/foto/stock-elettrostimolazione.webp',
   yoga: '/foto/stock-yoga.webp',
-  // Piccolo gruppo seduto a terra con un'istruttrice.
-  gruppoATerra: '/foto/stock-gruppo-a-terra.webp',
+  // Gruppo sui tappetini durante un esercizio di allungamento.
+  posturaleGruppo: '/foto/stock-posturale-gruppo.webp',
+  // Atleta in posizione di partenza sulla pista.
+  atleta: '/foto/stock-atleta.webp',
   psicomotricita: '/foto/stock-psicomotricita.webp',
   pilates: '/foto/stock-pilates.webp',
 };
@@ -499,8 +501,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Tornare a giocare, non solo a camminare senza dolore.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['infortunio sportivo', 'distorsione', 'stiramento', 'tendinite', 'sovraccarico'],
-    // ⛔ Provvisoria: va sostituita con la stock dell'atleta appena scaricata.
-    image: foto.propriocezioneMonopodalico,
+    image: stock.atleta,
   },
   {
     slug: 'taping-neuromuscolare',
@@ -645,7 +646,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Il lavoro sulla postura in piccolo gruppo, con la guida di un professionista specializzato.',
     categoria: 'terapie-di-gruppo',
     sintomi: ['postura', 'gruppo', 'mantenimento', 'schiena'],
-    image: stock.gruppoATerra,
+    image: stock.posturaleGruppo,
   },
   {
     slug: 'yoga',
