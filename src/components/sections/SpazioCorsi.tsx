@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { foto } from '../../data/site';
+import { stock } from '../../data/site';
 import ArrowButton from '../ui/ArrowButton';
 import Eyebrow from '../ui/Eyebrow';
 
@@ -35,9 +35,9 @@ export default function SpazioCorsi() {
         >
           <div className="relative min-h-[280px] lg:min-h-[460px]">
             <img
-              src={foto.foamRollerScena}
+              src={stock.posturaleGruppo}
               // Non è detto che lo scatto sia al piano superiore: l'alt dice cosa si vede.
-              alt="Esercizio a terra con il foam roller, guidato da una terapista"
+              alt="Un gruppo durante un esercizio di postura sui tappetini"
               loading="lazy"
               className="absolute inset-0 h-full w-full object-cover"
             />
@@ -79,7 +79,7 @@ export default function SpazioCorsi() {
             </ul>
 
             <div className="flex justify-center lg:justify-start">
-              <ArrowButton to="/contatti">Scopri le nostre terapie di gruppo</ArrowButton>
+              <ArrowButton to="/servizi#terapie-di-gruppo">Scopri le nostre terapie di gruppo</ArrowButton>
             </div>
           </div>
         </motion.div>
