@@ -75,13 +75,9 @@ Nell'export esistono anche versioni con il viso tagliato (`_CROP`) o sfocato (`_
 
 ### Foto che ancora mancano
 
-Tre sezioni del sito non hanno uno scatto proprio e restano su Unsplash — sono l'unico motivo per cui il sito contatta ancora un dominio esterno. Servono foto vere o stock scaricate e ospitate in `public/foto/` come le altre:
+Le sezioni che lo shooting non poteva mostrare (percorso donna, neonatale, terza età, terapie strumentali diverse da tecar e laser, attività di gruppo) usano stock Envato scaricate con la licenza dello studio e ospitate in `public/foto/stock-*.webp`: nessuna immagine arriva da domini esterni. Gli originali ad alta risoluzione stanno in `foto/`, fuori dal repository.
 
-- **percorso donna** — gravidanza e post-parto, che è poi la specializzazione dello studio
-- **osteopatia neonatale e pediatrica**
-- **percorso terza età**
-
-Manca anche uno scatto di riabilitazione attiva (esercizio guidato): oggi al suo posto c'è una terapia manuale al ginocchio, che è la cosa più vicina fra quelle disponibili.
+Restano senza foto **Pilates** e **Metodo Feldenkrais**. Le stock vanno sostituite con scatti veri appena ci sono, a partire dal percorso donna.
 
 ## Regole di scrittura
 

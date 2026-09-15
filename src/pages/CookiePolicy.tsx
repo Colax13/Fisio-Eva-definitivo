@@ -107,19 +107,6 @@ export default function CookiePolicy() {
               .
             </li>
             <li>
-              <strong>Unsplash</strong> — alcune fotografie sono servite dalla sua rete di
-              distribuzione. Sono immagini statiche: nessun cookie, ma la richiesta espone il tuo
-              indirizzo IP al fornitore.{' '}
-              <a
-                href="https://unsplash.com/privacy"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Privacy policy di Unsplash
-              </a>
-              .
-            </li>
-            <li>
               <strong>Instagram</strong> — nel sito c'è solo un collegamento al nostro profilo.
               Finché non lo clicchi, Instagram non sa che sei qui.
             </li>

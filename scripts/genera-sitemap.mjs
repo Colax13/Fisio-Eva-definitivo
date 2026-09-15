@@ -24,7 +24,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { CRAWLER_AI } from './crawler-ai.mjs';
-import { sito, studio, servizi, team, immagini, foto } from '../src/data/site.ts';
+import { sito, studio, servizi, team, immagini, foto, stock, accoglienza } from '../src/data/site.ts';
 import { creaSchedaClinica } from '../src/lib/schemaOrg.ts';
 
 const radice = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -43,6 +43,8 @@ const DOMINIO = sito.dominio.replace(/\/$/, '');
 const percorsiFoto = [
   ...Object.values(immagini),
   ...Object.values(foto),
+  ...Object.values(stock),
+  ...accoglienza.map((p) => p.photo),
   ...team.map((m) => m.photo),
 ].filter((v) => typeof v === 'string' && v.startsWith('/'));
 

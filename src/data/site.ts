@@ -1,6 +1,3 @@
-const unsplash = (id: string, w = 1400) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&q=80&w=${w}`;
-
 /**
  * Ogni foto del sito, in un posto solo.
  *
@@ -30,14 +27,32 @@ export const immagini = {
   sedeIllustrazione: '/foto/sede-illustrazione.webp',
 
   /*
-   * ⛔ MANCANTI dallo shooting. Restano su Unsplash finché non arrivano scatti
-   * veri o stock scaricate e ospitate qui come le altre — lasciarle su
-   * Unsplash è l'unica ragione per cui il sito contatta ancora un dominio
-   * esterno.
+   * Stock Envato (licenza dello studio), ospitate qui come le altre: il sito
+   * non contatta più nessun servizio esterno per le immagini. Non ritraggono
+   * lo studio né le professioniste, quindi non si usano mai accanto ai loro nomi.
    */
-  donna: unsplash('photo-1518611012118-696072aa579a'), // ⛔ percorso donna, gravidanza e post-parto
-  bambini: unsplash('photo-1555252333-9f8e92e65df9'), // ⛔ osteopatia neonatale e pediatrica
-  anziani: unsplash('photo-1622253692010-333f2da6031d'), // ⛔ percorso terza età
+  donna: '/foto/stock-donna-consulenza.webp', // percorso donna
+  bambini: '/foto/stock-neonato.webp', // osteopatia neonatale e pediatrica
+  anziani: '/foto/stock-terza-eta.webp', // percorso terza età
+};
+
+/** Stock Envato per i trattamenti che lo shooting non poteva mostrare. */
+export const stock = {
+  pavimentoPelvico: '/foto/stock-pavimento-pelvico.webp',
+  postParto: '/foto/stock-post-parto.webp',
+  gravidanza: '/foto/stock-gravidanza.webp',
+  linfodrenaggio: '/foto/stock-linfodrenaggio.webp',
+  taping: '/foto/stock-taping.webp',
+  ultrasuoni: '/foto/stock-ultrasuoni.webp',
+  magnetoterapia: '/foto/stock-magnetoterapia.webp',
+  tens: '/foto/stock-tens.webp',
+  // Elettrodi e stimolatore su un arto: non esiste una stock specifica dell'ionoforesi.
+  elettrodiGambe: '/foto/stock-elettrodi-gambe.webp',
+  elettrostimolazione: '/foto/stock-elettrostimolazione.webp',
+  yoga: '/foto/stock-yoga.webp',
+  // Piccolo gruppo seduto a terra con un'istruttrice.
+  gruppoATerra: '/foto/stock-gruppo-a-terra.webp',
+  psicomotricita: '/foto/stock-psicomotricita.webp',
 };
 
 /** Gli altri scatti dello shooting, usati nella gallery e nelle schede. */
@@ -482,6 +497,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Il supporto elastico che accompagna il movimento senza limitarlo.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['taping', 'kinesio', 'gonfiore', 'supporto articolare', 'contrattura'],
+    image: stock.taping,
   },
 
   // — Per la donna
@@ -491,6 +507,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Perdite, pesantezza, dolore: sono comuni, ma non sono normali.',
     categoria: 'salute-della-donna',
     sintomi: ['perdite urinarie', 'incontinenza', 'pesantezza', 'prolasso', 'dopo il parto'],
+    image: stock.pavimentoPelvico,
   },
   {
     slug: 'post-parto',
@@ -498,6 +515,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Rimettere insieme addome, schiena e pavimento pelvico, dopo.',
     categoria: 'salute-della-donna',
     sintomi: ['dopo il parto', 'diastasi', 'mal di schiena post-parto', 'allattamento', 'cesareo'],
+    image: stock.postParto,
   },
   {
     slug: 'gravidanza',
@@ -505,6 +523,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Attraversare i nove mesi senza subirli.',
     categoria: 'salute-della-donna',
     sintomi: ['mal di schiena in gravidanza', 'sciatica', 'gambe gonfie', 'bacino', 'pubalgia'],
+    image: stock.gravidanza,
   },
   {
     slug: 'cicatrice-cesareo',
@@ -520,6 +539,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Manovre lente e leggere per ridurre gonfiori e ristagni.',
     categoria: 'salute-della-donna',
     sintomi: ['gambe gonfie', 'linfedema', 'ritenzione', 'pesantezza alle gambe'],
+    image: stock.linfodrenaggio,
   },
 
   // — Per il tuo bambino
@@ -537,6 +557,7 @@ export const trattamenti: Trattamento[] = [
       'torcicollo del neonato',
       'rigurgito',
     ],
+    image: immagini.bambini,
   },
 
   // — Terapie strumentali
@@ -562,6 +583,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Onde sonore che lavorano in profondità sui tessuti molli.',
     categoria: 'terapie-strumentali',
     sintomi: ['ultrasuoni', 'tendine', 'calcificazione', 'aderenze', 'infiammazione'],
+    image: stock.ultrasuoni,
   },
   {
     slug: 'magnetoterapia',
@@ -569,6 +591,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Campi magnetici a supporto dei processi di riparazione ossea.',
     categoria: 'terapie-strumentali',
     sintomi: ['magnetoterapia', 'frattura', 'consolidamento', 'osteoporosi', 'dolore osseo'],
+    image: stock.magnetoterapia,
   },
   {
     slug: 'tens',
@@ -576,6 +599,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Stimolazione elettrica a bassa intensità per il controllo del dolore.',
     categoria: 'terapie-strumentali',
     sintomi: ['tens', 'dolore cronico', 'nevralgia'],
+    image: stock.tens,
   },
   {
     slug: 'ionoforesi',
@@ -583,6 +607,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Il farmaco portato attraverso la pelle, dove serve.',
     categoria: 'terapie-strumentali',
     sintomi: ['ionoforesi', 'infiammazione localizzata', 'tendinite', 'artrosi'],
+    image: stock.elettrodiGambe,
   },
   {
     slug: 'elettrostimolazione',
@@ -590,6 +615,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Riattivare un muscolo che ha smesso di rispondere.',
     categoria: 'terapie-strumentali',
     sintomi: ['elettrostimolazione', 'ipotrofia', 'dopo il gesso', 'atrofia'],
+    image: stock.elettrostimolazione,
   },
   // — Terapie di gruppo (piano superiore, attività non sanitarie)
   {
@@ -598,6 +624,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Il lavoro sulla postura in piccolo gruppo, con la guida di un istruttore.',
     categoria: 'terapie-di-gruppo',
     sintomi: ['postura', 'gruppo', 'mantenimento', 'schiena'],
+    image: stock.gruppoATerra,
   },
   {
     slug: 'yoga',
@@ -605,6 +632,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Respiro, mobilità e forza, al proprio ritmo.',
     categoria: 'terapie-di-gruppo',
     sintomi: ['yoga', 'respirazione', 'flessibilità', 'rilassamento'],
+    image: stock.yoga,
   },
   {
     slug: 'pilates',
@@ -799,7 +827,7 @@ export const progetti: Progetto[] = [
       'Gestione delle emozioni',
       'Capacità relazionali',
     ],
-    image: immagini.bambini,
+    image: stock.psicomotricita,
     accent: 'secondary',
   },
   {

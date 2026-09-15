@@ -6,3 +6,6 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Originali ad alta risoluzione (stock Envato): sul sito vanno solo i .webp in public/foto
+/foto/
