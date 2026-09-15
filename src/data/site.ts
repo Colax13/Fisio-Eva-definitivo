@@ -87,7 +87,10 @@ export const foto = {
    */
   mobilizzazioneArtoInferiore: '/foto/mobilizzazione-arto-inferiore.webp',
   mobilizzazioneAnca: '/foto/mobilizzazione-anca.webp', // volto visibile
-  terapiaManualeSpalla: '/foto/terapia-manuale-spalla.webp',
+  // ⚠ Il nome del file dice "spalla", ma lo scatto mostra le mani sull'addome:
+  // è una manipolazione viscerale, e come tale è usato. Il nome resta quello
+  // dell'export dello shooting per non perdere il filo con l'originale.
+  manipolazioneViscerale: '/foto/terapia-manuale-spalla.webp',
   terapiaManualeCervicale: '/foto/terapia-manuale-cervicale.webp', // volto visibile
   tecarTrattamentoInCorso: '/foto/tecar-trattamento-in-corso.webp',
   brandCamiceVeronica: '/foto/brand-camice-veronica.webp',
@@ -114,8 +117,8 @@ export const studio = {
   zone: 'Casalotti',
   // Attenzione: bocc**e**a, non boccia. È un refuso ricorrente nei materiali.
   email: 'fisioeva.boccea@gmail.com',
-  instagram: 'fisioeva_boccea',
-  instagramUrl: 'https://www.instagram.com/fisioeva_boccea',
+  instagram: 'fisioeva.boccea',
+  instagramUrl: 'https://www.instagram.com/fisioeva.boccea',
   mapsQuery: 'Via+di+Boccea+755,+00166+Roma',
 
   // Il numero dello studio, fornito dallo studio.
@@ -297,7 +300,7 @@ export const team = [
     short: 'Veronica',
     albo: '11463',
     ordine: 'Ordine TSRM-PSTRP di Roma' as string | null,
-    role: 'Osteopata e Fisioterapista',
+    role: 'Fisioterapista · Osteopata D.O.',
     // Bio fornita dallo studio (osteopata dal 2020, fisioterapista dal 2025):
     // quindi è sia osteopata sia fisioterapista, e il ruolo lo riflette.
     description:
@@ -411,7 +414,7 @@ export const categorie: Categoria[] = [
     slug: 'terapie-di-gruppo',
     nome: 'Terapie di gruppo',
     sottotitolo: 'Al piano superiore: muoversi bene, insieme. In collaborazione con StudioEVA.',
-    image: foto.foamRollerScena,
+    image: stock.posturaleGruppo,
     accent: 'secondary',
   },
 ];
@@ -472,12 +475,24 @@ export const trattamenti: Trattamento[] = [
     image: foto.esercizioATerraRiequilibrio,
   },
   {
+    // Fa parte dell'osteopatia, ma esistono corsi dedicati solo a questa ed è
+    // una cosa che lo studio fa: ha una scheda sua, non una riga dentro un'altra.
+    slug: 'manipolazione-viscerale',
+    nome: 'Manipolazione viscerale',
+    sottotitolo:
+      'Un lavoro manuale profondo sugli organi e sui tessuti che li sostengono, dove tirano e limitano il movimento.',
+    categoria: 'tornare-a-muoverti',
+    sintomi: ['viscerale', 'pancia che tira', 'digestione', 'aderenze', 'mal di schiena', 'cicatrice'],
+    image: foto.manipolazioneViscerale,
+  },
+  {
     slug: 'fisiokinesiterapia',
     nome: 'Fisiokinesiterapia',
     sottotitolo: 'Il lavoro sul movimento: recuperare forza, mobilità e controllo.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['perdita di forza', 'articolazione rigida', 'dopo il gesso', 'mobilità ridotta'],
-    image: foto.terapiaManualeSpalla,
+    // Uno scatto che mostra il movimento, non le mani ferme su un lettino.
+    image: foto.esercizioGuidatoBraccia,
   },
   {
     slug: 'rieducazione-motoria',
@@ -498,7 +513,7 @@ export const trattamenti: Trattamento[] = [
   {
     slug: 'rieducazione-sportiva',
     nome: 'Rieducazione sportiva',
-    sottotitolo: 'Tornare a giocare, non solo a camminare senza dolore.',
+    sottotitolo: 'Tornare a praticare il tuo sport, non solo a camminare senza dolore.',
     categoria: 'tornare-a-muoverti',
     sintomi: ['infortunio sportivo', 'distorsione', 'stiramento', 'tendinite', 'sovraccarico'],
     image: stock.atleta,
@@ -1000,20 +1015,23 @@ export const faq: Faq[] = [
   {
     categoria: 'Generali',
     domanda: 'Come prenoto un appuntamento?',
+    // Le prenotazioni passano dallo studio, non dai cellulari delle titolari.
     risposta:
-      'Puoi chiamare o scrivere direttamente ad Azzurra o a Elisa ai numeri che trovi nella pagina Contatti, oppure inviarci un messaggio dal modulo del sito. Ti ricontattiamo per fissare insieme il primo appuntamento.',
+      'Dalla pagina Contatti: trovi il numero dello studio, l\'email e un modulo da compilare. Scrivici o chiamaci e fissiamo insieme il primo appuntamento.',
   },
   {
     categoria: 'Prima visita',
-    domanda: 'Cosa succede durante la prima seduta?',
+    // Colloquio iniziale e prima seduta sono due cose diverse, e vanno
+    // distinte: il colloquio è gratuito e il piano terapeutico comincia dopo.
+    domanda: 'Cosa succede durante il colloquio iniziale?',
     risposta:
-      'La prima seduta è dedicata all\'ascolto e alla valutazione: raccogliamo la tua storia clinica, osserviamo la postura e il movimento e individuiamo le cause del problema. Da lì costruiamo il piano terapeutico.',
+      'Il colloquio iniziale dura una ventina di minuti, è gratuito ed è dedicato all\'ascolto e alla valutazione: raccogliamo la tua storia clinica, osserviamo la postura e il movimento e individuiamo le cause del problema. Da lì costruiamo insieme il piano terapeutico, e le sedute cominciano da lì.',
   },
   {
     categoria: 'Prima visita',
     domanda: 'Quanto dura una seduta?',
     risposta:
-      'In genere tra i 45 e i 60 minuti, a seconda del trattamento. La prima valutazione richiede solitamente un po\' più di tempo.',
+      'Tra i 45 e i 50 minuti, a seconda del trattamento.',
   },
   {
     categoria: 'Prima visita',
@@ -1121,8 +1139,8 @@ export const gallery = [
     span: 'normal' as const,
   },
   {
-    src: foto.terapiaManualeSpalla,
-    alt: 'Terapia manuale sul diaframma',
+    src: foto.manipolazioneViscerale,
+    alt: 'Manipolazione viscerale, con le mani sull\'addome',
     categoria: 'Trattamenti',
     span: 'tall' as const,
   },
