@@ -129,11 +129,20 @@ che ha notato lavorando.
 | 2. Chi è | nome, ruolo, **un** titolo | 7–13 |
 | 3. Cosa fa | i problemi comuni, non le specializzazioni | 18–20 |
 | 4. Come lavora | la sua idea di fondo, in una frase | 18–20 |
-| 5. Chiusura | dove siamo | 10–17 |
+| 5. Chiusura | **l'idea, non l'indirizzo** | 11–21 |
+
+> **L'indirizzo non è una battuta di chiusura, è un'informazione.** Nelle prime
+> versioni questi video finivano tutti su «siamo in via di Boccea 755»: il picco
+> era la battuta 4 — l'idea — e poi il video si sgonfiava su un numero civico.
+> L'indirizzo va in sovrimpressione e nella descrizione del post; la voce chiude
+> sulla persona.
+>
+> Diverso per i video dello studio qui sopra: lì l'indirizzo *è* il contenuto, e
+> resta in chiusura.
 
 ---
 
-## Azzurra — 85 parole · 39"
+## Azzurra — 90 parole · 41"
 
 | Tempo | Testo | Parole |
 | --- | --- | --- |
@@ -141,14 +150,18 @@ che ha notato lavorando.
 | **9–15"** | «Sono Azzurra, fisioterapista e osteopata: la formazione osteopatica serve esattamente a questo.» | 12 |
 | **15–23"** | «Mi occupo di mal di schiena, cervicale, dolori articolari, postura, e del recupero dopo un intervento o un infortunio.» | 19 |
 | **23–32"** | «Perché il punto dove senti male è quasi sempre quello che ha ceduto per ultimo. Non quello che ha cominciato.» | 20 |
-| **32–39"** | «E se tratti solo quello, torna. Siamo in via di Boccea 755, a Casalotti.» | 14 |
+| **32–41"** | «E se tratti solo quello, torna. Per questo la prima volta che ci vediamo non ti tratto: ti guardo.» | 19 |
 
-**Da non perdere:** «la prima cosa che faccio è guardare da un'altra parte» e
-«quello che ha ceduto per ultimo».
+**90 parole · 41"** — **da non perdere:** «la prima cosa che faccio è guardare da
+un'altra parte» e «non ti tratto: ti guardo».
+
+> La chiusura trasforma il principio in una promessa concreta su cosa succede la
+> prima volta. È anche il modo più efficace di dire «la valutazione viene prima»
+> senza usare la parola valutazione.
 
 ---
 
-## Elisa — 85 parole · 39"
+## Elisa — 86 parole · 39"
 
 | Tempo | Testo | Parole |
 | --- | --- | --- |
@@ -156,10 +169,13 @@ che ha notato lavorando.
 | **11–17"** | «Sono Elisa, fisioterapista, e qui dentro mi occupo di postura e di movimento.» | 13 |
 | **17–26"** | «Ginnastica posturale, terapia manuale, rieducazione del movimento. E il metodo Feldenkrais, che sto ancora studiando dopo tre anni di formazione.» | 20 |
 | **26–34"** | «Perché per stare meglio, molto spesso, imparare a muoversi con meno fatica conta più che diventare più forti.» | 18 |
-| **34–39"** | «Se vuoi capire da dove partire, scrivici. Siamo a Casalotti.» | 10 |
+| **34–39"** | «E non c'è un'età in cui sia troppo tardi per impararlo.» | 11 |
 
-**Da non perdere:** «sto ancora lavorando su quella cosa lì» e «meno fatica conta
-più che più forti».
+**86 parole · 39"** — **da non perdere:** «sto ancora lavorando su quella cosa lì»
+e «meno fatica conta più che più forti».
+
+> La chiusura apre invece di chiudere: dice a chi ha sessant'anni e si è
+> rassegnato che il video parlava anche a lui.
 
 > «Che sto ancora studiando» va tenuto: è vero — la formazione Feldenkrais è
 > quadriennale e lei è al terzo anno — e dire che è già practitioner sarebbe
@@ -167,7 +183,7 @@ più che più forti».
 
 ---
 
-## Veronica — 87 parole · 40"
+## Veronica — 91 parole · 41"
 
 | Tempo | Testo | Parole |
 | --- | --- | --- |
@@ -175,9 +191,13 @@ più che più forti».
 | **12–15"** | «Sono Veronica, prima osteopata e poi fisioterapista.» | 7 |
 | **15–23"** | «Mi occupo di infortuni, di recupero dopo un intervento, e di rimettere in movimento chi si è fermato.» | 18 |
 | **23–32"** | «La cosa è questa: non sentire più dolore non vuol dire essere pronti. Il tessuto guarisce dopo, non prima.» | 19 |
-| **32–40"** | «Se ti sei fermato e non sai quando rientrare, scrivici. Siamo a Casalotti, in via di Boccea.» | 17 |
+| **32–41"** | «Ed è per questo che ci si fa male di nuovo: non per sfortuna, ma perché si è rientrati troppo presto.» | 21 |
 
-**Da non perdere:** «non sentire più dolore non vuol dire essere pronti».
+**91 parole · 41"** — **da non perdere:** «non sentire più dolore non vuol dire
+essere pronti».
+
+> La chiusura chiude il cerchio aperto al secondo zero («ho capito una cosa») e
+> lascia addosso un pensiero invece di una richiesta.
 
 > La prima battuta apre una promessa — «ho capito una cosa» — che la quarta
 > mantiene. È il motivo per cui si arriva in fondo: si resta per sapere qual è.
