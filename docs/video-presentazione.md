@@ -89,3 +89,37 @@ lo stesso schema regge la presentazione di un singolo percorso:
 - **bambini** → 3 = osteopatia neonatale, psicomotricità · 4 = come si lavora su un neonato
 - **sport** → 3 = infortuni, post-chirurgico, rieducazione · 4 = quando si rientra davvero
 - **terapie strumentali** → 3 = tecar, laser, ultrasuoni, magneto · 4 = perché mai da sole
+
+---
+
+# Singolo percorso — «Donna» · 40"
+
+**Azzurra** (o Veronica) · **92 parole · 42 secondi**
+
+| Tempo | Testo | Parole |
+| --- | --- | --- |
+| **0–9"** | «Ci sono cose che le donne ci raccontano alla seconda seduta, e che non avevano mai detto a nessuno.» | 19 |
+| **9–14"** | «Siamo in tre, fisioterapiste e osteopate, e questo percorso l'abbiamo costruito apposta.» | 12 |
+| **14–27"** | «Gravidanza: mal di schiena, sciatica, bacino. Dopo il parto: diastasi, pavimento pelvico, perdite quando ridi o starnutisci. E la cicatrice del cesareo, che quasi nessuno ti dice di trattare.» | 29 |
+| **27–36"** | «E si parte sempre da una valutazione, perché un muscolo debole e uno troppo contratto si trattano al contrario.» | 19 |
+| **36–42"** | «Quando te la senti, scrivici. Siamo in via di Boccea 755, a Casalotti.» | 13 |
+
+**Parola per parola:** la prima battuta.
+**Da non perdere:** «che non avevano mai detto a nessuno» e «si trattano al contrario».
+**Sotto gli occhi:** mai detto a nessuno · costruito apposta · gravidanza, dopo il parto, cicatrice · debole o contratto · quando te la senti
+
+**Per scendere a 30":** salta la battuta 4 e accorcia l'elenco a gravidanza e
+post-parto. **Per salire a 50":** dopo la 4 entra «e non serve la prescrizione del
+medico: puoi prenotare e basta».
+
+> Questo è il video con il rapporto salvataggi/visualizzazioni più alto
+> prevedibile. Non si commenta e non si condivide in pubblico: si salva e si manda
+> in privato a un'amica. Va giudicato sui messaggi ricevuti, non sui like.
+
+---
+
+## Gli altri tre, stessa forma
+
+- **Bambini** — aggancio sulle coliche: «"sono le coliche" è la frase che si usa quando non si sa»
+- **Sport** — aggancio sul rientro: «non fa più male non vuol dire che sei pronto»
+- **Terapie strumentali** — aggancio anti-hype: «la tecar da sola non ti sistema niente»
