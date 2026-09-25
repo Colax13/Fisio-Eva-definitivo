@@ -80,82 +80,71 @@ prende gli orari. A 40" torna il metodo. A 50" ci sta anche il dopo.
 
 ---
 
-## Per riusare lo schema su altro
+## La regola: il messaggio generale viene prima
 
-Le battute 1, 2 e 5 non cambiano mai. Si sostituisce solo il contenuto di 3 e 4, e
-lo stesso schema regge la presentazione di un singolo percorso:
+È già scritta nel codice del sito, nel commento alle porte d'ingresso dei servizi:
 
-- **percorso donna** → 3 = gravidanza, post-parto, pavimento pelvico, cicatrice · 4 = la valutazione
-- **bambini** → 3 = osteopatia neonatale, psicomotricità · 4 = come si lavora su un neonato
-- **sport** → 3 = infortuni, post-chirurgico, rieducazione · 4 = quando si rientra davvero
-- **terapie strumentali** → 3 = tecar, laser, ultrasuoni, magneto · 4 = perché mai da sole
+> «L'ordine non si tocca: la generalista per prima. Sopra la piega il messaggio
+> resta neutro — la specializzazione femminile è affiancata, non sostitutiva.»
+
+Vale identica in video. Un video di presentazione che si apre su gravidanza e
+post-parto non aggiunge un pubblico: ne toglie uno, perché dice a metà del
+quartiere che quel posto non è per loro. Lo stesso vale per una professionista:
+presentarla partendo dalla sua nicchia la trasforma in «quella delle donne», e da
+lì non torna più indietro.
+
+Quindi: **le presentazioni sono generaliste.** Le specializzazioni esistono, ma
+stanno nei video dedicati, che si fanno dopo e servono a un altro scopo.
 
 ---
 
-# Singolo percorso — «Donna» · 40"
+# Singolo percorso — quello generalista · 40"
 
-**Azzurra** (o Veronica) · **92 parole · 42 secondi**
+*È il percorso da cui entra quasi tutto: mal di schiena, cervicale, infortuni,
+post-operatorio.*
 
 | Tempo | Testo | Parole |
 | --- | --- | --- |
-| **0–9"** | «Ci sono cose che le donne ci raccontano alla seconda seduta, e che non avevano mai detto a nessuno.» | 19 |
-| **9–14"** | «Siamo in tre, fisioterapiste e osteopate, e questo percorso l'abbiamo costruito apposta.» | 12 |
-| **14–27"** | «Gravidanza: mal di schiena, sciatica, bacino. Dopo il parto: diastasi, pavimento pelvico, perdite quando ridi o starnutisci. E la cicatrice del cesareo, che quasi nessuno ti dice di trattare.» | 29 |
-| **27–36"** | «E si parte sempre da una valutazione, perché un muscolo debole e uno troppo contratto si trattano al contrario.» | 19 |
-| **36–42"** | «Quando te la senti, scrivici. Siamo in via di Boccea 755, a Casalotti.» | 13 |
+| **0–9"** | «La maggior parte delle persone che entra qui non ha una diagnosi. Ha un dolore che dura da troppo.» | 19 |
+| **9–16"** | «Siamo in tre, fisioterapiste e osteopate, e questo è il percorso da cui parte quasi tutto.» | 16 |
+| **16–24"** | «Mal di schiena, cervicale, spalle, ginocchia. Infortuni sportivi, e il recupero dopo un intervento o una frattura.» | 17 |
+| **24–32"** | «Ma la prima cosa non è un trattamento: è una valutazione, perché lo stesso dolore può avere cause diverse.» | 19 |
+| **32–40"** | «Se te lo porti dietro da mesi, scrivici. Siamo in via di Boccea 755, a Casalotti.» | 16 |
 
-**Parola per parola:** la prima battuta.
-**Da non perdere:** «che non avevano mai detto a nessuno» e «si trattano al contrario».
-**Sotto gli occhi:** mai detto a nessuno · costruito apposta · gravidanza, dopo il parto, cicatrice · debole o contratto · quando te la senti
-
-**Per scendere a 30":** salta la battuta 4 e accorcia l'elenco a gravidanza e
-post-parto. **Per salire a 50":** dopo la 4 entra «e non serve la prescrizione del
-medico: puoi prenotare e basta».
-
-> Questo è il video con il rapporto salvataggi/visualizzazioni più alto
-> prevedibile. Non si commenta e non si condivide in pubblico: si salva e si manda
-> in privato a un'amica. Va giudicato sui messaggi ricevuti, non sui like.
-
----
-
-## Gli altri tre, stessa forma
-
-- **Bambini** — aggancio sulle coliche: «"sono le coliche" è la frase che si usa quando non si sa»
-- **Sport** — aggancio sul rientro: «non fa più male non vuol dire che sei pronto»
-- **Terapie strumentali** — aggancio anti-hype: «la tecar da sola non ti sistema niente»
+**87 parole · 40"** — **da non perdere:** «non ha una diagnosi, ha un dolore che
+dura da troppo».
 
 ---
 
 # I terapisti, uno per uno · 40"
 
-**La regola che li salva:** non è un curriculum letto ad alta voce. I titoli stanno
-sul sito, e a elencarli in video si perde chi guarda al terzo. **Un solo titolo,
-una cosa in cui crede, due o tre cose che fa.**
-
-E non si apre con «mi chiamo». Si apre con una cosa che ha notato lavorando: è
-quella che fa capire che dietro c'è una persona e non una targa.
+**Non è un curriculum letto ad alta voce.** I titoli stanno sul sito, e a
+elencarli in video si perde chi guarda al terzo. Un solo titolo, una cosa in cui
+crede, due o tre cose che fa. E non si apre con «mi chiamo»: si apre con qualcosa
+che ha notato lavorando.
 
 | Battuta | Contenuto | Parole |
 | --- | --- | --- |
-| 1. Aggancio | una scoperta o una convinzione, dal suo lavoro | 24–27 |
-| 2. Chi è | nome, ruolo, **un** titolo | 7–15 |
-| 3. Cosa fa | due o tre cose concrete | 19–23 |
-| 4. Come lavora | la sua idea di fondo, in una frase | 16–19 |
-| 5. Chiusura | dove siamo | 8–17 |
+| 1. Aggancio | una cosa notata lavorando — generale, mai una nicchia | 20–26 |
+| 2. Chi è | nome, ruolo, **un** titolo | 7–13 |
+| 3. Cosa fa | i problemi comuni, non le specializzazioni | 18–20 |
+| 4. Come lavora | la sua idea di fondo, in una frase | 18–20 |
+| 5. Chiusura | dove siamo | 10–17 |
 
 ---
 
-## Azzurra — 89 parole · 40"
+## Azzurra — 85 parole · 39"
 
 | Tempo | Testo | Parole |
 | --- | --- | --- |
-| **0–12"** | «Mi sono accorta a un certo punto che certi mal di schiena che non passavano mai avevano a che fare con una cicatrice di dieci anni prima.» | 27 |
-| **12–19"** | «Sono Azzurra, fisioterapista e osteopata. La mia tesi di osteopatia è nata esattamente da lì.» | 15 |
-| **19–30"** | «Da allora lavoro soprattutto con le donne: la gravidanza, il dopo parto, la cicatrice del cesareo, il linfodrenaggio quando le gambe si gonfiano.» | 23 |
-| **30–37"** | «E il principio è sempre quello: guardare dove il corpo tira, non solo dove fa male.» | 16 |
-| **37–40"** | «Siamo in via di Boccea 755, a Casalotti.» | 8 |
+| **0–9"** | «Quando una persona arriva qui con un dolore, la prima cosa che faccio quasi sempre è guardare da un'altra parte.» | 20 |
+| **9–15"** | «Sono Azzurra, fisioterapista e osteopata: la formazione osteopatica serve esattamente a questo.» | 12 |
+| **15–23"** | «Mi occupo di mal di schiena, cervicale, dolori articolari, postura, e del recupero dopo un intervento o un infortunio.» | 19 |
+| **23–32"** | «Perché il punto dove senti male è quasi sempre quello che ha ceduto per ultimo. Non quello che ha cominciato.» | 20 |
+| **32–39"** | «E se tratti solo quello, torna. Siamo in via di Boccea 755, a Casalotti.» | 14 |
 
-**Da non perdere:** «una cicatrice di dieci anni prima» e «dove il corpo tira, non dove fa male».
+**Da non perdere:** «la prima cosa che faccio è guardare da un'altra parte» e
+«quello che ha ceduto per ultimo».
 
 ---
 
@@ -165,34 +154,33 @@ quella che fa capire che dietro c'è una persona e non una targa.
 | --- | --- | --- |
 | **0–11"** | «Vent'anni fa ho scritto una tesi sul legame tra le emozioni, la postura e il respiro. E sto ancora lavorando su quella cosa lì.» | 24 |
 | **11–17"** | «Sono Elisa, fisioterapista, e qui dentro mi occupo di postura e di movimento.» | 13 |
-| **17–27"** | «Ginnastica posturale, terapia manuale, il lavoro sul respiro dopo il parto. E il metodo Feldenkrais, che sto ancora studiando dopo tre anni.» | 22 |
-| **27–35"** | «Perché per stare meglio, molto spesso, imparare a muoversi con meno fatica conta più che diventare più forti.» | 18 |
-| **35–39"** | «Siamo in via di Boccea 755, a Casalotti.» | 8 |
+| **17–26"** | «Ginnastica posturale, terapia manuale, rieducazione del movimento. E il metodo Feldenkrais, che sto ancora studiando dopo tre anni di formazione.» | 20 |
+| **26–34"** | «Perché per stare meglio, molto spesso, imparare a muoversi con meno fatica conta più che diventare più forti.» | 18 |
+| **34–39"** | «Se vuoi capire da dove partire, scrivici. Siamo a Casalotti.» | 10 |
 
-**Da non perdere:** «sto ancora lavorando su quella cosa lì» e «meno fatica conta più che più forti».
+**Da non perdere:** «sto ancora lavorando su quella cosa lì» e «meno fatica conta
+più che più forti».
 
-> «Che sto ancora studiando dopo tre anni» non è una debolezza da nascondere: è
-> vero (la formazione Feldenkrais è quadriennale e lei è al terzo anno), e detto
-> così diventa la cosa più credibile del video. Va tenuto anche perché dire che è
-> già Feldenkrais practitioner sarebbe scorretto.
+> «Che sto ancora studiando» va tenuto: è vero — la formazione Feldenkrais è
+> quadriennale e lei è al terzo anno — e dire che è già practitioner sarebbe
+> scorretto. Detto così, poi, è la cosa più credibile del video.
 
 ---
 
-## Veronica — 88 parole · 40"
+## Veronica — 87 parole · 40"
 
 | Tempo | Testo | Parole |
 | --- | --- | --- |
 | **0–12"** | «Mi sono formata al CONI, a contatto con atleti di livello internazionale. E lì ho capito una cosa che vale per tutti, non solo per loro.» | 26 |
 | **12–15"** | «Sono Veronica, prima osteopata e poi fisioterapista.» | 7 |
-| **15–24"** | «Qui mi occupo di infortuni, di recupero dopo un intervento, e del pavimento pelvico, anche nelle donne con endometriosi.» | 19 |
-| **24–32"** | «La cosa è questa: non sentire più dolore non vuol dire essere pronti. Il tessuto guarisce dopo, non prima.» | 19 |
+| **15–23"** | «Mi occupo di infortuni, di recupero dopo un intervento, e di rimettere in movimento chi si è fermato.» | 18 |
+| **23–32"** | «La cosa è questa: non sentire più dolore non vuol dire essere pronti. Il tessuto guarisce dopo, non prima.» | 19 |
 | **32–40"** | «Se ti sei fermato e non sai quando rientrare, scrivici. Siamo a Casalotti, in via di Boccea.» | 17 |
 
 **Da non perdere:** «non sentire più dolore non vuol dire essere pronti».
 
-> La prima battuta apre una promessa («ho capito una cosa») che la quarta
-> mantiene. È il motivo per cui si arriva in fondo: chi guarda resta per sapere
-> qual è la cosa.
+> La prima battuta apre una promessa — «ho capito una cosa» — che la quarta
+> mantiene. È il motivo per cui si arriva in fondo: si resta per sapere qual è.
 
 ---
 
@@ -200,5 +188,18 @@ quella che fa capire che dietro c'è una persona e non una targa.
 
 Siria, Andrea, Valentina e Maria Caterina non hanno ancora un video, e non per
 scelta editoriale: sul sito titolo, specializzazione e numero di albo sono ancora
-da confermare, e per un professionista sanitario il titolo in un video pubblico è
-un obbligo di legge, non un dettaglio. Appena arrivano, stessa forma.
+da confermare, e in un video pubblico il titolo di un sanitario è un obbligo di
+legge. Appena arrivano, stessa forma.
+
+---
+
+# Video mirati — dopo, non al posto
+
+Quando le presentazioni generaliste sono online, questi si aggiungono. Servono a
+un altro scopo: non a far conoscere lo studio, ma a farsi trovare da chi ha già
+quel problema. Stesso schema, solo le battute 3 e 4 cambiano.
+
+- **Donna** — gravidanza, post-parto, pavimento pelvico, cicatrice del cesareo
+- **Bambini** — «"sono le coliche" è la frase che si usa quando non si sa»
+- **Sport** — «non fa più male non vuol dire che sei pronto»
+- **Terapie strumentali** — «la tecar da sola non ti sistema niente»
