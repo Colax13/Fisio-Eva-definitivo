@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import { CalendarCheck, ChevronDown, Instagram, Menu, X } from 'lucide-react';
+import { CalendarCheck, ChevronDown, Instagram, Menu, MessageCircle, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { categorie, studio } from '../../data/site';
+import { emailUrl, messaggi, oggetti, whatsappUrl } from '../../lib/contatto';
 import ArrowButton from '../ui/ArrowButton';
 
 const links = [
@@ -218,11 +219,21 @@ export default function Navbar() {
               Prenota ora
             </ArrowButton>
 
+            <a
+              href={whatsappUrl(messaggi.contatti)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 flex items-center justify-center gap-2.5 rounded-full border-2 border-brand-secondary px-7 py-3.5 text-sm font-medium text-brand-dark transition-colors duration-300 hover:bg-brand-secondary hover:text-white"
+            >
+              <MessageCircle className="h-4 w-4 shrink-0" />
+              Scrivici su WhatsApp
+            </a>
+
             <p className="mt-6 text-sm font-light text-gray-600">
               {studio.address}, {studio.city}
             </p>
             <a
-              href={`mailto:${studio.email}`}
+              href={emailUrl(oggetti.contatti)}
               className="text-sm font-light text-brand-primary-ink underline underline-offset-4"
             >
               {studio.email}

@@ -37,6 +37,12 @@ type Props = {
    * dell'etichetta ha senso.
    */
   verso?: 'fine' | 'inizio';
+  /**
+   * Apre il collegamento in una scheda nuova. Serve a WhatsApp e ai social:
+   * su WhatsApp Web sostituire la pagina vuol dire far perdere il sito a chi
+   * stava leggendo, e al ritorno ci si ritrova all'inizio.
+   */
+  esterno?: boolean;
   className?: string;
   onClick?: () => void;
   type?: 'button' | 'submit';
@@ -58,6 +64,7 @@ export default function ArrowButton({
   icon: Icon = ArrowUpRight,
   block = true,
   verso = 'fine',
+  esterno = false,
   className = '',
   onClick,
   type = 'button',
@@ -115,7 +122,12 @@ export default function ArrowButton({
 
   if (href) {
     return (
-      <a href={href} className={classes} onClick={onClick}>
+      <a
+        href={href}
+        className={classes}
+        onClick={onClick}
+        {...(esterno ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      >
         {inner}
       </a>
     );

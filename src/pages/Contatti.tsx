@@ -1,11 +1,12 @@
 import { useState, type FormEvent } from 'react';
-import { Clock, Instagram, Mail, MapPin, Phone, Send } from 'lucide-react';
+import { Clock, Instagram, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import PageHero from '../components/layout/PageHero';
 import MappaConsenso from '../components/ui/MappaConsenso';
 import usePageMeta from '../hooks/usePageMeta';
 import { immagini, servizi, studio, team } from '../data/site';
+import { NOTA_WHATSAPP, emailUrl, messaggi, oggetti, whatsappUrl } from '../lib/contatto';
 
 export default function Contatti() {
   const [nome, setNome] = useState('');
@@ -14,20 +15,29 @@ export default function Contatti() {
   const [servizio, setServizio] = useState('');
   const [messaggio, setMessaggio] = useState('');
   const [consenso, setConsenso] = useState(false);
+  /*
+   * Acceso dopo il tentativo di invio via email. Serve perché quel passaggio
+   * può fallire in silenzio: su un computer senza programma di posta
+   * configurato — chi usa Gmail dal browser, cioè moltissimi — il clic non
+   * produce nulla di visibile, e si resta a fissare lo schermo convinti di
+   * aver scritto. Il riquadro che compare dice cosa sta succedendo e offre
+   * WhatsApp a chi non vede aprirsi niente.
+   */
+  const [inviato, setInviato] = useState(false);
 
   usePageMeta(
     'Contatti — FisioEVA | Via di Boccea 755, Roma',
     'Prenota una visita allo studio FisioEVA in Via di Boccea 755, Roma Casalotti. Telefono, email, orari e mappa per raggiungerci.'
   );
 
-  /**
-   * There is no backend yet: the form composes an email in the visitor's own
-   * client so nothing gets silently lost.
+  /*
+   * Non c'è un backend: la richiesta non passa dai nostri server, viene
+   * composta qui e parte dal programma di posta o da WhatsApp di chi scrive.
+   * Il contenuto è lo stesso nei due casi — cambia solo il mezzo — quindi si
+   * compone una volta sola.
    */
-  const inviaEmail = (e: FormEvent) => {
-    e.preventDefault();
-
-    const corpo = [
+  const componiRichiesta = () =>
+    [
       `Nome: ${nome}`,
       `Email: ${email}`,
       telefono && `Telefono: ${telefono}`,
@@ -38,9 +48,33 @@ export default function Contatti() {
       .filter(Boolean)
       .join('\n');
 
-    window.location.href = `mailto:${studio.email}?subject=${encodeURIComponent(
-      `Richiesta appuntamento — ${nome || 'Sito FisioEVA'}`
-    )}&body=${encodeURIComponent(corpo)}`;
+  const inviaEmail = (e: FormEvent) => {
+    e.preventDefault();
+    window.location.href = emailUrl(
+      `Richiesta appuntamento — ${nome || 'Sito FisioEVA'}`,
+      componiRichiesta()
+    );
+    setInviato(true);
+  };
+
+  /*
+   * La stessa richiesta su WhatsApp. Non è un ripiego: è il canale che la
+   * maggior parte delle persone usa già, e toglie di mezzo il passaggio che
+   * faceva perdere più richieste — dopo aver compilato il modulo bisognava
+   * premere invia una seconda volta dentro il programma di posta, e chi non
+   * se ne accorgeva credeva di aver scritto senza averlo fatto.
+   *
+   * Non è un `submit`: i campi obbligatori valgono per l'email, mentre una
+   * chat si può aprire anche con due righe e finire di raccontare di là. Il
+   * consenso invece serve in entrambi i casi, ed è il motivo per cui questo
+   * pulsante resta spento finché non è spuntato.
+   */
+  const inviaWhatsApp = () => {
+    window.open(
+      whatsappUrl(`${messaggi.contatti}\n\n${componiRichiesta()}`),
+      '_blank',
+      'noopener,noreferrer'
+    );
   };
 
   const inputClass =
@@ -115,8 +149,27 @@ export default function Contatti() {
                 </div>
               </a>
 
+              {/* Stesso numero del telefono: chi preferisce scrivere invece di
+                  chiamare trova la chat già aperta, col messaggio pronto. */}
               <a
-                href={`mailto:${studio.email}`}
+                href={whatsappUrl(messaggi.contatti)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-white/80 backdrop-blur-md rounded-[2rem] p-6 shadow-xl border border-white flex items-center gap-5 hover:shadow-2xl transition-shadow duration-300"
+              >
+                <span className="w-12 h-12 rounded-2xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <MessageCircle className="w-6 h-6" />
+                </span>
+                <div>
+                  <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">WhatsApp</p>
+                  <p className="font-sans font-medium text-brand-dark group-hover:text-brand-secondary transition-colors">
+                    Scrivici su WhatsApp
+                  </p>
+                </div>
+              </a>
+
+              <a
+                href={emailUrl(oggetti.contatti)}
                 className="group bg-white/80 backdrop-blur-md rounded-[2rem] p-6 shadow-xl border border-white flex items-center gap-5 hover:shadow-2xl transition-shadow duration-300"
               >
                 <span className="w-12 h-12 rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
@@ -191,9 +244,9 @@ export default function Contatti() {
                   Raccontaci <span className="text-brand-primary font-medium">cosa ti succede</span>
                 </h2>
                 <p className="text-gray-400 font-light text-sm leading-relaxed mb-8">
-                  Compila i campi: si aprirà il tuo programma di posta con il messaggio già pronto
-                  da inviare. Niente passa dai nostri server — l'email parte dal tuo indirizzo e
-                  arriva alla casella dello studio.
+                  Compila i campi e scegli come farceli arrivare: su WhatsApp o per email. In
+                  entrambi i casi il messaggio è già pronto e niente passa dai nostri server —
+                  parte dal tuo telefono e arriva allo studio.
                 </p>
 
                 <form onSubmit={inviaEmail} className="space-y-4">
@@ -278,19 +331,64 @@ export default function Contatti() {
                     </span>
                   </label>
 
+                  {/* WhatsApp per primo, ed è voluto: è la strada più breve.
+                      L'email resta sotto per chi la preferisce — o per chi non
+                      ha WhatsApp, che è una ragione sufficiente da sola. */}
+                  <button
+                    type="button"
+                    onClick={inviaWhatsApp}
+                    disabled={!consenso}
+                    className="group w-full flex items-center justify-center gap-3 bg-brand-secondary text-white hover:bg-white hover:text-brand-dark rounded-full px-8 py-4 transition-colors duration-300 font-medium text-sm disabled:cursor-not-allowed disabled:bg-white/15 disabled:text-gray-500 disabled:hover:bg-white/15 disabled:hover:text-gray-500"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    <span>Invia su WhatsApp</span>
+                  </button>
+
                   <button
                     type="submit"
                     disabled={!consenso}
-                    className="group w-full flex items-center justify-center gap-3 bg-brand-primary text-white hover:bg-white hover:text-brand-dark rounded-full px-8 py-4 transition-colors duration-300 font-medium text-sm disabled:cursor-not-allowed disabled:bg-white/15 disabled:text-gray-500 disabled:hover:bg-white/15 disabled:hover:text-gray-500"
+                    className="group w-full flex items-center justify-center gap-3 border-2 border-white/30 text-white hover:bg-white hover:text-brand-dark rounded-full px-8 py-4 transition-colors duration-300 font-medium text-sm disabled:cursor-not-allowed disabled:border-white/10 disabled:text-gray-500 disabled:hover:bg-transparent disabled:hover:text-gray-500"
                   >
-                    <span>Invia la richiesta</span>
+                    <span>Invia per email</span>
                     <Send className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </button>
 
+                  {/*
+                    Compare solo dopo il tentativo via email, e non dice "inviato":
+                    da qui non possiamo saperlo. Dice cosa dovrebbe succedere e
+                    cosa fare se non succede — che è il caso di chi legge la posta
+                    dal browser e non ha un programma di posta configurato.
+                  */}
+                  {inviato && (
+                    <div
+                      role="status"
+                      className="rounded-2xl border border-brand-primary/40 bg-white/10 p-5 text-sm font-light leading-relaxed text-gray-200"
+                    >
+                      Si sta aprendo il tuo programma di posta con il messaggio già scritto:
+                      controlla che sia partito, perché l'invio avviene da lì.
+                      <br />
+                      <br />
+                      Non si è aperto niente?{' '}
+                      <button
+                        type="button"
+                        onClick={inviaWhatsApp}
+                        className="font-medium text-brand-primary underline underline-offset-2"
+                      >
+                        Mandacelo su WhatsApp
+                      </button>{' '}
+                      oppure chiamaci allo{' '}
+                      <a
+                        href={studio.phoneHref}
+                        className="font-medium text-brand-primary underline underline-offset-2"
+                      >
+                        {studio.phone}
+                      </a>
+                      .
+                    </div>
+                  )}
+
                   <p className="text-gray-500 text-xs font-light leading-relaxed">
-                    Usiamo quello che scrivi solo per risponderti. Non serve raccontare qui la tua
-                    storia clinica: se preferisci, dicci solo di cosa hai bisogno e ne parliamo di
-                    persona.
+                    Usiamo quello che scrivi solo per risponderti. {NOTA_WHATSAPP}
                   </p>
                 </form>
               </div>

@@ -1,6 +1,7 @@
-import { CalendarCheck, MessageSquare, Phone } from 'lucide-react';
+import { CalendarCheck, MessageCircle, Phone } from 'lucide-react';
 import { motion } from 'motion/react';
 import { immagini, studio } from '../../data/site';
+import { messaggi, whatsappUrl } from '../../lib/contatto';
 import ArrowButton from '../ui/ArrowButton';
 
 type Props = {
@@ -14,6 +15,12 @@ type Props = {
  * per rispondere. Le tre azioni sono affiancate su desktop e impilate a piena
  * larghezza sul telefono, dove un pulsante stretto è solo più difficile da
  * centrare col pollice.
+ *
+ * Il pulsante di mezzo è WhatsApp e non più l'email. Apriva un `mailto:` nudo,
+ * cioè una casella di posta vuota: chi lo toccava dal telefono doveva scrivere
+ * oggetto e testo da zero, e quasi nessuno lo faceva. WhatsApp arriva con il
+ * messaggio già pronto. L'email resta dov'è utile — nella pagina contatti, nel
+ * footer e nel menu — e lì ora è precompilata anche lei.
  */
 export default function CtaBand({ titolo = 'Pronto a rimetterti in movimento?' }: Props) {
   return (
@@ -52,8 +59,14 @@ export default function CtaBand({ titolo = 'Pronto a rimetterti in movimento?' }
             Prenota ora
           </ArrowButton>
 
-          <ArrowButton href={`mailto:${studio.email}`} variant="ghost" icon={MessageSquare} verso="inizio">
-            Scrivi un messaggio
+          <ArrowButton
+            href={whatsappUrl(messaggi.prenotazione)}
+            variant="ghost"
+            icon={MessageCircle}
+            verso="inizio"
+            esterno
+          >
+            Scrivici su WhatsApp
           </ArrowButton>
 
           <ArrowButton href={studio.phoneHref} variant="ghostSecondary" icon={Phone} verso="inizio">

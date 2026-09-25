@@ -1,6 +1,7 @@
-import { Instagram, Mail, MapPin, Phone } from 'lucide-react';
+import { Instagram, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { partiteIva, studio } from '../../data/site';
+import { emailUrl, messaggi, oggetti, whatsappUrl } from '../../lib/contatto';
 import DatoMancante from '../ui/DatoMancante';
 
 /**
@@ -57,9 +58,20 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-3">
+                <MessageCircle className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
+                <a
+                  href={whatsappUrl(messaggi.informazioni)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 font-light hover:text-brand-dark transition-colors"
+                >
+                  Scrivici su WhatsApp
+                </a>
+              </li>
+              <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
                 <a
-                  href={`mailto:${studio.email}`}
+                  href={emailUrl(oggetti.informazioni)}
                   className="text-gray-600 font-light hover:text-brand-dark transition-colors break-all"
                 >
                   {studio.email}

@@ -125,6 +125,19 @@ export const studio = {
   phone: '+39 392 960 5972',
   phoneHref: 'tel:+393929605972',
   phoneProvvisorio: false,
+
+  /*
+   * Lo stesso numero, nel formato che vuole wa.me: prefisso internazionale
+   * senza + e senza spazi. È il numero dello studio, non i cellulari delle
+   * professioniste — vale qui la stessa regola del telefono.
+   *
+   * I link si costruiscono solo con gli aiutanti in `src/lib/contatto.ts`,
+   * mai a mano: il testo precompilato cambia da un punto all'altro del sito
+   * ed è l'unico modo che abbiamo per capire da dove arriva una richiesta
+   * senza installare strumenti di tracciamento (che obbligherebbero al
+   * banner cookie, oggi non necessario).
+   */
+  whatsapp: '393929605972',
   orari: [
     { giorno: 'Lunedì — Venerdì', ore: '08:00 — 20:00' },
     { giorno: 'Sabato', ore: '08:00 — 14:00' },
@@ -227,6 +240,22 @@ export const legale = {
     {
       nome: 'Google Ireland Ltd.',
       ruolo: 'Casella di posta (Gmail) su cui arrivano le richieste dal sito',
+      paese: 'Irlanda, con trasferimenti negli Stati Uniti',
+    },
+    {
+      /*
+       * Aggiunto quando WhatsApp è diventato un canale di contatto del sito.
+       * Non è un dettaglio: chi ci scrive di là può raccontare un sintomo, e
+       * quello è un dato relativo alla salute (art. 9). Il contenuto del
+       * messaggio viaggia cifrato da un capo all'altro, ma il numero di
+       * telefono e il fatto stesso che ci abbia scritto passano da Meta.
+       *
+       * Per questo accanto a ogni pulsante WhatsApp il sito ripete che non
+       * serve raccontare lì la propria storia clinica, e lascia disponibili
+       * telefono ed email per chi preferisce non usarlo.
+       */
+      nome: 'WhatsApp Ireland Ltd. (gruppo Meta)',
+      ruolo: 'Canale di contatto: i messaggi che ci scrivi su WhatsApp',
       paese: 'Irlanda, con trasferimenti negli Stati Uniti',
     },
   ],
