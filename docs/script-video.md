@@ -2,208 +2,245 @@
 
 ---
 
-## Premessa: come sono costruiti
+## Premessa: come sono scritti, e come si usano
 
-### Le cinque battute
+### Il problema da evitare
 
-Il video che mi hai mandato non funziona per il montaggio. Funziona per come è
-scritto, ed è una struttura in cinque battute che si ripete identica ogni volta:
+Uno script scritto parola per parola si può solo recitare, e recitato si sente.
+Chi guarda non sa dire perché, ma capisce che quella persona sta leggendo — e a
+quel punto o si copre tutto di b-roll, o il video non funziona.
 
-1. **Riconoscimento** (0–5") — una domanda su un sintomo che chi guarda ha
-   *adesso*. Mai «sapevi che», mai «oggi parliamo di». Una domanda secca a cui si
-   risponde sì con la testa mentre si scrolla.
-2. **Specificazione** (5–12") — due o tre varianti dello stesso sintomo. Serve a
-   catturare anche chi al primo gancio non si è riconosciuto del tutto.
-3. **Distinzione** (12–26") — qui si dà il valore: si separa una cosa che chi
-   guarda considerava una sola. È la parte che fa dire «questo ne sa».
-4. **Meccanismo** (26–38") — la spiegazione di *perché* succede. Nel video di
-   riferimento è «una zona che lavora a lungo senza recuperare col tempo tollera
-   sempre meno il carico».
-5. **Reframe + chiusura** (38–45") — si smonta la spiegazione che la persona si
-   era già data da sola e la si sostituisce con la tua.
+Quindi questi fogli **non sono un testo da imparare a memoria**. Sono un filo:
+una cosa sola da dire esattamente, e poi una serie di passaggi con il punto a cui
+deve arrivare e una versione già parlata di come potrebbe suonare. Lei legge il
+punto, capisce dove deve andare, e ci arriva con le sue parole.
 
-**La quinta è il motore.** Non stai informando: stai **sostituendo una
-spiegazione**. Nel video originale la persona credeva fosse il cambio stagione o
-il cuscino; esce convinta che sia un accumulo. E chi accetta la tua spiegazione ha
-già accettato che la soluzione passi da te. Ogni script ha una quinta battuta, e
-se non ce l'ha non è uno script: è un post informativo.
+### Cosa si dice esattamente e cosa no
 
-### Cosa cambia rispetto al riferimento
+| Parte | Come si usa |
+| --- | --- |
+| **L'aggancio** | Parola per parola. È l'unica. Sono i tre secondi che decidono se il video viene mostrato a qualcuno o no, e non si improvvisano |
+| **Il filo** | A senso. La versione scritta serve per capire il tono e il ritmo, non per essere ripetuta |
+| **Le frasi da non perdere** | Due o tre per video. Quelle vanno dette più o meno così, perché il video esiste per quelle |
+| **La chiusura** | A senso, ma l'ultima riga — dove siamo — sempre |
 
-Tre cose, tutte vincolanti.
+### Il registro
 
-**Niente promesse.** La L. 145/2018 vieta a un sanitario la pubblicità
-promozionale. Il video di riferimento chiude con «se vuoi risolvere questo
-problema»: su di voi è una formula a rischio. Si dice *può aiutare*, *si lavora
-su*, *il primo passo è capire*. Mai *risolviamo*, *guarisci*, *ti tolgo il dolore*.
+Elisa, Azzurra e Veronica parlano piano e in modo semplice. Il testo deve
+assecondarlo, non combatterlo. In pratica:
 
-**Niente primati.** Niente *unico*, *migliore*, *più completo*. Sono affermazioni
-verificabili e contestabili da qualsiasi collega della zona. La stessa forza si
-ottiene descrivendo un fatto e lasciando il confronto a chi ascolta: «fisioterapia,
-osteopatia e terapie strumentali nello stesso studio» dice tutto senza esporvi.
+- **frasi lunghe, con l'aria dentro.** Non «Non è una diagnosi. È un pezzo del
+  corpo.» ma «Il fatto è che non è una diagnosi: è il nome di una parte del
+  corpo.» La seconda si dice in un respiro solo, la prima va sparata;
+- **le congiunzioni non si tolgono.** *Perché*, *quindi*, *però*, *allora*, *il
+  fatto è che*, *ora*. Nel parlato tengono insieme il discorso; toglierle è un
+  vezzo da carta stampata;
+- **niente elenchi da contare sulle dita.** Le cose si mettono in fila con «c'è
+  chi… c'è chi…», che è come parla una persona;
+- **le ripetizioni vanno bene.** Nel parlato ripetere una parola è naturale;
+  cercare il sinonimo suona subito scritto;
+- **un'immagine concreta batte tre aggettivi.** «È come dire ho il ginocchio»
+  vale più di qualunque spiegazione.
 
-**Niente pazienti in video** senza consenso scritto e separato: un video che mostra
-una persona in trattamento rivela che sta ricevendo cure, ed è un dato sanitario.
+### Il filo, in cinque passaggi
+
+1. **Aggancio** — una frase che apre un vuoto da riempire. Mai «sapevi che».
+2. **Il fraintendimento** — la cosa che chi guarda credeva di sapere.
+3. **L'apertura** — si separa in più cose quello che sembrava una cosa sola. È il
+   passaggio che dà valore.
+4. **Il meccanismo** — perché quella distinzione cambia qualcosa nella pratica.
+5. **Il ribaltamento** — si sostituisce la spiegazione che la persona si era già
+   data da sola.
+
+Il quinto è il motore. Non stai informando: stai cambiando la spiegazione. E chi
+accetta la tua spiegazione ha già accettato che la soluzione passi da te.
+
+### I tre vincoli
+
+Valgono per ogni parola, anche detta a braccio:
+
+- **mai promesse di guarigione** (L. 145/2018): *può aiutare*, *si lavora su*, *il
+  primo passo è capire*. Mai *risolviamo*, *guarisci*, *ti tolgo il dolore*;
+- **mai primati**: niente *unico*, *migliore*, *più completo*. Sono affermazioni
+  contestabili da qualsiasi collega della zona;
+- **mai «gratis»** e mai «medico» riferito al ruolo.
 
 ### Dove entra Casalotti
 
-Non nelle immagini — non è un quartiere che si riconosce da uno scorcio, e girare
-in esterni costa tempo che non hai. Entra in tre modi, tutti dall'interno dello
-studio:
-
-- **pronunciata a voce** almeno una volta per video: le piattaforme trascrivono
-  l'audio, e la parola detta è un segnale che il testo sovrimpresso non dà;
-- **come contesto clinico**, che è il modo più forte: «qui la gente sta in
-  macchina un'ora e mezza al giorno» colloca lo studio nel quartiere meglio di
-  qualunque ripresa di via di Boccea, e nessun account nazionale può copiarlo;
-- **in chiusura**, sempre con la stessa formula, in modo che dopo venti video
-  quella frase sia diventata la definizione dello studio.
-
-### Chi parla e dove
-
-**Un volto per area**, sempre lo stesso: la riconoscibilità si costruisce sulla
-ripetizione della stessa faccia. Azzurra per donna, gravidanza, post-parto e
-cicatrice. Elisa per postura, movimento e consapevolezza corporea. Veronica per
-sport, infortuni e pavimento pelvico.
-
-**Quattro set fissi**, tutti già dentro lo studio: la sala col lettino e il laser,
-la tecar, la reception, e la parete degli attestati — quest'ultima da allestire,
-perché nel riferimento quella parete lavora in ogni inquadratura senza che nessuno
-la nomini.
-
-### Come si gira
-
-Non un video alla volta: **un mese alla volta**. Mezza giornata, luce di finestra
-fra le 9 e le 12, un set alla volta con tutti gli script che lo usano di fila, due
-riprese per frase e poi avanti — la terza è sempre peggio della seconda.
+Detto a voce, almeno una volta — le piattaforme trascrivono l'audio, e la parola
+pronunciata è un segnale che il testo sovrimpresso non dà. E nell'ultima riga,
+sempre uguale, in modo che dopo venti video sia diventata la definizione dello
+studio.
 
 ---
 
-## Lo script completo
+# «La cervicale non esiste»
 
-# «È cervicale»
+**Chi parla:** Elisa · **Durata:** 55–60" · **Obiettivo:** attrazione
 
-|  |  |
-| --- | --- |
-| **Obiettivo** | Attrazione. Parla a chi non ti conosce e non ti sta cercando |
-| **Chi** | Elisa |
-| **Durata** | 45" |
-| **Set** | Attestati → lettino → reception |
-| **Perché questo** | «Cervicale» è la parola con cui metà del quartiere descrive il proprio dolore. Smontarla vi posiziona come quelli *che sanno distinguere*, che è esattamente ciò che uno studio nuovo deve dimostrare |
+**Perché questo video.** «Cervicale» è la parola con cui metà del quartiere
+descrive il proprio dolore. Smontarla vi posiziona come quelli che sanno
+distinguere — che è la cosa che uno studio deve dimostrare, non dichiarare.
 
-### Il girato
+---
 
-| Tempo | Set e inquadratura | Cosa dice | Caption a schermo |
-| --- | --- | --- | --- |
-| 0:00–0:04 | **Attestati.** Mezzo busto, frontale | «"Ho la **cervicale**." Te lo sei detto anche tu, vero?» | HO LA **CERVICALE** |
-| 0:04–0:07 | *stacco* — stessa posizione, un filo più stretta | «Il problema è che cervicale **non è una diagnosi**.» | NON È UNA **DIAGNOSI** |
-| 0:07–0:11 | *stacco* — più larga, apre le mani | «È un pezzo del corpo. È come dire "ho il **ginocchio**".» | COME DIRE HO IL **GINOCCHIO** |
-| 0:11–0:15 | **Lettino.** Mezzo busto, di tre quarti | «Sotto quella parola ci stanno almeno **quattro cose diverse**.» | QUATTRO COSE **DIVERSE** |
-| 0:15–0:18 | *stacco* — conta sulle dita, uno | «Una tensione muscolare da **postura**.» | UNA · **POSTURA** |
-| 0:18–0:21 | *stacco* — due | «Un'articolazione che ha perso **movimento**.» | DUE · **MOVIMENTO** |
-| 0:21–0:24 | *stacco* — tre, si tocca il braccio | «Un nervo irritato, che dà **formicolio al braccio**.» | TRE · **FORMICOLIO** |
-| 0:24–0:28 | *stacco* — quattro, si tocca la mandibola | «E una **mandibola** che stringe di notte. Quella è la più sottovalutata di tutte.» | QUATTRO · **MANDIBOLA** |
-| 0:28–0:31 | **Reception.** Mezzo busto | «Si trattano in modi **opposti**.» | MODI **OPPOSTI** |
-| 0:31–0:37 | *stacco* — più stretta, ritmo più lento | «Ed è il motivo per cui magari hai già fatto dieci sedute di massaggi e dopo due settimane eri **punto e a capo**.» | PUNTO E A **CAPO** |
-| 0:37–0:41 | *stacco* — guarda dritto in camera, si ferma | «Non è che non funzionava. È che si stava lavorando sul posto giusto per il **problema sbagliato**.» | PROBLEMA **SBAGLIATO** |
-| 0:41–0:45 | *stacco* — primo piano | «Quindi la domanda non è come togliere la cervicale. È **quale delle quattro è la tua**. Ed è la prima cosa che guardiamo. Siamo a **Casalotti**, in via di Boccea.» | QUALE DELLE **QUATTRO** |
+## 1. L'aggancio — parola per parola
 
-### Note di regia
-
-**La battuta che regge tutto è a 0:37.** «Non è che non funzionava» è il momento in
-cui chi guarda smette di sentirsi preso in giro dai trattamenti che ha già fatto —
-e quindi smette di difendersi. Va detta piano, guardando dritto in camera, con una
-pausa piena prima. È l'unico punto del video dove il ritmo rallenta di proposito.
-
-**L'elenco da 0:15 a 0:28 va contato con le dita.** Quattro voci dette senza mano
-sono quattro voci che non si ricordano. È anche quello che dà il ritmo agli stacchi.
-
-**Non scusarsi della semplificazione.** «Almeno quattro cose diverse» è una
-semplificazione e lo sai, ma il video dura 45 secondi. Se aggiungi «poi in realtà
-ce ne sono anche altre» hai perso chi guarda e non hai guadagnato precisione.
-
-**Impara la sequenza, non le parole.** Rileggi ad alta voce due volte la sera
-prima. Il riferimento funziona perché parla, non perché recita: se sbagli una
-parola ma il concetto arriva, va bene così.
-
-### Il testo del post
-
-> «Ho la cervicale» non vuol dire niente. È un pezzo del corpo, non una diagnosi —
-> come dire «ho il ginocchio».
+> **«La cervicale non esiste.»**
 >
-> Sotto quella parola ci stanno almeno quattro cose diverse, e si trattano in modi
-> opposti. È il motivo per cui certi percorsi non portano da nessuna parte: non
-> perché non funzionino, ma perché lavorano sul posto giusto per il problema
-> sbagliato.
+> *(pausa)*
 >
-> La prima cosa che guardiamo è quale delle quattro è la tua.
+> **«Esiste una parte del corpo che si chiama così. Ma non è una malattia, e
+> soprattutto non è una diagnosi.»**
+
+Detta con calma vale il doppio che detta con enfasi: una frase così, pronunciata
+tranquillamente da una professionista, suona come competenza. Pronunciata con
+foga suona come una provocazione da social.
+
+**Alternative**, se questa non convince:
+
+- «"Ho la cervicale" è la frase che sentiamo più spesso qui in studio. Ed è anche
+  quella che dice meno di tutte.»
+- «Se dici di avere la cervicale, con ogni probabilità stai chiamando con lo
+  stesso nome quattro cose diverse.»
+
+---
+
+## 2. Il filo
+
+### Passaggio 1 — Il fraintendimento
+
+**Dove deve arrivare:** "cervicale" indica un posto, non un problema.
+
+> Perché cervicale è il nome della parte alta della colonna, quella del collo. È
+> come dire «ho il ginocchio». Dice dove ti fa male, ma non dice che cosa c'è che
+> non va. E sono due informazioni molto diverse.
+
+### Passaggio 2 — L'apertura
+
+**Dove deve arrivare:** sotto quella parola ci stanno problemi diversi tra loro.
+*È il passaggio più lungo ed è quello che dà valore al video. Se serve accorciare, si accorcia altrove.*
+
+> E infatti, sotto quella stessa parola, a noi arrivano persone con problemi
+> molto diversi.
 >
-> 📍 FisioEVA — Via di Boccea 755, Casalotti (Roma)
-> Lun–Ven 8:00–20:00 · Sab 8:00–14:00
+> C'è chi ha una tensione muscolare che viene semplicemente da come sta seduto
+> otto ore al giorno. C'è chi ha un'articolazione che si è irrigidita e ha perso
+> movimento, e se ne accorge quando gira la testa per fare retromarcia. C'è chi ha
+> un nervo irritato, e quella è diversa ancora, perché di solito sente un
+> formicolio che scende lungo il braccio.
+>
+> E poi c'è chi stringe i denti la notte senza saperlo, e si sveglia con il collo
+> duro e un po' di mal di testa. Quella è quella a cui non pensa mai nessuno.
 
-**Primo commento** (dove va la chiamata all'azione, non nella descrizione):
+### Passaggio 3 — Il meccanismo
 
-> Se ti ci sei riconosciuto, scrivici in DM o su WhatsApp: il numero è nel profilo.
+**Dove deve arrivare:** si trattano in modo diverso, a volte opposto.
+
+> Ora, queste quattro cose non si trattano allo stesso modo. In certi casi il
+> lavoro è rilassare, in altri è esattamente il contrario: bisogna muovere, e
+> spesso rinforzare.
+>
+> Quindi quello che aiuta molto una persona può non servire a niente a un'altra,
+> anche se tutte e due, entrando, hanno detto la stessa identica frase.
+
+### Passaggio 4 — Il ribaltamento
+
+**Dove deve arrivare:** se un percorso non ha funzionato, non era sbagliato il
+trattamento — era sbagliato il bersaglio.
+
+> Ed è il motivo per cui ogni tanto qualcuno ci racconta che ha già fatto dieci
+> sedute di massaggi, che si era anche trovato bene, e che dopo due settimane era
+> di nuovo come prima.
+>
+> Non è che quel lavoro non funzionasse. È che si stava lavorando nel punto
+> giusto, ma sul problema sbagliato.
+
+---
+
+## 3. La chiusura
+
+**Dove deve arrivare:** la domanda giusta non è come farla passare, ma quale delle
+quattro è la tua.
+
+> Quindi la domanda da farsi non è tanto come far passare la cervicale. È capire
+> quale di queste quattro è la tua.
+>
+> E quella è la prima cosa che guardiamo quando una persona entra qui.
+
+**Ultima riga, sempre:**
+
+> **«Siamo a Casalotti, in via di Boccea.»**
+
+---
+
+## 4. Le frasi da non perdere
+
+Tre. Se sopravvivono queste, il video funziona anche se tutto il resto viene detto
+in un altro modo.
+
+1. **«È come dire "ho il ginocchio".»**
+   È l'immagine che fa scattare la cosa in testa. Senza, il discorso resta teorico.
+
+2. **«Non è che quel lavoro non funzionasse. È che si stava lavorando nel punto
+   giusto, ma sul problema sbagliato.»**
+   È la ragione per cui il video esiste. Qui chi guarda smette di sentirsi preso
+   in giro dai trattamenti che ha già fatto — e quindi smette di difendersi. Va
+   detta piano, con una pausa prima.
+
+3. **«Quale di queste quattro è la tua.»**
+   È la frase che trasforma il video in una domanda aperta, ed è quella che fa
+   scrivere in privato.
+
+---
+
+## 5. Come si usa questo foglio
+
+Non si impara a memoria. Si legge due volte ad alta voce la sera prima — non per
+ricordare le parole, ma per ricordare **l'ordine dei passaggi**.
+
+Al momento di girare basta avere sotto gli occhi i cinque titoli: *non è una
+diagnosi · le quattro cose · si trattano al contrario · dieci sedute e sei punto e
+a capo · quale delle quattro è la tua.*
+
+Ogni passaggio si dice due volte e si tiene la seconda. Se esce una parola diversa
+da quella scritta, va bene: vuol dire che sta parlando.
+
+---
+
+## 6. Il testo del post
+
+> «Ho la cervicale» non dice quasi niente. Cervicale è il nome di una parte del
+> corpo — come dire «ho il ginocchio»: dice dove, non dice cosa.
+>
+> Sotto quella parola ci stanno problemi diversi tra loro, e alcuni si trattano in
+> modo opposto. È il motivo per cui certi percorsi non portano da nessuna parte:
+> non perché il lavoro fosse sbagliato, ma perché era rivolto alla cosa sbagliata.
+>
+> La prima cosa che guardiamo è quale di queste è la tua.
+>
+> 📍 Via di Boccea 755, Casalotti (Roma) · Lun–Ven 8:00–20:00 · Sab 8:00–14:00
+
+**Primo commento:**
+
+> Se ti ci sei riconosciuto, scrivici in DM o su WhatsApp — il numero è nel profilo.
 
 **Hashtag:** `#cervicale #dolorecervicale #fisioterapia #osteopatia #casalotti
-#boccea #roma #romanord #terapiamanuale #malditesta #posturascorretta #fisioeva`
-
-### La copertina
-
-Il fotogramma di 0:24, quello con la mano sulla mandibola: è il gesto più
-inaspettato del video ed è quello che fa fermare chi scorre il profilo. Testo
-sopra, due parole: **«NON È CERVICALE»**.
-
-Mai il logo in copertina, e mai il primo fotogramma del video.
-
-### Prima di premere registra
-
-- [ ] Microfono lavalier agganciato alla casacca, a vista
-- [ ] Esposizione e messa a fuoco **bloccate** sul viso (tocca e tieni premuto)
-- [ ] Finestra davanti a 45°, mai alle spalle
-- [ ] Obiettivo principale, non il grandangolo
-- [ ] Lente all'altezza degli occhi
-- [ ] Le mani entrano in inquadratura
-- [ ] Cinque secondi in più all'inizio e alla fine di ogni clip
-
-### Controllo legale di questo script
-
-| Cosa | Esito |
-| --- | --- |
-| Promesse di guarigione | Nessuna. La chiusura è «è la prima cosa che guardiamo» |
-| Affermazioni di primato | Nessuna |
-| «Gratis» | Mai nominato |
-| Uso di «medico» | Mai |
-| Pazienti ripresi | Nessuno: è un talking-head |
-| Diagnosi a distanza | No: il video distingue possibilità, non attribuisce una causa a chi guarda |
-
-### Cosa diventa dopo
-
-Lo stesso testo, riusato quattro volte senza girare altro:
-
-- **carosello** in cinque schede, una per ciascuna delle quattro cause più la
-  copertina;
-- **storia** con sondaggio: «quale delle quattro pensi sia la tua?»;
-- **post video sulla scheda Google Business Profile**, lo stesso identico file;
-- **voce nelle FAQ del sito**, come testo: «Cosa vuol dire avere la cervicale?».
-  Quest'ultimo è quello che nessuno fa e che lavora per anni — il sito è aperto ai
-  crawler delle AI, ma le pagine sono scritte da JavaScript e non le leggono. Una
-  FAQ in chiaro sì.
+#boccea #roma #romanord #terapiamanuale #cefalea #fisioeva`
 
 ---
 
-## Se il formato ti convince
+## Gli altri titoli
 
-Gli altri titoli già impostati, che posso scriverti negli stessi termini quando
-vuoi — dimmi quali e in che ordine:
+Quando vuoi te li scrivo in questa stessa forma — dimmi quali e in che ordine.
 
 **Sintomo** · Il mal di schiena che torna sempre nello stesso punto · La spalla che
 fa male di notte · La caviglia che hai storto sei mesi fa · Perché il dolore
 peggiora la sera · Le tre cose che vediamo di più qui
 
-**Metodo** · Cosa succede nei primi venti minuti · Tour dello studio in trenta
-secondi · Non serve la prescrizione del medico · La tecar non è una bacchetta
-magica · Perché non ti diciamo quante sedute servono al telefono
+**Metodo** · Cosa succede nei primi venti minuti · Non serve la prescrizione del
+medico · La tecar non è una bacchetta magica · Perché non ti diciamo quante sedute
+servono al telefono
 
 **Aree** · Il neonato che non dorme · La cosa di cui non parla nessuno (pavimento
 pelvico) · La cicatrice che nessuno ti ha detto di trattare · Torni a correre o
@@ -212,5 +249,4 @@ torni a camminare?
 **Persone** · Siamo in tre · Perché uno studio di sole donne · Cosa vuol dire
 «valutazione»
 
-**StudioEVA** · Cosa succede dopo l'ultima seduta *(girabile già ora, non mostra il
-piano di sopra)*
+**StudioEVA** · Cosa succede dopo l'ultima seduta
