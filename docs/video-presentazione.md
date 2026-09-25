@@ -183,24 +183,28 @@ e «meno fatica conta più che più forti».
 
 ---
 
-## Veronica — 91 parole · 41"
+## Veronica — 87 parole · 40"
 
 | Tempo | Testo | Parole |
 | --- | --- | --- |
-| **0–12"** | «Mi sono formata al CONI, a contatto con atleti di livello internazionale. E lì ho capito una cosa che vale per tutti, non solo per loro.» | 26 |
-| **12–15"** | «Sono Veronica, prima osteopata e poi fisioterapista.» | 7 |
+| **0–9"** | «C'è una cosa che vedo di continuo: persone che si fanno male, guariscono, e si rifanno male nello stesso punto.» | 20 |
+| **9–15"** | «Sono Veronica. Ho fatto il percorso al contrario: prima osteopata, poi fisioterapista.» | 12 |
 | **15–23"** | «Mi occupo di infortuni, di recupero dopo un intervento, e di rimettere in movimento chi si è fermato.» | 18 |
-| **23–32"** | «La cosa è questa: non sentire più dolore non vuol dire essere pronti. Il tessuto guarisce dopo, non prima.» | 19 |
-| **32–41"** | «Ed è per questo che ci si fa male di nuovo: non per sfortuna, ma perché si è rientrati troppo presto.» | 21 |
+| **23–33"** | «E quasi sempre il motivo è questo: non sentire più dolore non vuol dire essere pronti. Il tessuto guarisce dopo, non prima.» | 22 |
+| **33–40"** | «Quindi non è sfortuna. È che si è rientrati troppo presto, e nessuno l'aveva detto.» | 15 |
 
-**91 parole · 41"** — **da non perdere:** «non sentire più dolore non vuol dire
-essere pronti».
+**Da non perdere:** «si rifanno male nello stesso punto» e «non sentire più dolore
+non vuol dire essere pronti».
 
-> La chiusura chiude il cerchio aperto al secondo zero («ho capito una cosa») e
-> lascia addosso un pensiero invece di una richiesta.
-
-> La prima battuta apre una promessa — «ho capito una cosa» — che la quarta
-> mantiene. È il motivo per cui si arriva in fondo: si resta per sapere qual è.
+> Il CONI è uscito dal parlato. Reggeva l'intero video, e una presentazione
+> personale non può poggiare sul nome di qualcun altro: chi guarda si ricordava
+> il CONI, non Veronica. La formazione con gli atleti resta nella descrizione del
+> post e sul sito, che è il posto dove un titolo lavora senza rubare la scena.
+>
+> Al suo posto l'apertura è un'osservazione dal suo lavoro — le persone che si
+> rifanno male nello stesso punto — che pone una domanda a cui la battuta 4
+> risponde. E «ho fatto il percorso al contrario» dice in sette parole una cosa
+> davvero rara, senza doverla rivendicare.
 
 ---
 
