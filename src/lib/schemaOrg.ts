@@ -44,7 +44,12 @@ export function creaSchedaClinica(): Record<string, unknown> {
     url: sito.dominio,
     logo: `${dominio}/icon-512.png`,
     image: [`${dominio}${immagineCondivisione}`, `${dominio}/foto/sede-reception.webp`],
-    hasMap: `https://www.google.com/maps/search/?api=1&query=${studio.mapsQuery}`,
+    hasMap: `https://www.google.com/maps/search/?api=1&query=${studio.coordinate.lat},${studio.coordinate.lng}`,
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: studio.coordinate.lat,
+      longitude: studio.coordinate.lng,
+    },
     address: {
       '@type': 'PostalAddress',
       streetAddress: studio.address,

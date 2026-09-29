@@ -181,6 +181,8 @@ ${PUBBLICO ? '' : `Lo studio apre il ${sito.apertura}. `}Le descrizioni dei trat
 - Telefono: ${studio.phone}
 - Email: ${studio.email}
 - Orari: ${orariRiga}
+- Come arrivare: ${studio.comeArrivare.auto} ${studio.comeArrivare.parcheggio}
+- Coordinate: ${studio.coordinate.lat}, ${studio.coordinate.lng} (Plus Code ${studio.plusCode})
 
 ## Pagine
 ${pagine.map((p) => `- [${p.titolo}](${DOMINIO}${p.url}): ${p.descrizione}`).join('\n')}
@@ -216,6 +218,7 @@ const riepilogo = `
       <h1>${escapeHtml(studio.name)} — ${escapeHtml(studio.claim)}</h1>
       <p>${escapeHtml(studio.address)}, ${escapeHtml(studio.city)} (${escapeHtml(studio.zone)}). Telefono: ${escapeHtml(studio.phone)}. Email: ${escapeHtml(studio.email)}.</p>
       <p>Orari: ${escapeHtml(orariTesto(studio.orari))}.</p>
+      <p>Come arrivare: ${escapeHtml(studio.comeArrivare.auto)} ${escapeHtml(studio.comeArrivare.parcheggio)}</p>
       <h2>Servizi</h2>
       <ul>
 ${servizi.map((s) => `        <li><strong>${escapeHtml(s.titolo)}</strong> — ${escapeHtml(s.descrizione)}</li>`).join('\n')}

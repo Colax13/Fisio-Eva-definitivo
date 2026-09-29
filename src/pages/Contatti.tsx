@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { Clock, Instagram, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react';
+import { Car, Clock, Instagram, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import PageHero from '../components/layout/PageHero';
@@ -214,6 +214,25 @@ export default function Contatti() {
                       </li>
                     ))}
                   </ul>
+                </div>
+              </div>
+
+              <div className="bg-white/80 backdrop-blur-md rounded-[2rem] p-7 shadow-xl border border-white flex items-start gap-5">
+                <span className="w-12 h-12 rounded-2xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shrink-0">
+                  <Car className="w-6 h-6" />
+                </span>
+                <div className="flex-1">
+                  <h3 className="text-xs text-gray-500 uppercase tracking-wider mb-3 font-normal">
+                    Come arrivare
+                  </h3>
+                  <p className="text-sm text-gray-600 font-light leading-relaxed mb-3">
+                    {studio.comeArrivare.auto}
+                  </p>
+                  <p className="text-sm text-gray-600 font-light leading-relaxed">
+                    <span className="text-brand-dark font-medium">Parcheggio: </span>
+                    {studio.comeArrivare.parcheggio.charAt(0).toLowerCase() +
+                      studio.comeArrivare.parcheggio.slice(1)}
+                  </p>
                 </div>
               </div>
             </div>

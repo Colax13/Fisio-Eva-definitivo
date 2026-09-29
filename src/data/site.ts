@@ -137,6 +137,26 @@ export const studio = {
   instagramUrl: 'https://www.instagram.com/fisioeva.boccea',
   mapsQuery: 'Via+di+Boccea+755,+00166+Roma',
 
+  /*
+   * Posizione esatta dell'ingresso, dal Plus Code fornito dallo studio
+   * (W9F9+72 Roma → 8FHJW9F9+72). Finisce nei dati strutturati (`geo`):
+   * è ciò che lega il sito al punto sulla mappa della scheda Google.
+   */
+  coordinate: { lat: 41.923188, lng: 12.367563 },
+  plusCode: '8FHJW9F9+72',
+
+  /*
+   * Come si arriva, con le parole dello studio. Serve a chi viene la prima
+   * volta, e dice a Google in quale punto del quartiere siamo.
+   */
+  comeArrivare: {
+    breve: "All'incrocio tra Via di Boccea e Via di Casalotti, con parcheggio",
+    auto:
+      "Dal Grande Raccordo Anulare prendi l'uscita 2, Boccea, e prosegui su Via di Boccea fino all'incrocio con Via di Casalotti: lo studio è nel grande edificio proprio all'incrocio.",
+    parcheggio:
+      "Poco prima del semaforo dell'incrocio, sulla sinistra, c'è l'ingresso del parcheggio dell'edificio.",
+  },
+
   // Il numero dello studio, fornito dallo studio.
   phone: '+39 392 960 5972',
   phoneHref: 'tel:+393929605972',
@@ -1055,7 +1075,13 @@ export const faq: Faq[] = [
     categoria: 'Generali',
     domanda: 'Dove si trova lo studio?',
     risposta:
-      'Siamo in Via di Boccea 755, a Roma, zona Casalotti, all\'angolo con Via della Cellulosa. Nel quartiere in cui lavoriamo da sempre.',
+      'Siamo in Via di Boccea 755, a Roma, zona Casalotti, nel grande edificio all\'incrocio tra Via di Boccea e Via di Casalotti. Dal Raccordo si prende l\'uscita 2, Boccea, e si prosegue su Via di Boccea fino all\'incrocio.',
+  },
+  {
+    categoria: 'Generali',
+    domanda: 'C\'è parcheggio?',
+    risposta:
+      'Sì. Arrivando su Via di Boccea, poco prima del semaforo dell\'incrocio con Via di Casalotti, sulla sinistra c\'è l\'ingresso del parcheggio dell\'edificio.',
   },
   {
     categoria: 'Generali',
