@@ -115,6 +115,22 @@ export const studio = {
   address: 'Via di Boccea, 755',
   city: '00166 Roma',
   zone: 'Casalotti',
+  /*
+   * Le zone da cui si arriva allo studio in pochi minuti, per i dati
+   * strutturati (`areaServed`): dicono a Google in quali quartieri lo studio
+   * è una risposta pertinente a "fisioterapista vicino a me".
+   * ⚠ Lista di partenza da far confermare allo studio: vanno tenute solo
+   * zone da cui i pazienti arrivano davvero, non allargata per ambizione.
+   */
+  zoneServite: [
+    'Casalotti',
+    'Boccea',
+    'Selva Candida',
+    'Torrevecchia',
+    'Valle Santa',
+    'Casal Selce',
+    'Montespaccato',
+  ],
   // Attenzione: bocc**e**a, non boccia. È un refuso ricorrente nei materiali.
   email: 'fisioeva.boccea@gmail.com',
   instagram: 'fisioeva.boccea',

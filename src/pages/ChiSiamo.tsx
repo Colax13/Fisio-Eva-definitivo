@@ -6,6 +6,7 @@ import PercorsoCura from '../components/sections/PercorsoCura';
 import CtaBand from '../components/sections/CtaBand';
 import SectionHeading from '../components/ui/SectionHeading';
 import usePageMeta from '../hooks/usePageMeta';
+import { metaPagine } from '../data/seo';
 
 const valori = [
   {
@@ -27,10 +28,7 @@ const valori = [
 ];
 
 export default function ChiSiamo() {
-  usePageMeta(
-    'Chi Siamo — FisioEVA | Studio di Fisioterapia e Osteopatia a Roma',
-    'Azzurra, Elisa e Veronica: fisioterapiste e osteopata a Roma Casalotti. Il nostro approccio, i nostri valori e il percorso di cura passo dopo passo.'
-  );
+  usePageMeta(metaPagine['/chi-siamo'].titolo, metaPagine['/chi-siamo'].descrizione);
 
   return (
     <>

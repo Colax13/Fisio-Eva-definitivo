@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import PageHero from '../components/layout/PageHero';
 import MappaConsenso from '../components/ui/MappaConsenso';
 import usePageMeta from '../hooks/usePageMeta';
+import { metaPagine } from '../data/seo';
 import { immagini, servizi, studio, team } from '../data/site';
 import { NOTA_WHATSAPP, emailUrl, messaggi, oggetti, whatsappUrl } from '../lib/contatto';
 
@@ -25,10 +26,7 @@ export default function Contatti() {
    */
   const [inviato, setInviato] = useState(false);
 
-  usePageMeta(
-    'Contatti — FisioEVA | Via di Boccea 755, Roma',
-    'Prenota una visita allo studio FisioEVA in Via di Boccea 755, Roma Casalotti. Telefono, email, orari e mappa per raggiungerci.'
-  );
+  usePageMeta(metaPagine['/contatti'].titolo, metaPagine['/contatti'].descrizione);
 
   /*
    * Non c'è un backend: la richiesta non passa dai nostri server, viene

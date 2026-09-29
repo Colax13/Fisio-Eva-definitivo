@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import DocLegale, { type SezioneLegale } from '../components/layout/DocLegale';
 import DatoMancante from '../components/ui/DatoMancante';
 import usePageMeta from '../hooks/usePageMeta';
+import { metaPagine } from '../data/seo';
 import { legale, studio } from '../data/site';
 
 /**
@@ -24,10 +25,7 @@ import { legale, studio } from '../data/site';
  */
 
 export default function Privacy() {
-  usePageMeta(
-    'Privacy policy — FisioEVA',
-    'Come lo studio FisioEVA tratta i dati personali e i dati relativi alla salute dei propri pazienti, ai sensi degli artt. 13-14 del Regolamento UE 2016/679.'
-  );
+  usePageMeta(metaPagine['/privacy'].titolo, metaPagine['/privacy'].descrizione);
 
   const sezioni: SezioneLegale[] = [
     {

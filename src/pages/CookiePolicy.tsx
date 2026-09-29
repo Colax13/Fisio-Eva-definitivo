@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import DocLegale, { type SezioneLegale } from '../components/layout/DocLegale';
 import usePageMeta from '../hooks/usePageMeta';
+import { metaPagine } from '../data/seo';
 import { legale } from '../data/site';
 import { CHIAVE_CONSENSO_MAPPA } from '../components/ui/MappaConsenso';
 
@@ -19,10 +20,7 @@ import { CHIAVE_CONSENSO_MAPPA } from '../components/ui/MappaConsenso';
  * preventivo e granulare, e il tracciamento va bloccato finché non arriva.
  */
 export default function CookiePolicy() {
-  usePageMeta(
-    'Cookie policy — FisioEVA',
-    'Quali cookie e strumenti di tracciamento usa il sito di FisioEVA: nessuna profilazione, nessuna pubblicità, mappe di terze parti caricate solo su richiesta.'
-  );
+  usePageMeta(metaPagine['/cookie-policy'].titolo, metaPagine['/cookie-policy'].descrizione);
 
   const sezioni: SezioneLegale[] = [
     {

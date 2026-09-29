@@ -12,7 +12,7 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#c197c5" />
 
-    <meta name="description" content="FisioEVA — Studio di Fisioterapia e Osteopatia in Via di Boccea 755, Roma. Terapia manuale, osteopatia, riabilitazione e terapie strumentali." />
+    <meta name="description" content="Studio di fisioterapia e osteopatia a Casalotti, in Via di Boccea 755, Roma. Terapia manuale, osteopatia, riabilitazione, salute della donna e osteopatia neonatale." />
 
     <!--
       Chi può leggere il sito è governato da due interruttori indipendenti in
@@ -30,15 +30,18 @@
     <meta name="robots" content="index, follow, max-image-preview:large" />
 
     <!-- Anteprima quando il link viene condiviso. Titolo, descrizione e URL
-         vengono poi riscritti per ogni pagina da usePageMeta. -->
+         vengono riscritti per ogni rotta al build da scripts/pagine-statiche.mjs
+         (testi in src/data/seo.ts) e poi nel browser da usePageMeta. -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="FisioEVA" />
     <meta property="og:locale" content="it_IT" />
-    <meta property="og:title" content="FisioEVA — Studio di Fisioterapia e Osteopatia | Roma" />
+    <meta property="og:title" content="FisioEVA — Fisioterapia e Osteopatia a Casalotti, Roma (Via di Boccea 755)" />
     <meta property="og:description" content="Studio di Fisioterapia e Osteopatia in Via di Boccea 755, Roma. Un percorso costruito su di te, in ogni fase della vita." />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:image" content="https://www.fisioeva.it/foto/team-gruppo-hero.webp" />
+    <meta property="og:image:alt" content="Le tre titolari di FisioEVA nello studio di Via di Boccea 755, Roma" />
 
-    <title>FisioEVA — Studio di Fisioterapia e Osteopatia | Roma</title>
+    <title>FisioEVA — Fisioterapia e Osteopatia a Casalotti, Roma (Via di Boccea 755)</title>
 
     <!--
       Scheda schema.org statica: la stessa che DatiStrutturati.tsx scrive nel
@@ -47,7 +50,7 @@
       Generata da scripts/genera-sitemap.mjs a partire da src/data/site.ts:
       non va scritta a mano, verrebbe sovrascritta al build successivo.
     -->
-    <script type="application/ld+json" id="scheda-clinica">{"@context":"https://schema.org","@type":"MedicalClinic","name":"FisioEVA","description":"Studio di Fisioterapia e Osteopatia a Casalotti, Roma.","url":"https://www.fisioeva.it","address":{"@type":"PostalAddress","streetAddress":"Via di Boccea, 755","postalCode":"00166","addressLocality":"Roma","addressRegion":"RM","addressCountry":"IT"},"email":"fisioeva.boccea@gmail.com","sameAs":["https://www.instagram.com/fisioeva.boccea"],"medicalSpecialty":["Physiotherapy","PhysicalTherapy"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"20:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"08:00","closes":"14:00"}],"telephone":"+39 392 960 5972"}</script>
+    <script type="application/ld+json" id="scheda-clinica">{"@context":"https://schema.org","@type":["MedicalClinic","Physiotherapy"],"@id":"https://www.fisioeva.it/#studio","name":"FisioEVA","description":"Studio di Fisioterapia e Osteopatia a Casalotti, Roma.","url":"https://www.fisioeva.it","logo":"https://www.fisioeva.it/icon-512.png","image":["https://www.fisioeva.it/foto/team-gruppo-hero.webp","https://www.fisioeva.it/foto/sede-reception.webp"],"hasMap":"https://www.google.com/maps/search/?api=1&query=Via+di+Boccea+755,+00166+Roma","address":{"@type":"PostalAddress","streetAddress":"Via di Boccea, 755","postalCode":"00166","addressLocality":"Roma","addressRegion":"RM","addressCountry":"IT"},"email":"fisioeva.boccea@gmail.com","sameAs":["https://www.instagram.com/fisioeva.boccea"],"medicalSpecialty":["Physiotherapy","PhysicalTherapy"],"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"20:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"08:00","closes":"14:00"}],"isAcceptingNewPatients":true,"areaServed":[{"@type":"Place","name":"Casalotti, Roma"},{"@type":"Place","name":"Boccea, Roma"},{"@type":"Place","name":"Selva Candida, Roma"},{"@type":"Place","name":"Torrevecchia, Roma"},{"@type":"Place","name":"Valle Santa, Roma"},{"@type":"Place","name":"Casal Selce, Roma"},{"@type":"Place","name":"Montespaccato, Roma"},{"@type":"City","name":"Roma"}],"availableService":[{"@type":"MedicalTherapy","name":"Fisiokinesiterapia"},{"@type":"MedicalTherapy","name":"Ginnastica posturale"},{"@type":"MedicalTherapy","name":"Osteopatia"},{"@type":"MedicalTherapy","name":"Osteopatia neonatale e pediatrica"},{"@type":"MedicalTherapy","name":"Linfodrenaggio"},{"@type":"MedicalTherapy","name":"Rieducazione motoria e neuromotoria"},{"@type":"MedicalTherapy","name":"Rieducazione post-chirurgica"},{"@type":"MedicalTherapy","name":"Rieducazione sportiva"},{"@type":"MedicalTherapy","name":"Terapia manuale"},{"@type":"MedicalTherapy","name":"Taping neuromuscolare"},{"@type":"MedicalTherapy","name":"Tecarterapia"},{"@type":"MedicalTherapy","name":"Laser ad alta potenza"},{"@type":"MedicalTherapy","name":"Ultrasuonoterapia"},{"@type":"MedicalTherapy","name":"Magnetoterapia"},{"@type":"MedicalTherapy","name":"Tens"},{"@type":"MedicalTherapy","name":"Ionoforesi"},{"@type":"MedicalTherapy","name":"Elettrostimolazione"}],"employee":[{"@type":"Person","name":"Dott.ssa Azzurra De Angelis","jobTitle":"Fisioterapista · Osteopata D.O.","image":"https://www.fisioeva.it/team/azzurra.webp","url":"https://www.fisioeva.it/team"},{"@type":"Person","name":"Dott.ssa Elisa De Rubeis","jobTitle":"Fisioterapista","image":"https://www.fisioeva.it/team/elisa.webp","url":"https://www.fisioeva.it/team"},{"@type":"Person","name":"Dott.ssa Veronica Mirarchi","jobTitle":"Fisioterapista · Osteopata D.O.","image":"https://www.fisioeva.it/team/veronica.webp","url":"https://www.fisioeva.it/team"}],"telephone":"+39 392 960 5972"}</script>
   </head>
   <body>
     <div id="root"></div>
