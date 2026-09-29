@@ -19,7 +19,8 @@ const MAPS = `https://www.google.com/maps/search/?api=1&query=${encodeURICompone
 
 const righe = [
   { voce: 'Indirizzo', valore: `${studio.address}, ${studio.city}` },
-  { voce: 'Come arrivare', valore: 'Tra Casalotti e Boccea, all\'angolo con Via della Cellulosa' },
+  { voce: 'Come arrivare', valore: studio.comeArrivare.breve },
+  { voce: 'Parcheggio', valore: studio.comeArrivare.parcheggio },
   { voce: 'Orari', valore: 'Lun–Ven 8:00–20:00 · Sab 8:00–14:00' },
 ];
 
