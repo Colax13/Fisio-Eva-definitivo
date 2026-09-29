@@ -1,4 +1,5 @@
-import { sito, studio } from '../data/site.ts';
+import { immagineCondivisione } from '../data/seo.ts';
+import { sito, studio, team, trattamentiManuali, trattamentiStrumentali } from '../data/site.ts';
 
 /**
  * Costruisce la scheda MedicalClinic in formato schema.org.
@@ -29,12 +30,21 @@ export function creaSchedaClinica(): Record<string, unknown> {
       };
     });
 
+  const dominio = sito.dominio.replace(/\/$/, '');
+
   const scheda: Record<string, unknown> = {
     '@context': 'https://schema.org',
-    '@type': 'MedicalClinic',
+    // Physiotherapy è il tipo schema.org specifico per uno studio di
+    // fisioterapia: dichiararlo accanto a MedicalClinic aiuta Google ad
+    // associare lo studio alle ricerche "fisioterapista".
+    '@type': ['MedicalClinic', 'Physiotherapy'],
+    '@id': `${dominio}/#studio`,
     name: studio.name,
     description: `${studio.claim} a ${studio.zone}, Roma.`,
     url: sito.dominio,
+    logo: `${dominio}/icon-512.png`,
+    image: [`${dominio}${immagineCondivisione}`, `${dominio}/foto/sede-reception.webp`],
+    hasMap: `https://www.google.com/maps/search/?api=1&query=${studio.mapsQuery}`,
     address: {
       '@type': 'PostalAddress',
       streetAddress: studio.address,
@@ -47,6 +57,27 @@ export function creaSchedaClinica(): Record<string, unknown> {
     sameAs: [studio.instagramUrl],
     medicalSpecialty: ['Physiotherapy', 'PhysicalTherapy'],
     openingHoursSpecification: orari,
+    isAcceptingNewPatients: true,
+    areaServed: [
+      ...studio.zoneServite.map((zona) => ({
+        '@type': 'Place',
+        name: `${zona}, Roma`,
+      })),
+      { '@type': 'City', name: 'Roma' },
+    ],
+    availableService: [...trattamentiManuali, ...trattamentiStrumentali].map((nome) => ({
+      '@type': 'MedicalTherapy',
+      name: nome,
+    })),
+    // Solo le titolari: per il team clinico titoli e albo non sono ancora
+    // confermati, e qui non si scrive nulla che non lo sia.
+    employee: team.map((m) => ({
+      '@type': 'Person',
+      name: m.name,
+      jobTitle: m.role,
+      image: `${dominio}${m.photo}`,
+      url: `${dominio}/team`,
+    })),
   };
 
   // Solo quando sarà quello vero.

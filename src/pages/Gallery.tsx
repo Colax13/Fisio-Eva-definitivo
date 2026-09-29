@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import PageHero from '../components/layout/PageHero';
 import CtaBand from '../components/sections/CtaBand';
 import usePageMeta from '../hooks/usePageMeta';
+import { metaPagine } from '../data/seo';
 import FilterPills from '../components/ui/FilterPills';
 import { gallery, galleryCategorie, immagini } from '../data/site';
 
@@ -14,10 +15,7 @@ const spanClass = {
 
 export default function Gallery() {
   const [categoria, setCategoria] = useState('Tutte');
-  usePageMeta(
-    'Gallery — FisioEVA | Lo studio a Roma Casalotti',
-    'Uno sguardo dentro lo studio FisioEVA: gli spazi, i trattamenti e i percorsi di riabilitazione in Via di Boccea 755, Roma.'
-  );
+  usePageMeta(metaPagine['/gallery'].titolo, metaPagine['/gallery'].descrizione);
 
   const visibili =
     categoria === 'Tutte' ? gallery : gallery.filter((g) => g.categoria === categoria);

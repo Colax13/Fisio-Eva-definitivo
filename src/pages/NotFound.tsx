@@ -6,7 +6,7 @@ import usePageMeta from '../hooks/usePageMeta';
 import { studio } from '../data/site';
 
 export default function NotFound() {
-  usePageMeta('Pagina non trovata — FisioEVA');
+  usePageMeta('Pagina non trovata — FisioEVA', undefined, false);
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-brand-dark px-5 py-32 sm:px-6 md:py-40">

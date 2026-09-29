@@ -8,6 +8,7 @@ import ArrowButton from '../components/ui/ArrowButton';
 import SectionHeading from '../components/ui/SectionHeading';
 import FilaCard from '../components/ui/FilaCard';
 import usePageMeta from '../hooks/usePageMeta';
+import { metaPagine } from '../data/seo';
 import {
   categorie,
   immagini,
@@ -169,10 +170,7 @@ export default function Servizi() {
     return () => clearTimeout(t);
   }, [hash]);
 
-  usePageMeta(
-    'Servizi e Trattamenti — FisioEVA | Fisioterapia e Osteopatia a Roma',
-    'Terapia manuale, osteopatia, riabilitazione, salute della donna, osteopatia neonatale e terapie strumentali a Roma zona Boccea-Casalotti.'
-  );
+  usePageMeta(metaPagine['/servizi'].titolo, metaPagine['/servizi'].descrizione);
 
   const risultati = useMemo(() => cerca(query), [query]);
   const inRicerca = query.trim().length > 0;

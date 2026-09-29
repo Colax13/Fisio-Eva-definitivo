@@ -8,6 +8,7 @@ import SpazioCorsi from '../components/sections/SpazioCorsi';
 import DoveSiamo from '../components/sections/DoveSiamo';
 import CtaBand from '../components/sections/CtaBand';
 import usePageMeta from '../hooks/usePageMeta';
+import { metaPagine } from '../data/seo';
 
 /**
  * Ordine delle sezioni.
@@ -18,10 +19,7 @@ import usePageMeta from '../hooks/usePageMeta';
  * cerca quelli, non una seconda biografia.
  */
 export default function Home() {
-  usePageMeta(
-    'FisioEVA — Studio di Fisioterapia e Osteopatia | Casalotti, Roma',
-    'Studio di fisioterapia e osteopatia in Via di Boccea 755, Roma. Terapia manuale, osteopatia, riabilitazione, salute della donna e osteopatia neonatale.'
-  );
+  usePageMeta(metaPagine['/'].titolo, metaPagine['/'].descrizione);
 
   return (
     <>

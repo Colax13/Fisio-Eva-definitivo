@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import PageHero from '../components/layout/PageHero';
 import CtaBand from '../components/sections/CtaBand';
 import usePageMeta from '../hooks/usePageMeta';
+import { metaPagine } from '../data/seo';
 import FilterPills from '../components/ui/FilterPills';
 import { faq } from '../data/site';
 
@@ -13,10 +14,7 @@ export default function Faq() {
   const [categoria, setCategoria] = useState<(typeof categorie)[number]>('Tutte');
   const [aperta, setAperta] = useState<string | null>(faq[0].domanda);
 
-  usePageMeta(
-    'Domande frequenti — FisioEVA | Fisioterapia e Osteopatia a Roma',
-    'Serve la prescrizione? Quanto dura una seduta? Quante sedute servono? Le risposte alle domande più comuni sui trattamenti dello studio FisioEVA.'
-  );
+  usePageMeta(metaPagine['/faq'].titolo, metaPagine['/faq'].descrizione);
 
   const visibili = categoria === 'Tutte' ? faq : faq.filter((f) => f.categoria === categoria);
 

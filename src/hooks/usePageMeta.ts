@@ -22,14 +22,18 @@ function meta(selettore: string, crea: () => HTMLElement, applica: (el: HTMLElem
  *
  * Il meta `robots` segue `sito.PUBBLICO`: finché è `false` ogni pagina dichiara
  * `noindex, nofollow`, come il robots.txt e l'header di Vercel.
+ *
+ * `indicizza = false` serve alla 404: su un sito a pagina singola Vercel
+ * risponde 200 anche agli indirizzi che non esistono, e senza `noindex`
+ * Google rischia di indicizzarli come pagine vere ("soft 404").
  */
-export default function usePageMeta(title: string, description?: string) {
+export default function usePageMeta(title: string, description?: string, indicizza = true) {
   const { pathname } = useLocation();
 
   useEffect(() => {
     document.title = title;
 
-    const canonico = `${sito.dominio.replace(/\/$/, '')}${pathname === '/' ? '' : pathname}`;
+    const canonico = `${sito.dominio.replace(/\/$/, '')}${pathname === '/' ? '/' : pathname}`;
 
     if (description) {
       meta(
@@ -82,8 +86,8 @@ export default function usePageMeta(title: string, description?: string) {
       (el) =>
         el.setAttribute(
           'content',
-          sito.PUBBLICO ? 'index, follow, max-image-preview:large' : 'noindex, nofollow'
+          sito.PUBBLICO && indicizza ? 'index, follow, max-image-preview:large' : 'noindex, nofollow'
         )
     );
-  }, [title, description, pathname]);
+  }, [title, description, pathname, indicizza]);
 }
