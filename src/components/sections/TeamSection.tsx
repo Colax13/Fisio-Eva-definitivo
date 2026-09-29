@@ -70,7 +70,7 @@ export default function TeamSection({ showHeading = true }: Props) {
                 {membro.photo ? (
                   <img
                     src={membro.photo}
-                    alt={membro.name}
+                    alt={`${membro.name}, ${membro.role} dello studio FisioEVA a Casalotti, Roma`}
                     loading="lazy"
                     decoding="async"
                     width={400}

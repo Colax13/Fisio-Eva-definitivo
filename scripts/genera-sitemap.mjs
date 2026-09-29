@@ -24,7 +24,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { CRAWLER_AI } from './crawler-ai.mjs';
-import { sito, studio, servizi, team, immagini, foto, stock, accoglienza } from '../src/data/site.ts';
+import { sito, studio, servizi, team, immagini, foto, stock, accoglienza, gallery } from '../src/data/site.ts';
 import { creaSchedaClinica } from '../src/lib/schemaOrg.ts';
 
 const radice = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -86,19 +86,39 @@ const pagine = [
 
 const oggi = new Date().toISOString().slice(0, 10);
 
+/*
+ * Le foto di ogni pagina, dichiarate nella sitemap: le immagini le inserisce
+ * JavaScript, e senza questo elenco Google Immagini le scoprirebbe tardi o
+ * mai. Solo scatti dello studio e ritratti, non le stock: non sono nostre e
+ * non raccontano lo studio.
+ */
+const soloNostre = (src) => typeof src === 'string' && src.startsWith('/') && !src.includes('/stock-');
+const immaginiPagina = {
+  '/': [immagini.hero, immagini.sede, immagini.trattamento, immagini.sedeIllustrazione],
+  '/servizi': servizi.map((s) => s.image),
+  '/team': [...team.map((m) => m.photo), ...accoglienza.map((p) => p.photo), foto.teamGruppo],
+  '/chi-siamo': [immagini.calma, foto.teamGruppoRelazionale],
+  '/gallery': gallery.map((g) => g.src),
+};
+const escapeXml = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const tagImmagini = (url) =>
+  [...new Set((immaginiPagina[url] ?? []).filter(soloNostre))]
+    .map((src) => `\n    <image:image>\n      <image:loc>${escapeXml(DOMINIO + src)}</image:loc>\n    </image:image>`)
+    .join('');
+
 // ---------------------------------------------------------------------------
 // sitemap.xml
 // ---------------------------------------------------------------------------
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${pagine
   .map(
     (p) => `  <url>
     <loc>${DOMINIO}${p.url}</loc>
     <lastmod>${oggi}</lastmod>
     <changefreq>${p.frequenza}</changefreq>
-    <priority>${p.priorita}</priority>
+    <priority>${p.priorita}</priority>${tagImmagini(p.url)}
   </url>`
   )
   .join('\n')}
