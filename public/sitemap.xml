@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.fisioeva.it/</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/team-gruppo-hero.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/sede-reception.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/terapia-manuale-momento-di-cura.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/sede-illustrazione.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://www.fisioeva.it/servizi</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/terapia-manuale-schiena.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/terapia-manuale-ginocchio.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/valutazione-posturale-spalle.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/tecar-in-trattamento.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://www.fisioeva.it/contatti</loc>
@@ -23,12 +47,36 @@
     <lastmod>2026-09-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/team/azzurra.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/team/elisa.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/team/veronica.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/team/francesca.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/team/laura.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/team-gruppo.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://www.fisioeva.it/chi-siamo</loc>
     <lastmod>2026-09-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/relazione-sorriso.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/team-gruppo-relazionale.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://www.fisioeva.it/faq</loc>
@@ -41,6 +89,75 @@
     <lastmod>2026-09-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/terapia-manuale-schiena.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/osteopatia-craniale-mani-capo.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/tecar-in-trattamento.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/team-gruppo.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/valutazione-posturale-spalle.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/laser-spalla.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/sala-lettino-e-laser.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/sede-reception.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/terapia-manuale-caviglia.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/tecar-fisiowarm.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/relazione-sorriso.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/laser-ilux.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/terapia-manuale-spalla.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/esercizio-a-terra-riequilibrio.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/propriocezione-monopodalico.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/mobilizzazione-arto-inferiore.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/foam-roller-esercizio-guidato.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/tecar-trattamento-in-corso.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/terapia-manuale-cervicale.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/mobilizzazione-anca.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/propriocezione-tavoletta.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/esercizio-guidato-braccia.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.fisioeva.it/foto/brand-camice-veronica.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://www.fisioeva.it/privacy</loc>

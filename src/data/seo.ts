@@ -17,7 +17,7 @@ export const metaPagine = {
   '/': {
     titolo: 'FisioEVA — Fisioterapia e Osteopatia a Casalotti, Roma (Via di Boccea 755)',
     descrizione:
-      'Studio di fisioterapia e osteopatia a Casalotti, in Via di Boccea 755, Roma. Terapia manuale, osteopatia, riabilitazione, salute della donna e osteopatia neonatale.',
+      'Studio di fisioterapia e osteopatia a Casalotti-Boccea, in Via di Boccea 755, Roma. Terapia manuale, riabilitazione, salute della donna e osteopatia neonatale.',
   },
   '/servizi': {
     titolo: 'Servizi e Trattamenti — FisioEVA | Fisioterapia e Osteopatia a Casalotti, Roma',
