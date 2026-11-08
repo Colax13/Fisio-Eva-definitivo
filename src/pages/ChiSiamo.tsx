@@ -7,25 +7,14 @@ import CtaBand from '../components/sections/CtaBand';
 import SectionHeading from '../components/ui/SectionHeading';
 import usePageMeta from '../hooks/usePageMeta';
 import { metaPagine } from '../data/seo';
+import { valori as testiValori } from '../data/site';
 
-const valori = [
-  {
-    icona: HeartHandshake,
-    titolo: 'Ascolto',
-    testo:
-      'Ogni percorso comincia da una conversazione. Capire come vivi, come ti muovi e cosa ti preoccupa vale quanto la valutazione clinica.',
-    bg: 'bg-brand-primary/10',
-    text: 'text-brand-primary-ink',
-  },
-  {
-    icona: Sparkles,
-    titolo: 'Personalizzazione',
-    testo:
-      'Nessun percorso è uguale all’altro. Niente protocolli fotocopia: il tuo nasce dal tuo problema, dai tuoi tempi e dai tuoi obiettivi, e si adatta a te lungo tutta la strada.',
-    bg: 'bg-brand-secondary/10',
-    text: 'text-brand-secondary-ink',
-  },
+// I testi stanno in site.ts, dove li legge anche il riepilogo statico.
+const stili = [
+  { icona: HeartHandshake, bg: 'bg-brand-primary/10', text: 'text-brand-primary-ink' },
+  { icona: Sparkles, bg: 'bg-brand-secondary/10', text: 'text-brand-secondary-ink' },
 ];
+const valori = testiValori.map((v, i) => ({ ...v, ...stili[i % stili.length] }));
 
 export default function ChiSiamo() {
   usePageMeta(metaPagine['/chi-siamo'].titolo, metaPagine['/chi-siamo'].descrizione);

@@ -1,7 +1,12 @@
 /**
  * Dopo `vite build`, scrive una copia di `dist/index.html` per ogni rotta
- * (`dist/servizi/index.html`, `dist/faq/index.html`, …) con titolo,
- * descrizione, canonical e anteprime social già giusti per quella pagina.
+ * (`dist/servizi.html`, `dist/faq.html`, …) con titolo, descrizione,
+ * canonical, anteprime social e il contenuto della pagina già giusti.
+ *
+ * Il contenuto è quello di `contenuto-statico.mjs`, dentro il `<noscript>`:
+ * chi esegue JavaScript vede l'app come sempre, chi non lo esegue legge la
+ * pagina per esteso — i trattamenti, le biografie, le FAQ — e non più lo
+ * stesso riepilogo della home su ogni indirizzo.
  *
  * Perché serve: questo è un sito a pagina singola, e senza questo passaggio
  * ogni indirizzo riceve lo stesso HTML, con il titolo della home. Google
@@ -9,9 +14,10 @@
  * di WhatsApp e Facebook e la maggior parte dei crawler delle AI no: per loro
  * /servizi, /team e /contatti erano la stessa pagina.
  *
- * Vercel serve un file statico prima di applicare il rewrite verso
- * `/index.html` in vercel.json, quindi le rotte con una copia ricevono la
- * loro, e tutte le altre (la 404) continuano a ricevere l'app come prima.
+ * Con `cleanUrls` in vercel.json, `/servizi` riceve `servizi.html`: Vercel
+ * serve un file statico prima di applicare il rewrite verso `/index.html`,
+ * quindi le rotte con una copia ricevono la loro, e tutte le altre (la 404)
+ * continuano a ricevere l'app come prima.
  *
  * I testi vengono da `src/data/seo.ts`, gli stessi che `usePageMeta` scrive
  * nel browser: una sola fonte.
@@ -21,6 +27,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { metaPagine } from '../src/data/seo.ts';
 import { sito, faq } from '../src/data/site.ts';
+import { contenutoStatico } from './contenuto-statico.mjs';
 
 const radice = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(radice, 'dist');
@@ -77,21 +84,23 @@ for (const [rotta, meta] of Object.entries(metaPagine)) {
     'og:description'
   );
 
+  html = sostituisci(
+    html,
+    /(<noscript id="riepilogo">)[\s\S]*?(<\/noscript>)/,
+    `<noscript id="riepilogo">${contenutoStatico(rotta)}</noscript>`,
+    'il riepilogo <noscript>'
+  );
+
   if (rotta === '/faq') {
     html = html.replace(
       '</head>',
       () => `    <script type="application/ld+json">${JSON.stringify(schedaFaq).replace(/</g, '\\u003c')}</script>\n  </head>`
     );
-    // Anche nel riepilogo per chi non esegue JavaScript.
-    const elenco = faq
-      .map((f) => `        <dt>${testo(f.domanda)}</dt>\n        <dd>${testo(f.risposta)}</dd>`)
-      .join('\n');
-    html = html.replace('</noscript>', () => `  <h2>Domande frequenti</h2>\n      <dl>\n${elenco}\n      </dl>\n    </noscript>`);
   }
 
-  const destinazione = rotta === '/' ? join(dist, 'index.html') : join(dist, rotta.slice(1), 'index.html');
+  const destinazione = join(dist, rotta === '/' ? 'index.html' : `${rotta.slice(1)}.html`);
   mkdirSync(dirname(destinazione), { recursive: true });
   writeFileSync(destinazione, html);
 }
 
-console.log(`pagine statiche: ${Object.keys(metaPagine).length} rotte con titolo e descrizione propri`);
+console.log(`pagine statiche: ${Object.keys(metaPagine).length} rotte con titolo, descrizione e contenuto propri`);

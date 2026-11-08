@@ -49,6 +49,11 @@ export const metaPagine = {
     descrizione:
       'Uno sguardo dentro lo studio FisioEVA: gli spazi, i trattamenti e i percorsi di riabilitazione in Via di Boccea 755, Roma.',
   },
+  '/studioeva': {
+    titolo: 'StudioEVA — Posturale, Feldenkrais, Yoga e Pilates a Casalotti, Roma',
+    descrizione:
+      'StudioEVA, associazione culturale al piano superiore di FisioEVA in Via di Boccea 755, Roma Casalotti: corsi di posturale di gruppo, metodo Feldenkrais, yoga e pilates.',
+  },
   '/privacy': {
     titolo: 'Privacy policy — FisioEVA',
     descrizione:

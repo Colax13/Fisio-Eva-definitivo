@@ -30,6 +30,8 @@ export const messaggi = {
   contatti: 'Ciao FisioEVA, vorrei fissare un appuntamento.',
   /** Footer: chi arriva in fondo di solito sta cercando i recapiti. */
   informazioni: 'Ciao FisioEVA, vorrei qualche informazione.',
+  /** Pagina StudioEVA: i corsi del piano superiore. */
+  studioEva: 'Ciao FisioEVA, vorrei informazioni sui corsi di StudioEVA.',
   /** Scheda di un trattamento. */
   trattamento: (nome: string) => `Ciao FisioEVA, vorrei informazioni su ${nome}.`,
 };

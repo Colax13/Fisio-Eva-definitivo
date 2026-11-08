@@ -150,9 +150,9 @@ export const studio = {
    * volta, e dice a Google in quale punto del quartiere siamo.
    */
   comeArrivare: {
-    breve: "All'incrocio tra Via di Boccea e Via di Casalotti, con parcheggio",
+    breve: "All'incrocio tra Via di Boccea e Via della Cellulosa, con parcheggio",
     auto:
-      "Dal Grande Raccordo Anulare prendi l'uscita 2, Boccea, e prosegui su Via di Boccea fino all'incrocio con Via di Casalotti: lo studio è nel grande edificio proprio all'incrocio.",
+      "Dal Grande Raccordo Anulare prendi l'uscita 2, Boccea, e prosegui su Via di Boccea fino all'incrocio con Via della Cellulosa: lo studio è nel grande edificio proprio all'incrocio.",
     parcheggio:
       "Poco prima del semaforo dell'incrocio, sulla sinistra, c'è l'ingresso del parcheggio dell'edificio.",
   },
@@ -1004,42 +1004,70 @@ export const percorso = [
   },
 ];
 
-export type Recensione = {
-  testo: string;
-  autore: string;
-  contesto: string;
-  stelle: number;
+/**
+ * StudioEVA: l'associazione culturale che anima il piano superiore.
+ *
+ * È un soggetto distinto dallo studio, e le sue sono attività non sanitarie:
+ * per questo ha una pagina sua (`/studioeva`) e una scheda schema.org sua,
+ * non una riga dentro quella della clinica.
+ *
+ * I corsi non si riscrivono qui: nome e descrizione sono quelli dei
+ * trattamenti di categoria `terapie-di-gruppo`, così la pagina servizi e la
+ * pagina StudioEVA non possono raccontare due cose diverse.
+ *
+ * ⛔ Mancano ancora, e non si inventano:
+ *   - il file del logo (`logo`): finché è `null` la pagina compone il
+ *     marchio in Nunito, lo stesso carattere del logo;
+ *   - chi tiene la posturale di gruppo, Yoga e Pilates (`docenti`);
+ *   - il calendario dei corsi (`orari`);
+ *   - se per partecipare serve la tessera dell'associazione (`tessera`).
+ */
+export const studioEva = {
+  nome: 'StudioEVA',
+  claim: 'Trova il tuo centro',
+  natura: 'Associazione culturale',
+  logo: null as string | null,
+  dove: `Al piano superiore dello studio ${studio.name}, in ${studio.address}, ${studio.city} (${studio.zone}).`,
+  presentazione:
+    'StudioEVA è l\'associazione culturale con cui condividiamo il piano superiore. È il posto dove si continua a muoversi bene, insieme: corsi in piccolo gruppo per chi vuole prendersi cura della propria postura, del respiro e del movimento, anche dopo aver concluso un percorso in studio.',
+  /** Slug del trattamento → slug della professionista che tiene il corso. */
+  docenti: {
+    // Elisa è abilitata all'insegnamento delle C.A.M. ed è in formazione
+    // quadriennale nel metodo: è scritto nel suo curriculum.
+    feldenkrais: 'elisa-de-rubeis',
+    'posturale-di-gruppo': null,
+    yoga: null,
+    pilates: null,
+  } as Record<string, string | null>,
+  orari: null as { corso: string; giorno: string; ore: string }[] | null,
+  tessera: null as string | null,
+  iscrizione: [
+    {
+      titolo: 'Contatta la segreteria',
+      desc: `Chiama il ${studio.phone} o scrivici su WhatsApp: ti diciamo giorni, orari e posti disponibili.`,
+    },
+    {
+      titolo: 'Scegli il corso',
+      desc: 'Posturale, Feldenkrais, Yoga o Pilates: se non sai quale fa per te, ne parliamo insieme.',
+    },
+    {
+      titolo: 'Vieni al piano superiore',
+      desc: 'Con un abbigliamento comodo, che ti permetta di muoverti liberamente.',
+    },
+  ],
 };
 
-// Recensioni raccolte dai pazienti dello studio.
-export const recensioni: Recensione[] = [
+/** I principi della pagina Chi siamo. */
+export const valori = [
   {
+    titolo: 'Ascolto',
     testo:
-      'Dopo l\'intervento ero preoccupata di non poter tornare alla mia vita di prima. Il supporto, la costanza e la professionalità che ho trovato qui hanno fatto la differenza: oggi mi sento meglio di prima.',
-    autore: 'Laura M.',
-    contesto: 'Riabilitazione post-chirurgica',
-    stelle: 5,
+      'Ogni percorso comincia da una conversazione. Capire come vivi, come ti muovi e cosa ti preoccupa vale quanto la valutazione clinica.',
   },
   {
+    titolo: 'Personalizzazione',
     testo:
-      'Mi sono rivolto allo studio per un mal di schiena che mi portavo dietro da anni. Per la prima volta qualcuno mi ha spiegato da dove veniva, invece di limitarsi a trattarlo.',
-    autore: 'Marco T.',
-    contesto: 'Terapia manuale e osteopatia',
-    stelle: 5,
-  },
-  {
-    testo:
-      'Ho seguito il percorso post-parto e mi sono sentita accolta dal primo minuto. Professionali, attente e mai di fretta: una cosa rara.',
-    autore: 'Giulia R.',
-    contesto: 'Progetto Donna e Benessere',
-    stelle: 5,
-  },
-  {
-    testo:
-      'Mia madre ha 78 anni e temeva la ginnastica. Qui ha trovato pazienza e gradualità: cammina meglio e soprattutto ha ripreso fiducia.',
-    autore: 'Stefano P.',
-    contesto: 'Progetto Terza Età Attiva',
-    stelle: 5,
+      'Nessun percorso è uguale all’altro. Niente protocolli fotocopia: il tuo nasce dal tuo problema, dai tuoi tempi e dai tuoi obiettivi, e si adatta a te lungo tutta la strada.',
   },
 ];
 
@@ -1075,20 +1103,19 @@ export const faq: Faq[] = [
     categoria: 'Generali',
     domanda: 'Dove si trova lo studio?',
     risposta:
-      'Siamo in Via di Boccea 755, a Roma, zona Casalotti, nel grande edificio all\'incrocio tra Via di Boccea e Via di Casalotti. Dal Raccordo si prende l\'uscita 2, Boccea, e si prosegue su Via di Boccea fino all\'incrocio.',
+      'Siamo in Via di Boccea 755, a Roma, zona Casalotti, nel grande edificio all\'incrocio tra Via di Boccea e Via della Cellulosa. Dal Raccordo si prende l\'uscita 2, Boccea, e si prosegue su Via di Boccea fino all\'incrocio.',
   },
   {
     categoria: 'Generali',
     domanda: 'C\'è parcheggio?',
     risposta:
-      'Sì. Arrivando su Via di Boccea, poco prima del semaforo dell\'incrocio con Via di Casalotti, sulla sinistra c\'è l\'ingresso del parcheggio dell\'edificio.',
+      'Sì. Arrivando su Via di Boccea, poco prima del semaforo dell\'incrocio con Via della Cellulosa, sulla sinistra c\'è l\'ingresso del parcheggio dell\'edificio.',
   },
   {
     categoria: 'Generali',
     domanda: 'Come prenoto un appuntamento?',
     // Le prenotazioni passano dallo studio, non dai cellulari delle titolari.
-    risposta:
-      'Dalla pagina Contatti: trovi il numero dello studio, l\'email e un modulo da compilare. Scrivici o chiamaci e fissiamo insieme il primo appuntamento.',
+    risposta: `Chiama la segreteria dello studio al ${studio.phone}, anche su WhatsApp: fissiamo insieme il primo appuntamento.`,
   },
   {
     categoria: 'Prima visita',

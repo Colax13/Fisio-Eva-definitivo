@@ -78,8 +78,11 @@ export default function SpazioCorsi() {
               ))}
             </ul>
 
-            <div className="flex justify-center lg:justify-start">
+            <div className="flex flex-col gap-3 sm:flex-row sm:justify-center lg:flex-col lg:items-start xl:flex-row">
               <ArrowButton to="/servizi#terapie-di-gruppo">Scopri le nostre terapie di gruppo</ArrowButton>
+              <ArrowButton to="/studioeva" variant="secondary">
+                {`Conosci ${SPAZIO_CORSI_NOME}`}
+              </ArrowButton>
             </div>
           </div>
         </motion.div>

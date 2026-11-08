@@ -16,16 +16,33 @@
  * contenuto di ogni pagina viene scritto nel DOM da JavaScript. Un crawler
  * che non esegue JavaScript — ed è il caso della maggior parte dei crawler
  * delle AI documentati oggi — non vede le pagine renderizzate: vede solo
- * quello che questo script scrive staticamente (qui, in robots.txt e in
- * llms.txt). Per questo il riepilogo e llms.txt contengono i fatti principali
- * per esteso, invece di limitarsi a un link.
+ * quello che scriviamo staticamente: qui (llms.txt, il riepilogo della home)
+ * e, per le altre rotte, `pagine-statiche.mjs`. Il testo di ogni pagina sta
+ * in `contenuto-statico.mjs`. Per questo il riepilogo e llms.txt contengono
+ * i fatti per esteso, invece di limitarsi a un link.
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { CRAWLER_AI } from './crawler-ai.mjs';
-import { sito, studio, servizi, team, immagini, foto, stock, accoglienza, gallery } from '../src/data/site.ts';
-import { creaSchedaClinica } from '../src/lib/schemaOrg.ts';
+import {
+  sito,
+  studio,
+  servizi,
+  team,
+  immagini,
+  foto,
+  stock,
+  accoglienza,
+  gallery,
+  categorie,
+  trattamenti,
+  percorso,
+  faq,
+  studioEva,
+} from '../src/data/site.ts';
+import { creaDatiStrutturati } from '../src/lib/schemaOrg.ts';
+import { contenutoStatico } from './contenuto-statico.mjs';
 
 const radice = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PUBBLICO = sito.PUBBLICO;
@@ -66,9 +83,6 @@ if (mancanti.length) {
   );
 }
 
-const escapeHtml = (testo) =>
-  String(testo).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-
 const orariTesto = (orari) => orari.map((o) => `${o.giorno}: ${o.ore}`).join(' · ');
 
 /** Ogni rotta di App.tsx che ha senso far leggere, con una riga di descrizione. */
@@ -79,6 +93,7 @@ const pagine = [
   { url: '/team', priorita: '0.8', frequenza: 'monthly', titolo: 'Team', descrizione: 'Le professioniste dello studio' },
   { url: '/chi-siamo', priorita: '0.7', frequenza: 'yearly', titolo: 'Chi siamo', descrizione: 'La storia dello studio' },
   { url: '/faq', priorita: '0.7', frequenza: 'monthly', titolo: 'FAQ', descrizione: 'Domande frequenti sui trattamenti' },
+  { url: '/studioeva', priorita: '0.7', frequenza: 'monthly', titolo: 'StudioEVA', descrizione: "Corsi di gruppo dell'associazione culturale StudioEVA: posturale, Feldenkrais, yoga, pilates" },
   { url: '/gallery', priorita: '0.5', frequenza: 'yearly', titolo: 'Gallery', descrizione: 'Foto dello studio' },
   { url: '/privacy', priorita: '0.3', frequenza: 'yearly', titolo: 'Privacy policy', descrizione: 'Trattamento dei dati personali' },
   { url: '/cookie-policy', priorita: '0.3', frequenza: 'yearly', titolo: 'Cookie policy', descrizione: 'Cookie e tracciamento' },
@@ -177,12 +192,14 @@ Per informazioni: ${studio.email}
 ${PUBBLICO ? '' : `Lo studio apre il ${sito.apertura}. `}Le descrizioni dei trattamenti sono informative: non sono una diagnosi né una promessa di risultato clinico.
 
 ## Contatti
-- Indirizzo: ${studio.address}, ${studio.city} (${studio.zone})
-- Telefono: ${studio.phone}
+- Indirizzo: ${studio.address}, ${studio.city} (${studio.zone}) — ${studio.comeArrivare.breve}
+- Telefono e WhatsApp: ${studio.phone} (le prenotazioni passano dalla segreteria dello studio)
 - Email: ${studio.email}
+- Instagram: ${studio.instagramUrl}
 - Orari: ${orariRiga}
 - Come arrivare: ${studio.comeArrivare.auto} ${studio.comeArrivare.parcheggio}
 - Coordinate: ${studio.coordinate.lat}, ${studio.coordinate.lng} (Plus Code ${studio.plusCode})
+- Zone servite: ${studio.zoneServite.join(', ')} (Roma nord-ovest)
 
 ## Pagine
 ${pagine.map((p) => `- [${p.titolo}](${DOMINIO}${p.url}): ${p.descrizione}`).join('\n')}
@@ -190,8 +207,49 @@ ${pagine.map((p) => `- [${p.titolo}](${DOMINIO}${p.url}): ${p.descrizione}`).joi
 ## Servizi
 ${servizi.map((s) => `- **${s.titolo}** — ${s.descrizione}`).join('\n')}
 
-## Team
-${team.map((m) => `- ${m.name} — ${m.role}${m.albo ? ` — Albo dei Fisioterapisti n. ${m.albo}` : ''}`).join('\n')}
+## Trattamenti per area
+${categorie
+  .map(
+    (c) => `### ${c.nome}
+${c.sottotitolo}
+
+${trattamenti
+  .filter((t) => t.categoria === c.slug)
+  .map((t) => `- **${t.nome}** — ${t.sottotitolo} Sintomi e situazioni frequenti: ${t.sintomi.join(', ')}.`)
+  .join('\n')}`
+  )
+  .join('\n\n')}
+
+## Le titolari
+${team
+  .map(
+    (m) => `### ${m.name}
+${m.role}${m.albo ? ` — Albo dei Fisioterapisti n. ${m.albo}${m.ordine ? `, ${m.ordine}` : ''}` : ''}
+
+${m.description}`
+  )
+  .join('\n\n')}
+
+## Il percorso di cura
+${percorso.map((p, i) => `${i + 1}. **${p.titolo}** — ${p.desc}`).join('\n')}
+
+## ${studioEva.nome} — ${studioEva.claim}
+${studioEva.natura}, al piano superiore dello studio: ${DOMINIO}/studioeva
+
+${studioEva.presentazione}
+
+${trattamenti
+  .filter((t) => t.categoria === 'terapie-di-gruppo')
+  .map((t) => {
+    const d = team.find((m) => m.slug === studioEva.docenti[t.slug]);
+    return `- **${t.nome}** — ${t.sottotitolo}${d ? ` Con ${d.name}.` : ''}`;
+  })
+  .join('\n')}
+
+Iscrizioni e orari dei corsi: segreteria dello studio, ${studio.phone}. I corsi sono attività di movimento e benessere, non trattamenti sanitari.
+
+## Domande frequenti
+${faq.map((f) => `**${f.domanda}**\n${f.risposta}`).join('\n\n')}
 
 ## Dati legali
 Titolarità del trattamento, contatti e diritti sui dati personali: ${DOMINIO}/privacy
@@ -211,24 +269,10 @@ html = html.replace(
 
 html = html.replace(
   /(<script type="application\/ld\+json" id="scheda-clinica">)[\s\S]*?(<\/script>)/,
-  (_, apre, chiude) => `${apre}${JSON.stringify(creaSchedaClinica())}${chiude}`
+  (_, apre, chiude) => `${apre}${JSON.stringify(creaDatiStrutturati()).replace(/</g, '\\u003c')}${chiude}`
 );
 
-const riepilogo = `
-      <h1>${escapeHtml(studio.name)} — ${escapeHtml(studio.claim)}</h1>
-      <p>${escapeHtml(studio.address)}, ${escapeHtml(studio.city)} (${escapeHtml(studio.zone)}). Telefono: ${escapeHtml(studio.phone)}. Email: ${escapeHtml(studio.email)}.</p>
-      <p>Orari: ${escapeHtml(orariTesto(studio.orari))}.</p>
-      <p>Come arrivare: ${escapeHtml(studio.comeArrivare.auto)} ${escapeHtml(studio.comeArrivare.parcheggio)}</p>
-      <h2>Servizi</h2>
-      <ul>
-${servizi.map((s) => `        <li><strong>${escapeHtml(s.titolo)}</strong> — ${escapeHtml(s.descrizione)}</li>`).join('\n')}
-      </ul>
-      <h2>Team</h2>
-      <ul>
-${team.map((m) => `        <li>${escapeHtml(m.name)} — ${escapeHtml(m.role)}${m.albo ? ` — Albo dei Fisioterapisti n. ${escapeHtml(m.albo)}` : ''}</li>`).join('\n')}
-      </ul>
-      <p><a href="/privacy">Privacy policy</a> · <a href="/cookie-policy">Cookie policy</a> · <a href="/llms.txt">Riepilogo per le AI</a></p>
-    `;
+const riepilogo = contenutoStatico('/');
 
 html = html.replace(
   /(<noscript id="riepilogo">)[\s\S]*?(<\/noscript>)/,

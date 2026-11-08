@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { creaSchedaClinica } from '../lib/schemaOrg';
+import { creaDatiStrutturati } from '../lib/schemaOrg';
 
 /**
- * Tiene aggiornata, lato client, la scheda MedicalClinic in formato
- * schema.org (JSON-LD) che identifica lo studio per i motori di ricerca e
+ * Tiene aggiornato, lato client, il grafo schema.org (JSON-LD) — la
+ * clinica, le tre titolari e StudioEVA — che identifica lo studio per i motori di ricerca e
  * per le AI che leggono la pagina eseguendo JavaScript.
  *
  * Una copia statica della stessa scheda è già scritta in `index.html` da
@@ -20,7 +20,7 @@ export default function DatiStrutturati() {
       tag.id = 'scheda-clinica';
       document.head.appendChild(tag);
     }
-    tag.textContent = JSON.stringify(creaSchedaClinica());
+    tag.textContent = JSON.stringify(creaDatiStrutturati());
   }, []);
 
   return null;

@@ -21,6 +21,7 @@ const naviga = [
   { label: 'Chi siamo', to: '/chi-siamo' },
   { label: 'Contatti', to: '/contatti' },
   { label: 'FAQ', to: '/faq' },
+  { label: 'StudioEVA', to: '/studioeva' },
 ];
 
 export default function Footer() {
