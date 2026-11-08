@@ -3,7 +3,7 @@ import DocLegale, { type SezioneLegale } from '../components/layout/DocLegale';
 import DatoMancante from '../components/ui/DatoMancante';
 import usePageMeta from '../hooks/usePageMeta';
 import { metaPagine } from '../data/seo';
-import { legale, studio } from '../data/site';
+import { legale, studio, studioEva } from '../data/site';
 
 /**
  * Informativa sul trattamento dei dati personali (artt. 13-14 GDPR).
@@ -53,6 +53,11 @@ export default function Privacy() {
             tuoi dati e chi risponde di ciascun adempimento.{' '}
             <strong>Il contenuto essenziale di quell'accordo ti viene messo a disposizione su
             richiesta</strong>, come prevede l'art. 26.2: basta chiederlo ai recapiti qui sotto.
+          </p>
+          <p>
+            I corsi di gruppo del piano superiore sono organizzati da {studioEva.nome},
+            un'associazione distinta dallo studio, che tratta i dati dei partecipanti in modo
+            autonomo: trovi tutto nella <a href="#studioeva">sezione dedicata</a>.
           </p>
           <p>
             Quello che conta per te è più semplice: <strong>puoi rivolgerti a una qualsiasi delle
@@ -331,6 +336,79 @@ export default function Privacy() {
               garanteprivacy.it
             </a>
             .
+          </p>
+        </>
+      ),
+    },
+    {
+      /*
+       * StudioEVA è un titolare autonomo, non una quarta contitolare: decide
+       * da sé perché e come tratta i dati dei partecipanti ai corsi. Le
+       * attività sono non sanitarie, quindi niente art. 9.2.h.
+       *
+       * L'eventuale adesione all'associazione è scritta al condizionale: le
+       * modalità di partecipazione non sono ancora confermate, ma se ci sono
+       * l'informativa le copre già.
+       */
+      id: 'studioeva',
+      titolo: `${studioEva.nome} e i corsi del piano superiore`,
+      corpo: (
+        <>
+          <p>
+            I corsi di posturale di gruppo, metodo Feldenkrais, yoga e pilates sono organizzati da{' '}
+            <strong>{studioEva.nome}</strong>, associazione culturale con sede al piano superiore di{' '}
+            {studio.address}, {studio.city}. Sono attività di movimento e benessere, non prestazioni
+            sanitarie. Per i dati di chi partecipa ai corsi, <strong>{studioEva.nome} è titolare
+            autonomo del trattamento</strong>: non è una delle contitolari dello studio.
+          </p>
+          <ul>
+            <li>
+              Codice fiscale dell'associazione:{' '}
+              {legale.studioEva.codiceFiscale ?? (
+                <DatoMancante id="codice fiscale StudioEVA" fallback="disponibile su richiesta" />
+              )}
+            </li>
+            {legale.studioEva.legaleRappresentante && (
+              <li>Legale rappresentante: {legale.studioEva.legaleRappresentante}</li>
+            )}
+            <li>
+              Contatto: WhatsApp{' '}
+              <a href={`https://wa.me/${studioEva.whatsapp}`} target="_blank" rel="noopener noreferrer">
+                {studioEva.whatsappLeggibile}
+              </a>
+            </li>
+          </ul>
+          <p>
+            <strong>Quali dati.</strong> Quelli che ci dai quando chiedi informazioni o prenoti una
+            lezione (nome, numero di telefono, quanto scrivi nel messaggio) e quelli necessari a
+            organizzare la tua partecipazione: corso, orari, presenze, pagamenti. Se la
+            partecipazione comporta l'adesione all'associazione, anche i dati richiesti dallo
+            statuto e dalla legge per la gestione degli associati.
+          </p>
+          <p>
+            <strong>Perché e su quale base.</strong> Per rispondere alle tue richieste e organizzare
+            i corsi, cioè per misure precontrattuali e per il rapporto che ci lega (art. 6.1.b); per
+            gli adempimenti fiscali, contabili, statutari e di legge (art. 6.1.c).
+          </p>
+          <p>
+            <strong>Niente dati sulla salute.</strong> Per iscriverti non ti chiediamo informazioni
+            sulla tua salute. Se scegli di segnalare a chi guida la lezione un problema fisico perché
+            ne tenga conto, quell'informazione serve solo ad adattare gli esercizi. Per un dolore o
+            un problema specifico il percorso giusto è una valutazione in studio, e i dati che
+            tratti con lo studio come paziente restano allo studio: non sono comunicati
+            all'associazione.
+          </p>
+          <p>
+            <strong>WhatsApp.</strong> Il numero dei corsi è di {studioEva.nome}. Valgono le stesse
+            avvertenze descritte per lo studio: il contenuto dei messaggi è cifrato, ma il numero e
+            il fatto che ci hai scritto passano da WhatsApp Ireland Ltd. (gruppo Meta), con
+            possibili trasferimenti negli Stati Uniti.
+          </p>
+          <p>
+            <strong>Per quanto tempo e i tuoi diritti.</strong> I dati sono conservati per il tempo
+            della tua partecipazione e poi per quello previsto dagli obblighi di legge. Nei
+            confronti di {studioEva.nome} hai gli stessi diritti descritti in questa pagina, e puoi
+            esercitarli ai recapiti qui sopra.
           </p>
         </>
       ),

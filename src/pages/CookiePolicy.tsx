@@ -34,6 +34,11 @@ export default function CookiePolicy() {
             social, non vendiamo dati a nessuno.
           </p>
           <p>
+            Vale per tutto il sito, compresa la pagina di <Link to="/studioeva">StudioEVA</Link>,
+            l'associazione dei corsi al piano superiore: anche lì nessun cookie e nessun
+            tracciamento.
+          </p>
+          <p>
             È anche il motivo per cui non trovi un banner all'ingresso: il consenso serve a
             installare strumenti di tracciamento, e qui non ce ne sono da autorizzare.
           </p>
@@ -109,6 +114,11 @@ export default function CookiePolicy() {
               Finché non lo clicchi, Instagram non sa che sei qui.
             </li>
             <li>
+              <strong>WhatsApp</strong> — i pulsanti per scriverci, allo studio o a StudioEVA, sono
+              semplici collegamenti a wa.me: non caricano nulla finché non li tocchi. Quando lo fai,
+              si apre WhatsApp e da lì valgono le regole di WhatsApp Ireland Ltd. (gruppo Meta).
+            </li>
+            <li>
               <strong>I caratteri tipografici</strong> — non arrivano da Google. I font del sito
               sono copiati sul nostro server e serviti da qui, quindi caricando una pagina il tuo
               browser non contatta fonts.google.com e il tuo indirizzo IP non esce verso nessuno.
@@ -182,8 +192,9 @@ export default function CookiePolicy() {
       corpo: (
         <p>
           Come trattiamo i dati che ci lasci — quando ci scrivi, quando prenoti, quando diventi
-          paziente — è spiegato nella <Link to="/privacy">privacy policy</Link>, insieme ai tuoi
-          diritti e a chi contattare per esercitarli.
+          paziente, quando ti iscrivi a un corso di StudioEVA — è spiegato nella{' '}
+          <Link to="/privacy">privacy policy</Link>, insieme ai tuoi diritti e a chi contattare per
+          esercitarli.
         </p>
       ),
     },

@@ -298,7 +298,17 @@ export const legale = {
 
   gestionale: 'FisioDesk' as string | null,
 
-  ultimoAggiornamento: '13 settembre 2026',
+  /*
+   * StudioEVA è un titolare autonomo per i dati dei partecipanti ai corsi:
+   * è un'associazione distinta dalle tre contitolari. ⛔ Codice fiscale e
+   * legale rappresentante non sono ancora stati forniti.
+   */
+  studioEva: {
+    codiceFiscale: null as string | null,
+    legaleRappresentante: null as string | null,
+  },
+
+  ultimoAggiornamento: '8 novembre 2026',
 };
 
 /** Le partite IVA effettivamente disponibili, per footer e dati strutturati. */

@@ -1,4 +1,5 @@
 import { Clock, MapPin, MessageCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import PageHero from '../components/layout/PageHero';
 import ArrowButton from '../components/ui/ArrowButton';
@@ -279,13 +280,12 @@ export default function StudioEva() {
               ))}
             </ol>
 
-            {studioEva.tessera ? (
-              <p className="mt-6 text-sm font-light text-gray-300">{studioEva.tessera}</p>
-            ) : (
-              <p className="mt-6 text-sm">
-                <DatoMancante id="tessera/quota associativa StudioEVA" nascondiInProduzione />
-              </p>
-            )}
+            {/* Le modalità di partecipazione (quota, eventuale adesione
+                all'associazione) si spiegano al primo contatto: il sito non
+                le dettaglia finché non sono confermate. */}
+            <p className="mt-6 text-sm font-light text-gray-300">
+              {studioEva.tessera ?? 'Costi e modalità di partecipazione te li spieghiamo al primo contatto.'}
+            </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ArrowButton
@@ -298,7 +298,13 @@ export default function StudioEva() {
                 WhatsApp {studioEva.whatsappLeggibile}
               </ArrowButton>
             </div>
-            <p className="mt-4 text-xs font-light text-gray-400">{NOTA_WHATSAPP}</p>
+            <p className="mt-4 text-xs font-light text-gray-400">
+              {NOTA_WHATSAPP} Come trattiamo i tuoi dati:{' '}
+              <Link to="/privacy#studioeva" className="underline underline-offset-2 hover:text-white">
+                privacy policy
+              </Link>
+              .
+            </p>
           </motion.div>
         </div>
       </section>

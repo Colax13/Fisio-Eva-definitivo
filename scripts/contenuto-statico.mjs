@@ -196,7 +196,8 @@ ${studioEva.iscrizione.map((p) => `        <li><strong>${esc(p.titolo)}</strong>
 
   '/privacy': `<h1>Privacy policy — ${esc(studio.name)}</h1>
       <p>${esc(metaPagine['/privacy'].descrizione)}</p>
-      <p>Contitolari del trattamento: ${esc(legale.contitolari.map((c) => `${c.nome}${c.partitaIva ? ` (P.IVA ${c.partitaIva})` : ''}`).join('; '))}. Punto di contatto unico per l'esercizio dei diritti: ${esc(legale.emailPrivacy)}.</p>`,
+      <p>Contitolari del trattamento: ${esc(legale.contitolari.map((c) => `${c.nome}${c.partitaIva ? ` (P.IVA ${c.partitaIva})` : ''}`).join('; '))}. Punto di contatto unico per l'esercizio dei diritti: ${esc(legale.emailPrivacy)}.</p>
+      <p>I corsi di gruppo del piano superiore sono organizzati da ${esc(studioEva.nome)}, associazione culturale distinta dallo studio e titolare autonomo dei dati dei partecipanti (contatto: WhatsApp ${esc(studioEva.whatsappLeggibile)}). Per iscriversi non vengono chiesti dati sulla salute.</p>`,
 
   '/cookie-policy': `<h1>Cookie policy — ${esc(studio.name)}</h1>
       <p>${esc(metaPagine['/cookie-policy'].descrizione)}</p>`,
