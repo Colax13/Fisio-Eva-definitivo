@@ -1019,7 +1019,6 @@ export const percorso = [
  *   - il file del logo (`logo`): finché è `null` la pagina compone il
  *     marchio in Nunito, lo stesso carattere del logo;
  *   - chi tiene Yoga e Pilates (`docenti`);
- *   - il calendario dei corsi (`orari`);
  *   - se per partecipare serve la tessera dell'associazione (`tessera`).
  */
 export const studioEva = {
@@ -1039,15 +1038,44 @@ export const studioEva = {
     yoga: [],
     pilates: [],
   } as Record<string, string[]>,
-  orari: null as { corso: string; giorno: string; ore: string }[] | null,
+  /**
+   * Il WhatsApp di StudioEVA: è un numero suo, diverso da quello dello studio,
+   * ed è quello che usano i post dei corsi. Formato wa.me: senza + né spazi.
+   */
+  whatsapp: '393929070648',
+  whatsappLeggibile: '392 907 0648',
+  /** Come si svolge ogni corso, con le parole dei post dei corsi (PED FisioEVA, novembre 2026). */
+  dettagli: {
+    'posturale-di-gruppo':
+      'Si parte dal respiro, sdraiati sul tappetino; poi si muove la colonna, vertebra per vertebra, e alla fine si lavora in piedi, sui gesti di tutti i giorni. È per chi passa tante ore seduto.',
+    yoga: 'Hatha yoga dolce: posizioni lente, tenute con calma e guidate dal respiro. Non serve essere flessibili, né averlo mai fatto.',
+    pilates: 'Forza dal centro del corpo, movimenti lenti e controllati. Lento è più difficile, e si sente.',
+    feldenkrais:
+      'Movimenti lenti e piccoli, quasi tutto da sdraiati: si impara a muoversi con meno fatica, nelle cose di tutti i giorni.',
+  } as Record<string, string>,
+  /**
+   * Il calendario, preso dai post dei corsi (PED FisioEVA, novembre 2026).
+   * ⚠ Gli orari del Pilates vengono da un post ancora in bozza: da
+   * ricontrollare quando viene approvato.
+   */
+  orari: [
+    { corso: 'Posturale di gruppo', giorno: 'Dal lunedì al giovedì', ore: 'mattina dalle 8, sera fino alle 20' },
+    { corso: 'Metodo Feldenkrais', giorno: 'Lunedì', ore: '9:00' },
+    { corso: 'Metodo Feldenkrais', giorno: 'Venerdì', ore: '18:00' },
+    { corso: 'Metodo Feldenkrais', giorno: 'Sabato', ore: '11:00' },
+    { corso: 'Yoga', giorno: 'Lunedì', ore: '20:00 — 21:00' },
+    { corso: 'Yoga', giorno: 'Martedì', ore: '13:00 — 14:00' },
+    { corso: 'Yoga', giorno: 'Giovedì', ore: '14:00 — 15:00' },
+    { corso: 'Pilates', giorno: 'Lunedì e mercoledì', ore: '14:15 e 15:15' },
+  ] as { corso: string; giorno: string; ore: string }[] | null,
   tessera: null as string | null,
   iscrizione: [
     {
-      titolo: 'Contatta la segreteria',
-      desc: `Chiama il ${studio.phone} o scrivici su WhatsApp: ti diciamo giorni, orari e posti disponibili.`,
+      titolo: 'Scrivici su WhatsApp',
+      desc: 'Al 392 907 0648, il numero di StudioEVA: ti diciamo l\'orario giusto per te e i posti disponibili.',
     },
     {
-      titolo: 'Scegli il corso',
+      titolo: 'Prova la prima lezione',
       desc: 'Posturale, Feldenkrais, Yoga o Pilates: se non sai quale fa per te, ne parliamo insieme.',
     },
     {

@@ -264,11 +264,14 @@ ${trattamenti
   .filter((t) => t.categoria === 'terapie-di-gruppo')
   .map((t) => {
     const d = docentiDi(t.slug);
-    return `- **${t.nome}** — ${t.sottotitolo}${d.length ? ` Con ${d.map((m) => m.name).join(' e ')}.` : ''}`;
+    return `- **${t.nome}** — ${t.sottotitolo} ${studioEva.dettagli[t.slug] ?? ''}${d.length ? ` Con ${d.map((m) => m.name).join(' e ')}.` : ''}`;
   })
   .join('\n')}
 
-Iscrizioni e orari dei corsi: segreteria dello studio, ${studio.phone}. I corsi sono attività di movimento e benessere, non trattamenti sanitari.
+Orari:
+${(studioEva.orari ?? []).map((o) => `- ${o.corso}: ${o.giorno.toLowerCase()}, ${o.ore}`).join('\n')}
+
+Informazioni e iscrizioni: WhatsApp di ${studioEva.nome}, ${studioEva.whatsappLeggibile}. I corsi sono attività di movimento e benessere, non trattamenti sanitari.
 
 ## Domande frequenti
 ${faq.map((f) => `**${f.domanda}**\n${f.risposta}`).join('\n\n')}

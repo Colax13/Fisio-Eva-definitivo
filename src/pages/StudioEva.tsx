@@ -1,4 +1,4 @@
-import { Clock, MapPin, MessageCircle, Phone } from 'lucide-react';
+import { Clock, MapPin, MessageCircle } from 'lucide-react';
 import { motion } from 'motion/react';
 import PageHero from '../components/layout/PageHero';
 import ArrowButton from '../components/ui/ArrowButton';
@@ -8,7 +8,7 @@ import SectionHeading from '../components/ui/SectionHeading';
 import usePageMeta from '../hooks/usePageMeta';
 import { metaPagine } from '../data/seo';
 import { docentiDi, stock, studio, studioEva, team, trattamentiDi } from '../data/site';
-import { NOTA_WHATSAPP, messaggi, whatsappUrl } from '../lib/contatto';
+import { NOTA_WHATSAPP, messaggi, whatsappStudioEvaUrl } from '../lib/contatto';
 
 /**
  * Il marchio di StudioEVA.
@@ -142,8 +142,9 @@ export default function StudioEva() {
                   </div>
                   <div className="flex flex-1 flex-col p-6">
                     <h3 className="mb-2 font-sans text-lg font-bold text-brand-dark">{corso.nome}</h3>
-                    <p className="mb-5 flex-1 text-sm leading-relaxed font-light text-gray-600">
-                      {corso.sottotitolo}
+                    <p className="mb-2 text-sm leading-relaxed font-light text-gray-600">{corso.sottotitolo}</p>
+                    <p className="mb-5 flex-1 text-sm leading-relaxed font-light text-gray-500">
+                      {studioEva.dettagli[corso.slug]}
                     </p>
                     <p className="text-xs text-gray-500">
                       <span className="font-semibold tracking-wide text-brand-secondary-ink uppercase">
@@ -224,7 +225,10 @@ export default function StudioEva() {
             {studioEva.orari ? (
               <ul className="divide-y divide-gray-100">
                 {studioEva.orari.map((o) => (
-                  <li key={`${o.corso}-${o.giorno}-${o.ore}`} className="flex items-center justify-between gap-4 py-3 text-sm">
+                  <li
+                    key={`${o.corso}-${o.giorno}-${o.ore}`}
+                    className="flex flex-col gap-0.5 py-3 text-sm sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+                  >
                     <span className="font-medium text-brand-dark">{o.corso}</span>
                     <span className="font-light text-gray-600">
                       {o.giorno} · {o.ore}
@@ -245,10 +249,7 @@ export default function StudioEva() {
             )}
 
             <p className="mt-6 text-xs font-light text-gray-500">
-              La segreteria risponde {studio.orari
-                .filter((o) => o.ore !== 'Chiuso')
-                .map((o) => `${o.giorno.toLowerCase()} ${o.ore.replace(' — ', '–')}`)
-                .join(', ')}.
+              Per la posturale l'orario lo scegliamo insieme: scrivici e ti diciamo quello giusto per te.
             </p>
           </motion.div>
 
@@ -288,16 +289,13 @@ export default function StudioEva() {
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ArrowButton
-                href={whatsappUrl(messaggi.studioEva)}
+                href={whatsappStudioEvaUrl(messaggi.studioEva)}
                 variant="ghost"
                 icon={MessageCircle}
                 verso="inizio"
                 esterno
               >
-                Scrivici su WhatsApp
-              </ArrowButton>
-              <ArrowButton href={studio.phoneHref} variant="ghostSecondary" icon={Phone} verso="inizio">
-                Chiama {studio.phone}
+                WhatsApp {studioEva.whatsappLeggibile}
               </ArrowButton>
             </div>
             <p className="mt-4 text-xs font-light text-gray-400">{NOTA_WHATSAPP}</p>

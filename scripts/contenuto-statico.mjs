@@ -170,7 +170,7 @@ ${faq
       ${ul(
         corsiStudioEva.map((c) => {
           const d = docentiDi(c.slug);
-          return `<strong>${esc(c.nome)}</strong> — ${esc(c.sottotitolo)}${d.length ? ` Con ${esc(d.map((m) => `${m.name}, ${m.role.toLowerCase()}`).join(' e '))}.` : ''}`;
+          return `<strong>${esc(c.nome)}</strong> — ${esc(c.sottotitolo)} ${esc(studioEva.dettagli[c.slug] ?? '')}${d.length ? ` Con ${esc(d.map((m) => `${m.name}, ${m.role.toLowerCase()}`).join(' e '))}.` : ''}`;
         })
       )}
       ${team
@@ -183,6 +183,7 @@ ${faq
           ? ul(studioEva.orari.map((o) => `${esc(o.corso)}: ${esc(o.giorno)}, ${esc(o.ore)}`))
           : `<p>Il calendario dei corsi cambia con le stagioni: giorni e orari aggiornati si chiedono alla segreteria (${esc(orariTesto(studio.orari))}).</p>`
       }
+      <p>Informazioni e iscrizioni: WhatsApp di ${esc(studioEva.nome)}, ${esc(studioEva.whatsappLeggibile)}.</p>
       <h2>Come iscriversi</h2>
       <ol>
 ${studioEva.iscrizione.map((p) => `        <li><strong>${esc(p.titolo)}</strong> — ${esc(p.desc)}</li>`).join('\n')}

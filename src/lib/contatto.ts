@@ -1,4 +1,4 @@
-import { studio } from '../data/site';
+import { studio, studioEva } from '../data/site';
 
 /**
  * I link di contatto, tutti costruiti in un posto solo.
@@ -31,7 +31,7 @@ export const messaggi = {
   /** Footer: chi arriva in fondo di solito sta cercando i recapiti. */
   informazioni: 'Ciao FisioEVA, vorrei qualche informazione.',
   /** Pagina StudioEVA: i corsi del piano superiore. */
-  studioEva: 'Ciao FisioEVA, vorrei informazioni sui corsi di StudioEVA.',
+  studioEva: 'Ciao StudioEVA, ho visto il sito e vorrei provare una lezione.',
   /** Scheda di un trattamento. */
   trattamento: (nome: string) => `Ciao FisioEVA, vorrei informazioni su ${nome}.`,
 };
@@ -52,6 +52,10 @@ export const oggetti = {
  */
 export const whatsappUrl = (testo: string) =>
   `https://wa.me/${studio.whatsapp}?text=${encodeURIComponent(testo)}`;
+
+/** Lo stesso, verso il WhatsApp di StudioEVA: i corsi hanno un numero loro. */
+export const whatsappStudioEvaUrl = (testo: string) =>
+  `https://wa.me/${studioEva.whatsapp}?text=${encodeURIComponent(testo)}`;
 
 /**
  * Link a una email già scritta.

@@ -179,7 +179,7 @@ export function creaSchedaStudioEva(): Record<string, unknown> {
       address: indirizzo,
       geo: { '@type': 'GeoCoordinates', latitude: studio.coordinate.lat, longitude: studio.coordinate.lng },
     },
-    telephone: studio.phone,
+    telephone: `+39 ${studioEva.whatsappLeggibile}`,
     knowsAbout: corsi.map((c) => c.nome),
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
