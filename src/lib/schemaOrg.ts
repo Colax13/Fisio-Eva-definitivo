@@ -1,5 +1,5 @@
 import { immagineCondivisione } from '../data/seo.ts';
-import { categorie, sito, studio, studioEva, team, trattamenti } from '../data/site.ts';
+import { categorie, docentiDi, sito, studio, studioEva, team, trattamenti } from '../data/site.ts';
 
 const dominio = sito.dominio.replace(/\/$/, '');
 const ID_STUDIO = `${dominio}/#studio`;
@@ -184,7 +184,7 @@ export function creaSchedaStudioEva(): Record<string, unknown> {
       '@type': 'OfferCatalog',
       name: `I corsi di ${studioEva.nome}`,
       itemListElement: corsi.map((c) => {
-        const docente = studioEva.docenti[c.slug];
+        const docenti = docentiDi(c.slug);
         return {
           '@type': 'Offer',
           itemOffered: {
@@ -192,7 +192,7 @@ export function creaSchedaStudioEva(): Record<string, unknown> {
             name: c.nome,
             description: c.sottotitolo,
             url: `${dominio}/studioeva#${c.slug}`,
-            ...(docente ? { provider: { '@id': idPersona(docente) } } : {}),
+            ...(docenti.length ? { provider: docenti.map((d) => ({ '@id': idPersona(d.slug) })) } : {}),
           },
         };
       }),

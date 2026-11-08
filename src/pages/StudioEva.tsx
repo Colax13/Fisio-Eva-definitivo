@@ -7,7 +7,7 @@ import Eyebrow from '../components/ui/Eyebrow';
 import SectionHeading from '../components/ui/SectionHeading';
 import usePageMeta from '../hooks/usePageMeta';
 import { metaPagine } from '../data/seo';
-import { stock, studio, studioEva, team, trattamentiDi } from '../data/site';
+import { docentiDi, stock, studio, studioEva, team, trattamentiDi } from '../data/site';
 import { NOTA_WHATSAPP, messaggi, whatsappUrl } from '../lib/contatto';
 
 /**
@@ -51,7 +51,7 @@ export default function StudioEva() {
   const docenti = team
     .map((m) => ({
       ...m,
-      corsi: corsi.filter((c) => studioEva.docenti[c.slug] === m.slug).map((c) => c.nome),
+      corsi: corsi.filter((c) => docentiDi(c.slug).some((d) => d.slug === m.slug)).map((c) => c.nome),
     }))
     .filter((m) => m.corsi.length);
 
@@ -117,8 +117,7 @@ export default function StudioEva() {
 
           <ul className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 md:mt-16">
             {corsi.map((corso, idx) => {
-              const slugDocente = studioEva.docenti[corso.slug];
-              const docente = team.find((m) => m.slug === slugDocente);
+              const docenti = docentiDi(corso.slug);
 
               return (
                 <motion.li
@@ -150,8 +149,8 @@ export default function StudioEva() {
                       <span className="font-semibold tracking-wide text-brand-secondary-ink uppercase">
                         Con{' '}
                       </span>
-                      {docente ? (
-                        docente.name
+                      {docenti.length ? (
+                        docenti.map((d) => d.name).join(' e ')
                       ) : (
                         <DatoMancante id={`chi tiene ${corso.nome}`} fallback="un professionista specializzato" />
                       )}

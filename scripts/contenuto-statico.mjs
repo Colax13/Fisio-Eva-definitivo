@@ -30,6 +30,7 @@ import {
   team,
   trattamenti,
   valori,
+  docentiDi,
 } from '../src/data/site.ts';
 import { metaPagine } from '../src/data/seo.ts';
 
@@ -79,7 +80,6 @@ const trattamentiArea = (slug) =>
       .map((t) => `<strong>${esc(t.nome)}</strong> — ${esc(t.sottotitolo)} Sintomi e situazioni frequenti: ${esc(t.sintomi.join(', '))}.`)
   );
 
-const docenteDi = (slug) => team.find((m) => m.slug === studioEva.docenti[slug]);
 const corsiStudioEva = trattamenti.filter((t) => t.categoria === 'terapie-di-gruppo');
 
 // ---------------------------------------------------------------------------
@@ -164,12 +164,12 @@ ${faq
       <h2>I corsi</h2>
       ${ul(
         corsiStudioEva.map((c) => {
-          const d = docenteDi(c.slug);
-          return `<strong>${esc(c.nome)}</strong> — ${esc(c.sottotitolo)}${d ? ` Con ${esc(d.name)}, ${esc(d.role.toLowerCase())}.` : ''}`;
+          const d = docentiDi(c.slug);
+          return `<strong>${esc(c.nome)}</strong> — ${esc(c.sottotitolo)}${d.length ? ` Con ${esc(d.map((m) => `${m.name}, ${m.role.toLowerCase()}`).join(' e '))}.` : ''}`;
         })
       )}
       ${team
-        .filter((m) => corsiStudioEva.some((c) => studioEva.docenti[c.slug] === m.slug))
+        .filter((m) => corsiStudioEva.some((c) => docentiDi(c.slug).some((d) => d.slug === m.slug)))
         .map((m) => `<h2>Chi guida i corsi: ${esc(m.name)}</h2>\n      <p>${esc(m.description)}</p>`)
         .join('\n      ')}
       <h2>Orari</h2>

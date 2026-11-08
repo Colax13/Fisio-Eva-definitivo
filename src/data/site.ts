@@ -1018,7 +1018,7 @@ export const percorso = [
  * ⛔ Mancano ancora, e non si inventano:
  *   - il file del logo (`logo`): finché è `null` la pagina compone il
  *     marchio in Nunito, lo stesso carattere del logo;
- *   - chi tiene la posturale di gruppo, Yoga e Pilates (`docenti`);
+ *   - chi tiene Yoga e Pilates (`docenti`);
  *   - il calendario dei corsi (`orari`);
  *   - se per partecipare serve la tessera dell'associazione (`tessera`).
  */
@@ -1030,15 +1030,15 @@ export const studioEva = {
   dove: `Al piano superiore dello studio ${studio.name}, in ${studio.address}, ${studio.city} (${studio.zone}).`,
   presentazione:
     'StudioEVA è l\'associazione culturale con cui condividiamo il piano superiore. È il posto dove si continua a muoversi bene, insieme: corsi in piccolo gruppo per chi vuole prendersi cura della propria postura, del respiro e del movimento, anche dopo aver concluso un percorso in studio.',
-  /** Slug del trattamento → slug della professionista che tiene il corso. */
+  /** Slug del corso → le professioniste che lo tengono. Vuoto finché non è confermato. */
   docenti: {
-    // Elisa è abilitata all'insegnamento delle C.A.M. ed è in formazione
-    // quadriennale nel metodo: è scritto nel suo curriculum.
-    feldenkrais: 'elisa-de-rubeis',
-    'posturale-di-gruppo': null,
-    yoga: null,
-    pilates: null,
-  } as Record<string, string | null>,
+    // Indicate dallo studio. Elisa è anche abilitata all'insegnamento delle
+    // C.A.M. ed è in formazione quadriennale nel metodo Feldenkrais.
+    'posturale-di-gruppo': ['elisa-de-rubeis', 'azzurra-de-angelis'],
+    feldenkrais: ['elisa-de-rubeis'],
+    yoga: [],
+    pilates: [],
+  } as Record<string, string[]>,
   orari: null as { corso: string; giorno: string; ore: string }[] | null,
   tessera: null as string | null,
   iscrizione: [
@@ -1056,6 +1056,12 @@ export const studioEva = {
     },
   ],
 };
+
+/** Le titolari che tengono un corso di StudioEVA, nell'ordine indicato. */
+export const docentiDi = (slugCorso: string) =>
+  (studioEva.docenti[slugCorso] ?? [])
+    .map((slug) => team.find((m) => m.slug === slug))
+    .filter((m): m is (typeof team)[number] => Boolean(m));
 
 /** I principi della pagina Chi siamo. */
 export const valori = [

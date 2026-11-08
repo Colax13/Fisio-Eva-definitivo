@@ -40,6 +40,7 @@ import {
   percorso,
   faq,
   studioEva,
+  docentiDi,
 } from '../src/data/site.ts';
 import { creaDatiStrutturati } from '../src/lib/schemaOrg.ts';
 import { contenutoStatico } from './contenuto-statico.mjs';
@@ -241,8 +242,8 @@ ${studioEva.presentazione}
 ${trattamenti
   .filter((t) => t.categoria === 'terapie-di-gruppo')
   .map((t) => {
-    const d = team.find((m) => m.slug === studioEva.docenti[t.slug]);
-    return `- **${t.nome}** — ${t.sottotitolo}${d ? ` Con ${d.name}.` : ''}`;
+    const d = docentiDi(t.slug);
+    return `- **${t.nome}** — ${t.sottotitolo}${d.length ? ` Con ${d.map((m) => m.name).join(' e ')}.` : ''}`;
   })
   .join('\n')}
 
