@@ -1,4 +1,5 @@
 import { immagineCondivisione } from '../data/seo.ts';
+import { schedaDi, trovaScheda } from '../data/approfondimenti.ts';
 import { categorie, docentiDi, sito, studio, studioEva, team, trattamenti } from '../data/site.ts';
 
 const dominio = sito.dominio.replace(/\/$/, '');
@@ -94,7 +95,7 @@ export function creaSchedaClinica(): Record<string, unknown> {
       '@type': 'MedicalTherapy',
       name: t.nome,
       description: t.sottotitolo,
-      url: `${dominio}/servizi#${t.categoria}`,
+      url: `${dominio}${schedaDi(t) ?? `/servizi#${t.categoria}`}`,
     })),
     // Le stesse voci raggruppate per area, come le trova il paziente sul sito.
     hasOfferCatalog: {
@@ -203,7 +204,7 @@ export function creaSchedaStudioEva(): Record<string, unknown> {
 }
 
 /**
- * Tutto il grafo in un blocco solo: la clinica, le tre titolari e StudioEVA,
+ * Tutto il grafo in un blocco solo: il sito, la clinica, le tre titolari e StudioEVA,
  * collegati fra loro con gli `@id`. È ciò che finisce nel tag
  * `#scheda-clinica`, sia nell'HTML statico sia nel browser.
  */
@@ -211,6 +212,71 @@ export function creaDatiStrutturati(): Record<string, unknown> {
   const { ['@context']: _contesto, ...clinica } = creaSchedaClinica();
   return {
     '@context': 'https://schema.org',
-    '@graph': [clinica, ...creaSchedePersone(), creaSchedaStudioEva()],
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${dominio}/#sito`,
+        url: `${dominio}/`,
+        name: studio.name,
+        inLanguage: 'it-IT',
+        publisher: { '@id': ID_STUDIO },
+      },
+      clinica,
+      ...creaSchedePersone(),
+      creaSchedaStudioEva(),
+    ],
+  };
+}
+
+/**
+ * I dati strutturati di una scheda trattamento: la pagina come
+ * MedicalWebPage, con le briciole di navigazione e il trattamento di cui
+ * parla, e le sue domande come FAQPage. Vanno nel tag `#scheda-pagina`,
+ * accanto al grafo dello studio.
+ */
+export function creaSchedaPagina(slug: string): Record<string, unknown> | null {
+  const s = trovaScheda(slug);
+  if (!s) return null;
+  const url = `${dominio}${s.url}`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'MedicalWebPage',
+        '@id': `${url}#pagina`,
+        url,
+        name: s.titoloSeo,
+        description: s.descrizioneSeo,
+        inLanguage: 'it-IT',
+        isPartOf: { '@id': `${dominio}/#sito` },
+        publisher: { '@id': ID_STUDIO },
+        ...(s.trattamento.image ? { primaryImageOfPage: `${dominio}${s.trattamento.image}` } : {}),
+        about: {
+          '@type': 'MedicalTherapy',
+          name: s.trattamento.nome,
+          description: s.intro,
+          relevantSpecialty: 'Physiotherapy',
+        },
+        ...(s.esperte.length ? { reviewedBy: s.esperte.map((e) => ({ '@id': idPersona(e.slug) })) } : {}),
+        breadcrumb: {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: `${dominio}/` },
+            { '@type': 'ListItem', position: 2, name: 'Servizi', item: `${dominio}/servizi` },
+            { '@type': 'ListItem', position: 3, name: s.trattamento.nome, item: url },
+          ],
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${url}#domande`,
+        mainEntity: s.faq.map((f) => ({
+          '@type': 'Question',
+          name: f.domanda,
+          acceptedAnswer: { '@type': 'Answer', text: f.risposta },
+        })),
+      },
+    ],
   };
 }

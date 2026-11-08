@@ -44,6 +44,7 @@ import {
 } from '../src/data/site.ts';
 import { creaDatiStrutturati } from '../src/lib/schemaOrg.ts';
 import { contenutoStatico } from './contenuto-statico.mjs';
+import { schede, controllaSchede, schedaDi } from '../src/data/approfondimenti.ts';
 
 const radice = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PUBBLICO = sito.PUBBLICO;
@@ -84,6 +85,10 @@ if (mancanti.length) {
   );
 }
 
+// Le schede dei trattamenti: un link rotto o un nome sbagliato ferma il build.
+const erroriSchede = controllaSchede();
+if (erroriSchede.length) throw new Error(`Schede trattamento:\n  ${erroriSchede.join('\n  ')}`);
+
 const orariTesto = (orari) => orari.map((o) => `${o.giorno}: ${o.ore}`).join(' · ');
 
 /** Ogni rotta di App.tsx che ha senso far leggere, con una riga di descrizione. */
@@ -98,6 +103,15 @@ const pagine = [
   { url: '/gallery', priorita: '0.5', frequenza: 'yearly', titolo: 'Gallery', descrizione: 'Foto dello studio' },
   { url: '/privacy', priorita: '0.3', frequenza: 'yearly', titolo: 'Privacy policy', descrizione: 'Trattamento dei dati personali' },
   { url: '/cookie-policy', priorita: '0.3', frequenza: 'yearly', titolo: 'Cookie policy', descrizione: 'Cookie e tracciamento' },
+  // Le schede dei trattamenti, fuori dal menu ma nella sitemap.
+  ...schede.map((s) => ({
+    url: s.url,
+    priorita: '0.6',
+    frequenza: 'yearly',
+    titolo: s.trattamento.nome,
+    descrizione: s.descrizioneSeo,
+    immagine: s.trattamento.image,
+  })),
 ];
 
 const oggi = new Date().toISOString().slice(0, 10);
@@ -117,8 +131,9 @@ const immaginiPagina = {
   '/gallery': gallery.map((g) => g.src),
 };
 const escapeXml = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const immaginiDi = (url) => immaginiPagina[url] ?? [pagine.find((p) => p.url === url)?.immagine];
 const tagImmagini = (url) =>
-  [...new Set((immaginiPagina[url] ?? []).filter(soloNostre))]
+  [...new Set(immaginiDi(url).filter(soloNostre))]
     .map((src) => `\n    <image:image>\n      <image:loc>${escapeXml(DOMINIO + src)}</image:loc>\n    </image:image>`)
     .join('');
 
@@ -203,7 +218,10 @@ ${PUBBLICO ? '' : `Lo studio apre il ${sito.apertura}. `}Le descrizioni dei trat
 - Zone servite: ${studio.zoneServite.join(', ')} (Roma nord-ovest)
 
 ## Pagine
-${pagine.map((p) => `- [${p.titolo}](${DOMINIO}${p.url}): ${p.descrizione}`).join('\n')}
+${pagine
+  .filter((p) => !p.url.startsWith('/servizi/'))
+  .map((p) => `- [${p.titolo}](${DOMINIO}${p.url}): ${p.descrizione}`)
+  .join('\n')}
 
 ## Servizi
 ${servizi.map((s) => `- **${s.titolo}** — ${s.descrizione}`).join('\n')}
@@ -216,7 +234,10 @@ ${c.sottotitolo}
 
 ${trattamenti
   .filter((t) => t.categoria === c.slug)
-  .map((t) => `- **${t.nome}** — ${t.sottotitolo} Sintomi e situazioni frequenti: ${t.sintomi.join(', ')}.`)
+  .map((t) => {
+    const url = schedaDi(t);
+    return `- **${url ? `[${t.nome}](${DOMINIO}${url})` : t.nome}** — ${t.sottotitolo} Sintomi e situazioni frequenti: ${t.sintomi.join(', ')}.`;
+  })
   .join('\n')}`
   )
   .join('\n\n')}

@@ -11,6 +11,7 @@ import Privacy from './pages/Privacy';
 import CookiePolicy from './pages/CookiePolicy';
 import NotFound from './pages/NotFound';
 import StudioEva from './pages/StudioEva';
+import Trattamento from './pages/Trattamento';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/chi-siamo" element={<ChiSiamo />} />
           <Route path="/servizi" element={<Servizi />} />
+          <Route path="/servizi/:slug" element={<Trattamento />} />
           <Route path="/team" element={<Team />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/faq" element={<Faq />} />

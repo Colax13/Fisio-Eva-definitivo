@@ -11,6 +11,8 @@
  * "fisioterapista Casalotti" o "osteopata Boccea", e il titolo è il segnale
  * più forte che una pagina ha per rispondere a quella ricerca.
  */
+import { trovaScheda } from './approfondimenti.ts';
+
 export type MetaPagina = { titolo: string; descrizione: string };
 
 export const metaPagine = {
@@ -68,3 +70,9 @@ export const metaPagine = {
 
 /** L'immagine che accompagna il link quando viene condiviso (WhatsApp, Facebook). */
 export const immagineCondivisione = '/foto/team-gruppo-hero.webp';
+
+/** Titolo e descrizione di una scheda trattamento (`/servizi/<slug>`). */
+export const metaScheda = (slug: string): MetaPagina | null => {
+  const s = trovaScheda(slug);
+  return s ? { titolo: s.titoloSeo, descrizione: s.descrizioneSeo } : null;
+};

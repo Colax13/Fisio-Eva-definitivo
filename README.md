@@ -30,7 +30,7 @@ src/
   pages/                una per rotta
 ```
 
-Rotte: `/` · `/servizi` · `/team` · `/chi-siamo` · `/contatti` · `/faq` · `/studioeva` · `/gallery` · `/privacy` · `/cookie-policy` · 404.
+Rotte: `/` · `/servizi` · `/servizi/[trattamento]` (23 schede di approfondimento, testi in `src/data/approfondimenti.ts`) · `/team` · `/chi-siamo` · `/contatti` · `/faq` · `/studioeva` · `/gallery` · `/privacy` · `/cookie-policy` · 404.
 
 Ogni rotta esce dal build anche come file HTML a sé (`servizi.html`, `team.html`, …) con titolo, descrizione, dati strutturati e il contenuto completo della pagina in un `<noscript>`, per chi non esegue JavaScript: i testi stanno in `scripts/contenuto-statico.mjs`, i dati in `src/data/site.ts`.
 

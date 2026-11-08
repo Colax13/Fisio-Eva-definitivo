@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Search, X } from 'lucide-react';
 import { motion } from 'motion/react';
 import PageHero from '../components/layout/PageHero';
@@ -9,6 +9,7 @@ import SectionHeading from '../components/ui/SectionHeading';
 import FilaCard from '../components/ui/FilaCard';
 import usePageMeta from '../hooks/usePageMeta';
 import { metaPagine } from '../data/seo';
+import { schedaDi } from '../data/approfondimenti';
 import {
   categorie,
   immagini,
@@ -84,6 +85,24 @@ function SenzaFoto() {
   );
 }
 
+/**
+ * Il link alla scheda di approfondimento, discreto: la card resta quella di
+ * prima, e chi vuole leggere di più trova la strada. Le terapie di gruppo
+ * portano alla pagina di StudioEVA.
+ */
+function Approfondisci({ t }: { t: Trattamento }) {
+  const to = schedaDi(t) ?? (t.categoria === 'terapie-di-gruppo' ? `/studioeva#${t.slug}` : null);
+  if (!to) return null;
+  return (
+    <Link
+      to={to}
+      className="mt-4 inline-flex min-h-11 items-center text-xs font-medium text-brand-secondary-ink underline-offset-4 hover:underline"
+    >
+      Approfondisci<span className="sr-only">: {t.nome}</span>
+    </Link>
+  );
+}
+
 /** La card di un trattamento: stessa forma di quelle dei percorsi in home. */
 function CardTrattamento({ t, accento, idx }: { t: Trattamento; accento: string; idx: number }) {
   return (
@@ -116,6 +135,7 @@ function CardTrattamento({ t, accento, idx }: { t: Trattamento; accento: string;
         <div className="flex flex-1 flex-col p-7">
           <h3 className="text-h3 font-sans font-bold text-brand-dark mb-3">{t.nome}</h3>
           <p className="flex-1 text-sm leading-relaxed font-light text-gray-600">{t.sottotitolo}</p>
+          <Approfondisci t={t} />
           <span
             className={`mt-6 h-[2px] w-8 rounded-full ${accento} transition-all duration-500 group-hover:w-14`}
           ></span>
@@ -231,6 +251,7 @@ export default function Servizi() {
                           <p className="mt-2 text-sm leading-relaxed font-light text-gray-600">
                             {t.sottotitolo}
                           </p>
+                          <Approfondisci t={t} />
                         </div>
                       </li>
                     ))}

@@ -33,6 +33,7 @@ import {
   docentiDi,
 } from '../src/data/site.ts';
 import { metaPagine } from '../src/data/seo.ts';
+import { comeSiInizia, schedaDi, trovaScheda } from '../src/data/approfondimenti.ts';
 
 const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const orariTesto = (orari) => orari.map((o) => `${o.giorno}: ${o.ore}`).join(' · ');
@@ -77,7 +78,11 @@ const trattamentiArea = (slug) =>
   ul(
     trattamenti
       .filter((t) => t.categoria === slug)
-      .map((t) => `<strong>${esc(t.nome)}</strong> — ${esc(t.sottotitolo)} Sintomi e situazioni frequenti: ${esc(t.sintomi.join(', '))}.`)
+      .map((t) => {
+        const url = schedaDi(t) ?? (t.categoria === 'terapie-di-gruppo' ? `/studioeva#${t.slug}` : null);
+        const nome = url ? `<a href="${url}">${esc(t.nome)}</a>` : esc(t.nome);
+        return `<strong>${nome}</strong> — ${esc(t.sottotitolo)} Sintomi e situazioni frequenti: ${esc(t.sintomi.join(', '))}.`;
+      })
   );
 
 const corsiStudioEva = trattamenti.filter((t) => t.categoria === 'terapie-di-gruppo');
@@ -196,9 +201,47 @@ ${studioEva.iscrizione.map((p) => `        <li><strong>${esc(p.titolo)}</strong>
       <p>${esc(metaPagine['/cookie-policy'].descrizione)}</p>`,
 };
 
+/** La scheda di un trattamento, `/servizi/<slug>`, per esteso. */
+function corpoScheda(slug) {
+  const s = trovaScheda(slug);
+  if (!s) return null;
+  const esperte = s.esperte.map((e) => ({ ...e, m: team.find((t) => t.slug === e.slug) })).filter((e) => e.m);
+  return `<p><a href="/">Home</a> › <a href="/servizi">Servizi</a> › ${esc(s.trattamento.nome)}</p>
+      <h1>${esc(s.trattamento.nome)} a ${esc(studio.zone)}, Roma — ${esc(studio.name)}</h1>
+      <p>${esc(s.trattamento.sottotitolo)}</p>
+      <h2>Di cosa si tratta</h2>
+      <p>${esc(s.intro)}</p>
+      <h2>Quando ce lo chiedono</h2>
+      ${ul(s.quando.map(esc))}
+      <p>Le descrizioni sono informative: non sono una diagnosi né una promessa di risultato.</p>
+      <h2>Come lavoriamo</h2>
+      <p>${esc(s.come)}</p>
+      <p>${esc(comeSiInizia)}</p>
+      <h2>Chi se ne occupa</h2>
+      ${
+        esperte.length
+          ? ul(esperte.map((e) => `<strong>${esc(e.m.name)}</strong>, ${esc(e.m.role)} — ${esc(e.perche)}`))
+          : `<p>Lo studio è guidato da tre fisioterapiste iscritte all'albo: ${esc(team.map((m) => m.name).join(', '))}.</p>`
+      }
+      <h2>Domande frequenti</h2>
+      <dl>
+${s.faq.map((f) => `        <dt>${esc(f.domanda)}</dt>\n        <dd>${esc(f.risposta)}</dd>`).join('\n')}
+      </dl>
+      <h2>Dove siamo</h2>
+      ${recapiti}
+      <p>${esc(zone)}</p>
+      <h2>Potrebbe interessarti</h2>
+      ${ul(
+        s.correlati
+          .map(trovaScheda)
+          .filter(Boolean)
+          .map((c) => `<a href="${c.url}">${esc(c.trattamento.nome)}</a>`)
+      )}`;
+}
+
 /** Il contenuto `<noscript>` di una rotta. Le rotte senza testo dedicato ricevono quello della home. */
 export function contenutoStatico(rotta) {
-  const corpo = corpi[rotta] ?? corpi['/'];
+  const corpo = corpi[rotta] ?? (rotta.startsWith('/servizi/') && corpoScheda(rotta.slice('/servizi/'.length))) ?? corpi['/'];
   return `\n      ${menu}\n      ${corpo}\n      ${piede}\n    `;
 }
 

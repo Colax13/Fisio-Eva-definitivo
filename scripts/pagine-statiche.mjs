@@ -28,6 +28,8 @@ import { dirname, join } from 'node:path';
 import { metaPagine } from '../src/data/seo.ts';
 import { sito, faq } from '../src/data/site.ts';
 import { contenutoStatico } from './contenuto-statico.mjs';
+import { schede } from '../src/data/approfondimenti.ts';
+import { creaSchedaPagina } from '../src/lib/schemaOrg.ts';
 
 const radice = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(radice, 'dist');
@@ -60,7 +62,13 @@ const schedaFaq = {
 
 const base = readFileSync(join(dist, 'index.html'), 'utf8');
 
-for (const [rotta, meta] of Object.entries(metaPagine)) {
+/** Le pagine del menu e le schede dei trattamenti (`/servizi/<slug>`). */
+const rotte = [
+  ...Object.entries(metaPagine),
+  ...schede.map((s) => [s.url, { titolo: s.titoloSeo, descrizione: s.descrizioneSeo }]),
+];
+
+for (const [rotta, meta] of rotte) {
   const canonico = `${DOMINIO}${rotta === '/' ? '/' : rotta}`;
   let html = base;
 
@@ -91,6 +99,14 @@ for (const [rotta, meta] of Object.entries(metaPagine)) {
     'il riepilogo <noscript>'
   );
 
+  const schedaPagina = rotta.startsWith('/servizi/') ? creaSchedaPagina(rotta.slice('/servizi/'.length)) : null;
+  if (schedaPagina) {
+    html = html.replace(
+      '</head>',
+      () => `    <script type="application/ld+json" id="scheda-pagina">${JSON.stringify(schedaPagina).replace(/</g, '\\u003c')}</script>\n  </head>`
+    );
+  }
+
   if (rotta === '/faq') {
     html = html.replace(
       '</head>',
@@ -103,4 +119,4 @@ for (const [rotta, meta] of Object.entries(metaPagine)) {
   writeFileSync(destinazione, html);
 }
 
-console.log(`pagine statiche: ${Object.keys(metaPagine).length} rotte con titolo, descrizione e contenuto propri`);
+console.log(`pagine statiche: ${rotte.length} rotte con titolo, descrizione e contenuto propri`);
