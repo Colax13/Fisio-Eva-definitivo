@@ -33,6 +33,7 @@ import {
   immagini,
   foto,
   stock,
+  studioEvaMedia,
   accoglienza,
   gallery,
   categorie,
@@ -63,6 +64,8 @@ const percorsiFoto = [
   ...Object.values(immagini),
   ...Object.values(foto),
   ...Object.values(stock),
+  // Foto e video di StudioEVA: un video mancante lascia un riquadro nero.
+  ...Object.values(studioEvaMedia),
   ...accoglienza.map((p) => p.photo),
   ...team.map((m) => m.photo),
 ].filter((v) => typeof v === 'string' && v.startsWith('/'));
@@ -129,6 +132,7 @@ const immaginiPagina = {
   '/team': [...team.map((m) => m.photo), ...accoglienza.map((p) => p.photo), foto.teamGruppo],
   '/chi-siamo': [immagini.calma, foto.teamGruppoRelazionale],
   '/gallery': gallery.map((g) => g.src),
+  '/studioeva': [studioEvaMedia.gruppo, studioEvaMedia.yoga, studioEvaMedia.posturale, studioEvaMedia.luce],
 };
 const escapeXml = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const immaginiDi = (url) => immaginiPagina[url] ?? [pagine.find((p) => p.url === url)?.immagine];

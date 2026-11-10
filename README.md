@@ -77,9 +77,21 @@ Nell'export esistono anche versioni con il viso tagliato (`_CROP`) o sfocato (`_
 
 ### Foto che ancora mancano
 
-Le sezioni che lo shooting non poteva mostrare (percorso donna, neonatale, terza età, terapie strumentali diverse da tecar e laser, attività di gruppo) usano stock Envato scaricate con la licenza dello studio e ospitate in `public/foto/stock-*.webp`: nessuna immagine arriva da domini esterni. Gli originali ad alta risoluzione stanno in `foto/`, fuori dal repository.
+Le sezioni che lo shooting non poteva mostrare (percorso donna, neonatale, terza età, terapie strumentali diverse da tecar e laser, Pilates) usano stock Envato scaricate con la licenza dello studio e ospitate in `public/foto/stock-*.webp`: nessuna immagine arriva da domini esterni. Gli originali ad alta risoluzione stanno in `foto/`, fuori dal repository.
 
-Restano senza foto **Pilates** e **Metodo Feldenkrais**. Le stock vanno sostituite con scatti veri appena ci sono, a partire dal percorso donna.
+Le stock vanno sostituite con scatti veri appena ci sono, a partire dal percorso donna. Per i corsi di StudioEVA resta in stock solo il **Pilates**, che non è ancora stato ripreso.
+
+### Foto e video di StudioEVA
+
+La pagina `/studioeva` usa le riprese vere della sala al piano superiore, prese dai reel dei corsi (piano editoriale di novembre 2026). Stanno in `public/video/studioeva-*.mp4` e `public/foto/studioeva-*.webp`, elencate in `studioEvaMedia` dentro `src/data/site.ts`; come per le foto, **il build fallisce se ne manca una**.
+
+- **I tre video dell'apertura** (`yoga`, `posturale`, `respiro`) sono muti, in ciclo e senza le scritte dei reel: ogni ripresa è stata ritagliata sotto (o sopra) la scritta, portata a 720×932 e compressa. Pesano 1,3 MB in tutto. Sul telefono se ne scarica uno solo; gli altri due compaiono accanto ai corsi e partono quando entrano in vista (`src/components/ui/VideoLoop.tsx`). Chi ha chiesto al sistema meno animazioni vede il fermo immagine.
+- **Il video del Feldenkrais** è il reel di Elisa, intero, con audio e sottotitoli (4,3 MB): non parte da solo e si scarica solo se lo si avvia.
+- **I fermo immagine** (`studioeva-yoga`, `-posturale`, `-gruppo`, `-luce`) sono fotogrammi delle stesse riprese, e hanno sostituito le stock di yoga e posturale anche nella pagina servizi e in home.
+
+Per aggiungere una ripresa: stesso ritaglio senza scritte, stesso formato, una voce in `studioEvaMedia`.
+
+⚠️ **Nelle riprese si vedono i partecipanti ai corsi e l'insegnante di yoga.** Sono state girate per i social: prima di pubblicare va verificato che il consenso firmato copra anche il sito. Lo stesso vale per l'audio del video di Elisa, se sotto la voce c'è una musica presa dalla libreria di Instagram: quella licenza vale dentro Instagram, non su un sito.
 
 ## Regole di scrittura
 

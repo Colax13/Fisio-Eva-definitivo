@@ -18,6 +18,8 @@ const links = [
     children: categorie.map((c) => ({ label: c.nome, to: `/servizi#${c.slug}` })),
   },
   { label: 'Team', to: '/team' },
+  // I corsi del piano superiore: prima ci si arrivava solo dalla home e dal footer.
+  { label: 'StudioEVA', to: '/studioeva' },
   { label: 'Gallery', to: '/gallery' },
   { label: 'FAQ', to: '/faq' },
   { label: 'Contatti', to: '/contatti' },

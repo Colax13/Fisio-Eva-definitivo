@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { stock } from '../../data/site';
+import { studioEvaMedia } from '../../data/site';
 import ArrowButton from '../ui/ArrowButton';
 import Eyebrow from '../ui/Eyebrow';
 
@@ -35,9 +35,9 @@ export default function SpazioCorsi() {
         >
           <div className="relative min-h-[280px] lg:min-h-[460px]">
             <img
-              src={stock.posturaleGruppo}
-              // Non è detto che lo scatto sia al piano superiore: l'alt dice cosa si vede.
-              alt="Un gruppo durante un esercizio di postura sui tappetini"
+              src={studioEvaMedia.gruppo}
+              // Un fotogramma vero di una lezione di yoga nella sala di StudioEVA.
+              alt="Due partecipanti a braccia alzate durante una lezione di yoga nella sala di StudioEVA"
               loading="lazy"
               className="absolute inset-0 h-full w-full object-cover"
             />

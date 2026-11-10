@@ -49,13 +49,40 @@ export const stock = {
   // Elettrodi e stimolatore su un arto: non esiste una stock specifica dell'ionoforesi.
   elettrodiGambe: '/foto/stock-elettrodi-gambe.webp',
   elettrostimolazione: '/foto/stock-elettrostimolazione.webp',
-  yoga: '/foto/stock-yoga.webp',
-  // Gruppo sui tappetini durante un esercizio di allungamento.
-  posturaleGruppo: '/foto/stock-posturale-gruppo.webp',
   // Atleta in posizione di partenza sulla pista.
   atleta: '/foto/stock-atleta.webp',
   psicomotricita: '/foto/stock-psicomotricita.webp',
   pilates: '/foto/stock-pilates.webp',
+};
+
+/**
+ * StudioEVA: riprese vere della sala al piano superiore.
+ *
+ * Vengono dai reel dei corsi (piano editoriale di novembre 2026): i video
+ * dell'apertura sono gli stessi girati, ritagliati sotto le scritte dei reel e
+ * senza audio, così sul sito restano solo le immagini. I fermo immagine sono
+ * fotogrammi delle stesse riprese. Hanno preso il posto delle stock di yoga e
+ * posturale.
+ *
+ * ⚠ Nelle riprese si vedono i partecipanti ai corsi: il consenso raccolto per
+ * i social deve coprire anche il sito.
+ */
+export const studioEvaMedia = {
+  // Fermo immagine.
+  yoga: '/foto/studioeva-yoga.webp',
+  posturale: '/foto/studioeva-posturale.webp',
+  gruppo: '/foto/studioeva-gruppo.webp',
+  luce: '/foto/studioeva-luce.webp',
+  // I tre video dell'apertura, muti e in ciclo, ciascuno col suo primo fotogramma.
+  videoYoga: '/video/studioeva-yoga.mp4',
+  posterYoga: '/foto/studioeva-yoga-poster.webp',
+  videoPosturale: '/video/studioeva-posturale.mp4',
+  posterPosturale: '/foto/studioeva-posturale-poster.webp',
+  videoRespiro: '/video/studioeva-respiro.mp4',
+  posterRespiro: '/foto/studioeva-respiro-poster.webp',
+  // Elisa racconta il metodo Feldenkrais: l'unico con l'audio, parte solo al tocco.
+  videoFeldenkrais: '/video/studioeva-feldenkrais.mp4',
+  posterFeldenkrais: '/foto/studioeva-feldenkrais-poster.webp',
 };
 
 /** Gli altri scatti dello shooting, usati nella gallery e nelle schede. */
@@ -489,7 +516,7 @@ export const categorie: Categoria[] = [
     slug: 'terapie-di-gruppo',
     nome: 'Terapie di gruppo',
     sottotitolo: 'Al piano superiore: muoversi bene, insieme. In collaborazione con StudioEVA.',
-    image: stock.posturaleGruppo,
+    image: studioEvaMedia.gruppo,
     accent: 'secondary',
   },
 ];
@@ -736,7 +763,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Il lavoro sulla postura in piccolo gruppo, con la guida di un professionista specializzato.',
     categoria: 'terapie-di-gruppo',
     sintomi: ['postura', 'gruppo', 'mantenimento', 'schiena'],
-    image: stock.posturaleGruppo,
+    image: studioEvaMedia.posturale,
   },
   {
     slug: 'yoga',
@@ -744,7 +771,7 @@ export const trattamenti: Trattamento[] = [
     sottotitolo: 'Respiro, mobilità e forza, al proprio ritmo.',
     categoria: 'terapie-di-gruppo',
     sintomi: ['yoga', 'respirazione', 'flessibilità', 'rilassamento'],
-    image: stock.yoga,
+    image: studioEvaMedia.yoga,
   },
   {
     slug: 'pilates',
@@ -1059,12 +1086,32 @@ export const studioEva = {
     'posturale-di-gruppo':
       'Si parte dal respiro, sdraiati sul tappetino; poi si muove la colonna, vertebra per vertebra, e alla fine si lavora in piedi, sui gesti di tutti i giorni. È per chi passa tante ore seduto.',
     yoga: 'Hatha yoga dolce: posizioni lente, tenute con calma e guidate dal respiro. Non serve essere flessibili, né averlo mai fatto.',
-    pilates: 'Forza dal centro del corpo, movimenti lenti e controllati. Lento è più difficile, e si sente.',
+    pilates: 'Forza dal centro del corpo, movimenti lenti e controllati.',
     feldenkrais:
       'Movimenti lenti e piccoli, quasi tutto da sdraiati: si impara a muoversi con meno fatica, nelle cose di tutti i giorni.',
   } as Record<string, string>,
   /**
+   * La frase che apre ogni corso: per posturale e yoga è quella del reel, per
+   * il Feldenkrais è ciò che ci dicono i partecipanti a fine lezione (dalla
+   * didascalia del reel), per il Pilates viene dal post del corso.
+   */
+  frasi: {
+    'posturale-di-gruppo': 'Un\'ora per la tua schiena.',
+    yoga: 'Lascia fuori la giornata.',
+    pilates: 'Lento è più difficile, e si sente.',
+    feldenkrais: '«Quando esco mi sento meglio, e non so perché.»',
+  } as Record<string, string>,
+  /** Per chi è ciascun corso, con le parole del quiz «Pilates, Yoga o Ginnastica posturale?». */
+  perChi: {
+    'posturale-di-gruppo': 'Se vuoi una schiena più libera',
+    yoga: 'Se cerchi calma e respiro',
+    pilates: 'Se cerchi forza, tono e controllo',
+    feldenkrais: 'Se vuoi muoverti con più leggerezza',
+  } as Record<string, string>,
+  /**
    * Il calendario, preso dai post dei corsi (PED FisioEVA, novembre 2026).
+   * Yoga aggiornato al 9 novembre: sera il lunedì e il mercoledì, pausa
+   * pranzo il martedì e il giovedì, come sulle copertine dei reel.
    * ⚠ Gli orari del Pilates vengono da un post ancora in bozza: da
    * ricontrollare quando viene approvato.
    */
@@ -1073,9 +1120,8 @@ export const studioEva = {
     { corso: 'Metodo Feldenkrais', giorno: 'Lunedì', ore: '9:00' },
     { corso: 'Metodo Feldenkrais', giorno: 'Venerdì', ore: '18:00' },
     { corso: 'Metodo Feldenkrais', giorno: 'Sabato', ore: '11:00' },
-    { corso: 'Yoga', giorno: 'Lunedì', ore: '20:00 — 21:00' },
-    { corso: 'Yoga', giorno: 'Martedì', ore: '13:00 — 14:00' },
-    { corso: 'Yoga', giorno: 'Giovedì', ore: '14:00 — 15:00' },
+    { corso: 'Yoga', giorno: 'Lunedì e mercoledì', ore: '20:00 — 21:00' },
+    { corso: 'Yoga', giorno: 'Martedì e giovedì', ore: '13:00 — 15:00' },
     { corso: 'Pilates', giorno: 'Lunedì e mercoledì', ore: '14:15 e 15:15' },
   ] as { corso: string; giorno: string; ore: string }[] | null,
   tessera: null as string | null,
@@ -1094,6 +1140,9 @@ export const studioEva = {
     },
   ],
 };
+
+/** Giorni e orari di un corso, dal calendario di StudioEVA. */
+export const orariDi = (nomeCorso: string) => (studioEva.orari ?? []).filter((o) => o.corso === nomeCorso);
 
 /** Le titolari che tengono un corso di StudioEVA, nell'ordine indicato. */
 export const docentiDi = (slugCorso: string) =>

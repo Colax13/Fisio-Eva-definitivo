@@ -21,6 +21,9 @@ export default function ChiSiamo() {
 
   return (
     <>
+      {/* L'apertura è una scritta animata, non un titolo: senza questa riga la
+          pagina non aveva un h1, né per i motori né per i lettori di schermo. */}
+      <h1 className="sr-only">Chi siamo: FisioEVA è Elisa, Veronica e Azzurra</h1>
       <EvaHero />
 
       <AboutSection cta={null} />
