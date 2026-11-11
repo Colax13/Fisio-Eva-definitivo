@@ -13,18 +13,14 @@ import { docentiDi, orariDi, studio, studioEva, studioEvaMedia, team, trattament
 import { NOTA_WHATSAPP, messaggi, whatsappStudioEvaUrl } from '../lib/contatto';
 
 /**
- * Il marchio di StudioEVA.
+ * La scritta di StudioEVA, composta in Nunito come nel logo: "Studio" in verde
+ * acqua, "EVA" in lilla.
  *
- * Finché il file del logo non è nel repository (`studioEva.logo`), il marchio
- * si compone in Nunito, lo stesso carattere del logo: "Studio" in verde
- * acqua, "EVA" in lilla. Quando il file arriva, si valorizza `logo` e qui
- * compare l'immagine.
+ * È testo e non l'immagine del logo perché sta dentro il titolo della pagina:
+ * lì deve leggersi sopra un video e farsi leggere dai motori. Il logo intero,
+ * con la figura e il payoff, compare più sotto, su fondo chiaro.
  */
 function Marchio({ className = '' }: { className?: string }) {
-  if (studioEva.logo) {
-    return <img src={studioEva.logo} alt="" aria-hidden="true" className={`h-auto object-contain ${className}`} />;
-  }
-
   return (
     <span className={`font-logo leading-none font-light tracking-tight ${className}`}>
       <span className="text-brand-secondary">Studio</span>
@@ -207,6 +203,17 @@ export default function StudioEva() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
+            {/* Il logo vero, con la figura e il payoff. */}
+            {studioEva.logo && (
+              <img
+                src={studioEva.logo}
+                alt={`${studioEva.nome} — ${studioEva.claim}`}
+                width={764}
+                height={234}
+                loading="lazy"
+                className="mx-auto mb-9 h-auto w-full max-w-[22rem] lg:mx-0 lg:-ml-3"
+              />
+            )}
             <Eyebrow align="left" accent="secondary" className="mb-5">
               {`Chi è ${studioEva.nome}`}
             </Eyebrow>

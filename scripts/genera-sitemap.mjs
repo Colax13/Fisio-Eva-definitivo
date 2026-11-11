@@ -66,6 +66,7 @@ const percorsiFoto = [
   ...Object.values(stock),
   // Foto e video di StudioEVA: un video mancante lascia un riquadro nero.
   ...Object.values(studioEvaMedia),
+  studioEva.logo,
   ...accoglienza.map((p) => p.photo),
   ...team.map((m) => m.photo),
 ].filter((v) => typeof v === 'string' && v.startsWith('/'));

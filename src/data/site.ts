@@ -1052,9 +1052,10 @@ export const percorso = [
  * trattamenti di categoria `terapie-di-gruppo`, così la pagina servizi e la
  * pagina StudioEVA non possono raccontare due cose diverse.
  *
+ * Il logo (`logo`) è l'originale della grafica, dal file «Loghi bilanciati»
+ * del 18 settembre 2026: figura, scritta e payoff, con il testo in tracciati.
+ *
  * ⛔ Mancano ancora, e non si inventano:
- *   - il file del logo (`logo`): finché è `null` la pagina compone il
- *     marchio in Nunito, lo stesso carattere del logo;
  *   - chi tiene Yoga e Pilates (`docenti`);
  *   - se per partecipare serve la tessera dell'associazione (`tessera`).
  */
@@ -1062,7 +1063,7 @@ export const studioEva = {
   nome: 'StudioEVA',
   claim: 'Trova il tuo centro',
   natura: 'Associazione culturale',
-  logo: null as string | null,
+  logo: '/studioeva-logo.svg' as string | null,
   dove: `Al piano superiore dello studio ${studio.name}, in ${studio.address}, ${studio.city} (${studio.zone}).`,
   presentazione:
     'StudioEVA è l\'associazione culturale con cui condividiamo il piano superiore. È il posto dove si continua a muoversi bene, insieme: corsi in piccolo gruppo per chi vuole prendersi cura della propria postura, del respiro e del movimento, anche dopo aver concluso un percorso in studio.',
