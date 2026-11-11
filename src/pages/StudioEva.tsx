@@ -264,7 +264,7 @@ export default function StudioEva() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-10% 0px' }}
                   transition={{ duration: 0.7, ease: 'easeOut' }}
-                  className="grid scroll-mt-28 grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-20"
+                  className="grid scroll-mt-36 grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-20"
                 >
                   <div className={idx % 2 ? 'lg:order-2' : ''}>
                     {feldenkrais ? (

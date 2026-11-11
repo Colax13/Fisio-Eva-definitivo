@@ -1,8 +1,9 @@
 
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { ChevronDown } from 'lucide-react';
-import { accoglienza, team } from '../../data/site';
+import { ArrowUpRight, ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { accoglienza, docentiDi, studioEva, team, trattamentiDi } from '../../data/site';
 import SectionHeading from '../ui/SectionHeading';
 import DatoMancante from '../ui/DatoMancante';
 
@@ -20,6 +21,10 @@ const accenti = {
     soft: 'bg-brand-secondary/10',
   },
 };
+
+/** I corsi di StudioEVA che una professionista tiene al piano superiore. */
+const corsiDi = (slug: string) =>
+  trattamentiDi('terapie-di-gruppo').filter((c) => docentiDi(c.slug).some((d) => d.slug === slug));
 
 const iniziali = (nome: string) =>
   nome
@@ -150,6 +155,18 @@ export default function TeamSection({ showHeading = true }: Props) {
                   </p>
                 )}
 
+                {/* Chi guida anche un corso al piano superiore: da qui si va a vederlo. */}
+                {corsiDi(membro.slug).length > 0 && (
+                  <Link
+                    to="/studioeva"
+                    className="mt-6 inline-flex min-h-11 items-center gap-1.5 rounded-full border border-brand-secondary/40 px-4 text-xs font-medium text-brand-secondary-ink transition-colors hover:bg-brand-secondary/10"
+                  >
+                    <span>
+                      Con {studioEva.nome}: {corsiDi(membro.slug).map((c) => c.nome).join(' · ')}
+                    </span>
+                    <ArrowUpRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                  </Link>
+                )}
               </motion.article>
             );
           })}

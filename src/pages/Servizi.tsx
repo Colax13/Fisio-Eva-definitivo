@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, X } from 'lucide-react';
+import { ArrowUpRight, Search, X } from 'lucide-react';
 import { motion } from 'motion/react';
 import PageHero from '../components/layout/PageHero';
 import CtaBand from '../components/sections/CtaBand';
@@ -13,6 +13,7 @@ import { schedaDi } from '../data/approfondimenti';
 import {
   categorie,
   immagini,
+  studioEva,
   trattamenti,
   trattamentiDi,
   type Categoria,
@@ -103,17 +104,20 @@ function Approfondisci({ t }: { t: Trattamento }) {
   );
 }
 
-/** La card di un trattamento: stessa forma di quelle dei percorsi in home. */
+/**
+ * La card di un trattamento: stessa forma di quelle dei percorsi in home.
+ *
+ * Le card dei corsi di gruppo sono un collegamento intero alla pagina di
+ * StudioEVA, al punto del corso: lì ci sono le riprese, gli orari e il modo
+ * per provare una lezione, e la card da sola non dice nessuna di queste cose.
+ */
 function CardTrattamento({ t, accento, idx }: { t: Trattamento; accento: string; idx: number }) {
-  return (
-    <motion.li
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: Math.min(idx, 6) * 0.06 }}
-      className="snap-center shrink-0 w-[300px] sm:w-[340px]"
-    >
-      <div className="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-white bg-white shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+  const corso = t.categoria === 'terapie-di-gruppo';
+  const guscio =
+    'group flex h-full flex-col overflow-hidden rounded-[2rem] border border-white bg-white shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl';
+
+  const contenuto = (
+    <>
         <div className="relative h-44 overflow-hidden">
           {t.image ? (
             <>
@@ -135,12 +139,36 @@ function CardTrattamento({ t, accento, idx }: { t: Trattamento; accento: string;
         <div className="flex flex-1 flex-col p-7">
           <h3 className="text-h3 font-sans font-bold text-brand-dark mb-3">{t.nome}</h3>
           <p className="flex-1 text-sm leading-relaxed font-light text-gray-600">{t.sottotitolo}</p>
-          <Approfondisci t={t} />
+          {corso ? (
+            <span className="mt-4 inline-flex min-h-11 items-center gap-1.5 text-xs font-medium text-brand-secondary-ink underline-offset-4 group-hover:underline">
+              Orari e prima lezione
+              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+            </span>
+          ) : (
+            <Approfondisci t={t} />
+          )}
           <span
             className={`mt-6 h-[2px] w-8 rounded-full ${accento} transition-all duration-500 group-hover:w-14`}
           ></span>
         </div>
-      </div>
+    </>
+  );
+
+  return (
+    <motion.li
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: Math.min(idx, 6) * 0.06 }}
+      className="snap-center shrink-0 w-[300px] sm:w-[340px]"
+    >
+      {corso ? (
+        <Link to={`/studioeva#${t.slug}`} className={guscio}>
+          {contenuto}
+        </Link>
+      ) : (
+        <div className={guscio}>{contenuto}</div>
+      )}
     </motion.li>
   );
 }
@@ -154,11 +182,16 @@ function CardTrattamento({ t, accento, idx }: { t: Trattamento; accento: string;
 function Area({ categoria }: { categoria: Categoria }) {
   const elenco = trattamentiDi(categoria.slug);
   const accento = categoria.accent === 'primary' ? 'bg-brand-primary' : 'bg-brand-secondary';
+  // Il piano superiore: corsi, non trattamenti sanitari.
+  const corsi = categoria.slug === 'terapie-di-gruppo';
+  const conta = corsi
+    ? `${elenco.length} ${elenco.length === 1 ? 'corso' : 'corsi'}`
+    : `${elenco.length} ${elenco.length === 1 ? 'trattamento' : 'trattamenti'}`;
 
   return (
     <div className="scroll-mt-28" id={categoria.slug}>
       <SectionHeading
-        eyebrow={`${elenco.length} ${elenco.length === 1 ? 'trattamento' : 'trattamenti'}`}
+        eyebrow={conta}
         accent={categoria.accent}
         lead={categoria.sottotitolo}
         className="mb-10"
@@ -171,6 +204,19 @@ function Area({ categoria }: { categoria: Categoria }) {
           <CardTrattamento key={t.slug} t={t} accento={accento} idx={i} />
         ))}
       </FilaCard>
+
+      {/* Sotto le card dei corsi, la strada per la pagina di StudioEVA. */}
+      {corsi && (
+        <div className="mt-10 flex flex-col items-center gap-5 text-center">
+          <p className="max-w-xl text-sm leading-relaxed font-light text-gray-600">
+            I corsi li organizza {studioEva.nome}, l'associazione culturale del piano superiore:
+            sulla sua pagina trovi le riprese della sala, gli orari e come provare la prima lezione.
+          </p>
+          <ArrowButton to="/studioeva" variant="secondary">
+            {`Scopri di più su ${studioEva.nome}`}
+          </ArrowButton>
+        </div>
+      )}
     </div>
   );
 }

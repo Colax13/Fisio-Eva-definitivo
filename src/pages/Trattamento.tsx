@@ -203,6 +203,17 @@ export default function Trattamento() {
                   </li>
                 ) : null;
               })}
+              {/* La scheda parla della posturale di gruppo di StudioEVA: qui la si raggiunge. */}
+              {s.trattamento.slug === 'ginnastica-posturale' && (
+                <li>
+                  <Link
+                    to="/studioeva#posturale-di-gruppo"
+                    className="inline-flex min-h-11 items-center rounded-full border border-brand-secondary/40 bg-white px-5 text-sm font-light text-brand-dark transition-colors hover:bg-brand-secondary/10"
+                  >
+                    Posturale di gruppo · StudioEVA
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link
                   to={`/servizi#${s.categoria.slug}`}

@@ -1,12 +1,12 @@
 import { useState, type FormEvent } from 'react';
-import { Car, Clock, Instagram, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react';
+import { ArrowUpRight, Car, Clock, Instagram, Mail, MapPin, MessageCircle, Phone, Send, Users } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import PageHero from '../components/layout/PageHero';
 import MappaConsenso from '../components/ui/MappaConsenso';
 import usePageMeta from '../hooks/usePageMeta';
 import { metaPagine } from '../data/seo';
-import { immagini, servizi, studio, team } from '../data/site';
+import { immagini, servizi, studio, studioEva, team } from '../data/site';
 import { NOTA_WHATSAPP, emailUrl, messaggi, oggetti, whatsappUrl } from '../lib/contatto';
 
 export default function Contatti() {
@@ -235,6 +235,30 @@ export default function Contatti() {
                   </p>
                 </div>
               </div>
+
+              {/* I corsi del piano superiore hanno un numero loro: chi li cerca
+                  qui non deve scrivere allo studio per sentirsi dire di riscrivere. */}
+              <Link
+                to="/studioeva"
+                className="group bg-white/80 backdrop-blur-md rounded-[2rem] p-7 shadow-xl border border-white flex items-start gap-5 transition-shadow hover:shadow-2xl"
+              >
+                <span className="w-12 h-12 rounded-2xl bg-brand-primary/10 text-brand-primary flex items-center justify-center shrink-0">
+                  <Users className="w-6 h-6" />
+                </span>
+                <span className="flex-1">
+                  <span className="block text-xs text-gray-500 uppercase tracking-wider mb-3">
+                    Cerchi i corsi di gruppo?
+                  </span>
+                  <span className="block text-sm text-gray-600 font-light leading-relaxed">
+                    Posturale, Yoga, Pilates e Feldenkrais sono di {studioEva.nome}, al piano
+                    superiore, e hanno un WhatsApp loro: {studioEva.whatsappLeggibile}.
+                  </span>
+                  <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-brand-secondary-ink underline-offset-4 group-hover:underline">
+                    Scopri {studioEva.nome}
+                    <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+                  </span>
+                </span>
+              </Link>
             </div>
           </motion.div>
 
